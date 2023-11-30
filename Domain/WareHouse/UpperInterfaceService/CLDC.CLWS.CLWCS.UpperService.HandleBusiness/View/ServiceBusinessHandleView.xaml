@@ -1,0 +1,194 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.UpperService.HandleBusiness.View.ServiceBusinessHandleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:view="clr-namespace:CLDC.CLWS.CLWCS.UpperService.HandleBusiness.View"
+             xmlns:convertor="clr-namespace:CLDC.Infrastructrue.UserCtrl.Convertor;assembly=CLDC.Infrastructrue.UserCtrl"
+             xmlns:page="clr-namespace:CLDC.Infrastructrue.UserCtrl.View.Page;assembly=CLDC.Infrastructrue.UserCtrl"
+             xmlns:viewModel="clr-namespace:CLDC.CLWS.CLWCS.WareHouse.ViewModel;assembly=CLDC.CLWS.CLWCS.WareHouse.ViewModel"
+             xmlns:dataModel="clr-namespace:CLDC.CLWS.CLWCS.Infrastructrue.DataModel;assembly=CLDC.CLWS.CLWCS.Infrastructrue.DataModel"
+             xmlns:convertor1="clr-namespace:CLDC.CLWS.CLWCS.WareHouse.ViewModel.Convertor;assembly=CLDC.CLWS.CLWCS.WareHouse.ViewModel"
+             mc:Ignorable="d"  
+             d:DesignHeight="800" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="Border">
+                <Setter Property="BorderThickness" Value="0.6"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
+            </Style>
+            <view:RunStatusToToolTip x:Key="RunStateToContent" />
+            <view:RunStateToBackground x:Key="RunStateToBackgroud" />
+            <convertor:EnumDescriptionConverter x:Key="DescriptionConverter" />
+            <viewModel:StartOrPauseToKind x:Key="StartOrPauseToKind" />
+            <convertor1:UserLevelToVisibility x:Key="UserLevelToVisibility" />
+            <convertor:DateTimeStringConverter x:Key="DateTimeStringConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border>
+        <Grid Background="White">
+            <Grid Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <materialDesign:ColorZone Grid.Row="0" Mode="Light" VerticalAlignment="Center" Height="30">
+                    <Label VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" FontWeight="Black">接口调用管理</Label>
+                </materialDesign:ColorZone>
+                <Border Grid.Row="1"  BorderThickness="0.3">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto" MinWidth="80"/>
+                        </Grid.ColumnDefinitions>
+                        <WrapPanel Grid.Column="0" VerticalAlignment="Center" TextElement.FontSize="14">
+                            <Label Content="条码:" VerticalAlignment="Center"/>
+                            <TextBox  MinWidth="160" Text="{Binding Barcode}"/>
+                            <TextBlock Width="40" />
+                            <Label Content="方法名称:" VerticalAlignment="Center"/>
+                            <TextBox  MinWidth="150" Text="{Binding MethodName}"/>
+                            <TextBlock Width="40" />
+                            <Label Content="调用状态:" VerticalAlignment="Center"/>
+                            <ComboBox Width="120" ItemsSource="{Binding Path=DicHandleStatusEnum}" 
+                                                  DisplayMemberPath="Value" SelectedValuePath="Key" 
+                                                  SelectedValue="{Binding HandleStatus,Mode=TwoWay}" IsEditable="True"/>
+                            <TextBlock Width="40" />
+                            <Label Content="调用结果:" VerticalAlignment="Center"/>
+                            <TextBox  MinWidth="150" Text="{Binding HandleResult}"/>             
+                        </WrapPanel>
+                        <WrapPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" TextElement.FontSize="14">
+                            <Label Content="添加时间:" VerticalAlignment="Center"/>
+                            <DatePicker  Width="120" 
+                                        materialDesign:HintAssist.Hint="开始时间" SelectedDate="{Binding HandleFromTime,Converter={StaticResource DateTimeStringConverter}}"  />
+                            <Label Content="  /  " VerticalAlignment="Center"/>
+                            <DatePicker Width="120"
+                                        materialDesign:HintAssist.Hint="结束时间" SelectedDate="{Binding HandleToTime,Converter={StaticResource DateTimeStringConverter}}" />
+                        </WrapPanel>
+                        <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2">
+                            <Button Name="BtnSearch" Width="60" Height="60"  ToolTip="查询" Command="{Binding SearchCommand}" Background="Transparent" BorderThickness="0" 
+                                    Style="{StaticResource MaterialDesignRaisedLightButton}" Padding="1">
+                                <materialDesign:PackIcon Kind="FileDocumentBoxSearchOutline"  Width="30" Height="30"/>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Border>
+                <Grid Grid.Row="2" Margin="1" Background="LightGray">
+                    <WrapPanel VerticalAlignment="Center">
+                        <TextBlock Width="20"></TextBlock>
+                        <Button Padding="0" Name="BtnReInvoke" Width="24" Height="24" ToolTip="重新调用接口" 
+                            Command="{Binding  ReInvokeCommand}" CommandParameter="{Binding ElementName=DgvDataInfo,Path=SelectedValue}" materialDesign:ButtonAssist.CornerRadius="6" 
+                            Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" HorizontalAlignment="Left" 
+                                Visibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}">
+                            <materialDesign:PackIcon Kind="Redo" />
+                        </Button>
+                        <TextBlock Width="10"></TextBlock>
+                        <Button x:Name="BtnStart" materialDesign:ShadowAssist.ShadowDepth='Depth2' Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                                Command="{Binding PauseCommand}"   BorderThickness="0" BorderBrush="Transparent" 
+                                                Width="25" Padding="0" Height="25" Visibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.运维人员}}"
+                                    		    ToolTip="{Binding ServiceBusinessHandle.CurRunState, Converter={StaticResource RunStateToContent}}" >
+                            <materialDesign:PackIcon Kind="{Binding ServiceBusinessHandle.CurRunState, Converter={StaticResource StartOrPauseToKind}}" />
+                        </Button>
+                        <TextBlock Width="10"></TextBlock>
+                        <Button  x:Name="BtnReset" Command="{Binding ResetCommand}" 
+                                                 materialDesign:ShadowAssist.ShadowDepth="Depth2" ToolTip="复位"  Padding="0" 
+                                                 Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" Visibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.运维人员}}"
+                                                 Width="25" Height="25"   BorderThickness="0" BorderBrush="Transparent">
+                            <materialDesign:PackIcon Kind="Restore" />
+                        </Button>
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <Button  Command="{Binding OpenAssistantCommand}" ToolTip="调试助手" materialDesign:ShadowAssist.ShadowDepth="Depth2" 
+                                                 Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" Width="24" Height="24"   BorderThickness="0" Padding="0" BorderBrush="Transparent" 
+                                 Visibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}">
+                            <materialDesign:PackIcon Kind="Bug" Padding="0" />
+                        </Button>
+                        <TextBlock Width="10"></TextBlock>
+                    </WrapPanel>
+                   
+                </Grid>
+                <Grid Grid.Row="3" Margin="1">
+                    <Border>
+                        <DataGrid
+                                  Name="DgvDataInfo"
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                  AutoGenerateColumns="False"
+                                  ItemsSource="{Binding  CurrentShowList, Mode=OneWay}"
+                                  CanUserSortColumns="True"  CanUserAddRows="False"
+                                  CanUserDeleteRows="False" CanUserResizeRows="False"                                
+                                  materialDesign:DataGridAssist.CellPadding="4 2 2 2"
+                                  materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="条码"  MinWidth="150"   Binding="{Binding Barcode}"/>
+                                <DataGridTextColumn Header="方法名称"  MinWidth="100"   Binding="{Binding MethodName}"/>
+                                <DataGridTextColumn Header="业务名称"  MinWidth="100" Binding="{Binding BusinessName }"/>
+                                <DataGridTextColumn Header="调用状态"  MinWidth="80"  Binding="{Binding InvokeStatus,Converter={StaticResource DescriptionConverter}}"/>
+                                <DataGridTextColumn Header="回调函数" MinWidth="120"  Binding="{Binding CallBackFuncName}"/>
+                                <DataGridTextColumn Header="调用次数"  MinWidth="60"   Binding="{Binding InvokeTime}"/>
+                                <DataGridTextColumn Header="最大调用次数"  MinWidth="60"  Binding="{Binding MaxTime}"/>
+                                <DataGridTextColumn Header="调用超时时间"  MinWidth="120"  Binding="{Binding TimeOut}"/>
+                                <DataGridTextColumn Header="调用接口耗时"  MinWidth="80"  Binding="{Binding InvokeDelay}"/>
+                                <DataGridTextColumn Header="调用开始时间"  MinWidth="120"  Binding="{Binding FirstInvokDateTime}"/>
+                                <DataGridTextColumn Header="调用完成时间"  MinWidth="120"  Binding="{Binding InvokeFinishDateTime}"/>
+                                <DataGridTextColumn Header="添加时间"  MinWidth="120"  Binding="{Binding AddDateTime}"/>
+                                <DataGridTextColumn Header="结果"  MinWidth="120"  Binding="{Binding Result}"/>
+                                <DataGridTextColumn Header="调用接口参数"  MinWidth="250"  Binding="{Binding Parameters}"/>
+                                <DataGridTextColumn Header="返回信息"  MinWidth="350"  Binding="{Binding Message}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="4"  Margin="1" Background="LightGray">
+                    <page:UCSplitPager   x:Name="SplitPager" DataContext="{Binding PageViewModel}"/>
+                </Grid>
+                <StackPanel Grid.Row="5" x:Name="DockPnlLog" Margin="1" Visibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}">
+                    <Expander x:Name="ExpanderLog" ExpandDirection="Down" 
+                                          materialDesign:ExpanderAssist.DownHeaderPadding="2" Header="日志信息">
+                        <DockPanel   TextBlock.Foreground="{DynamicResource MaterialDesignBody}" >
+                            <DataGrid  Name="DgvLogInfo"  Height="300"  ItemsSource="{Binding LogInfoModelLst}" 
+                                                   AutoGenerateColumns="False" Padding="0"  CanUserSortColumns="True" CanUserAddRows="False" 
+                                                   CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="时间" Binding="{Binding DateTime}"  CanUserSort="True" 
+                                                                SortMemberPath="DateTime"  SortDirection="Descending" MinWidth="120" />
+                                    <DataGridTextColumn Header="等级" Binding="{Binding Level}" MinWidth="60" />
+                                    <DataGridTextColumn Header="内容" Binding="{Binding Content}" MinWidth="500" />
+                                </DataGrid.Columns>
+                                <DataGrid.InputBindings>
+                                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OpenLogCommand}"  />
+                                </DataGrid.InputBindings>
+                            </DataGrid>
+                        </DockPanel>
+                    </Expander>
+                    <Border  Background="{DynamicResource MaterialDesignDivider}" Height="1"
+                                    HorizontalAlignment="Stretch" SnapsToDevicePixels="True" />
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

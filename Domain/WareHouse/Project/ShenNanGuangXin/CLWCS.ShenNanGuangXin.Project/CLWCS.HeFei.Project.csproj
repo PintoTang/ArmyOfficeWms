@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9AF00853-E4B6-4898-A0E8-40402053CEBC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CLWCS.HeFei.Project</RootNamespace>
+    <AssemblyName>CLWCS.HeFei.Project</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\Exe\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\LIB\Unity.3.0.1\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ProjectMain.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Infrastructrue\DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel.csproj">
+      <Project>{fc860366-a4b2-4da5-a389-88732cd4ec7c}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Infrastructrue\Ioc\Infrastructrue.Ioc.Interface\Infrastructrue.Ioc.Interface.csproj">
+      <Project>{4ad2a2f6-71e1-4972-a012-763529c42172}</Project>
+      <Name>Infrastructrue.Ioc.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Service\StartService\CLDC.Service.Project\CLDC.Service.Project.csproj">
+      <Project>{eb4cc463-50a5-41a5-8318-849358c07e2f}</Project>
+      <Name>CLDC.Service.Project</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\DeviceMonitor\CLDC.CLWS.CLWCS.WareHouse.DeviceMonitor\CLDC.CLWS.CLWCS.WareHouse.DeviceMonitor.csproj">
+      <Project>{f7de28eb-32d2-4682-8f2c-3df73a4265c6}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.DeviceMonitor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Interface\CLDC.CLWS.CLWCS.WareHouse.Interface\CLDC.CLWS.CLWCS.WareHouse.Interface.csproj">
+      <Project>{fd59aa53-cdb4-4572-8040-5c711d666d88}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Service\BusinessManage\Common\CLDC.CLWCS.WareHouse.DataMapper\CLDC.CLWCS.WareHouse.DataMapper.csproj">
+      <Project>{4e882f2b-ec95-42a3-91f4-067d7f4ede5e}</Project>
+      <Name>CLDC.CLWCS.WareHouse.DataMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CLWCS.WareHouse.ArchitectureData.SNGX\CLWCS.WareHouse.ArchitectureData.HeFei.csproj">
+      <Project>{c55e1044-6692-4500-8e08-e81a8694ff46}</Project>
+      <Name>CLWCS.WareHouse.ArchitectureData.HeFei</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CLWCS.WareHouse.DeviceMonitor.SNGX\CLWCS.WareHouse.DeviceMonitor.HeFei.csproj">
+      <Project>{172e4075-ac40-4c66-94f9-d92a89977e9f}</Project>
+      <Name>CLWCS.WareHouse.DeviceMonitor.HeFei</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

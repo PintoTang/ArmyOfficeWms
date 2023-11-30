@@ -1,0 +1,635 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CLDC.Framework.Log</name>
+    </assembly>
+    <members>
+        <member name="T:CLDC.Framework.Log.AppException.AppException">
+            <summary>
+            应用异常处理类
+            </summary>
+        </member>
+        <member name="M:CLDC.Framework.Log.AppException.AppException.#ctor(CLDC.Framework.Log.AppException.ExType,CLDC.Framework.Log.AppException.ExMsg)">
+            <summary>
+            应用异常处理类
+            </summary>
+            <param name="exType">异常类型</param>
+            <param name="exMsg">异常消息</param>
+        </member>
+        <member name="M:CLDC.Framework.Log.AppException.AppException.#ctor(CLDC.Framework.Log.AppException.ExType,System.String,System.Exception)">
+            <summary>
+            应用异常处理类
+            </summary>
+            <param name="exType">异常类型</param>
+            <param name="exMsg">异常消息</param>
+            <param name="innerException">内部异常</param>
+        </member>
+        <member name="M:CLDC.Framework.Log.AppException.AppException.#ctor(CLDC.Framework.Log.AppException.ExType,CLDC.Framework.Log.AppException.ExMsg,System.String)">
+            <summary>
+            应用异常处理类
+            </summary>
+            <param name="exType">异常类型</param>
+            <param name="exMsg">异常消息</param>
+            <param name="remark">注意</param>
+        </member>
+        <member name="P:CLDC.Framework.Log.AppException.AppException.ExType">
+            <summary>
+            异常类型
+            </summary>
+        </member>
+        <member name="T:CLDC.Framework.Log.AppException.ExType">
+            <summary>
+            异常类型
+            </summary>
+        </member>
+        <member name="F:CLDC.Framework.Log.AppException.ExType.A严重异常">
+            <summary>
+            系统必须终止
+            </summary>
+        </member>
+        <member name="F:CLDC.Framework.Log.AppException.ExType.B一般异常">
+            <summary>
+            根据情况选择终止
+            </summary>
+        </member>
+        <member name="F:CLDC.Framework.Log.AppException.ExType.C轻微异常">
+            <summary>
+            不影响系统运行
+            </summary>
+        </member>
+        <member name="T:CLDC.Framework.Log.AppException.ExMsg">
+            <summary>
+            异常消息
+            </summary>
+        </member>
+        <member name="M:CLDC.Framework.Log.AppException.ExMsg.#ctor(System.Int32,System.String)">
+            <summary>
+            异常消息
+            </summary>
+            <param name="code"> 
+            0-1000: 即使发生这类异常，也可以不用中断程序继续运行
+            1001-2000: 来自系统框架的异常(1000-2000之间会影响程序运行)
+            1000-1100: 节点本身的异常
+            1101-1200: 配置文件相关异常
+            2001-3000: 来自业务处理逻辑的异常
+            3001-4000: 网络异常</param>
+            <param name="msg">内容</param>
+        </member>
+        <member name="T:CLDC.Framework.Log.WritingLogMsgHandler">
+            <summary>
+            写日志消息处理
+            </summary>
+            <param name="type">类型（检表线1，辊筒线2，机器人3，系统0）</param>
+            <param name="stationId">工位ID</param>
+            <param name="msg">消息主体内容</param>
+            <param name="clogMsg"></param>
+        </member>
+        <member name="T:CLDC.Framework.Log.ConsoleManager">
+            <summary>
+            控制台管理
+            </summary>
+        </member>
+        <member name="M:CLDC.Framework.Log.ConsoleManager.EnqueueMessage(CLDC.Framework.Log.ConsoleMessage)">
+            <summary>
+            添加消息
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:CLDC.Framework.Log.ConsoleManager.PeekMessage">
+            <summary>
+            获取消息队列中的第一条消息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.ConsoleManager.DequeueMessage(CLDC.Framework.Log.ConsoleMessage)">
+            <summary>
+            移除消息
+            </summary>
+            <param name="msg">消息（该参数为null时默认删除第一条）</param>
+        </member>
+        <member name="M:CLDC.Framework.Log.ConsoleManager.WriteLog(System.Int32,System.Int32,System.String)">
+            <summary>
+            根据StationId，将日志写入到不同的文件夹
+            </summary>
+            <param name="type">类型（检表线1，辊筒线2，机器人3，系统0）</param>
+            <param name="stationId">工位ID</param>
+            <param name="logMsg">消息主体内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.ConsoleManager.WriteLog(System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>
+            根据StationId，将日志写入到不同的文件夹
+            </summary>
+            <param name="type">类型（检表线1，辊筒线2，机器人3，系统0）</param>
+            <param name="stationId">工位ID</param>
+            <param name="logMsg">消息主体内容</param>
+            <param name="isFrm">是否弹出对话框窗体进行提示</param>
+            <returns></returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.ConsoleManager.WriteLog(System.Int32,System.Int32,System.String,System.String,System.Boolean)">
+            <summary>
+            根据StationId，将日志写入到不同的文件夹
+            </summary>
+            <param name="type">类型（检表线1，辊筒线2，机器人3，系统0）</param>
+            <param name="stationId">工位ID</param>
+            <param name="logMsg">消息主体内容</param>
+            <param name="errorStr">错误的定位信息</param>
+            <param name="isFrm">是否弹出对话框窗体进行提示</param>
+            <returns></returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.ConsoleManager.ShowFrm(CLDC.Framework.Log.ConsoleMessage)">
+            <summary>
+            <para>右下角显示日志窗口</para>
+            </summary>
+        </member>
+        <member name="E:CLDC.Framework.Log.ConsoleManager.WritingLogMsgEvent">
+             <summary>
+            写日志消息事件
+             </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.ConsoleManager.Count">
+            <summary>
+            队列消息数量
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CLDC.Framework.Log.ConsoleMessage">
+            <summary>
+            <para>气泡消息的内容对象</para>
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.ConsoleMessage.Message">
+            <summary>
+            消息主体
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.ConsoleMessage.MessageDate">
+            <summary>
+            消息时间
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.ConsoleMessage.SendObject">
+            <summary>
+            消息源对象名
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.ConsoleMessage.MessageType">
+            <summary>
+            消息类型
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.ConsoleMessage.MessageStationID">
+            <summary>
+            消息所属的ID号
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.ConsoleMessage.MsgFrmIsTop">
+            <summary>
+            消息所属的窗体是否显示到位
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.ConsoleMessage.MsgTime">
+            <summary>
+            生成消息时间
+            </summary>
+        </member>
+        <member name="T:CLDC.Framework.Log.CustomFileLoggerImp">
+            <summary>
+            定制化日志打印格式
+            </summary>
+        </member>
+        <member name="M:CLDC.Framework.Log.CustomFileLoggerImp.#cctor">
+            <summary>
+              定制化日志打印格式
+            </summary>
+        </member>
+        <member name="M:CLDC.Framework.Log.CustomFileLoggerImp.GetCustomLogger(System.String,System.String)">
+            <summary>
+            生成定制化日志处理器
+            </summary>
+            <param name="loggerType">日志类型</param>
+            <param name="loggerName">日志名字</param>
+            <returns></returns>
+        </member>
+        <member name="T:CLDC.Framework.Log.IO.Xml">
+            <summary>
+            XML操作类, 必需用XPATH表达式来获取相应节点
+            </summary>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.#ctor(System.String,System.Boolean)">
+            <summary>
+            构建方法，如果文件不存在会自动创建
+            </summary>
+            <param name="filename">文件名</param>
+            <param name="autoCreate">是否自动创建</param>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.Save">
+            <summary>
+            保存的方法
+            </summary>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.Save(System.String)">
+            <summary>
+            <para>保存到指定名字的文件</para>
+            <param name="fileName">文件名称</param>
+            </summary>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.GetNodeValuesList(System.String)">
+            <summary>
+            获取XML文件节点下的子节点的键值列表的集合
+            </summary>
+            <param name="nodeName">节点名称</param>
+            <returns>名称值对集合</returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.AddNode(System.String,System.String)">
+            <summary>
+            添加节点
+            </summary>
+            <param name="nodeName">节点名称</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.GetXMLValues(System.String)">
+            <summary>
+            获取XML文件的值列表
+            </summary>
+            <param name="xmlFile">XML文件</param>
+            <returns>名称值对集合</returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.GetXMLAllNodes">
+            <summary>
+            获取XML所有的节点信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.GetXMLNodes(System.String)">
+            <summary>
+            获取指定的XML节点下的所有子节点信息
+            </summary>
+            <param name="nodePath">所要获取节点的路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.GetXMLNode(System.String,System.String,System.String)">
+            <summary>
+            得到具体的一个节点
+            </summary>
+            <param name="nodePath">节点路径(如:root/LisTest/*)</param>
+            <param name="nodeAttribute">节点其中的一个属性名</param>
+            <param name="attributeValue">节点其中的一个属性值</param>
+            <returns></returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.GetNodeList(System.String)">
+            <summary>
+            得到节点下所有的节点集
+            </summary>
+            <param name="nodePath">节点路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.GetXMLNode(System.Xml.XmlNodeList,System.String,System.String)">
+            <summary>
+            在节点集合中得到具体的一个节点
+            </summary>
+            <param name="nodeList">节点集合</param>
+            <param name="nodeAttribute">节点其中的一个属性名</param>
+            <param name="attributeValue">节点其中的一个属性值</param>
+            <returns></returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.GetXMLNode(System.String,System.String)">
+            <summary>
+            得到具体的一个节点
+            </summary>
+            <param name="nodePath">节点路径</param>
+            <param name="nodeName">要查找的节点名</param>
+            <returns></returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.GetXMLNode(CLDC.Framework.Log.IO.XmlElementNode,System.String)">
+            <summary>
+            得到具体的一个节点
+            </summary>
+            <param name="pNode">父节点</param>
+            <param name="nodeName">要在父节点下查找的节点名</param>
+            <returns></returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.GetSelectXMLNode(CLDC.Framework.Log.IO.XmlElementNode,System.String,CLDC.Framework.Log.IO.XmlElementNode)">
+            <summary>
+            递归查找节点
+            </summary>
+            <param name="rootNode">节点</param>
+            <param name="nodeName">要查找的节点名</param>
+            <param name="resultNode">??节点</param>
+            <returns></returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.GetNodeValues(System.String)">
+            <summary>
+            获取节点的值
+            </summary>
+            <param name="nodeName">节点名称</param>
+            <returns>节点值数组</returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.GetNodeAttributes(System.Xml.XmlNode)">
+            <summary>
+            得到一个节点所有属性
+            </summary>
+            <param name="node">节点</param>
+            <returns>属性列表</returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.GetNodeAllChild(System.Xml.XmlNode,CLDC.Framework.Log.IO.XmlElementNode,CLDC.Framework.Log.IO.XmlElementNode)">
+            <summary>
+            递归得到xml文件中所有节点信息
+            </summary>
+            <param name="node">节点</param>
+            <param name="element">节点类</param>
+            <param name="parentElement">节点父节点类</param>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.element_PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            节点的属性发生改变时
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.Xml.GetValue(System.String)">
+            <summary>
+            获取节点值
+            </summary>
+            <param name="nodeName">节点名字</param>
+            <returns>节点值</returns>
+        </member>
+        <member name="T:CLDC.Framework.Log.IO.XmlElementNode">
+            <summary>
+            节点类
+            </summary>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.XmlElementNode.#ctor">
+            <summary>
+            节点类
+            </summary>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.XmlElementNode.SetPropertyValue(System.String,System.Object)">
+            <summary>
+            设置属性的值，且不触发属性更改事件
+            </summary>
+            <param name="propetyName">属性名</param>
+            <param name="properyValue">属性值</param>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.XmlElementNode.SetAttributeValue(System.String,System.String)">
+            <summary>
+            设置节点的属性值
+            </summary>
+            <param name="attributeName">节点属性名</param>
+            <param name="attributeValue">节点属性值</param>
+        </member>
+        <member name="M:CLDC.Framework.Log.IO.XmlElementNode.Attribute_ListChanged(System.Object,System.ComponentModel.ListChangedEventArgs)">
+             <summary>
+            节点的属性发生改变时
+             </summary>
+             <param name="sender"></param>
+             <param name="e"></param>
+        </member>
+        <member name="P:CLDC.Framework.Log.IO.XmlElementNode.Node">
+            <summary>
+            节点
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.IO.XmlElementNode.ElementRemark">
+            <summary>
+            节点说明
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.IO.XmlElementNode.ElementName">
+            <summary>
+            节点名
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.IO.XmlElementNode.ElementAttributes">
+            <summary>
+            节点的属性列表
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.IO.XmlElementNode.ElemnetInnerText">
+            <summary>
+            节点值
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.IO.XmlElementNode.Elements">
+            <summary>
+            节点所包含的子节点列表
+            </summary>
+        </member>
+        <member name="T:CLDC.Framework.Log.IO.XmlElementNodeAttribute">
+            <summary>
+            节点属性类
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.IO.XmlElementNodeAttribute.Node">
+            <summary>
+            节点
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.IO.XmlElementNodeAttribute.AttributesName">
+            <summary>
+            属性名
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.IO.XmlElementNodeAttribute.AttributesValue">
+            <summary>
+            属性值
+            </summary>
+        </member>
+        <member name="T:CLDC.Framework.Log.Log">
+            <summary>
+            记录系统异常，调试信息，自定义信息及错误四种级别日志到文本日志文件
+            </summary>
+        </member>
+        <member name="M:CLDC.Framework.Log.Log.getMessageFile(System.String)">
+            <summary>
+            记录消息信息
+            </summary>
+            <param name="typeFlagName">日志类型标志名称,增加到文件名后缀</param>
+            <returns></returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.Log.getDebugFile">
+            <summary>
+            记录调试信息
+            </summary>
+        </member>
+        <member name="M:CLDC.Framework.Log.Log.getExceptionFile">
+            <summary>
+            记录异常信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.Log.getErrorFile">
+            <summary>
+            记录异常信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CLDC.Framework.Log.Log.getEventFile">
+            <summary>
+            记录event信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:CLDC.Framework.Log.Log.T_QuoteType">
+            <summary>
+            引用类型 ，如果是测试用例要调用的话，将其赋值为“Test”
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.Log.T_DebugLogger">
+            <summary>
+            debug ILog ，仅开发给测试用例赋值调用
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.Log.T_MessageLogger">
+            <summary>
+            Message ILog ，仅开发给测试用例赋值调用
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.Log.T_ExceptionLogger">
+            <summary>
+            exception ILog，仅开发给测试用例赋值调用
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.Log.T_ErrorLogger">
+            <summary>
+            error ILog，仅开发给测试用例赋值调用
+            </summary>
+        </member>
+        <member name="P:CLDC.Framework.Log.Log.T_EventLogger">
+            <summary>
+            event ILog，仅开发给测试用例赋值调用
+            </summary>
+        </member>
+        <member name="T:System.ByteEx">
+            <summary>
+            byte的一些扩展
+            </summary>
+        </member>
+        <member name="M:System.ByteEx.CompareBytes(System.Byte[],System.Byte[])">
+            <summary>
+            比较当前byte数组是否和目标byte数组相同
+            </summary>
+            <param name="b1">byte数组</param>
+            <param name="b2">目标byte数组</param>
+            <returns>相同返回true</returns>
+        </member>
+        <member name="T:System.Data.DataEx">
+            <summary>
+            数据处理类的一些扩展方法
+            </summary>
+        </member>
+        <member name="M:System.Data.DataEx.CloseConn(System.Data.IDataReader)">
+            <summary>
+            显示关闭数据读取器的连接,使用DataReader尽量使用此方法关闭
+            </summary>
+            <param name="dr">只进的数据读取器</param>
+        </member>
+        <member name="M:System.Data.DataEx.ToJSON(System.Data.DataTable)">
+            <summary>
+            DataTable 转换成 JSON
+            </summary>
+            <param name="dt">数据表</param>
+            <returns>JSON数据</returns>
+        </member>
+        <member name="M:System.Data.DataEx.AppendNullRow(System.Data.DataTable,System.Int32)">
+            <summary>
+            为DataTable 添加 n 行空行
+            </summary>
+            <param name="dt">添加原始表</param>
+            <param name="n">添加的行数</param>
+            <returns>完成的表</returns>
+        </member>
+        <member name="M:System.Data.DataEx.Row2Column(System.Data.DataTable,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            数据表(DataTable)行列转置
+            </summary>
+            <param name="dtSource">源表</param>
+            <param name="headColumnIndex">源表头列索引</param>
+            <param name="isDelRow0">是否删除转换后的第0行</param>
+            <param name="isDelColumns0">是否删除转换后的第0列</param>
+            <returns>输出表</returns>
+        </member>
+        <member name="T:System.Linq.Expressions.DLinqEx">
+            <summary>
+            查询表达式的两个扩充方法
+            该类参考MSDN
+            </summary>
+        </member>
+        <member name="M:System.Linq.Expressions.DLinqEx.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary> 
+            或连接 (微软 .net3.5sp1无法实现延迟)
+            </summary> 
+            <typeparam name="T">Linq表达式类型</typeparam> 
+            <param name="expression1">表达式1</param> 
+            <param name="expression2">表达式2</param> 
+            <returns>表达式1 OR 表达式2</returns> 
+        </member>
+        <member name="M:System.Linq.Expressions.DLinqEx.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary> 
+            与连接(微软 .net3.5sp1无法实现延迟)
+            </summary> 
+            <typeparam name="T"></typeparam> 
+            <param name="expression1"></param> 
+            <param name="expression2"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:System.Linq.Expressions.DLinqEx.And``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}}[])">
+            <summary>
+            与连接(实现IQueryable可延迟加载)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <param name="predicates"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Linq.Expressions.DLinqEx.Or``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}}[])">
+            <summary>
+            或连接(实现IQueryable可延迟加载)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <param name="predicates"></param>
+            <returns></returns>
+        </member>
+        <member name="T:System.Net.Sockets.ByteEx">
+            <summary>
+            Socket的一些扩展
+            </summary>
+        </member>
+        <member name="M:System.Net.Sockets.ByteEx.SendAsyncNew(System.Net.Sockets.Socket,System.Byte[])">
+            <summary>
+            异步发送sendBuffer的数据，自动创建SocketAsyncEventArgs
+            </summary>
+            <param name="socket">socket套接字</param>
+            <param name="sendBuffer">要发送的数据</param>
+        </member>
+        <member name="T:System.StringEx">
+            <summary>
+            对字符串的扩展
+            </summary>
+        </member>
+        <member name="M:System.StringEx.Left(System.String,System.Int32)">
+            <summary>
+            取 string 左边L个字符
+            </summary>
+            <param name="str">原始str</param>
+            <param name="L">长度</param>
+            <returns>返回修改后的字符</returns>
+        </member>
+        <member name="M:System.StringEx.Right(System.String,System.Int32)">
+            <summary>
+            取 string 右边L个字符
+            </summary>
+            <param name="str">原始str</param>
+            <param name="L">长度</param>
+            <returns>返回修改后的字符</returns>
+        </member>
+        <member name="M:System.StringEx.GetByteLength(System.String)">
+            <summary>
+            获取字符串byte长度
+            </summary>
+            <param name="inputStr"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

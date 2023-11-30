@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="WHSE.Monitor.Framework.UserControls.FaultPanel"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 mc:Ignorable="d" 
+			 d:DesignHeight="160" d:DesignWidth="600" BorderThickness="1"  Loaded="UserControl_Loaded">
+	<UserControl.Resources>
+		<SolidColorBrush x:Key="borderColor"  Color="#99a3ba"></SolidColorBrush>
+		<SolidColorBrush x:Key="checkedBgColor"  Color="#FF99A3BA"></SolidColorBrush>
+		<SolidColorBrush x:Key="notCheckedBgColor"  Color="#FFFFFFFF"></SolidColorBrush>
+		<SolidColorBrush x:Key="checkedFontColor"  Color="#ffffffff"></SolidColorBrush>
+		<SolidColorBrush x:Key="notCheckedFontColor"  Color="#FF384259"></SolidColorBrush>
+		<SolidColorBrush x:Key="overColor"  Color="#FF99A3BA"></SolidColorBrush>
+
+		<SolidColorBrush x:Key="gridBoder" Color="#FFB5C9DD"></SolidColorBrush>
+		<SolidColorBrush x:Key="gridRowBgColor" Color="#FFEAF1FA"/>
+
+		<Style x:Key="RadioThemeColor" TargetType="RadioButton">
+			<Setter Property="Margin" Value="1"/>
+			<Setter Property="Padding" Value="1"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="RadioButton">
+						<Grid >
+							<Rectangle x:Name="rec" Stroke="{StaticResource borderColor}" RadiusX="0" RadiusY="0"></Rectangle>
+							<Grid x:Name="_borderChecked"  Margin="1" >
+								<Label x:Name="tit" Content="{TemplateBinding Content}"  Margin="0" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+							</Grid>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsChecked" Value="True">
+								<Setter  Property="Fill" TargetName="rec" Value="{StaticResource ResourceKey=checkedBgColor}"></Setter>
+								<Setter Property="Foreground" TargetName="tit" Value="{StaticResource ResourceKey=checkedFontColor}"/>
+							</Trigger>
+							<Trigger Property="IsChecked" Value="false">
+								<Setter  Property="Fill" TargetName="rec" Value="{StaticResource ResourceKey= notCheckedBgColor}"></Setter>
+								<Setter Property="Foreground" TargetName="tit" Value="{StaticResource ResourceKey=notCheckedFontColor}"></Setter>
+							</Trigger>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter  Property="Fill" TargetName="rec" Value="{StaticResource ResourceKey= overColor}"></Setter>
+								<Setter Property="Foreground" TargetName="tit" Value="{StaticResource ResourceKey=checkedFontColor}"></Setter>
+							</Trigger>
+
+
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</UserControl.Resources>
+	<Grid Background="White" >
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="200" />
+			<ColumnDefinition Width="209*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="30"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<DataGrid x:Name="dgFault" ItemsSource="{Binding }"  AutoGenerateColumns="False" BorderThickness="1"  
+				  HorizontalGridLinesBrush="{StaticResource borderColor}"  
+				  BorderBrush="{StaticResource borderColor}" 
+				  VerticalGridLinesBrush="{StaticResource borderColor}"
+				  Background="White"
+				  IsReadOnly="True"
+				  Margin="0,4,1,1" Grid.Column="1" Grid.RowSpan="2" >
+			<DataGrid.ColumnHeaderStyle>
+				<Style TargetType="{x:Type DataGridColumnHeader}">
+					<Setter Property="Height" Value="24"></Setter>
+					<Setter Property="HorizontalContentAlignment" Value="Center"/>
+					<Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
+					<Setter Property="BorderBrush" Value="{StaticResource borderColor}" />
+					<Setter Property="Background" Value="{StaticResource gridRowBgColor}" />
+
+					<Setter Property="Foreground" Value="Black"></Setter>
+
+				</Style>
+			</DataGrid.ColumnHeaderStyle>
+
+			<DataGrid.RowStyle>
+				<Style TargetType="DataGridRow">
+					<Setter Property="Background" Value="White"></Setter>
+				</Style>
+			</DataGrid.RowStyle>
+			<DataGrid.Columns >
+				<DataGridTextColumn Header="时间" Width="120" Binding="{Binding FaultTime ,StringFormat='{}{0:MM/dd HH:mm:ss}',ConverterCulture=zh-CN}"  />
+				<DataGridTextColumn Header="等级" Width="100" Binding="{Binding FaultLevel}"/>
+				<DataGridTextColumn Header="设备" Width="120" Binding="{Binding DeviceName}"/>
+				<DataGridTextColumn Header="故障信息" Width="100*" Binding="{Binding FaultMessage}"/>
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<RadioButton x:Name="currentArea" Content="全部区域" Style="{StaticResource RadioThemeColor}" GroupName="area" HorizontalAlignment="Left" Margin="11,4,0,0" VerticalAlignment="Top" Width="88" Height="25"  />
+		<RadioButton x:Name="allArea" Content="当前区域" Style="{StaticResource RadioThemeColor}" GroupName="area" HorizontalAlignment="Left" Margin="98,4,0,0" VerticalAlignment="Top" Height="25" Width="89" />
+		<Grid HorizontalAlignment="Left" Height="123" Margin="11,4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="176">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="50*"/>
+				<ColumnDefinition Width="50*"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="16.5*"/>
+				<RowDefinition Height="16.5*"/>
+				<RowDefinition Height="16.5*"/>
+				<RowDefinition Height="16.5*"/>
+				<RowDefinition Height="16.5*"/>
+				<RowDefinition Height="16.5*"/>
+			</Grid.RowDefinitions>
+
+
+			<Border Grid.Column="0" Grid.Row="0" BorderThickness="1,1,1,1" BorderBrush="{StaticResource borderColor}">
+				<Label Content="告警等级" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Background="{StaticResource gridRowBgColor}"/>
+			</Border>
+			<Border Grid.Column="1" Grid.Row="0" BorderThickness="0,1,1,1" BorderBrush="{StaticResource borderColor}">
+				<Label Content="总计" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Margin="0,0,1,0" Background="{StaticResource gridRowBgColor}"/>
+			</Border>
+
+			<Border Grid.Column="0" Grid.Row="1" BorderThickness="1,0,1,1" BorderBrush="{StaticResource borderColor}"></Border>
+			<Border Grid.Column="1" Grid.Row="1" BorderThickness="0,0,1,1" BorderBrush="{StaticResource borderColor}">
+				<Label Content="-" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Margin="0,0,1,2"/>
+			</Border>
+
+			<Border Grid.Column="0" Grid.Row="2" BorderThickness="1,0,1,1" BorderBrush="{StaticResource borderColor}"></Border>
+			<Border Grid.Column="1" Grid.Row="2" BorderThickness="0,0,1,1" BorderBrush="{StaticResource borderColor}">
+				<Label Content="-" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Margin="0,0,1,1"/>
+			</Border>
+
+			<Border Grid.Column="0" Grid.Row="3" BorderThickness="1,0,1,1" BorderBrush="{StaticResource borderColor}"></Border>
+			<Border Grid.Column="1" Grid.Row="3" BorderThickness="0,0,1,1" BorderBrush="{StaticResource borderColor}">
+				<Label Content="-" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Margin="0,0,1,2"/>
+			</Border>
+
+			<Border Grid.Column="0" Grid.Row="4" BorderThickness="1,0,1,1" BorderBrush="{StaticResource borderColor}"></Border>
+			<Border Grid.Column="1" Grid.Row="4" BorderThickness="0,0,1,1" BorderBrush="{StaticResource borderColor}">
+				<Label Content="-" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Margin="0,0,1,1"/>
+			</Border>
+
+			<Border Grid.Column="0" Grid.Row="5" BorderThickness="1,0,1,1" BorderBrush="{StaticResource borderColor}" Background="{StaticResource gridRowBgColor}"></Border>
+			<Border Grid.Column="1" Grid.Row="5" BorderThickness="0,0,1,1" BorderBrush="{StaticResource borderColor}">
+				<Label Content="-" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" Margin="0,0,1,2" Background="{StaticResource gridRowBgColor}"/>
+			</Border>
+
+			<CheckBox x:Name="LV2" Content="LV2" Grid.Column="0" Grid.Row="1"   Background="#FFFFDF50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="18,0,0,0" />
+			<CheckBox x:Name="LV3" Content="LV3"  Grid.Column="0" Grid.Row="2"   HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FFFF9400" Margin="18,0,0,0" />
+			<CheckBox x:Name="LV4" Content="LV4"  Grid.Column="0" Grid.Row="3"  HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FFFF292A" Margin="18,0,0,0" />
+			<CheckBox x:Name="LV5" Content="LV5"  Grid.Column="0" Grid.Row="4"   HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FFAA0008" Margin="18,0,0,0" />
+			<CheckBox x:Name="CbxAll" Click="CbxAll_Click"  Content="全部" Grid.Column="0" Grid.Row="5"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="18,0,0,0" />
+
+		</Grid>
+
+	</Grid>
+</UserControl>

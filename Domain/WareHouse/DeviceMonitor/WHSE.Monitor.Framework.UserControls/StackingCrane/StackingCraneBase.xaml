@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="WHSE.Monitor.Framework.UserControls.StackingCraneBase"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:local="clr-namespace:WHSE.Monitor.Framework.UserControls"
+			  xmlns:convertor="clr-namespace:WHSE.Monitor.Framework.UserControls"
+			 mc:Ignorable="d" 
+			 Loaded="UserControl_Loaded"
+			 d:DesignWidth="500" Height="14" MouseUp="UserControl_MouseUp" Cursor="Hand" SnapsToDevicePixels="True" >
+	<UserControl.Resources>
+		<convertor:StackingCraneStateConvertor  x:Key="ConvertorStackingCraneState" ></convertor:StackingCraneStateConvertor>
+
+		<!--<ResourceDictionary x:Key="dict">
+			<ResourceDictionary.MergedDictionaries >
+				<ResourceDictionary Source="StackingCraneDictionary.xaml"></ResourceDictionary>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>-->
+
+
+
+
+
+
+	</UserControl.Resources>
+
+
+
+	<Grid x:Name="grid_Main" VerticalAlignment="Center">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition x:Name="row_left" Width="15*"/>
+			<ColumnDefinition x:Name="row_line" Width="470*"/>
+			<ColumnDefinition x:Name="row_right" Width="15*"/>
+		</Grid.ColumnDefinitions>
+		<!--<Viewbox HorizontalAlignment="Left" VerticalAlignment="Center" >-->
+		<!--</Viewbox>-->
+		<Rectangle x:Name="rec_Line" Fill="#FF5F6B85" Height="2" Margin="0" VerticalAlignment="Center" Grid.Column="1"/>
+
+		<Viewbox HorizontalAlignment="Left" Margin="8,0,0,0" VerticalAlignment="Center"   Grid.Column="1">
+
+
+			<Grid x:Name="grid_Head"  Margin="0,0,0,0" HorizontalAlignment="Left" Width="118">
+				<Grid Margin="0" >
+					<Path x:Name="p_left" Data="M0,0 L5.0000002,0 5.0000002,4.9999999 9.9580002,4.9999999 9.9580002,10 5.0000002,10 5.0000002,15 0,15 z" Fill="#FF5F6B85" HorizontalAlignment="Left" Margin="0,5" Stretch="Fill" Width="9.958" VerticalAlignment="Center"/>
+					<Path x:Name="p_right" Data="M0,0 L5.0000002,0 5.0000002,4.9999999 9.9580002,4.9999999 9.9580002,10 5.0000002,10 5.0000002,15 0,15 z" Fill="#FF5F6B85" HorizontalAlignment="Right" Margin="0,5" Stretch="Fill" Width="10" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center">
+						<Path.RenderTransform>
+							<TransformGroup>
+								<ScaleTransform/>
+								<SkewTransform/>
+								<RotateTransform Angle="180"/>
+								<TranslateTransform/>
+							</TransformGroup>
+						</Path.RenderTransform>
+					</Path>
+
+					<Path Data="M78.052002,2.1880009 L78.052002,27.25 121.665,27.25 121.665,2.1880009 z M58.613998,2.1880009 L58.613998,27.25 73.052002,27.25 73.052002,2.1880009 z M10.000001,2.1880009 L10.000001,27.25 53.613998,27.25 53.613998,2.1880009 z M0,0 L131.66499,0 131.66499,30 0,30 z" Fill="#FF363E4E" Stretch="Fill" Margin="9,0" />
+					<Button  x:Name="btn" Click="btn_Click" Cursor="Hand" Style="{Binding DeviceDisplayState, Converter={StaticResource ConvertorStackingCraneState}}" Margin="18,3,0,18" HorizontalAlignment="Left" Width="30"/>
+					<Button  x:Name="btn_Copy" Click="btn_Click" Cursor="Hand" Style="{Binding DeviceDisplayState, Converter={StaticResource ConvertorStackingCraneState}}"  Margin="18,18,0,3" HorizontalAlignment="Left" Width="30"/>
+					<Button  x:Name="btn_Copy1" Click="btn_Click" Cursor="Hand" Style="{Binding DeviceDisplayState, Converter={StaticResource ConvertorStackingCraneState}}"  Margin="70,3,0,18" HorizontalAlignment="Left" Width="30"/>
+					<Button  x:Name="btn_Copy2" Click="btn_Click" Cursor="Hand" Style="{Binding DeviceDisplayState, Converter={StaticResource ConvertorStackingCraneState}}"  Margin="70,18,0,3" HorizontalAlignment="Left" Width="30"/>
+				</Grid>
+
+			</Grid>
+
+		</Viewbox>
+
+
+		<Grid  x:Name="grid_Name" Grid.Column="3">
+			<Viewbox >
+				<Label x:Name="lb_DeviceName" Content="00" HorizontalAlignment="Right" Grid.Column="1" FontSize="36" VerticalAlignment="Center" Padding="0" Width="49" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+			</Viewbox>
+		</Grid>
+
+
+	</Grid>
+
+
+
+
+</UserControl>

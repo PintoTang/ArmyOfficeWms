@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SystemConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="系统配置" Description="配置整体系统的基本信息">
+	<SysName Name="系统名称" Description="更改系统显示的名称信息" Value="来安县人武部物资管理系统" />
+	<CurrentProject Name="项目名称" Description="更改项目的名称" Value="LaiAnWms" />
+	<WhCode Name="仓库编号" Description="根据仓库的基础数据更改仓库编号" Value="LaiAn" />
+	<SysNo Name="Wcs的系统编号" Description="Wcs的系统编号区别项目的系统" Value="ShenNanGuangXinWcs01"></SysNo>
+	<IsTrueWebService Name="启用Web服务" Description="配置使用真实的Web服务或使用模拟的Web服务" Value="true" />
+	<IsUseCellPile Name="启用仓跺绑定" Description="配置是否通过WCS系统记录仓跺的绑定关系" Value="false" />
+	<OpcMode Name="系统启动环境" Description="设置启动系统运行的环境" Value="Automatic" />
+	<AtsDatabaseConn Name="Opc数据库" Description="Opc的数据库连接串配置" Value="Data Source=.;Initial Catalog =WcsGuangXin01;User Id=sa;Password=831CF57B8435B5BB;" />
+	<AtsDataBaseType Name="Opc数据库类型" Description="Opc数据库类型" Value="SqlServer" />
+	<Department Name="公司名称" Description="配置整个系统启动的界面风格" Value="CLOU" />
+	<WcsDataBaseType Name="Wcs数据库类型" Description="Wcs数据库类型" Value="SqlServer" />
+	<WcsDatabaseConn Name="Wcs数据库" Description="Wcs系统数据库连接串" Value="Data Source=.;Initial Catalog =WcsGuangXin01;User Id=sa;Password=831CF57B8435B5BB;" />
+	<MaxByteLength Name="单日志文件大小" Description="单日志文件大小" Value="30" />
+	<LogRecordLevel Name="日记记录等级" Description="日记打印等级" Value="Info" />
+	<MaxLogCount Name="日志最大个数" Description="日志最大个数" Value="30" />
+	<LogSavedDays Name="日志保存天数" Description="日志保存的天数" Value="30" />
+	<IsRecordEventLog Name="启用Evn日志" Description="是否打印Event日志" Value="false" />
+	<CopyRight Name="软件版权所属" Description="软件版权所属" Value="智慧工业" />
+	<Version Name="软件版本号" Description="软件版本号" Value="V2.0.0.1" />
+</SystemConfig>

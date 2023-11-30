@@ -1,0 +1,108 @@
+﻿<Window
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:convertor="clr-namespace:WHSE.Monitor.Framework.UserControls"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="WHSE.Monitor.Framework.UserControls.DeviceInfoForm"
+		Title="设备信息[--]" Height="400" Width="600" SnapsToDevicePixels="True" ResizeMode="NoResize" 
+      
+	WindowState="Normal" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Window.Resources>
+        <SolidColorBrush x:Key="line" Color="#ffb9c6df"></SolidColorBrush>
+        <convertor:DeviceFaultInfoConvertor x:Key="FaultInfoConvertor"/>
+        <convertor:DeviceInfoConvertor x:Key="ConvertorDevice"/>
+
+        <Style  TargetType="Label">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <ContentPresenter RecognizesAccessKey="False"></ContentPresenter>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TabControl>
+            <TabItem Header="设备信息" Height="30" Width="100" Margin="-2,0">
+                <Grid Background="White">
+                    <Label Content="设备信息" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="14"/>
+                    <Label Content="故障信息" HorizontalAlignment="Left" Margin="10,208,0,0" VerticalAlignment="Top" FontSize="14"/>
+                    <Grid Margin="10,35.24,10,129.76" Background="#FFF0F0F0">
+                        <Grid.RowDefinitions  >
+                            <RowDefinition Height="20*"/>
+                            <RowDefinition Height="20*"/>
+                            <RowDefinition Height="20*"/>
+                            <RowDefinition Height="20*"/>
+                            <RowDefinition Height="20*"/>
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="181*"/>
+                            <ColumnDefinition Width="385*"/>
+                        </Grid.ColumnDefinitions>
+
+
+
+
+                        <Border Grid.Row="0" Grid.Column="0" BorderBrush="{StaticResource line}"  BorderThickness="1" ></Border>
+                        <Border Grid.Row="0" Grid.Column="1" BorderBrush="{StaticResource line}" BorderThickness="0,1,1,1" ></Border>
+                        <Border Grid.Row="1" Grid.Column="0" BorderBrush="{StaticResource line}"  BorderThickness="1,0,1,1" ></Border>
+                        <Border Grid.Row="1" Grid.Column="1" BorderBrush="{StaticResource line}"  BorderThickness="0,0,1,1" ></Border>
+                        <Border Grid.Row="2" Grid.Column="0" BorderBrush="{StaticResource line}"  BorderThickness="1,0,1,1" ></Border>
+                        <Border Grid.Row="2" Grid.Column="1" BorderBrush="{StaticResource line}"  BorderThickness="0,0,1,1" ></Border>
+                        <Border Grid.Row="3" Grid.Column="0" BorderBrush="{StaticResource line}"  BorderThickness="1,0,1,1" ></Border>
+                        <Border Grid.Row="3" Grid.Column="1" BorderBrush="{StaticResource line}"  BorderThickness="0,0,1,1" ></Border>
+                        <Border Grid.Row="4" Grid.Column="0" BorderBrush="{StaticResource line}"  BorderThickness="1,0,1,1" ></Border>
+                        <Border Grid.Row="4" Grid.Column="1" BorderBrush="{StaticResource line}"  BorderThickness="0,0,1,1" ></Border>
+                        <Label Content="设备名" HorizontalAlignment="Left" Height="24" Margin="52,11,0,32" VerticalAlignment="Center" Width="101" VerticalContentAlignment="Center" Grid.RowSpan="2"/>
+                        <Label Content="运行模式" HorizontalAlignment="Left" Height="24" Margin="52,9.5,0,0" VerticalAlignment="Center" Width="101" VerticalContentAlignment="Center" Grid.Row="1"/>
+                        <Label Content="设备状态" HorizontalAlignment="Left" Height="24" Margin="52,9,0,1" VerticalAlignment="Center" Width="101" VerticalContentAlignment="Center" Grid.Row="2"/>
+                        <Label Content="任务状态" HorizontalAlignment="Left" Height="24" Margin="52,8,0,2" VerticalAlignment="Center" Width="101" VerticalContentAlignment="Center" Grid.Row="3"/>
+                        <Label Content="是否急停" HorizontalAlignment="Left" Height="24" Margin="52,8,0,2" VerticalAlignment="Center" Width="101" VerticalContentAlignment="Center" Grid.Row="4"/>
+                        <Label Content="{Binding DeviceCNName}" HorizontalAlignment="Left" Height="30" Margin="5,4.352,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Grid.RowSpan="2" Grid.Column="1"/>
+                        <Label Content="{Binding DeviceRunningMode}" HorizontalAlignment="Left" Height="30" Margin="5,3,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+                        <Label Content="{Binding DeviceState}" HorizontalAlignment="Left" Height="30" Margin="5,3.648,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1"/>
+                        <Label Content="{Binding IsHasTask}" HorizontalAlignment="Left" Height="30" Margin="5,5.296,0,0" VerticalAlignment="Top" Width="101" VerticalContentAlignment="Center" Grid.Row="3" Grid.RowSpan="2" Grid.Column="1"/>
+                        <Label Content="{Binding EmergencyStop}" HorizontalAlignment="Left" Height="30" Margin="5,3.944,0,-0.344" VerticalAlignment="Top" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1"/>
+                    </Grid>
+                    <Grid Margin="10,235.78,10,10" Background="#FFF0F0F0">
+                        <Border BorderBrush="{StaticResource line}"  BorderThickness="1" >
+                            <Label Content="{Binding FaultStateList,Converter={StaticResource FaultInfoConvertor}}" Background="AliceBlue" Foreground="Red" />
+
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="任务信息" Height="30" Width="100" Margin="4,0,-4,0">
+                <Grid Background="White">
+                    <DataGrid Margin="10" ItemsSource="{Binding PackageMoveInfoList}" AutoGenerateColumns="False" CanUserAddRows="False">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="BorderBrush" Value="{StaticResource line}" />
+                                <Setter Property="Height" Value="30" />
+
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="包装号" Width="150*" Binding="{Binding PackageBarcode}"/>
+
+                            <DataGridTextColumn Header="搬运指令跟踪号" Width="150*" Binding="{Binding TrailID}"/>
+                            <DataGridTextColumn Header="起始地址" Width="100*" Binding="{Binding PrevDevice ,Converter={StaticResource ConvertorDevice}}"/>
+                            <DataGridTextColumn Header="目标地址" Width="100*" Binding="{Binding DstDevice ,Converter={StaticResource ConvertorDevice}}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+
+
+
+    </Grid>
+</Window>

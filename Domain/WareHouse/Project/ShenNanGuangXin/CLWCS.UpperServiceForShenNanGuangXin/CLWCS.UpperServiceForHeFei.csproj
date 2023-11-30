@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9F672E59-F33C-4116-92A6-E121C57BB487}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CLWCS.UpperServiceForHeFei</RootNamespace>
+    <AssemblyName>CLWCS.UpperServiceForHeFei</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\Exe\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\..\..\..\..\LIB\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\..\..\Exe\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\LIB\Json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interface\InterfaceDataMode\ApplyDoorOpenOrCloseModel.cs" />
+    <Compile Include="Interface\InterfaceDataMode\ApplyInModel.cs" />
+    <Compile Include="Interface\InterfaceDataMode\AgvCallModel.cs" />
+    <Compile Include="Interface\InterfaceDataMode\ApplayEmptyTrayMode.cs" />
+    <Compile Include="Interface\InterfaceDataMode\ApplyContainerModel.cs" />
+    <Compile Include="Interface\InterfaceDataMode\CmdNotifyBarcodeModel.cs" />
+    <Compile Include="Interface\InterfaceDataMode\CmdReturnMessageModel.cs" />
+    <Compile Include="Interface\InterfaceDataMode\DoorOpenOrCloseFinishedModel.cs" />
+    <Compile Include="Interface\InterfaceDataMode\AgvCarryFinishedModel.cs" />
+    <Compile Include="Interface\InterfaceDataMode\NotifyCrossDoorModel.cs" />
+    <Compile Include="Interface\InterfaceDataMode\NotifyInstructCancleCmdMode.cs" />
+    <Compile Include="Interface\InterfaceDataMode\NotifyInstructExceptionMode.cs" />
+    <Compile Include="Interface\InterfaceDataMode\NotifyInstructFinishCmdMode.cs" />
+    <Compile Include="Interface\InterfaceDataMode\NotifyOutFinishCmdMode.cs" />
+    <Compile Include="Interface\InterfaceDataMode\NotifyPackagePutFinishForOutMode.cs" />
+    <Compile Include="Interface\InterfaceDataMode\NotifyPackagePutFinishMode.cs" />
+    <Compile Include="Interface\InterfaceDataMode\NotifyPackageSkuBindBarcodeCmdMode.cs" />
+    <Compile Include="Interface\InterfaceDataMode\NotifyPackageSkuBindBarcodeCmdModeNew.cs" />
+    <Compile Include="Interface\InterfaceDataMode\NotifyPalletizerFinishCmdMode.cs" />
+    <Compile Include="Interface\InterfaceDataMode\NotifyReportTroubleStatusCmdMode.cs" />
+    <Compile Include="Interface\InterfaceDataMode\NotifyStocktakingResultCmdMode.cs" />
+    <Compile Include="Interface\InterfaceDataMode\NotifyUnstackFinishCmdMode.cs" />
+    <Compile Include="Interface\InterfaceDataMode\OpenOrCloseDoorCmd.cs" />
+    <Compile Include="Interface\InterfaceDataMode\HasTrayResultCmdModel.cs" />
+    <Compile Include="Interface\InterfaceDataMode\CmdNodeStatusModel.cs" />
+    <Compile Include="Interface\ViewModel\NotifyInstructCancleViewModel.cs" />
+    <Compile Include="Interface\ViewModel\NotifyInstructExceptionViewModel.cs" />
+    <Compile Include="Interface\ViewModel\NotifyInstructFinishViewModel.cs" />
+    <Compile Include="Interface\ViewModel\NotifyPageSkuBindBarcodeCmdViewModel.cs" />
+    <Compile Include="Interface\ViewModel\NotifyPalletizerFinishViewModel.cs" />
+    <Compile Include="Interface\ViewModel\NotifyStocktakingResultCmdViewModel.cs" />
+    <Compile Include="Interface\ViewModel\NotifyUnstackFinishCmdViewModel.cs" />
+    <Compile Include="Interface\View\NotifyInstructCancleView.xaml.cs">
+      <DependentUpon>NotifyInstructCancleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\View\NotifyInstructExceptionView.xaml.cs">
+      <DependentUpon>NotifyInstructExceptionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\View\NotifyInstructFinishView.xaml.cs">
+      <DependentUpon>NotifyInstructFinishView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\View\NotifyPageSkuBindBarcodeCmdView.xaml.cs">
+      <DependentUpon>NotifyPageSkuBindBarcodeCmdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\View\NotifyPalletizerFinishView.xaml.cs">
+      <DependentUpon>NotifyPalletizerFinishView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\View\NotifyStocktakingResultCmdView.xaml.cs">
+      <DependentUpon>NotifyStocktakingResultCmdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\View\NotifyUnstackFinishCmdView.xaml.cs">
+      <DependentUpon>NotifyUnstackFinishCmdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Target\INotifyInstruct.cs" />
+    <Compile Include="Target\INotifyPackageSKUBindBarcodeCmd.cs" />
+    <Compile Include="Target\IWmsService.cs" />
+    <Compile Include="Target\WmsServiceForHeFeiEnum.cs" />
+    <Compile Include="UpperServiceForHeFei.cs" />
+    <Compile Include="ViewModel\WmsAssitantForHeFeiViewModel.cs" />
+    <Compile Include="View\WmsAssitantForHeFeiView.xaml.cs">
+      <DependentUpon>WmsAssitantForHeFeiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WmsServiceAdapterForHeFei.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Interface\View\NotifyInstructCancleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Interface\View\NotifyInstructExceptionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Interface\View\NotifyInstructFinishView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Interface\View\NotifyPageSkuBindBarcodeCmdView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Interface\View\NotifyPalletizerFinishView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Interface\View\NotifyStocktakingResultCmdView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Interface\View\NotifyUnstackFinishCmdView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\WmsAssitantForHeFeiView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Infrastructrue\Communicate\CLDC.CLWS.CLWCS.Infrastructrue.WebService\CLDC.CLWS.CLWCS.Infrastructrue.WebService.csproj">
+      <Project>{3bdb301d-5e8f-4392-9e47-df472a139f8c}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.WebService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Infrastructrue\DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel.csproj">
+      <Project>{fc860366-a4b2-4da5-a389-88732cd4ec7c}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Infrastructrue\Framework\CLDC.CLWS.CLWCS.Framework\CLDC.CLWS.CLWCS.Framework.csproj">
+      <Project>{f4c897ad-9986-4bda-a106-c52054a4f110}</Project>
+      <Name>CLDC.CLWS.CLWCS.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\Infrastructrue\UserCtrl\CLDC.CLWS.CLWCS.Infrastructrue.UserCtrl\CLDC.Infrastructrue.UserCtrl.csproj">
+      <Project>{aa54a556-74a1-4fcc-a13c-87bc87ae8541}</Project>
+      <Name>CLDC.Infrastructrue.UserCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\DataModel\CLDC.CLWS.CLWCS.WareHouse.DataModel\CLDC.CLWS.CLWCS.WareHouse.DataModel.csproj">
+      <Project>{626151d3-ea45-4a40-93ac-3b5c15372490}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\UpperInterfaceService\CLDC.CLWS.CLWCS.UpperService.Communicate\CLDC.CLWS.CLWCS.UpperService.Communicate.csproj">
+      <Project>{d8031c39-f988-4314-96d2-f6abb0f0d21d}</Project>
+      <Name>CLDC.CLWS.CLWCS.UpperService.Communicate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\UpperInterfaceService\CLDC.CLWS.CLWCS.UpperService.HandleBusiness\CLDC.CLWS.CLWCS.UpperService.HandleBusiness.csproj">
+      <Project>{fc96685d-40a0-4867-901b-ff74fd460b5b}</Project>
+      <Name>CLDC.CLWS.CLWCS.UpperService.HandleBusiness</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

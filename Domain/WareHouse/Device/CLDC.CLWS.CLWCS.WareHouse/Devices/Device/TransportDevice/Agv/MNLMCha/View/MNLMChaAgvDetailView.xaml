@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.TransportDevice.Agv.MNLMCha.View.MNLMChaAgvDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:view1="clr-namespace:CLDC.CLWS.CLWCS.Infrastructrue.WebService.View;assembly=CLDC.CLWS.CLWCS.Infrastructrue.WebService"
+             xmlns:view="clr-namespace:CLDC.CLWS.CLWCS.WareHouse.Device.DataModel.View"
+             xmlns:dataModel="clr-namespace:CLDC.CLWS.CLWCS.Infrastructrue.DataModel;assembly=CLDC.CLWS.CLWCS.Infrastructrue.DataModel"
+             xmlns:convertor="clr-namespace:CLDC.CLWS.CLWCS.WareHouse.ViewModel.Convertor;assembly=CLDC.CLWS.CLWCS.WareHouse.ViewModel"
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="960" d:DesignWidth="900" Background="White" Name="_this" >
+    <UserControl.Resources>
+        <convertor:UserLevelToVisibility x:Key="UserLevelToVisibility" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition />
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <view:TransportMessageView Margin="1"  TitleContent="搬运信息" ReDoVisibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}" ForceFinishVisibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}" DataContext="{Binding ElementName=_this,Path=DataContext.TransportMessageViewModel}" Height="250"/>
+        </StackPanel>
+        <WrapPanel  HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3">
+            <Button Margin="3" Width="100" Command="{Binding OpenConfigCommand}" Visibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}">配置信息</Button>
+            <TextBlock Width="50"/>
+        </WrapPanel>
+        <WrapPanel  HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3">
+            <TextBlock Width="50"/>
+            <Button Command="{Binding OpenAssistantCommand}"  Width="100" Margin="3" Visibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}">调试助手</Button>
+        </WrapPanel>
+    </Grid>
+</UserControl>

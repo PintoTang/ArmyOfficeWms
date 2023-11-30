@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.WareHouse.Device.Devices.DeviceControl.TransportDevice.Agv.HangCha.View.SelectTaskInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="250" d:DesignWidth="400" Background="White">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <WrapPanel>
+                <Label>任务编号：</Label>
+                <TextBox MinWidth="150"  Text="{Binding DataModel.TASK_NO}"/>
+            </WrapPanel>
+            <TextBlock Height="10"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

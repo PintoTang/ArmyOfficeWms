@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectConfig Name="人武部来安项目" Description="人武部来安项目配置信息">
+  <ProjectMain NameSpace="CLWCS.HeFei.Project" ClassName="ProjectMain" Description="人武部来安项目"/>
+</ProjectConfig>

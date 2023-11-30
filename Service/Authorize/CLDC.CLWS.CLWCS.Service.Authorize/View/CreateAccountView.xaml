@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.Service.Authorize.View.CreateAccountView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"  
+             d:DesignHeight="800" d:DesignWidth="600"  Height="800" Width="500" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
+    <UserControl.Resources>
+        <Style x:Key="LableStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="TextboxStyle" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBoxBase}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="200"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <Border Background="White" CornerRadius="10" BorderThickness="1" BorderBrush="Black">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" FontSize="16" FontWeight="Black" VerticalAlignment="Center">创建新用户</Label>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LableStyle}">账号：</Label>
+                    <TextBox x:Name="TbAccount" Grid.Row="0" Grid.Column="1" Style="{StaticResource TextboxStyle}">
+                    </TextBox>
+                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LableStyle}">密码：</Label>
+                    <PasswordBox x:Name="PdPassword01" Grid.Row="1" Grid.Column="1" Width="200" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource LableStyle}">确认密码：</Label>
+                    <PasswordBox x:Name="PdPassword02" Grid.Row="2" Grid.Column="1" Width="200" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource LableStyle}">权限等级：</Label>
+                    <ComboBox x:Name="CbLevel" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                    <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource LableStyle}">所属部门：</Label>
+                    <ComboBox x:Name="CbGroup" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                    <Border Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" Margin="5">
+                    <TextBox TextAlignment="Left" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" x:Name="TbRemark"
+                                            VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" 
+                                            materialDesign:HintAssist.Hint="备注信息" 
+                                            VerticalScrollBarVisibility="Auto" MinHeight="100" IsEnabled="True" />
+                    </Border>
+                </Grid>
+            </ScrollViewer>
+            <WrapPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <Button x:Name="BtnSave" Click="BtnSave_OnClick">保存</Button>
+                <TextBlock Width="20"/>
+                <Button x:Name="BtnExit" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">退出</Button>
+                <TextBlock Width="20"/>
+            </WrapPanel>
+        </Grid>
+    </Border>
+</UserControl>

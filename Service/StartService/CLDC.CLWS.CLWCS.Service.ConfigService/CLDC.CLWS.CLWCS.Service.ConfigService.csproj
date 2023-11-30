@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{16824839-76F4-49A9-8C64-F7B4BAD5A97E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CLDC.CLWS.CLWCS.Service.ConfigService</RootNamespace>
+    <AssemblyName>CLDC.CLWS.CLWCS.Service.ConfigService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CL.Framework.ConfigFilePckg, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\LIB\ConfigFile\CL.Framework.ConfigFilePckg.dll</HintPath>
+    </Reference>
+    <Reference Include="CLDC.Framework.Log, Version=1.0.13.529, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\LIB\NetLog\CLDC.Framework.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\LIB\NetLog\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Context .cs" />
+    <Compile Include="CoordinationConfig\CoordinationsInfo.cs" />
+    <Compile Include="CoordinationConfig\Coordination\BusinessHandle\BusinessHandle.cs" />
+    <Compile Include="CoordinationConfig\Coordination\BusinessHandle\Config\BusinessHandleConfig.cs" />
+    <Compile Include="CoordinationConfig\Coordination\BusinessHandle\Config\CoordBusConfigDevice.cs" />
+    <Compile Include="CoordinationConfig\Coordination\BusinessHandle\Config\CoordBusConfigInAddrPrefixs.cs" />
+    <Compile Include="CoordinationConfig\Coordination\BusinessHandle\Config\CoordBusConfigMoveAddrPrefixs.cs" />
+    <Compile Include="CoordinationConfig\Coordination\BusinessHandle\Config\CoordBusConfigOutAddrPrefixs.cs" />
+    <Compile Include="CoordinationConfig\Coordination\Config\CoordinationConfig.cs" />
+    <Compile Include="CoordinationConfig\Coordination\Config\CoordinationConfigAddrPrefixs.cs" />
+    <Compile Include="CoordinationConfig\Coordination\Config\CoordinationConfigAddrPrefixsPrefixs.cs" />
+    <Compile Include="CoordinationConfig\Coordination\Config\CoordinationConfigAddrPrefixsPrefixsItem.cs" />
+    <Compile Include="CoordinationConfig\Coordination\Config\CoordinationConfigEquipment.cs" />
+    <Compile Include="CoordinationConfig\Coordination\Config\CoordinationConfigEquipments.cs" />
+    <Compile Include="CoordinationConfig\Coordination\Coordination.cs" />
+    <Compile Include="CoordinationConfig\WorkerConfigManage.cs" />
+    <Compile Include="DeviceConfig\Common\BusinessHandle\BusHandle.cs" />
+    <Compile Include="DeviceConfig\Common\BusinessHandle\BusHandleConfig.cs" />
+    <Compile Include="DeviceConfig\Common\BusinessHandle\BusHandleConfigParms.cs" />
+    <Compile Include="DeviceConfig\Common\ControlHandle\Communication\Comm.cs" />
+    <Compile Include="DeviceConfig\Common\ControlHandle\Communication\CommConfig.cs" />
+    <Compile Include="DeviceConfig\Common\ControlHandle\Communication\CommConfigConn.cs" />
+    <Compile Include="DeviceConfig\Common\ControlHandle\Communication\CommConfigDBItems.cs" />
+    <Compile Include="DeviceConfig\Common\ControlHandle\Communication\CommConfigDBItemsItem.cs" />
+    <Compile Include="DeviceConfig\Common\ControlHandle\ControlHandle.cs" />
+    <Compile Include="DeviceConfig\Common\ControlHandle\ProtocolTranslation\PTS.cs" />
+    <Compile Include="DeviceConfig\Common\ControlHandle\ProtocolTranslation\PTSConfig.cs" />
+    <Compile Include="DeviceConfig\Common\Device.cs" />
+    <Compile Include="DeviceConfig\Common\DeviceInfoConfig.cs" />
+    <Compile Include="DeviceConfig\Common\DeviceInfoConfigManage.cs" />
+    <Compile Include="DeviceConfig\DeviceHelper.cs" />
+    <Compile Include="DeviceConfig\DeviceParent.cs" />
+    <Compile Include="DeviceConfig\DisplayDevices\DisplayDevice.cs" />
+    <Compile Include="DeviceConfig\IdentityDevice\IdentityDevice.cs" />
+    <Compile Include="DeviceConfig\LoadDevices\LoadDevices.cs" />
+    <Compile Include="DeviceConfig\PalletizerDevices\PalletizerDevices.cs" />
+    <Compile Include="DeviceConfig\RackPlaces\RackPlaces.cs" />
+    <Compile Include="DeviceConfig\SwitchDevices\SwitchDevice.cs" />
+    <Compile Include="DeviceConfig\TransportDevices\TransportDevices.cs" />
+    <Compile Include="FunctionMenu\BusinessHandle\BusinessHandleConfig\FunctionBusinessHandleConfig.cs" />
+    <Compile Include="FunctionMenu\BusinessHandle\FunctionBusinessHandle.cs" />
+    <Compile Include="FunctionMenu\FunctionManage.cs" />
+    <Compile Include="FunctionMenu\FunctionMenuInfo.cs" />
+    <Compile Include="FunctionMenu\FunctionMenuParent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StateAbstract.cs" />
+    <Compile Include="SystemRunConfigHelper.cs" />
+    <Compile Include="Xml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DeviceConfig\DoWorkDevices\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructrue\DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel.csproj">
+      <Project>{fc860366-a4b2-4da5-a389-88732cd4ec7c}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DataModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,348 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:userControls="clr-namespace:WHSE.Monitor.Framework.UserControls;assembly=WHSE.Monitor.Framework.UserControls"
+    xmlns:palletizer="clr-namespace:WHSE.Monitor.Framework.UserControls.Palletizer;assembly=WHSE.Monitor.Framework.UserControls"
+    xmlns:keyenceScanner="clr-namespace:WHSE.Monitor.Framework.UserControls.Scanner.KeyenceScanner;assembly=WHSE.Monitor.Framework.UserControls"
+    xmlns:singleScanner="clr-namespace:WHSE.Monitor.Framework.UserControls.Scanner.SingleScanner;assembly=WHSE.Monitor.Framework.UserControls"
+    xmlns:Roller="clr-namespace:WHSE.Monitor.Framework.UserControls.Roller;assembly=WHSE.Monitor.Framework.UserControls"
+    xmlns:chain="clr-namespace:WHSE.Monitor.Framework.UserControls.Chain;assembly=WHSE.Monitor.Framework.UserControls"
+    xmlns:LiftTranslation="clr-namespace:WHSE.Monitor.Framework.UserControls.LiftTranslation;assembly=WHSE.Monitor.Framework.UserControls"
+    xmlns:ABB="clr-namespace:WHSE.Monitor.Framework.UserControls.ABB;assembly=WHSE.Monitor.Framework.UserControls"
+    x:Class="CLWCS.WareHouse.DeviceMonitor.HeFei.MonitorView.DeviceMonitorViewDetail2ForHeFei"
+             mc:Ignorable="d"  
+             d:DesignHeight="450"  d:DesignWidth="900" x:Name="_This" Height="700" Width="1818" >
+
+    <Canvas x:Name="MonitorMainGrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Background="#8A8882" Margin="-1,0,1,-26" >
+
+        <userControls:Chain02 x:Name="Device1030" Canvas.Left="174" Canvas.Top="438" Height="76" Width="72"  DeviceId="1030" RenderTransformOrigin="0.5,0.5" >
+            <userControls:Chain02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:Chain02.RenderTransform>
+        </userControls:Chain02>
+
+
+
+
+        <userControls:Chain02 x:Name="Device1029" Canvas.Left="174" Canvas.Top="511" Height="76" Width="72"  DeviceId="1029" RenderTransformOrigin="0.5,0.5" >
+            <userControls:Chain02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:Chain02.RenderTransform>
+        </userControls:Chain02>
+
+        <userControls:GoodsShelf01 Width="36" Height="926" CellWidth="35"  Canvas.Left="1421" Canvas.Top="605"   CellMargin="1"  CellNumber="25"  CellDirNum="0" HideNumber="6,7,8,17,18"  ShelfDeep="1"  ShelfRow="1">
+            <userControls:GoodsShelf01.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:GoodsShelf01.RenderTransform>
+        </userControls:GoodsShelf01>
+
+        <!-- 辊筒线 配置-->
+        <userControls:StackingCrane x:Name="Device9001"  Canvas.Top="581"  Height="24" Width="970" DeviceId="9001" StartOffset="0"  SumColNum="25" DiretionEm="LeftToRight"  Speed="1" ColunmWidth="37" Canvas.Left="477" />
+        <userControls:GoodsShelf01 Width="36" Height="924" CellWidth="35"  Canvas.Left="1421" Canvas.Top="544"   CellMargin="1"  CellNumber="25"  CellDirNum="0" HideNumber=""  ShelfDeep="1"  ShelfRow="1">
+            <userControls:GoodsShelf01.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:GoodsShelf01.RenderTransform>
+        </userControls:GoodsShelf01>
+        <chain:Chain03 x:Name="Device100002" Canvas.Left="723" Background="White" Canvas.Top="611" Height="24" Width="30"  DeviceId="100002" RenderTransformOrigin="-1.2,1.754"/>
+        <userControls:Roller02 x:Name="Device4009" Canvas.Left="196" Canvas.Top="398" Height="36" Width="55" Opacity="0.8" DeviceId="4009" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+            <userControls:Roller02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform X="2.464" Y="3.494"/>
+                </TransformGroup>
+            </userControls:Roller02.RenderTransform>
+        </userControls:Roller02>
+        <userControls:Roller02 x:Name="Device3009" Canvas.Left="163" Canvas.Top="397" Height="36" Width="55" Opacity="0.8" DeviceId="3009" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+            <userControls:Roller02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform X="2.464" Y="3.494"/>
+                </TransformGroup>
+            </userControls:Roller02.RenderTransform>
+        </userControls:Roller02>
+        <userControls:Roller02 x:Name="Device4010" Canvas.Left="196" Canvas.Top="342" Height="36" Width="55" Opacity="0.8" DeviceId="4010" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+            <userControls:Roller02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform X="2.464" Y="3.494"/>
+                </TransformGroup>
+            </userControls:Roller02.RenderTransform>
+        </userControls:Roller02>
+        <userControls:Roller02 x:Name="Device3010" Canvas.Left="162" Canvas.Top="339" Height="36" Width="55" Opacity="0.8" DeviceId="3010" Panel.ZIndex="1" RenderTransformOrigin="0.75,0.581">
+            <userControls:Roller02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform X="-13.494" Y="16.536"/>
+                </TransformGroup>
+            </userControls:Roller02.RenderTransform>
+        </userControls:Roller02>
+        <userControls:Roller01 x:Name="Device4001" Canvas.Left="409" Canvas.Top="524" Height="24" Width="75" Opacity="0.8" DeviceId="4001" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller01 x:Name="Device3001" Canvas.Left="409" Canvas.Top="550" Height="24" Width="75" Opacity="0.8" DeviceId="3001" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <chain:Chain03 x:Name="Device100002_Copy" Canvas.Left="1113" Background="White" Canvas.Top="611" Height="24" Width="29"  DeviceId="100002" RenderTransformOrigin="-1.2,1.754"/>
+        <userControls:GoodsShelf01 Width="36" Height="926" CellWidth="35"  Canvas.Left="1421" Canvas.Top="448"   CellMargin="1"  CellNumber="25"  CellDirNum="0" HideNumber=""  ShelfDeep="1"  ShelfRow="1">
+            <userControls:GoodsShelf01.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:GoodsShelf01.RenderTransform>
+        </userControls:GoodsShelf01>
+        <userControls:GoodsShelf01 Width="36" Height="925" CellWidth="35"  Canvas.Left="1421" Canvas.Top="383"   CellMargin="1"  CellNumber="25"  CellDirNum="0" HideNumber="7,18"  ShelfDeep="1"  ShelfRow="1">
+            <userControls:GoodsShelf01.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:GoodsShelf01.RenderTransform>
+        </userControls:GoodsShelf01>
+        <userControls:StackingCrane x:Name="Device9002"  Canvas.Top="420"  Height="24" Width="971" DeviceId="9002" StartOffset="0"  SumColNum="25" DiretionEm="LeftToRight"  Speed="1" ColunmWidth="37" Canvas.Left="477" />
+        <userControls:GoodsShelf01 Width="36" Height="751" CellWidth="35"  Canvas.Left="1420" Canvas.Top="348"   CellMargin="1"  CellNumber="20"  CellDirNum="0" HideNumber=""  ShelfDeep="1"  ShelfRow="1">
+            <userControls:GoodsShelf01.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:GoodsShelf01.RenderTransform>
+        </userControls:GoodsShelf01>
+        <userControls:GoodsShelf01 Width="36" Height="740" CellWidth="35"  Canvas.Left="1420" Canvas.Top="285"   CellMargin="1"  CellNumber="20"  CellDirNum="0" HideNumber=""  ShelfDeep="1"  ShelfRow="1">
+            <userControls:GoodsShelf01.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:GoodsShelf01.RenderTransform>
+        </userControls:GoodsShelf01>
+        <userControls:StackingCrane x:Name="Device9003"  Canvas.Top="322"  Height="24" Width="793" DeviceId="9003" StartOffset="0"  SumColNum="20" DiretionEm="LeftToRight"  Speed="1" ColunmWidth="37" Canvas.Left="662" />
+        <userControls:Roller02 x:Name="Device4002" Canvas.Left="330" Canvas.Top="524" Height="24" Width="75" Opacity="0.8" DeviceId="4002" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3002" Canvas.Left="330" Canvas.Top="550" Height="24" Width="75" Opacity="0.8" DeviceId="3002" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device4003" Canvas.Left="251" Canvas.Top="524" Height="24" Width="75" Opacity="0.8" DeviceId="4003" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54" Background="Transparent"/>
+        <userControls:Roller02 x:Name="Device3003" Canvas.Left="251" Canvas.Top="550" Height="24" Width="75" Opacity="0.8" DeviceId="3003" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device4007" Canvas.Left="183" Canvas.Top="526" Height="24" Width="52" Opacity="0.8" DeviceId="4007" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3007" Canvas.Left="183" Canvas.Top="550" Height="24" Width="52" Opacity="0.8" DeviceId="3007" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3014" Canvas.Left="122" Canvas.Top="526" Height="48" Width="52" Opacity="0.8" DeviceId="3014" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller01 x:Name="Device4004" Canvas.Left="409" Canvas.Top="451" Height="24" Width="75" Opacity="0.8" DeviceId="4004" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller01 x:Name="Device3004" Canvas.Left="409" Canvas.Top="477" Height="24" Width="75" Opacity="0.8" DeviceId="3004" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device4005" Canvas.Left="330" Canvas.Top="451" Height="24" Width="75" Opacity="0.8" DeviceId="4005" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3005" Canvas.Left="330" Canvas.Top="477" Height="24" Width="75" Opacity="0.8" DeviceId="3005" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device4006" Canvas.Left="250" Canvas.Top="451" Height="24" Width="75" Opacity="0.8" DeviceId="4006" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3006" Canvas.Left="250" Canvas.Top="477" Height="24" Width="75" Opacity="0.8" DeviceId="3006" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device4008" Canvas.Left="183" Canvas.Top="452" Height="24" Width="52" Opacity="0.8" DeviceId="4008" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3008" Canvas.Left="183" Canvas.Top="474" Height="24" Width="52" Opacity="0.8" DeviceId="3008" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3015" Canvas.Left="122" Canvas.Top="451" Height="48" Width="52" Opacity="0.8" DeviceId="3015" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3030" Canvas.Left="188" Canvas.Top="563" Height="68" Width="36" Opacity="0.8" DeviceId="3030" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+            <userControls:Roller02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform X="2.464" Y="3.494"/>
+                </TransformGroup>
+            </userControls:Roller02.RenderTransform>
+        </userControls:Roller02>
+        <userControls:Roller01 x:Name="Device4021" Canvas.Left="592" Canvas.Top="268" Height="24" Width="85" Opacity="0.8" DeviceId="4021" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller01 x:Name="Device3023" Canvas.Left="592" Canvas.Top="292" Height="24" Width="85" Opacity="0.8" DeviceId="3023" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device4020" Canvas.Left="506" Canvas.Top="268" Height="24" Width="85" Opacity="0.8" DeviceId="4020" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3022" Canvas.Left="506" Canvas.Top="292" Height="24" Width="85" Opacity="0.8" DeviceId="3022" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device4019" Canvas.Left="419" Canvas.Top="268" Height="24" Width="85" Opacity="0.8" DeviceId="4019" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3021" Canvas.Left="419" Canvas.Top="292" Height="24" Width="85" Opacity="0.8" DeviceId="3021" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device4018" Canvas.Left="332" Canvas.Top="268" Height="24" Width="85" Opacity="0.8" DeviceId="4018" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3020" Canvas.Left="332" Canvas.Top="292" Height="24" Width="85" Opacity="0.8" DeviceId="3020" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device4017" Canvas.Left="244" Canvas.Top="268" Height="24" Width="85" Opacity="0.8" DeviceId="4017" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3019" Canvas.Left="244" Canvas.Top="292" Height="24" Width="85" Opacity="0.8" DeviceId="3019" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device4016" Canvas.Left="122" Canvas.Top="268" Height="24" Width="52" Opacity="0.8" DeviceId="4016" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3016" Canvas.Left="122" Canvas.Top="292" Height="24" Width="52" Opacity="0.8" DeviceId="3016" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3017" Canvas.Left="137" Canvas.Top="221" Height="39" Width="30" Opacity="0.8" DeviceId="3017" Panel.ZIndex="1" RenderTransformOrigin="0.75,0.581">
+            <userControls:Roller02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform X="-13.494" Y="16.536"/>
+                </TransformGroup>
+            </userControls:Roller02.RenderTransform>
+        </userControls:Roller02>
+        <userControls:Roller02 x:Name="Device3018" Canvas.Left="136" Canvas.Top="300" Height="39" Width="30" Opacity="0.8" DeviceId="3018" Panel.ZIndex="1" RenderTransformOrigin="0.75,0.581">
+            <userControls:Roller02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform X="-13.494" Y="16.536"/>
+                </TransformGroup>
+            </userControls:Roller02.RenderTransform>
+        </userControls:Roller02>
+        <userControls:Chain02 x:Name="Device4027" Canvas.Left="193" Canvas.Top="286" Height="36" Width="72"  DeviceId="4027" RenderTransformOrigin="0.5,0.5" >
+            <userControls:Chain02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:Chain02.RenderTransform>
+        </userControls:Chain02>
+        <userControls:Chain02 x:Name="Device3027" Canvas.Left="157" Canvas.Top="286" Height="36" Width="72"  DeviceId="3027" RenderTransformOrigin="0.5,0.5" >
+            <userControls:Chain02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:Chain02.RenderTransform>
+        </userControls:Chain02>
+        <userControls:Roller02 x:Name="Device4011" Canvas.Left="182" Canvas.Top="268" Height="24" Width="52" Opacity="0.8" DeviceId="4011" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3011" Canvas.Left="182" Canvas.Top="293" Height="24" Width="52" Opacity="0.8" DeviceId="3011" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device4012" Canvas.Left="194" Canvas.Top="219" Height="36" Width="58" Opacity="0.8" DeviceId="4012" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+            <userControls:Roller02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform X="2.464" Y="3.494"/>
+                </TransformGroup>
+            </userControls:Roller02.RenderTransform>
+        </userControls:Roller02>
+        <userControls:Roller02 x:Name="Device3012" Canvas.Left="162" Canvas.Top="218" Height="36" Width="58" Opacity="0.8" DeviceId="3012" Panel.ZIndex="1" RenderTransformOrigin="0.5,0.5">
+            <userControls:Roller02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform X="2.464" Y="3.494"/>
+                </TransformGroup>
+            </userControls:Roller02.RenderTransform>
+        </userControls:Roller02>
+        <userControls:Chain02 x:Name="Device1032" Canvas.Left="176" Canvas.Top="141" Height="72" Width="68"  DeviceId="1032" RenderTransformOrigin="0.5,0.5" >
+            <userControls:Chain02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:Chain02.RenderTransform>
+        </userControls:Chain02>
+        <userControls:Roller02 x:Name="Device4028" Canvas.Left="184" Canvas.Top="153" Height="24" Width="52" Opacity="0.8" DeviceId="4028" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3013" Canvas.Left="184" Canvas.Top="178" Height="24" Width="52" Opacity="0.8" DeviceId="3013" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device4024" Canvas.Left="244" Canvas.Top="153" Height="24" Width="85" Opacity="0.8" DeviceId="4024" Panel.ZIndex="1" RenderTransformOrigin="0.473,0.417"/>
+        <userControls:Roller02 x:Name="Device3024" Canvas.Left="244" Canvas.Top="178" Height="24" Width="85" Opacity="0.8" DeviceId="3024" Panel.ZIndex="1" RenderTransformOrigin="0.486,0.458"/>
+        <userControls:GoodsShelf01 Width="36" Height="816" CellWidth="35"  Canvas.Left="1479" Canvas.Top="213"   CellMargin="1"  CellNumber="22"  CellDirNum="0" HideNumber=""  ShelfDeep="1"  ShelfRow="1">
+            <userControls:GoodsShelf01.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:GoodsShelf01.RenderTransform>
+        </userControls:GoodsShelf01>
+        <userControls:StackingCrane x:Name="Device9004"  Canvas.Top="188"  Height="24" Width="864" DeviceId="9004" StartOffset="0"  SumColNum="22" DiretionEm="LeftToRight"  Speed="1" ColunmWidth="37" Canvas.Left="652" />
+        <userControls:GoodsShelf01 Width="36" Height="813" CellWidth="35"  Canvas.Left="1481" Canvas.Top="148"   CellMargin="1"  CellNumber="22"  CellDirNum="0" HideNumber=""  ShelfDeep="1"  ShelfRow="1">
+            <userControls:GoodsShelf01.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:GoodsShelf01.RenderTransform>
+        </userControls:GoodsShelf01>
+        <userControls:GoodsShelf01 Width="36" Height="816" CellWidth="35"  Canvas.Left="1480" Canvas.Top="83"   CellMargin="1"  CellNumber="22"  CellDirNum="0" HideNumber=""  ShelfDeep="1"  ShelfRow="1">
+            <userControls:GoodsShelf01.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:GoodsShelf01.RenderTransform>
+        </userControls:GoodsShelf01>
+        <userControls:StackingCrane x:Name="Device9005"  Canvas.Top="58"  Height="24" Width="864" DeviceId="9005" StartOffset="0"  SumColNum="22" DiretionEm="LeftToRight"  Speed="1" ColunmWidth="37" Canvas.Left="652" />
+        <userControls:GoodsShelf01 Width="36" Height="813" CellWidth="35"  Canvas.Left="1480" Canvas.Top="18"   CellMargin="1"  CellNumber="22"  CellDirNum="0" HideNumber=""  ShelfDeep="1"  ShelfRow="1">
+            <userControls:GoodsShelf01.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:GoodsShelf01.RenderTransform>
+        </userControls:GoodsShelf01>
+        <userControls:Roller02 x:Name="Device4036" Canvas.Left="329" Canvas.Top="153" Height="24" Width="85" Opacity="0.8" DeviceId="4036" Panel.ZIndex="1" RenderTransformOrigin="0.479,0.458"/>
+        <userControls:Roller02 x:Name="Device3036" Canvas.Left="329" Canvas.Top="178" Height="24" Width="85" Opacity="0.8" DeviceId="3036" Panel.ZIndex="1" RenderTransformOrigin="0.479,0.458"/>
+        <userControls:Roller02 x:Name="Device4038" Canvas.Left="503" Canvas.Top="152" Height="24" Width="64" Opacity="0.8" DeviceId="4038" Panel.ZIndex="1" RenderTransformOrigin="0.479,0.458"/>
+        <userControls:Roller02 x:Name="Device3038" Canvas.Left="503" Canvas.Top="179" Height="24" Width="64" Opacity="0.8" DeviceId="3038" Panel.ZIndex="1" RenderTransformOrigin="0.479,0.458"/>
+        <userControls:Roller01 x:Name="Device4039" Canvas.Left="566" Canvas.Top="152" Height="24" Width="85" Opacity="0.8" DeviceId="4039" Panel.ZIndex="1" RenderTransformOrigin="0.464,0.417"/>
+        <userControls:Roller01 x:Name="Device3039" Canvas.Left="564" Canvas.Top="178" Height="24" Width="85" Opacity="0.8" DeviceId="3039" Panel.ZIndex="1" RenderTransformOrigin="0.464,0.417"/>
+        <userControls:Roller02 x:Name="Device4040" Canvas.Left="503" Canvas.Top="75" Height="24" Width="64" Opacity="0.8" DeviceId="4040" Panel.ZIndex="1" RenderTransformOrigin="0.479,0.458"/>
+        <userControls:Roller02 x:Name="Device3041" Canvas.Left="503" Canvas.Top="102" Height="24" Width="64" Opacity="0.8" DeviceId="3041" Panel.ZIndex="1" RenderTransformOrigin="0.479,0.458"/>
+        <userControls:Roller01 x:Name="Device4041" Canvas.Left="570" Canvas.Top="76" Height="24" Width="85" Opacity="0.8" DeviceId="4041" Panel.ZIndex="1" RenderTransformOrigin="0.464,0.417"/>
+        <userControls:Roller01 x:Name="Device3040" Canvas.Left="570" Canvas.Top="102" Height="24" Width="85" Opacity="0.8" DeviceId="3040" Panel.ZIndex="1" RenderTransformOrigin="0.464,0.417"/>
+        <userControls:Chain02 x:Name="Device1030_Copy" Canvas.Left="499" Canvas.Top="65" Height="76" Width="72"  DeviceId="9999" RenderTransformOrigin="0.5,0.5" >
+            <userControls:Chain02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:Chain02.RenderTransform>
+        </userControls:Chain02>
+        <userControls:Chain02 x:Name="Device1029_Copy" Canvas.Left="499" Canvas.Top="136" Height="76" Width="72"  DeviceId="9999" RenderTransformOrigin="0.5,0.5" >
+            <userControls:Chain02.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </userControls:Chain02.RenderTransform>
+        </userControls:Chain02>
+        <userControls:Roller02 x:Name="Device4037" Canvas.Left="413" Canvas.Top="153" Height="24" Width="85" Opacity="0.8" DeviceId="4037" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+        <userControls:Roller02 x:Name="Device3037" Canvas.Left="413" Canvas.Top="178" Height="24" Width="85" Opacity="0.8" DeviceId="3037" Panel.ZIndex="1" RenderTransformOrigin="0.435,3.54"/>
+
+
+
+
+    </Canvas>
+</UserControl>
+

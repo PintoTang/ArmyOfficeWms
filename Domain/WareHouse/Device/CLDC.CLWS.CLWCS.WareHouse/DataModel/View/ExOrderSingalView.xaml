@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.WareHouse.Device.DataModel.View.ExOrderSingalView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:view="clr-namespace:CL.WCS.DataModelPckg.View"
+             xmlns:convertor="clr-namespace:CLDC.CLWS.CLWCS.WareHouse.ViewModel.Convertor;assembly=CLDC.CLWS.CLWCS.WareHouse.ViewModel"
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="160" d:DesignWidth="1000" Background="White">
+    <UserControl.Resources>
+        <Style x:Key="WrapPanelStyle" TargetType="WrapPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Black"/>
+        </Style>
+        <convertor:WcsAddrToShowConvertor x:Key="WcsAddrToShowConvertor" />
+    </UserControl.Resources>
+    <Border BorderBrush="Gray" BorderThickness="0.5">
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <WrapPanel Grid.Row="0" Grid.Column="0" Style="{StaticResource WrapPanelStyle}">
+                    <Label Style="{StaticResource LabelStyle}">指令编号：</Label>
+                    <TextBox Width="150" IsReadOnly="True" Text="{Binding DataModel.OrderId}"></TextBox>
+                </WrapPanel>
+                <WrapPanel Grid.Row="0" Grid.Column="1" Style="{StaticResource WrapPanelStyle}">
+                    <Label Style="{StaticResource LabelStyle}">垛号：</Label>
+                    <TextBox Width="180" MaxWidth="180" Text="{Binding DataModel.PileNo}"></TextBox>
+                </WrapPanel>
+                <WrapPanel Grid.Row="0" Grid.Column="2" Style="{StaticResource WrapPanelStyle}">
+                    <Label Style="{StaticResource LabelStyle}">指令状态：</Label>
+                    <ComboBox Width="150" ItemsSource="{Binding Path=DicRunningStatus}" 
+                                                  DisplayMemberPath="Value" SelectedValuePath="Key" 
+                                                  SelectedValue="{Binding DataModel.Status,Mode=TwoWay}"/>
+                </WrapPanel>
+                <WrapPanel Grid.Row="0" Grid.Column="3" Style="{StaticResource WrapPanelStyle}">
+                    <Label Style="{StaticResource LabelStyle}">指令类型：</Label>
+                    <ComboBox Width="150" ItemsSource="{Binding Path=DicTypeEnum}" 
+                                                  DisplayMemberPath="Value" SelectedValuePath="Key" 
+                                                  SelectedValue="{Binding DataModel.OrderType,Mode=TwoWay}" IsEnabled="False"/>
+                </WrapPanel>
+                <WrapPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource WrapPanelStyle}">
+                    <Label Style="{StaticResource LabelStyle}">开始地址：</Label>
+                    <TextBox Width="150" IsReadOnly="True" Text="{Binding DataModel.StartAddr,Converter={StaticResource WcsAddrToShowConvertor}}"></TextBox>
+                </WrapPanel>
+                <WrapPanel Grid.Row="1" Grid.Column="1" Style="{StaticResource WrapPanelStyle}">
+                    <Label Style="{StaticResource LabelStyle}">下步地址：</Label>
+                    <TextBox Width="150" Text="{Binding DataModel.NextAddr,Converter={StaticResource WcsAddrToShowConvertor}}"></TextBox>
+                </WrapPanel>
+                <WrapPanel Grid.Row="1" Grid.Column="2" Style="{StaticResource WrapPanelStyle}">
+                    <Label Style="{StaticResource LabelStyle}">当前地址：</Label>
+                    <TextBox Width="150" IsReadOnly="True" Text="{Binding DataModel.CurrAddr,Converter={StaticResource WcsAddrToShowConvertor}}"></TextBox>
+                </WrapPanel>
+                <WrapPanel Grid.Row="1" Grid.Column="3" Style="{StaticResource WrapPanelStyle}">
+                    <Label Style="{StaticResource LabelStyle}">目标地址：</Label>
+                    <TextBox Width="150" IsReadOnly="True" Text="{Binding DataModel.DestAddr,Converter={StaticResource WcsAddrToShowConvertor}}"></TextBox>
+                </WrapPanel>
+                <WrapPanel Grid.Row="2" Grid.Column="0" Style="{StaticResource WrapPanelStyle}">
+                    <Label Style="{StaticResource LabelStyle}">指令优先级：</Label>
+                    <TextBox Width="150" Text="{Binding DataModel.OrderPriority}"></TextBox>
+                </WrapPanel>
+                <WrapPanel Grid.Row="2" Grid.Column="1" Style="{StaticResource WrapPanelStyle}">
+                    <Label Style="{StaticResource LabelStyle}">完成状态：</Label>
+                    <ComboBox Width="150" ItemsSource="{Binding Path=DicFinishTypeEnum}" 
+                                                  DisplayMemberPath="Value" SelectedValuePath="Key" 
+                                                  SelectedValue="{Binding DataModel.FinishType,Mode=TwoWay}" IsEnabled="False"/>
+                </WrapPanel>
+                <WrapPanel Grid.Row="2" Grid.Column="2" Style="{StaticResource WrapPanelStyle}">
+                    <Label Style="{StaticResource LabelStyle}">文档编号：</Label>
+                    <TextBox Width="150" Text="{Binding DataModel.DocumentCode}"></TextBox>
+                </WrapPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="CL.WCS.WPF.UCSetSocketBase"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="40" d:DesignWidth="650" MinHeight="40" MinWidth="470">
+      <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}" x:Key="Caption">
+                <Setter Property="Opacity" Value=".68"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border BorderThickness="1" BorderBrush="Black" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70*"/>
+                <ColumnDefinition Width="30*"/>
+            </Grid.ColumnDefinitions>
+
+            <DockPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                <Label Name="LblRemoteServiceIP" Content="远程服务器IP:" Margin="2"/>
+                <TextBox  Name="TBoxRemoteServiceIP" Text="192.168.255.255" Margin="2"/>
+
+                <Label Name="LblRemoteServicePort" Content="远程服务器端口:" Margin="2"/>
+                <TextBox  Name="TBoxRemoteServicePort" Text="8888" Margin="2"/>
+                <CheckBox Name="IsConnected" Content="是否已连接" Margin="2"/>
+            </DockPanel>
+            <DockPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                <Button Name="BtnConnService" Content="连接" Margin="2" />
+                <Button Name="BtnCloseConnService" Content="断开" Margin="2"/>
+                <Button Name="BtnSaveConnService" Content="保存" />
+            </DockPanel>
+
+        </Grid>
+    </Border>
+</UserControl>

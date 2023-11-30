@@ -1,0 +1,130 @@
+﻿<UserControl  x:Class="CLDC.CLWS.CLWCS.WareHouse.Manage.View.HistoryOrderManageView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                xmlns:convertor="clr-namespace:CLDC.Infrastructrue.UserCtrl.Convertor;assembly=CLDC.Infrastructrue.UserCtrl"
+                xmlns:page="clr-namespace:CLDC.Infrastructrue.UserCtrl.View.Page;assembly=CLDC.Infrastructrue.UserCtrl"
+                xmlns:convertor1="clr-namespace:CLDC.CLWS.CLWCS.WareHouse.ViewModel.Convertor;assembly=CLDC.CLWS.CLWCS.WareHouse.ViewModel"
+                mc:Ignorable="d"  
+             d:DesignHeight="400" d:DesignWidth="2000" MinHeight="280" MinWidth="470">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Indigo.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Border">
+                <Setter Property="BorderThickness" Value="0.6"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
+            </Style>
+            <convertor:EnumDescriptionConverter x:Key="DescriptionConverter" />
+            <convertor1:WcsAddrToShowConvertor x:Key="WcsAddrToShowConvertor" />
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+    <Border BorderThickness="0">
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <materialDesign:ColorZone Grid.Row="0" Mode="Light" VerticalAlignment="Center" Height="30" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                <Label VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" Foreground="Black" FontWeight="Black">历史指令</Label>
+            </materialDesign:ColorZone>
+            <Grid Background="White" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto" MinWidth="80"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="1" Name="BtnSearch" Width="60" Style="{StaticResource MaterialDesignRaisedLightButton}"  Content="查询" Command="{Binding SearchOrderDataCommand}"/>
+                    <WrapPanel Grid.Column="0" VerticalAlignment="Center"  HorizontalAlignment="Left" >
+                        <Label Content="指令 ID:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBox Name="TBoxOrderID" Text="{Binding S_OrderID}" VerticalContentAlignment="Center"  Width="80"
+                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                      materialDesign:HintAssist.Hint="输入指令编号" />
+                        <TextBlock Width="40"></TextBlock>
+                        <Label Content="条码:" VerticalAlignment="Center"/>
+                        <TextBox Name="TBoxPackNum" Width="100" Text="{Binding S_PackNum}" materialDesign:HintAssist.Hint="条码"/>
+                        <TextBlock Width="40"></TextBlock>
+
+                        <Label Content="指令状态:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ComboBox Name="CBoxOrderStatus"  IsEditable="True" materialDesign:HintAssist.HintOpacity=".26"  Width="100"   
+                                              ItemsSource="{Binding OrderStatuLst}"  SelectedItem="{Binding S_OrderStatu}" />
+
+                        <TextBlock Width="40"></TextBlock>
+                        <Label Content="指令类型:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ComboBox Name="CBoxOrderType" IsEditable="True" materialDesign:HintAssist.HintOpacity=".26"  
+                                              Width="100"  ItemsSource="{Binding OrderTypeLst}" SelectedItem="{Binding S_OrderType}"/>
+                        <TextBlock Width="40"></TextBlock>
+                        <Label Content="生成时间:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <DatePicker Name="LocaleStartDatePicker" Width="120" 
+                                        materialDesign:HintAssist.Hint="开始时间" SelectedDate="{Binding S_OrderAddStartTime}"  />
+                        <Label Content="  ~  " />
+                        <DatePicker Name="LocaleEndDatePicker" Width="120"
+                                        materialDesign:HintAssist.Hint="结束时间" SelectedDate="{Binding S_OrderAddEndTime}" />
+                    </WrapPanel>
+                </Grid>
+                <DockPanel Grid.Row="1">
+                    <DataGrid
+                                  Name="DgvOrderHisInfo"
+                                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                   AutoGenerateColumns="False"
+                                    ItemsSource="{Binding  CurrentShowList,Mode=OneWay}"
+                                   CanUserSortColumns="True"  CanUserAddRows="False"
+                                   CanUserDeleteRows="False" CanUserResizeRows="False"
+                                   IsReadOnly="True"
+                                  materialDesign:DataGridAssist.CellPadding="4 2 2 2"
+                                  materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2">
+                        <DataGrid.InputBindings>
+                            <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OpenExOrderCommand}" CommandParameter="{Binding ElementName=DgvOrderHisInfo, Path=SelectedValue}" />
+                        </DataGrid.InputBindings>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="指令ID"  MinWidth="60" Binding="{Binding OrderId}"/>
+                            <DataGridTextColumn Header="条码" MinWidth="120"  Binding="{Binding PileNo}"/>
+                            <DataGridTextColumn Header="指令类型"  MinWidth="80"   Binding="{Binding OrderType,Converter={StaticResource DescriptionConverter}}"/>
+                            <DataGridTextColumn Header="指令状态"  MinWidth="80"   Binding="{Binding Status,Converter={StaticResource DescriptionConverter}}"/>
+                            <DataGridTextColumn Header="起始地址"  MinWidth="160"  Binding="{Binding StartAddr,Converter={StaticResource WcsAddrToShowConvertor}}"/>
+                            <DataGridTextColumn Header="目标地址"  MinWidth="160"  Binding="{Binding DestAddr,Converter={StaticResource WcsAddrToShowConvertor}}"/>
+                            <DataGridTextColumn Header="当前地址"  MinWidth="160"  Binding="{Binding CurrAddr,Converter={StaticResource WcsAddrToShowConvertor}}"/>
+                            <DataGridTextColumn Header="下步地址"  MinWidth="160"  Binding="{Binding NextAddr,Converter={StaticResource WcsAddrToShowConvertor}}"/>
+                            <DataGridTextColumn Header="回库标识"  MinWidth="80"  Binding="{Binding BackFlag}"/>
+                            <DataGridTextColumn Header="指令是否已分发"  MinWidth="110"  Binding="{Binding IsAllocated}"/>
+                            <DataGridTextColumn Header="指令优先级"  MinWidth="80"   Binding="{Binding OrderPriority}"/>
+                            <DataGridTextColumn Header="生成时间"   MinWidth="160"  Binding="{Binding CreateTime}"/>
+                            <DataGridTextColumn Header="当前设备"  MinWidth="100"   Binding="{Binding CurHandlerId}"/>
+                            <DataGridTextColumn Header="指令来源"  MinWidth="100"   Binding="{Binding Source,Converter={StaticResource DescriptionConverter}}"/>
+                            <DataGridTextColumn Header="上层任务类型"  MinWidth="100"   Binding="{Binding SourceTaskType,Converter={StaticResource DescriptionConverter}}"/>
+                            <DataGridTextColumn Header="完成状态"  MinWidth="80"   Binding="{Binding FinishType,Converter={StaticResource DescriptionConverter}}"/>
+                            <DataGridTextColumn Header="分配失败次数"  MinWidth="90"  Binding="{Binding AllocateFailTime}"/>
+                            <DataGridTextColumn Header="分配次数"   MinWidth="80"  Binding="{Binding AllocateTime}"/>
+                            <DataGridTextColumn Header="文档编号"  MinWidth="80"  Binding="{Binding DocumentCode}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+                <Grid Grid.Row="2" Margin="1" Background="LightGray">
+                    <page:UCSplitPager  x:Name="SplitPager" DataContext="{Binding PageViewModel}"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

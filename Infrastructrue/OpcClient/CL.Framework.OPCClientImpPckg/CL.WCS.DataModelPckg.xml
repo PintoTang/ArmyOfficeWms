@@ -1,0 +1,2367 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CL.WCS.DataModelPckg</name>
+    </assembly>
+    <members>
+        <member name="T:CL.WCS.DataModelPckg.CellData">
+            <summary>
+            仓位信息
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.CellData.CELLNO">
+            <summary>
+            仓位编号，遵循协议中地址命名规范。如：Cell:1_1_1_H
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.CellData.AREA_CODE">
+            <summary>
+            库区代码
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.CellData.WH_CODE">
+            <summary>
+            仓库代码
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.CellData.CS_CODE">
+            <summary>
+            仓位状态代码
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.CellData.LINENO">
+            <summary>
+            仓位所在排编号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.CellData.LAYERNO">
+            <summary>
+            仓位所在层编号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.CellData.COLUMNNO">
+            <summary>
+            仓位所在列编号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.CellData.DEPTH">
+            <summary>
+            仓位深浅表示，0表示浅库位，1表示深库位。单深位用默认值0
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.CellData.REMARK">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.CellData.op_Explicit(System.Data.DataRow)~CL.WCS.DataModelPckg.CellData">
+            <summary>
+            根据数据库的数据进行格式化成对象
+            </summary>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.DataBlockNameEnum">
+            <summary>
+            地址块名称枚举
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.PalletizerBoxCountDataBlock">
+            <summary>
+            叠盘机读箱数量的地址块
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.FullAmount">
+            <summary>
+            满垛数量
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.CacheOPCSerialNo">
+            <summary>
+            缓冲区序列号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.IsContainSubTrayDataBlock">
+            <summary>
+            是子母托盘
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.GoodHeightType">
+            <summary>
+            货高类型
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.GoodException">
+            <summary>
+            货物异常
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OPCOrderIdDataBlock">
+            <summary>
+            OPC读订单的地址块
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.WMSOPCOrderIdDataBlock">
+            <summary>
+            WMS指令 ID（用于3D仿真）
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OPCBarcodeDataBlock">
+            <summary>
+            OPC读条码的地址块
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OPCWeightDataBlock">
+            <summary>
+            OPC读取重量的地址块
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.WriteInOutModeDataBlock">
+            <summary>
+            变更站台出入模式
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.AllowModeSwitchDataBlock">
+            <summary>
+            模式切换允许信号地址
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.WriteOrderIDDataBlock">
+            <summary>
+            写orderId的地址块
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DestinationDataBlock">
+            <summary>
+            写目的地址的地址块
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.ErrorDestinationValue">
+            <summary>
+            验证失败放行的下一步地址编号（异常口）
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.SuccessDestinationValue">
+            <summary>
+            验证成功放行的下一步地址编号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.PalletizerSerialNo">
+            <summary>
+            叠盘机序列号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.CacheTailSerialNo">
+            <summary>
+            缓存区尾端序列号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.WriteDeviceTypeDataBlock">
+            <summary>
+            叠盘机写设备类型地址块
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OPCSerialNo">
+            <summary>
+            OPC 序列号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.TrayBarcodeDataBlock">
+            <summary>
+            叠盘机读托盘号（哈尔滨托盘库）
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.WriteDirectionDataBlock">
+            <summary>
+            写方向号的地址块
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.IsReleaseDataBlock">
+            <summary>
+            是否可放行的地址块
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.WriteShelfIDDataBlock">
+            <summary>
+            写层号的地址块
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OrderIdWhenRollBack">
+            <summary>
+            异常回退时写的包号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OPCTrayType">
+            <summary>
+            OPC读托盘规格的地址块
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.MonitorFireControlDataBlock">
+            <summary>
+            消防联动监控PLC信号地址
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.FinishFireControlDataBlock">
+            <summary>
+            消防联动通知PLC完成地址
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.IsWaitInWarehouseDataBlock">
+            <summary>
+            是否等待入库地址
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.ReadDirectionDataBlock">
+            <summary>
+            读方向号DB块
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.ManipulatorFrom">
+            <summary>
+            机械手抓取From位置
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.ManipulatorTo">
+            <summary>
+            机械手放置目标TO位置
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.FinishDatablock">
+            <summary>
+            机械手抓取完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DeviceStatus">
+            <summary>
+            设备运行状态
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.CountDataBlock">
+            <summary>
+            数量
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DePalletizeCountDataBlock">
+            <summary>
+            拆盘数量(福沙)
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.StartAddressDataBlock">
+            <summary>
+            起始地址
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OPCMonitorRegisterType">
+            <summary>
+            OPC注册的监听类型
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OPCMonitorDataBlock">
+            <summary>
+            OPC监听的DB块
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OPCMonitorStartValue">
+            <summary>
+            OPC监听变化的起始值
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OPCMonitorEndValue">
+            <summary>
+            OPC监听变化的终止值
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OPCMonitorSpecifiedValue">
+            <summary>
+            OPC监听变化的指定值
+            1、 “+” ：正数
+            2、“-”：负数
+            3、”!0“：非0
+            4、指定值
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.IsAllowInDataBlock">
+            <summary>
+            允许进入
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.IsAllowInCompleteDataBlock">
+            <summary>
+            入完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.IsAllowOutDataBlock">
+            <summary>
+            允许出
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.IsAllowOutCompleteDataBlock">
+            <summary>
+            出完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.IsRequestInDataBlock">
+            <summary>
+            AGV请求入
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.IsRequestCompleteDataBlock">
+            <summary>
+            AGV请求入完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.IsRequestOutDataBlock">
+            <summary>
+            AGV请求出
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.IsRequestOutCompleteDataBlock">
+            <summary>
+            AGV请求出完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.CommadType">
+            <summary>
+            OPC堆垛机的命令代码
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.SourceStationNum">
+            <summary>
+            源站台编号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DestStationNum">
+            <summary>
+            目的站台编号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.SourceStationRow">
+            <summary>
+            OPC堆垛机源站台排号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.SourceStationLayer">
+            <summary>
+            OPC堆垛机源站台层号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.SendCmdCode">
+            <summary>
+            命令标识
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.SourceStationColumn">
+            <summary>
+            OPC堆垛机源站台列号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.SourceCellRow">
+            <summary>
+            OPC堆垛机源仓位排号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.SourceCellLayer">
+            <summary>
+            OPC堆垛机源仓位层号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.SourceCellColumn">
+            <summary>
+            OPC堆垛机源仓位列号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DestStationRow">
+            <summary>
+            OPC堆垛机源站台排号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DestStationLayer">
+            <summary>
+            OPC堆垛机源站台层号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DestStationColumn">
+            <summary>
+            OPC堆垛机源站台列号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DestCellRow">
+            <summary>
+            OPC堆垛机源仓位排号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DestCellLayer">
+            <summary>
+            OPC堆垛机源仓位层号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DestCellColumn">
+            <summary>
+            OPC堆垛机源仓位列号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.VerificationCode">
+            <summary>
+            OPC堆垛机校验码
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.VerificationResult">
+            <summary>
+            OPC堆垛机校验结果
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OrderFinishFlag">
+            <summary>
+            OPC堆垛机作业完成标识
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.InProgressOrder">
+            <summary>
+            OPC堆垛机正在处理的任务编号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OpcSerialNumber">
+            <summary>
+            PLC序列号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DeviceWorkStatus">
+            <summary>
+            设备状态
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DeviceActionPick">
+            <summary>
+            设备行程状态，接获
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DeviceActionGoing">
+            <summary>
+            设备行程状态，行走
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DeviceActionReady">
+            <summary>
+            设备行程状态，到位
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DeviceActionPut">
+            <summary>
+            设备行程状态，放货
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DeviceCurRow">
+            <summary>
+            设备当前排号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DeviceCurLayer">
+            <summary>
+            设备当前层号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DeviceCurColumn">
+            <summary>
+            设备当前列号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DeviceConnectStatus">
+            <summary>
+            设备连接状态
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DeviceFaultCode">
+            <summary>
+            设备故障代码
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.DeviceFinishedOrder">
+            <summary>
+            设备已执行完成的任务号
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.PickingReadyDataBlock">
+            <summary>
+            分拣就绪地址
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OrderTypeDataBlock">
+            <summary>
+            任务类型
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.SizeStatusDataBlock">
+            <summary>
+            外观状态
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.HeightStatusDataBlock">
+            <summary>
+            高度状态
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.FrontWidthStatusDataBlock">
+            <summary>
+            前宽度
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.BehindWidthStatusDataBlock">
+            <summary>
+            后宽度
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.LeftWidthStatusDataBlock">
+            <summary>
+            左超长
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.RightWidthStatusDataBlock">
+            <summary>
+            右超长
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.WeightStatusDataBlock">
+            <summary>
+            重量状态
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.IsTranslationAllFault">
+            <summary>
+            移动总故障
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.IsLoaded">
+            <summary>
+            负载
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.IsTranslationFw">
+            <summary>
+            正转
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.IsTranslationRv">
+            <summary>
+            反转
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.PLC1005RequesIn">
+            <summary>
+            1005请求入
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.RGV_AllowIn1005">
+            <summary>
+            RGV允许1005入
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.RGV_InDone1005">
+            <summary>
+            RGV允许1005入完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.PLC1005ReceivedInDone">
+            <summary>
+            1005收到入库完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.RGV_RequesOut1005">
+            <summary>
+            RGV请求1005出库
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.PLC1005AllowOut">
+            <summary>
+            1005允许出
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.PLC1005OutDone">
+            <summary>
+            1005出完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.RGV_ReceivedOutDone1005">
+            <summary>
+            RGV收到1005出库完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.PLC1014RequesIn">
+            <summary>
+            1014请求入
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.RGV_AllowIn1014">
+            <summary>
+            RGV允许1014入
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.RGV_InDone1014">
+            <summary>
+            RGV允许1014入完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.PLC1014ReceivedInDone">
+            <summary>
+            1014收到入库完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.RGV_RequesOut1014">
+            <summary>
+            RGV请求1014出
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.PLC1014AllowOut">
+            <summary>
+            1014允许RGV出
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.PLC1014OutDone">
+            <summary>
+            1014出完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.RGV_ReceivedOutDone1014">
+            <summary>
+            RGV请求1014出完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OpcDoorIsAllowed1">
+             <summary>
+            允许1
+             </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OpcDoorIsAllowed2">
+             <summary>
+            允许2
+             </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OpcDoorIsAllowed3">
+             <summary>
+            允许3
+             </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OpcDoorIsAllowed4">
+             <summary>
+            允许4
+             </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OpcDoorIsAllowed5">
+             <summary>
+            允许5
+             </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.OpcDoorIsAllowed6">
+             <summary>
+            允许6
+             </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.DataBlockNameEnum.TrayType">
+            <summary>
+            托盘类型
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.DevicePropertyItem">
+            <summary>
+            DevicePropertyItem
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.name">
+            <summary>
+            设备名
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.outSrcAddrPrefix">
+            <summary>
+            出库站台
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.inSrcAddrPrefix">
+            <summary>
+            入库站台
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.moveSrcAddrPrefix">
+            <summary>
+            移库站台
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.exportBusiness">
+            <summary>
+            滚筒线出口业务类
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.scanner">
+            <summary>
+            扫描枪
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.scannerGroup">
+            <summary>
+            扫描枪组
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.addr">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.positiveStationCode">
+            <summary>
+            关键站台
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.OPCSignalValueMode">
+            <summary>
+            读取单个值
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.protocolType">
+            <summary>
+            协议类型
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.isDoubleCell">
+            <summary>
+            是否双深位
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.StrategyType">
+            <summary>
+            策略类型
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.nextIsFinish">
+            <summary>
+            下一步地址是否为目的地址
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.socketServiceIP">
+            <summary>
+            服务端IP
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.socketServicePort">
+            <summary>
+            服务端端口
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.numConnections">
+            <summary>
+            服务端最多可连数量
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.receiveBufferSize">
+            <summary>
+            服务端最多缓存大小
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.trayFullCount">
+            <summary>
+            空托盘满托数量
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.epistatic">
+            <summary>
+            上位系统
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.trayType">
+            <summary>
+            空托盘类型
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.distributeTrayObject">
+            <summary>
+            空托盘分配对象
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.reverseField">
+            <summary>
+            预留字段
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.socketClientIP">
+            <summary>
+            客户端IP
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.socketClientRemotePort">
+            <summary>
+            客户端端口
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DevicePropertyItem.socketClientLocalPort">
+            <summary>
+            客户端本地端口
+            </summary>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.DevicePropertyItem.op_Explicit(System.String)~CL.WCS.DataModelPckg.DevicePropertyItem">
+            <summary>
+            转换成json格式
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.ExportBusiness">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ExportBusiness.type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ExportBusiness.number">
+            <summary>
+            数量
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ExportBusiness.scanner">
+            <summary>
+            扫描枪
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ExportBusiness.isReverse">
+            <summary>
+            isReverse
+            </summary>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.ExportBusiness.op_Explicit(System.String)~CL.WCS.DataModelPckg.ExportBusiness">
+            <summary>
+            转换成json格式
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.DeviceRoutineRecordItem">
+            <summary>
+            设备运行状态信息
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DeviceRoutineRecordItem.Guid">
+            <summary>
+            设备日常记录ID
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DeviceRoutineRecordItem.DeviceName">
+            <summary>
+            设备代码
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DeviceRoutineRecordItem.WareHouseCode">
+            <summary>
+            库房代码
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DeviceRoutineRecordItem.DeviceRoutineType">
+            <summary>
+            设备日常工作类型类型
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DeviceRoutineRecordItem.DeviceRoutineStartTime">
+            <summary>
+            记录开始时间
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DeviceRoutineRecordItem.DeviceRoutineEndTime">
+            <summary>
+            记录结束时间
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DeviceRoutineRecordItem.WordNO">
+            <summary>
+            产生记录的工作编号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DeviceRoutineRecordItem.Sunmary">
+            <summary>
+            详细记录设备信息
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DeviceRoutineRecordItem.ErrorCode">
+            <summary>
+            异常代码
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DeviceRoutineRecordItem.ErrorText">
+            <summary>
+            异常描述信息
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DeviceRoutineRecordItem.DeviceRoutineCreationDate">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.DeviceRoutineRecordItem.op_Explicit(System.Data.DataRow)~CL.WCS.DataModelPckg.DeviceRoutineRecordItem">
+            <summary>
+            转换成DeviceRoutineRecordItem格式
+            </summary>
+            <param name="dr"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.ExOrder">
+            <summary>
+            执行中的指令
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ExOrder.CurHandlerId">
+            <summary>
+            当前执行的设备名称
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ExOrder.AllocateFailTime">
+            <summary>
+            分配失败的次数
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ExOrder.AllocateTime">
+            <summary>
+             分配的次数
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ExOrder.StartAddrName">
+            <summary>
+            开始地址
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ExOrder.NextAddr">
+            <summary>
+            下一步地址
+            软件给硬件下指令后会给下一步地址赋值，暂时没有清空处理
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ExOrder.FinishType">
+            <summary>
+            指令完成的类型
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ExOrder.Status">
+            <summary>
+            指令当前状态
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ExOrder.IsAllocated">
+            <summary>
+            指令是否已经分发
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ExOrder.HelperRGVNo">
+            <summary>
+            
+            </summary>	
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.ExOrder.OrderToExOrder(CL.Framework.CmdDataModelPckg.Order)">
+            <summary>
+            Order转换成ExOrder
+            </summary>
+            <param name="order">order</param>
+            <returns></returns>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.ExOrder.ToString">
+            <summary>
+            详细参数的描述
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.FinishType">
+            <summary>
+            指令完成的方式
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.FinishType.UnFinished">
+            <summary>
+            未完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.FinishType.AutoFinish">
+            <summary>
+            自动完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.FinishType.StepFinish">
+            <summary>
+            单步完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.FinishType.ForceFinish">
+            <summary>
+            强制完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.FinishType.ExpFinish">
+            <summary>
+            异常完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.FinishType.Cancle">
+            <summary>
+            取消
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.FinishType.NotifyFail">
+            <summary>
+            通知设备失败
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.FinishType.Discard">
+            <summary>
+            丢弃
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.StatusEnum">
+            <summary>
+            指令当前状态枚举
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StatusEnum.Waiting">
+            <summary>
+            等待执行
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StatusEnum.Processing">
+            <summary>
+            处理中
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StatusEnum.NotifyOPC">
+            <summary>
+            通知设备处理
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StatusEnum.TransportCompleted">
+            <summary>
+            指令搬运完成
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StatusEnum.CmdSent">
+            <summary>
+            命令已经通知上层系统
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StatusEnum.NotifyFail">
+            <summary>
+            通知设备失败
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StatusEnum.Exception">
+            <summary>
+            异常
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StatusEnum.Cancle">
+            <summary>
+            取消
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StatusEnum.Discard">
+            <summary>
+            丢弃
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.FloorStationStruct">
+            <summary>
+            楼层站台信息
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.FloorStationStruct.SD_CODE">
+            <summary>
+            站台代码，规则：站台类型名：排_层_列_库区
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.FloorStationStruct.WH_CODE">
+            <summary>
+            仓库代码
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.FloorStationStruct.FSP_PRIORITY">
+            <summary>
+            站台优先级,用于同侧有多个入库站台时优先哪个站台先接货,值越高,优先级越高,默认为0
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.FloorStationStruct.FSP_LSNO">
+            <summary>
+            堆垛机楼层站台对应第三方设备厂商的楼层站台的值:例如村田、冈村
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.FloorStationStruct.FSP_DEVICENAME">
+            <summary>
+            楼层站台对应的设备名称
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.FloorStationStruct.FSP_BAYNO">
+            <summary>
+            楼层站台对应的列号,默认为1,两侧站台堆垛机策略使用
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.FloorStationStruct.FSP_CELLBAY">
+            <summary>
+            楼层站台对应的仓位的列号
+            </summary>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.FloorStationStruct.op_Explicit(System.Data.DataRow)~CL.WCS.DataModelPckg.FloorStationStruct">
+            <summary>
+            转换成FloorStationStruct格式
+            </summary>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem">
+            <summary>
+            任务信息
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.message">
+            <summary>
+            返回消息说明	
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.status">
+             <summary>
+            下载说明
+             </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.interface_id">
+            <summary>
+            行id
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.entity_id">
+            <summary>
+            主体id	 
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.warehouse_id">
+            <summary>
+            仓库id	
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.task_type">
+            <summary>
+            任务类型
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.mo_collect_number">
+             <summary>
+            打包号	
+             </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.source_bill_number">
+            <summary>
+            来源单据号-班组任务号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.source_header_id">
+             <summary>
+            来源头id 	 
+             </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.required_delivery_date">
+            <summary>
+            要求交付时间	
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.source_line_id">
+            <summary>
+            来源行id task_line_id	 
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.item_id">
+            <summary>
+            物料id	
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.item_code">
+            <summary>
+            物料code	 
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.organization_code">
+             <summary>
+            组织	 
+             </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.revision">
+             <summary>
+            版本
+             </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.uom_code">
+             <summary>
+            单位
+             </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.lpn_id">
+            <summary>
+            箱id	
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.lpn_code">
+            <summary>
+            称名	
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.request_quantity">
+            <summary>
+            拣料数量	 
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.deliver_quantity">
+            <summary>
+            交付数量	
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.source_zone_code">
+            <summary>
+            来源货区	
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.source_zone_id">
+             <summary>
+            来源货区id  	 
+             </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.source_locator_code">
+            <summary>
+            拣料货位	 
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.source_locator_id">
+            <summary>
+            拣料货位id	
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.source_subinventory_code">
+             <summary>
+            来源erp子库
+             </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.source_erp_locator_code">
+             <summary>
+            来源erp货位	
+             </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.item_remark">
+            <summary>
+            行备注	 
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.delivery_object">
+            <summary>
+            交付对象	 
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.source_code">
+            <summary>
+            数据来源dcs,ptl,avg等	
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.process_batch_number">
+            <summary>
+            处理批次
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.process_status">
+            <summary>
+            接口表处理状态(2--成功写入接口表,4--写入正式表成功,5--写入正式表失败)	 /// </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.processing_error_code">
+            <summary>
+            错误代码	
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.processing_error_message">
+            <summary>
+            错误描述	 
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.created_by">
+             <summary>
+            创建人	
+             </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.creation_date">
+            <summary>
+            创建时间	 
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.last_updated_by">
+            <summary>
+            最后修改人	
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.last_update_date">
+            <summary>
+            最后修改时间	
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.attribute1">
+            <summary>
+            保留字段1	 
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.attribute2">
+            <summary>
+            保留字段2	 
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.attribute3">
+            <summary>
+            保留字段3	
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.attribute4">
+            <summary>
+            保留字段4	 
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.attribute5">
+            <summary>
+            保留字段5	
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.attribute6">
+            <summary>
+            保留字段6	
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.attribute7">
+            <summary>
+            保留字段7	 
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.attribute8">
+            <summary>
+            保留字段8	
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.attribute9">
+            <summary>
+            保留字段9	
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.attribute10">
+            <summary>
+            保留字段10
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.description">
+            <summary>
+            描述信息
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.open_flag">
+            <summary>
+            开箱标示，0为需拣选拆箱、1为整箱
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.task_number">
+            <summary>
+            使用source_bill_number+interface_id	 
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.task_priority">
+            <summary>
+            任务优先级，1-5 1最高	
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.to_zone_code">
+            <summary>
+            来源货区	
+            </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.to_zone_id">
+            <summary>
+            来源货区id	
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.to_locator_code">
+             <summary>
+            拣料货位，上架入库入库到哪个货位时使用
+            	 </summary>	
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.to_locator_id">
+             <summary>
+            拣料货位id	
+             </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.to_subinventory_code">
+             <summary>
+            目的erp子库	
+             </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.to_erp_locator_code">
+            <summary>
+            目的erp货位	
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.task_category">
+            <summary>
+            ptl/agv 区分接口表的数据分发给不同类型的设备.根据库区来分流到agv	 /// </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.machine_num">
+            <summary>
+            设备编号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.resend_flag">
+            <summary>
+            重发标志
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.source_task_number">
+            <summary>
+            原单据号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.stock_type">
+            <summary>
+            入库或者出库	 
+            </summary>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem.op_Explicit(System.String)~CL.WCS.DataModelPckg.InAndOutWarehouseTaskItem">
+            <summary>
+            定义Json字符串显示转换为Item对象
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.InventoryItem">
+            <summary>
+            转换出入库类型为Json格式
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InventoryItem.InOutFlg">
+            <summary>
+             1.回库 2.不可回库 3.出库（货品出库、子母托盘出库） 4.收集器
+            </summary>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.InventoryItem.op_Explicit(System.String)~CL.WCS.DataModelPckg.InventoryItem">
+            <summary>
+            定义Json字符串显示转换为InventoryItem对象
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.Item">
+            <summary>
+            Item
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.ItemId">
+            <summary>
+            货物ID
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.WarehouseId">
+            <summary>
+            仓库ID
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.Area">
+            <summary>
+            库区
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.StationCode">
+            <summary>
+            站台编号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.TransmitStationId">
+            <summary>
+            传递站台编号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.TransmitStation">
+            <summary>
+            衔接站台编号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.StationWareId">
+            <summary>
+            出库站台对应的仓库ID
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.SubTrayId">
+            <summary>
+            子托盘ID
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.TrayId">
+            <summary>
+            母托盘ID
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.HighFlag">
+            <summary>
+            货高
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.IsAllowIn">
+            <summary>
+            可否入库
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.LedMessage">
+            <summary>
+            LED显示内容
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.TunnelId">
+            <summary>
+            巷道号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.Cell">
+            <summary>
+            仓位
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.ERR_LOC_ID">
+            <summary>
+            异常仓位--用在接口出深浅有
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.TaskId">
+            <summary>
+            任务号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.Priority">
+            <summary>
+            优先级
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.OutMode">
+            <summary>
+            出库模式
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.VerifyedResult">
+            <summary>
+            校验结果
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.SourceCellId">
+            <summary>
+            源库位号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.DestinationCellId">
+            <summary>
+            目的库位号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.CrossDockStationId">
+            <summary>
+            越库站台号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.DataSourceID">
+            <summary>
+            数据表GUID
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.Item.BackFlag">
+            <summary>
+            任务区分
+            (1是全部出，2部分出）
+            </summary>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.Item.op_Explicit(System.String)~CL.WCS.DataModelPckg.Item">
+            <summary>
+            定义Json字符串显示转换为Item对象
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.EqLedStyleStruct">
+            <summary>
+            LED样式
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.StyleId">
+            <summary>
+            显示样式ID
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.FontAreaIx">
+            <summary>
+            字体区域：左上角X坐标
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.FontAreaIy">
+            <summary>
+            字体区域：左上角Y坐标
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.High">
+            <summary>
+            字体区域：高度
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.Wide">
+            <summary>
+            字体区域：宽度
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.FrameMode">
+            <summary>
+            字体区域：边框模式
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.FrameColor">
+            <summary>
+            字体区域：边框颜色
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.FontName">
+            <summary>
+            字体样式：字体名称
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.Size">
+            <summary>
+            字体样式：字体大小
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.IsBold">
+            <summary>
+            字体样式：是否加粗
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.IsItaic">
+            <summary>
+            字体样式：是否斜体
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.IsUnderLine">
+            <summary>
+            字体样式：是否加下划线
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.FontColor">
+            <summary>
+            字体样式：字体颜色
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.RowSpace">
+            <summary>
+            字体样式：行距
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.AlignStyle">
+            <summary>
+            字体样式：水平样式(0：左对齐，1：居中，2右对齐)
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.EqLedStyleStruct.ValignerStyle">
+            <summary>
+            字体样式：竖直样式(0：顶对齐，1：上下居中，2：底对齐)
+            </summary>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.EqLedStyleStruct.op_Explicit(System.Data.DataRow)~CL.WCS.DataModelPckg.EqLedStyleStruct">
+            <summary>
+            根据数据库的数据进行格式化成对象
+            </summary>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.InstanceConfigData">
+            <summary>
+            项目加载数据
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.MethodCallData">
+            <summary>
+            方法调用配置
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.MethodCallData.LoadName">
+            <summary>
+            方法调用标识名称
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.MethodCallData.MethodName">
+            <summary>
+            方法名
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.MethodCallData.MethodCallParamList">
+            <summary>
+            方法调用入参集合
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.MethodCallParam">
+            <summary>
+            方法调用入参
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.MethodCallParam.ParamType">
+            <summary>
+            入参类型
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.MethodCallParam.ParamValue">
+            <summary>
+            入参值
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.SingletonObjectData">
+            <summary>
+            单例对象
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.SingletonObjectData.LoadName">
+            <summary>
+            单例对象名称，用来标识单个配置项，唯一标识
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.SingletonObjectData.ClassName">
+            <summary>
+            创建对象的类名
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.SingletonObjectData.NameSpace">
+            <summary>
+            创建对象的命名空间
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.SingletonObjectData.CreateMethodName">
+            <summary>
+            单例的方法名
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.DictionaryObjectData">
+            <summary>
+            字典对象，实例化后提供给其它成员作为入参
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DictionaryObjectData.LoadName">
+            <summary>
+            字典名称，用来标识单个配置项，唯一标识
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DictionaryObjectData.KeyType">
+            <summary>
+            主键类型
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DictionaryObjectData.ValueType">
+            <summary>
+            值对象类型
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DictionaryObjectData.DictionaryParamList">
+            <summary>
+            字典成员对象集合
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.DictionaryParam">
+            <summary>
+            字典成员对象
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DictionaryParam.Key">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.DictionaryParam.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.InstanceObjectData">
+            <summary>
+            实例化对象
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InstanceObjectData.LoadName">
+            <summary>
+            实体配置项名称，用来标识单个配置项，唯一标识
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InstanceObjectData.ClassName">
+            <summary>
+            创建对象的类名
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InstanceObjectData.NameSpace">
+            <summary>
+            创建对象的命名空间
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InstanceObjectData.LoadMode">
+            <summary>
+            加载模式，如真实\模拟
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InstanceObjectData.IsDevice">
+            <summary>
+            是否是设备对象
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InstanceObjectData.IsCheckStatus">
+            <summary>
+            是否需要在加载时判断设备当前状态，启用则正常加载，禁用则不加载
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:CL.WCS.DataModelPckg.InstanceObjectData.ConstructParamList" -->
+        <member name="P:CL.WCS.DataModelPckg.InstanceObjectData.SetterParamList">
+            <summary>
+            公共成员对象集合
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.InstanceObjectData.EventParamList">
+            <summary>
+            事件对象集合
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.ConstructParam">
+            <summary>
+            构造函数入参对象
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ConstructParam.ParamType">
+            <summary>
+            入参类型
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ConstructParam.ParamValue">
+            <summary>
+            入参值
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.SetterParam">
+            <summary>
+            公共成员对象（需要实例化对象后再赋值的公共成员）
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.SetterParam.SetterName">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.SetterParam.SetterType">
+            <summary>
+            对象类型
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.SetterParam.SetterValue">
+            <summary>
+            方法对象
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.EventParam">
+            <summary>
+            事件对象
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EventParam.EventName">
+            <summary>
+            事件名称
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EventParam.BindAppointMethodName">
+            <summary>
+            绑定的方法名
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EventParam.BindAppointObjectName">
+            <summary>
+            绑定的对象名
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EventParam.BindAppointNamespaceName">
+            <summary>
+            绑定的方法所在的命名空间
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EventParam.BindAppointClassName">
+            <summary>
+            绑定的方法所在的对象类名
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.ReceiveData">
+            <summary>
+            接收表数据信息
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ReceiveData.RD_GUID">
+            <summary>
+            接收数据ID
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ReceiveData.WH_CODE">
+            <summary>
+            库房代码
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ReceiveData.DHSTATUS_ID">
+            <summary>
+            数据出库状态
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ReceiveData.RD_METHODNAME">
+            <summary>
+            方法名称
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ReceiveData.RD_PARAMVALUE">
+            <summary>
+            json值
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ReceiveData.RD_HANDLERDATE">
+            <summary>
+            接收数据时间
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.ReceiveData.RD_NOTE">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.ReceiveData.op_Explicit(System.Data.DataRow)~CL.WCS.DataModelPckg.ReceiveData">
+            <summary>
+            转换成ReceiveData格式
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.StackingCraneItem">
+            <summary>
+            堆垛机信息
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StackingCraneItem.InboundExceptionType">
+            <summary>
+            堆垛机入库异常类型
+            1.双重入库 2.入深浅有
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StackingCraneItem.StackingCraneName">
+            <summary>
+            堆垛机名
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StackingCraneItem.EquimentStatus">
+            <summary>
+            设备状态
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StackingCraneItem.CommunicationStatus">
+            <summary>
+            通讯状态
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StackingCraneItem.TaskType">
+            <summary>
+            任务类型
+            </summary>
+        </member>
+        <member name="E:CL.WCS.DataModelPckg.StackingCraneItem.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.StackingCraneItem.OnPropertyChanged(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="propName"></param>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.StackingCraneCache">
+            <summary>
+            堆垛机列表
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StackingCraneCache.CacheStackingCraneInfoList">
+            <summary>
+            堆垛机列表
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.TrayItem">
+            <summary>
+            托盘信息
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.TrayItem.Count">
+            <summary>
+            空托盘数量
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.TrayItem.TrayType">
+            <summary>
+            托盘类型：1100mm托盘,1400mm托盘
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.EqLedDataStruct">
+            <summary>
+            LED信息
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.LED_DEVICEID">
+            <summary>
+            LED 对应的设备编号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.LED_Guid">
+            <summary>
+            LED屏幕的GUID
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.SHOWSTYLE_ID">
+            <summary>
+            样式ID
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.LED_CardNo">
+            <summary>
+            控制卡号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.LED_CardType">
+            <summary>
+            控制卡类型（EQ3002-I=0、EQ3002-II=1、EQ3002-III=2、EQ2008-I/II=3;#EQ2010-I=4、EQ2008-IE=5、EQ2011=7、EQ2012=8、EQ2008-M=9 #EQ2013=21、EQ2023=22、EQ2033=23）
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.LED_CommunicationMode">
+            <summary>
+            控制卡通讯模式，串口通讯=0、网路通讯=1
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.LED_ScreenWidth">
+            <summary>
+            LED屏幕的宽度，取值为：8的倍数
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.LED_ScreenHigh">
+            <summary>
+            LED屏幕的高度，取值为：8的倍数
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.LED_SerialBaud">
+            <summary>
+            串口波特率
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.LED_SerialNum">
+            <summary>
+            串口号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.LED_IpAddress">
+            <summary>
+            LED屏对应的IP地址
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.LED_NetPort">
+            <summary>
+            LED屏对应的端口，必须为5005
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.LED_ColorStyle">
+            <summary>
+            显示屏颜色类型:0--单色屏，1--双色屏
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.LED_TimeOut">
+            <summary>
+            超时时间，单位毫秒
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.LED_PassWord">
+            <summary>
+            访问密码
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.LED_IsEnabled">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.led_note">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.EqLedDataStruct.WH_CODE">
+            <summary>
+            库房代码
+            </summary>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.EqLedDataStruct.op_Explicit(System.Data.DataRow)~CL.WCS.DataModelPckg.EqLedDataStruct">
+            <summary>
+            根据数据库的数据进行格式化成对象
+            </summary>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.StationDataStruct">
+            <summary>
+            站台信息
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StationDataStruct.SD_CODE">
+            <summary>
+            站台代码，规则：站台类型名：排_层_列_库区
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StationDataStruct.WH_CODE">
+            <summary>
+            仓库代码
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StationDataStruct.ST_CODE">
+            <summary>
+            站台类型代码
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StationDataStruct.SFT_ID">
+            <summary>
+            站台的功能类型ID
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StationDataStruct.LED_GUID">
+            <summary>
+            LED屏幕的GUID，为空则不存在LED
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StationDataStruct.SD_ISLINKPRODUCTION">
+            <summary>
+            是否对接生产线，默认为0
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StationDataStruct.SD_FLOOR">
+            <summary>
+            所在的物理楼层
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StationDataStruct.SD_FUNCTIONDESCRIPTION">
+            <summary>
+            功能描述
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StationDataStruct.SD_LOCATIONDESCRIPTION">
+            <summary>
+            位置描述
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.StationDataStruct.SD_MuratecLSNO">
+            <summary>
+            楼层站台对应村田的楼层站台编号，只针对楼层站台，其他站台类型为空
+            </summary>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.StationDataStruct.op_Explicit(System.Data.DataRow)~CL.WCS.DataModelPckg.StationDataStruct">
+            <summary>
+            根据数据库的数据进行格式化成对象
+            </summary>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.StationFunctionType">
+            <summary>
+            站台的功能类型：出库、入库、出入库、拣选、缓存、拆码盘机
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationFunctionType.InWH">
+            <summary>
+            入库
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationFunctionType.OutWH">
+            <summary>
+            出库
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationFunctionType.InAndOutWH">
+            <summary>
+            即可做入库也可以做出库
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationFunctionType.Picking">
+            <summary>
+            拣选
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationFunctionType.CacheStation">
+            <summary>
+            缓存
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationFunctionType.PalletizingStation">
+            <summary>
+            拆码盘机
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.StationType">
+            <summary>
+            站台类型，如楼层站台，出入库站台，拣选站台，出口站台，关键节点站台等
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationType.A">
+            <summary>
+            入库站台Entrance
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationType.B">
+            <summary>
+            出口站台Exit
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationType.C">
+            <summary>
+            出入库站台InAndOutStation
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationType.D">
+            <summary>
+            楼层站台FloorStation
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationType.E">
+            <summary>
+            关键节点站台KeyNodeStation
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationType.F">
+            <summary>
+            拣选站台PickingStation
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationType.G">
+            <summary>
+            缓存工位站台CacheStation
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationType.H">
+            <summary>
+            拆码盘机工位PalletizingStation
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationType.I">
+            <summary>
+            分配站台AllocateStation
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationType.J">
+            <summary>
+            开箱机工位
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.StationType.K">
+            <summary>
+            货架站台
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.TrayType">
+            <summary>
+            托盘类型：1100mm托盘,1400mm托盘
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.TrayType._1100mm">
+            <summary>
+            1100mm托盘
+            </summary>
+        </member>
+        <member name="F:CL.WCS.DataModelPckg.TrayType._1400mm">
+            <summary>
+            1400mm托盘
+            </summary>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.T_BD_DeviceData">
+            <summary>
+             搬运设备详细信息包含堆垛机，RGV，提升机
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.T_BD_DeviceData.DD_Code">
+            <summary>
+            设备代码
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.T_BD_DeviceData.WH_Code">
+            <summary>
+            仓库代码
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.T_BD_DeviceData.DD_Name">
+            <summary>
+            设备名称 
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.T_BD_DeviceData.DT_Code">
+            <summary>
+            设备类型.CRA:堆垛机，STA:站台等
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.T_BD_DeviceData.SS_Code">
+            <summary>
+             生效：ON。等同于基类的设备状态属性Status
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.T_BD_DeviceData.DD_Note">
+            <summary>
+            备注信息
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.T_BD_DeviceData.DD_ErrorDBAddress">
+            <summary>
+            判断是否故障的DB地址
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.T_BD_DeviceData.DD_MuratecCraneNO">
+            <summary>
+            厂家的堆垛机编号
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.T_BD_DeviceData.DD_MuratecCranePort">
+            <summary>
+            堆垛机通信端口
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.T_BD_DeviceData.DD_MuratecCraneIP">
+            <summary>
+            堆垛机TS服务器IP
+            </summary>
+        </member>
+        <member name="P:CL.WCS.DataModelPckg.T_BD_DeviceData.DD_MuratecCraneRemotePort">
+            <summary>
+            堆垛机远程通信端口
+            </summary>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.T_BD_DeviceData.op_Explicit(System.Data.DataRow)~CL.WCS.DataModelPckg.T_BD_DeviceData">
+            <summary>
+            根据数据库的数据进行格式化成对象
+            </summary>
+            <param name="row"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CL.WCS.DataModelPckg.View.AddrConvertToValue">
+            <summary>
+            地址转换
+            </summary>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.View.AddrConvertToValue.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            地址转换成String
+            </summary>
+            <param name="value">地址</param>
+            <param name="targetType">类型</param>
+            <param name="parameter">参数对象</param>
+            <param name="culture"></param>
+            <returns>CultureInfo</returns>
+        </member>
+        <member name="M:CL.WCS.DataModelPckg.View.AddrConvertToValue.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            ConvertBack
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

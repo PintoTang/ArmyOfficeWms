@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4382C3A0-2F2A-4EAB-BB53-F417D75F0927}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CLDC.CLWS.CLWCS.Service.OperateLog</RootNamespace>
+    <AssemblyName>CLDC.CLWS.CLWCS.Service.OperateLog</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\LIB\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=1.0.7124.33087, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\LIB\WPFUI\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SqlSugar, Version=5.0.3.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\SqlSugar.5.0.3.2\lib\SqlSugar.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\OperateLogModel.cs" />
+    <Compile Include="OperateLogDataAbstract.cs" />
+    <Compile Include="OperateLogHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlSugar\OperateLogDataForSqlSugar.cs" />
+    <Compile Include="ViewModel\OperateLogDataViewModel.cs" />
+    <Compile Include="View\OperateLogDataView.xaml.cs">
+      <DependentUpon>OperateLogDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OperateLogManage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Domain\WareHouse\DataModel\CL.Framework.CmdDataModelPckg\CL.Framework.CmdDataModelPckg.csproj">
+      <Project>{A1B9E189-1EFB-4BA3-BB2A-E54E0835BA35}</Project>
+      <Name>CL.Framework.CmdDataModelPckg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\Database\CL.WCS.DBHelperAbstractPckg\CLDC.CLWS.CLWCS.Infrastructrue.DbHelper.csproj">
+      <Project>{ECC61DFF-9DC8-44C0-A774-A3387B908081}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DbHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel.csproj">
+      <Project>{FC860366-A4B2-4DA5-A389-88732CD4EC7C}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\Framework\CLDC.CLWS.CLWCS.Framework\CLDC.CLWS.CLWCS.Framework.csproj">
+      <Project>{f4c897ad-9986-4bda-a106-c52054a4f110}</Project>
+      <Name>CLDC.CLWS.CLWCS.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\Ioc\Infrastructrue.Ioc.DependencyFactory\Infrastructrue.Ioc.DependencyFactory.csproj">
+      <Project>{6DE18F2E-A70B-4D32-BAAB-54FFEBE7C4EF}</Project>
+      <Name>Infrastructrue.Ioc.DependencyFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\UserCtrl\CLDC.CLWS.CLWCS.Infrastructrue.UserCtrl\CLDC.Infrastructrue.UserCtrl.csproj">
+      <Project>{AA54A556-74A1-4FCC-A13C-87BC87AE8541}</Project>
+      <Name>CLDC.Infrastructrue.UserCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Authorize\CLDC.CLWS.CLWCS.Service.Authorize\CLDC.CLWS.CLWCS.Service.Authorize.csproj">
+      <Project>{797A97CD-A513-43AF-8A0A-F756CCE6F381}</Project>
+      <Name>CLDC.CLWS.CLWCS.Service.Authorize</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataService\CLDC.CLWCS.Service.DataService\CLDC.CLWCS.Service.DataService.csproj">
+      <Project>{4C2C1AB9-9D9E-456E-9479-30D9B6038A50}</Project>
+      <Name>CLDC.CLWCS.Service.DataService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\StartService\CL.WCS.SystemConfigPckg\CL.WCS.SystemConfigPckg.csproj">
+      <Project>{94710D61-2939-41D9-8354-636EED78C004}</Project>
+      <Name>CL.WCS.SystemConfigPckg</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="View\OperateLogDataView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{94710D61-2939-41D9-8354-636EED78C004}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CL.WCS.SystemConfigPckg</RootNamespace>
+    <AssemblyName>CL.WCS.SystemConfigPckg</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CL.Framework.ConfigFilePckg, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\LIB\ConfigFile\CL.Framework.ConfigFilePckg.dll</HintPath>
+    </Reference>
+    <Reference Include="CLDC.Framework.Log, Version=1.0.13.529, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\LIB\NetLog\CLDC.Framework.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\LIB\NetLog\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\LIB\WPFUI\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Data.SQLite, Version=1.0.110.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\LIB\Database\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DbConfigToView.cs" />
+    <Compile Include="Model\ConfigItem.cs" />
+    <Compile Include="Model\DatabaseForSysType.cs" />
+    <Compile Include="Model\DatabaseTypeEnum.cs" />
+    <Compile Include="Model\DepartmentEnum.cs" />
+    <Compile Include="Model\DirectionEnum.cs" />
+    <Compile Include="Model\OpcModeEnum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Model\SystemConfig.cs" />
+    <Compile Include="Model\SystemConfigMode.cs" />
+    <Compile Include="UserLevelToEnable.cs" />
+    <Compile Include="ViewModel\SystemConfigViewMode.cs" />
+    <Compile Include="View\SqliteConfigView.xaml.cs">
+      <DependentUpon>SqliteConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OracleConfigView.xaml.cs">
+      <DependentUpon>OracleConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SqlServerConfigView.xaml.cs">
+      <DependentUpon>SqlServerConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemConfigView.xaml.cs">
+      <DependentUpon>SystemConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemSettingView.xaml.cs">
+      <DependentUpon>SystemSettingView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructrue\Database\CL.WCS.DBHelperAbstractPckg\CLDC.CLWS.CLWCS.Infrastructrue.DbHelper.csproj">
+      <Project>{ecc61dff-9dc8-44c0-a774-a3387b908081}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DbHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\Database\CL.WCS.DBHelperImpPckg\CL.WCS.DBHelperImpPckg.csproj">
+      <Project>{312D2436-40E3-4CE5-9E6D-1F02562DA554}</Project>
+      <Name>CL.WCS.DBHelperImpPckg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel.csproj">
+      <Project>{FC860366-A4B2-4DA5-A389-88732CD4EC7C}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\Framework\CLDC.CLWS.CLWCS.Framework\CLDC.CLWS.CLWCS.Framework.csproj">
+      <Project>{F4C897AD-9986-4BDA-A106-C52054A4F110}</Project>
+      <Name>CLDC.CLWS.CLWCS.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\Security\CLDC.CLWS.CLWCS.Infrastructrue.Security\CLDC.Infrastructrue.Security.csproj">
+      <Project>{9d9a21cf-3ce5-4754-9b0f-2068a7ee1aa1}</Project>
+      <Name>CLDC.Infrastructrue.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\UserCtrl\CLDC.CLWS.CLWCS.Infrastructrue.UserCtrl\CLDC.Infrastructrue.UserCtrl.csproj">
+      <Project>{AA54A556-74A1-4FCC-A13C-87BC87AE8541}</Project>
+      <Name>CLDC.Infrastructrue.UserCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\Xml\CLDC.CLWS.CLWCS.Infrastructrue.Xml\CLDC.Infrastructrue.Xml.csproj">
+      <Project>{DE4DFBAE-EE43-4B9F-AE57-5C6A51E58A10}</Project>
+      <Name>CLDC.Infrastructrue.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Domain\WareHouse\DataModel\CL.Framework.CmdDataModelPckg\CL.Framework.CmdDataModelPckg.csproj">
+      <Project>{A1B9E189-1EFB-4BA3-BB2A-E54E0835BA35}</Project>
+      <Name>CL.Framework.CmdDataModelPckg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Authorize\CLDC.CLWS.CLWCS.Service.Authorize\CLDC.CLWS.CLWCS.Service.Authorize.csproj">
+      <Project>{797A97CD-A513-43AF-8A0A-F756CCE6F381}</Project>
+      <Name>CLDC.CLWS.CLWCS.Service.Authorize</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="View\SqliteConfigView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\OracleConfigView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SqlServerConfigView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SystemConfigView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SystemSettingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

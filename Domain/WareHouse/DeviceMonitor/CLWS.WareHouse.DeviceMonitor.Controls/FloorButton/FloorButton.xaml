@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="WHSE.Monitor.Framework.UserControls.FloorButton"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 mc:Ignorable="d" 
+             
+			 d:DesignHeight="40" d:DesignWidth="100" Loaded="UserControl_Loaded">
+
+	<UserControl.Resources>
+		<SolidColorBrush x:Key="SelectedColor" Color="#72b8d2"></SolidColorBrush>
+		<SolidColorBrush x:Key="NoSelectedColor" Color="Azure"></SolidColorBrush>
+		<SolidColorBrush x:Key="MouseOnColor" Color="#72b8d6"></SolidColorBrush>
+		<SolidColorBrush x:Key="FontColor" Color="#384058"></SolidColorBrush>
+		<Style x:Key="rdStyle" TargetType="RadioButton">
+			<Setter Property="Template" >
+				<Setter.Value>
+
+					<ControlTemplate TargetType="RadioButton">
+						<Grid x:Name="gridRB" Cursor="Hand" ToolTip="切换楼层">
+							<Rectangle Stroke="{StaticResource SelectedColor}" ></Rectangle>
+							<Label x:Name="lbFloorName"   FontSize="{TemplateBinding FontSize}" Content="{TemplateBinding Content}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+						
+						</Grid>
+
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsChecked" Value="True">
+								<Setter TargetName="gridRB" Property="Background" Value="{StaticResource SelectedColor}"></Setter>
+                                <Setter TargetName="lbFloorName" Property="Foreground" Value="#ffffff"></Setter>
+							</Trigger>
+							<Trigger Property="IsChecked" Value="False">
+								<Setter TargetName="gridRB" Property="Background" Value="{ StaticResource NoSelectedColor}"></Setter>
+                                <Setter TargetName="lbFloorName" Property="Foreground" Value="{StaticResource FontColor}"></Setter>
+							</Trigger>
+							<!--<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="gridRB" Property="Background" Value="{x:Null}"></Setter>
+							</Trigger>-->
+						</ControlTemplate.Triggers>
+
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			
+		</Style>
+	</UserControl.Resources>
+	<Grid>
+		<RadioButton x:Name="rb" GroupName="floor" Click="rb_Click" Style="{StaticResource rdStyle}" >
+			<!--<RadioButton.Effect>
+				<DropShadowEffect Opacity="0.285" Color="#FFD1D1D1" ShadowDepth="2"/>
+			</RadioButton.Effect>-->
+			<!--<RadioButton.Template>
+				<ControlTemplate TargetType="RadioButton">
+					<Grid x:Name="gridRB" Background="Beige">
+						<Label x:Name="lbFloorName" FontSize="{TemplateBinding FontSize}" Content="{TemplateBinding Content}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
+					</Grid>
+					
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsChecked" Value="True">
+							<Setter TargetName="gridRB" Property="Background" Value="green"></Setter>
+						</Trigger>
+						<Trigger Property="IsChecked" Value="False">
+							<Setter TargetName="gridRB" Property="Background" Value="white"></Setter>
+						</Trigger>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter TargetName="gridRB" Property="Background" Value="red"></Setter>
+						</Trigger>
+					</ControlTemplate.Triggers>
+					
+				</ControlTemplate>
+			</RadioButton.Template>-->
+		</RadioButton>
+
+		<!--<Button Width="8" Height="8" BorderThickness="0" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4,4,0"/>-->
+
+	</Grid>
+</UserControl>

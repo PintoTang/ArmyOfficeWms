@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
+
+    <!--工作区入口 故障样式-->
+    <Style x:Key="WorkStateFailure" TargetType="{x:Type Rectangle}">
+        <Setter Property="Stroke" Value="Red"></Setter>
+        <Setter Property="Fill" Value="Yellow"></Setter>
+    </Style>
+
+    <!--工作区入口 正常样式-->
+    <Style x:Key="WorkStateAuto" TargetType="{x:Type Rectangle}">
+        <Setter Property="Stroke" Value="Green"></Setter>
+        <Setter Property="Fill" Value="White"></Setter>
+    </Style>
+
+    <!--工作区入口 手动样式-->
+    <Style x:Key="WorkStateManual" TargetType="{x:Type Rectangle}">
+        <Setter Property="Stroke" Value="Yellow" ></Setter>
+        <Setter Property="Fill" Value="YellowGreen"></Setter>
+    </Style>
+
+    <!--工作区入口 默认样式-->
+    <Style x:Key="Default" TargetType="{x:Type Rectangle}">
+        <Setter Property="Stroke" Value="#001f55" ></Setter>
+        <Setter Property="Fill" Value="White"></Setter>
+    </Style>
+
+</ResourceDictionary>

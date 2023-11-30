@@ -1,0 +1,228 @@
+﻿<userControls:TransportDeviceBase x:Class="WHSE.Monitor.Framework.UserControls.Chain02"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:userControls="clr-namespace:WHSE.Monitor.Framework.UserControls"
+             xmlns:convertor="clr-namespace:WHSE.Monitor.Framework.UserControls.Convertor"
+             xmlns:package="clr-namespace:WHSE.Monitor.Framework.UserControls.Package"
+             xmlns:chain="clr-namespace:WHSE.Monitor.Framework.UserControls.Chain"
+             xmlns:roller="clr-namespace:WHSE.Monitor.Framework.UserControls.Roller"
+             mc:Ignorable="d" 
+                                  
+             d:DesignHeight="120" d:DesignWidth="240" x:Name="_This" Cursor="Hand">
+
+    <userControls:TransportDeviceBase.Resources>
+        <userControls:DirectionConvert x:Key="DirectionConvert" />
+        <convertor:ValueToBackgroudConvertor x:Key="OrderToBackgroud" />
+        <convertor:DireValueToIsMove x:Key="DireValueToMove"/>
+        <convertor:OrderToIsHasOrder x:Key="OrderToVisiable"></convertor:OrderToIsHasOrder>
+        <chain:DoubleToNullDouble x:Key="DoubleToNullDouble" />
+    </userControls:TransportDeviceBase.Resources>
+
+    <UserControl.ToolTip>
+        <ToolTip Background="Transparent" Foreground="Black" BorderBrush="Transparent" HasDropShadow="False">
+            <Grid>
+                <Viewbox Height="160" Width="250">
+                    <Canvas Height="160" Width="250">
+                        <Border Height="160" Width="250" BorderThickness="0" CornerRadius="20" Background="Snow">
+                            <Grid Width="220" Height="150">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <WrapPanel Grid.Row="0">
+                                    <Label FontWeight="Black">设备编号：</Label>
+                                    <Label Content="{Binding Device.Id}"></Label>
+                                </WrapPanel>
+                                <WrapPanel Grid.Row="1">
+                                    <Label FontWeight="Black">设备标识：</Label>
+                                    <Label Content="{Binding Device.DeviceName}"></Label>
+                                </WrapPanel>
+                                <WrapPanel Grid.Row="2">
+                                    <Label FontWeight="Black">设备名称：</Label>
+                                    <Label Content="{Binding Device.Name}"></Label>
+                                </WrapPanel>
+                                <WrapPanel Grid.Row="3">
+                                    <Label FontWeight="Black">当前地址：</Label>
+                                    <Label Content="{Binding Device.CurAddress}"></Label>
+                                </WrapPanel>
+                                <WrapPanel Grid.Row="4">
+                                    <Label FontWeight="Black">当前包号：</Label>
+                                    <Label Content="{Binding Device.CurOrderValue}"></Label>
+                                </WrapPanel>
+                            </Grid>
+                        </Border>
+                    </Canvas>
+                </Viewbox>
+            </Grid>
+        </ToolTip>
+    </UserControl.ToolTip>
+
+    <Grid>
+        <Grid.InputBindings>
+            <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding ShowDetailCommad}"></MouseBinding>
+        </Grid.InputBindings>
+        <Viewbox Stretch="Fill">
+            <Canvas Name="CanvasChain"  Width="400" Height="120" >
+                <!--Content="{Binding Device.Id}"-->
+                <Label Panel.ZIndex="1" Width="300" Height="88" Padding="0" FontSize="70" Foreground="Black" Content="{Binding Device.Id}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Canvas.Left="45" Canvas.Top="15" RenderTransformOrigin="0.5,0.5">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <package:PackageView Panel.ZIndex="0" Canvas.Left="100" Canvas.Top="21" Width="232" Height="77" Visibility="Collapsed">
+                    <package:PackageView.Style>
+                        <Style TargetType="{x:Type package:PackageView}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Device.CurOrderValue,Converter={StaticResource OrderToVisiable}}" Value="true">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Device.CurOrderValue,Converter={StaticResource OrderToVisiable}}" Value="false">
+                                    <Setter Property="Visibility" Value='Collapsed'/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </package:PackageView.Style>
+                </package:PackageView>
+                <Rectangle Width="41" Height="100" Canvas.Left="358" Canvas.Top="10" Panel.ZIndex="0" Fill="Transparent">
+                    <Rectangle.Style>
+                        <Style TargetType="Rectangle">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Device.IsHasError}" Value="true">
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard x:Name="HasErrorStoryboard">
+                                            <Storyboard>
+                                                <ColorAnimation
+                                                                Storyboard.TargetProperty="Fill.Color" From="Red" To="#FF5F6B85"
+                                                                 RepeatBehavior="Forever" Duration="0:0:0.5">
+                                                </ColorAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                    <DataTrigger.ExitActions>
+                                        <StopStoryboard BeginStoryboardName="HasErrorStoryboard"/>
+                                    </DataTrigger.ExitActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+                </Rectangle>
+                <Rectangle  Width="300" Height="96" Canvas.Left="48" Canvas.Top="12">
+                    <Rectangle.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding ShowDetailCommad}"></MouseBinding>
+                    </Rectangle.InputBindings>
+                    <Rectangle.Style>
+                        <Style TargetType="Rectangle">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Device.IsLoaded}" Value="true">
+                                    <Setter Property="Fill" Value="Green"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Device.IsLoaded}" Value="false">
+                                    <Setter Property="Fill" Value="White"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+                </Rectangle>
+                <userControls:ChainRoll Width="400" Height="12"></userControls:ChainRoll>
+                <userControls:ChainRoll Width="400" Height="12" Canvas.Top="108"></userControls:ChainRoll>
+                <roller:RollerSingerFrame Width="96" Height="12" Canvas.Top="12" Canvas.Left="48" >
+                    <roller:RollerSingerFrame.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </roller:RollerSingerFrame.RenderTransform>
+                </roller:RollerSingerFrame>
+                <roller:RollerSingerFrame Width="96" Height="12" Canvas.Top="12" Canvas.Left="360" >
+                    <roller:RollerSingerFrame.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </roller:RollerSingerFrame.RenderTransform>
+                </roller:RollerSingerFrame>
+                <userControls:RollerArrow x:Name="ArrowForward" Foreground="#18302f"  Canvas.Left="48" Canvas.Top="36"  Width="103" Height="46" >
+                    <userControls:RollerArrow.Style>
+                        <Style TargetType="{x:Type userControls:RollerArrow}">
+                            <Style.Triggers>
+                                <DataTrigger  Binding="{Binding Device.IsTranslationFw}" Value="true">
+                                    <Setter Property="Visibility" Value="Visible"></Setter>
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard >
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" From="-50" To="300" Duration="0:0:3"  RepeatBehavior="Forever"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" RepeatBehavior="Forever"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                    <!--<DataTrigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard FillBehavior="Stop">
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1" RepeatBehavior="Forever"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.ExitActions>-->
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Device.IsTranslationFw}"  Value="false">
+                                    <Setter Property="Visibility" Value='Hidden' />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </userControls:RollerArrow.Style>
+                </userControls:RollerArrow>
+                <userControls:RollerArrow Width="103" Height="44"  Foreground="#991054" Canvas.Left="342" Canvas.Top="80" >
+                    <userControls:RollerArrow.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="180"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </userControls:RollerArrow.RenderTransform>
+                    <userControls:RollerArrow.Style>
+                        <Style TargetType="{x:Type userControls:RollerArrow}">
+                            <Style.Triggers>
+                                <DataTrigger  Binding="{Binding Device.IsTranslationRv}" Value="true">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" From="300" To="0" Duration="0:0:3"  RepeatBehavior="Forever"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" RepeatBehavior="Forever"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                    <DataTrigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard FillBehavior="Stop">
+                                                <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" To="342" Duration="0:0:1" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.ExitActions>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Device.IsTranslationRv}"  Value="false">
+                                    <Setter Property="Visibility" Value='Hidden' />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </userControls:RollerArrow.Style>
+                </userControls:RollerArrow>
+            </Canvas>
+        </Viewbox>
+
+    </Grid>
+</userControls:TransportDeviceBase>

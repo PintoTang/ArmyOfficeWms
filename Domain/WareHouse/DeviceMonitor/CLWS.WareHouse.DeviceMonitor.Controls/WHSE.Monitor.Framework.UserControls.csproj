@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{29AB897C-8E61-4111-9C96-6780D60ADE35}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WHSE.Monitor.Framework.UserControls</RootNamespace>
+    <AssemblyName>WHSE.Monitor.Framework.UserControls</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <ExpressionBlendVersion>12.0.60617.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CL.Framework.CmdDataModelPckg">
+      <HintPath>..\..\DataModel\CL.Framework.CmdDataModelPckg\bin\Debug\CL.Framework.CmdDataModelPckg.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Framework.LanguageConverter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\LIB\ClFramework\Framework.LanguageConverter.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\LIB\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ABB\ABBXiPan.xaml.cs">
+      <DependentUpon>ABBXiPan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Agv\Agv.xaml.cs">
+      <DependentUpon>Agv.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AreaBean.cs" />
+    <Compile Include="AreaControlList.cs" />
+    <Compile Include="AreaEntry\AreaEntryConvertor.cs" />
+    <Compile Include="AreaEntry\AreaEntryViewModel.cs" />
+    <Compile Include="Cell\FlatCell.xaml.cs">
+      <DependentUpon>FlatCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Cell\FlatCellPin03.xaml.cs">
+      <DependentUpon>FlatCellPin03.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Cell\FlatCell01.xaml.cs">
+      <DependentUpon>FlatCell01.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Cell\FlatCellHorizontal.xaml.cs">
+      <DependentUpon>FlatCellHorizontal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chain\Chain02.xaml.cs">
+      <DependentUpon>Chain02.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chain\Chain03.xaml.cs">
+      <DependentUpon>Chain03.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chain\ChainDoubleTrack.xaml.cs">
+      <DependentUpon>ChainDoubleTrack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chain\ChainRoll.xaml.cs">
+      <DependentUpon>ChainRoll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chain\DoubleToNullDouble.cs" />
+    <Compile Include="Common\TransportDevice\DirectionConvert.cs" />
+    <Compile Include="Common\TransportDevice\TransportDeviceBase.cs" />
+    <Compile Include="Convertor\DireValueToIsMove.cs" />
+    <Compile Include="Convertor\OrderToIsHasOrder.cs" />
+    <Compile Include="Convertor\ValueToBackgroudConvertor.cs" />
+    <Compile Include="DeviceBase.cs" />
+    <Compile Include="DeviceDisplayStateEnum.cs" />
+    <Compile Include="DeviceFaultInfoConvertor.cs" />
+    <Compile Include="DeviceInfoForm\DeviceInfoConvertor.cs" />
+    <Compile Include="DeviceInfoForm\DeviceInfoFormViewModel.cs" />
+    <Compile Include="DeviceInfoForm\DeviceInfoForm.xaml.cs">
+      <DependentUpon>DeviceInfoForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceInfoForm\DeviceInfoHelper.cs" />
+    <Compile Include="DeviceMovementWayEnum.cs" />
+    <Compile Include="Common\DeviceSimulation.cs" />
+    <Compile Include="DeviceStateConvertor.cs" />
+    <Compile Include="DeviceTaskConvertor.cs" />
+    <Compile Include="FaultInfo.cs" />
+    <Compile Include="FaultMessageConvertor.cs" />
+    <Compile Include="FaultPanel\FalutPanel.xaml.cs">
+      <DependentUpon>FalutPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FaultPanel\FaultPanelViewModel.cs" />
+    <Compile Include="FloorButton\FloorButton.xaml.cs">
+      <DependentUpon>FloorButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FloorBean.cs" />
+    <Compile Include="GoodsShelf\GoodsShelf.xaml.cs">
+      <DependentUpon>GoodsShelf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsShelf\GoodsShelf01.cs" />
+    <Compile Include="GoodsShelf\GoodsShelf01.xaml.cs">
+      <DependentUpon>GoodsShelf01.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsShelf\ShelfModel.xaml.cs">
+      <DependentUpon>ShelfModel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsShelf\ShelfModel01.xaml.cs">
+      <DependentUpon>ShelfModel01.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsShelf\ShelfModelViewModel.cs" />
+    <Compile Include="GoodsShelf\ShelfModelViewModel01.cs" />
+    <Compile Include="Hoister\HoisterViewModelList.cs" />
+    <Compile Include="Hoister\Hoister.cs" />
+    <Compile Include="Hoister\HoisterBase.xaml.cs">
+      <DependentUpon>HoisterBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Hoister\HoisterConvertor.cs" />
+    <Compile Include="Hoister\HoisterDesign.cs" />
+    <Compile Include="Hoister\HoisterFacadeChooseBase.cs" />
+    <Compile Include="Hoister\HoisterViewModel.cs" />
+    <Compile Include="ILogisticsDeviceControl.cs" />
+    <Compile Include="ILogisticsDeviceInfo.cs" />
+    <Compile Include="LiftTranslation\LiftTranslation.cs" />
+    <Compile Include="LiftTranslation\LiftTranslationConvertor.cs" />
+    <Compile Include="LiftTranslation\LiftTranslationDesign.cs" />
+    <Compile Include="LiftTranslation\LiftTranslationFacadeChooseBase.cs" />
+    <Compile Include="LiftTranslation\LiftTranslationBase.xaml.cs">
+      <DependentUpon>LiftTranslationBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LiftTranslation\LiftTranslationViewModel.cs" />
+    <Compile Include="LoadAreaDevices.cs" />
+    <Compile Include="LogisticsDeviceControlBase.cs" />
+    <Compile Include="LogPanel\LogPanel.xaml.cs">
+      <DependentUpon>LogPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MeterBox\MeterBox.xaml.cs">
+      <DependentUpon>MeterBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorControlBase.cs" />
+    <Compile Include="PackageBean.cs" />
+    <Compile Include="PackageList.cs" />
+    <Compile Include="Package\PackageView.xaml.cs">
+      <DependentUpon>PackageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Palletizer\ClPalletizer.xaml.cs">
+      <DependentUpon>ClPalletizer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rail\RailBase.xaml.cs">
+      <DependentUpon>RailBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResoursceHelper.cs" />
+    <Compile Include="Rfid\ClRfidDoor\ClRfidDoor.xaml.cs">
+      <DependentUpon>ClRfidDoor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Rfid\ClRfidDoor\ClStackRfidDoor.xaml.cs">
+      <DependentUpon>ClStackRfidDoor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RGV\Rgv.cs" />
+    <Compile Include="RGV\RgvBase.xaml.cs">
+      <DependentUpon>RgvBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RGV\RgvDesgin.cs" />
+    <Compile Include="RGV\RgvFacadeChooseBase.cs" />
+    <Compile Include="RGV\RgvStateConvertor.cs" />
+    <Compile Include="RGV\RgvViewModel.cs" />
+    <Compile Include="RGV\RgvViewModelList.cs" />
+    <Compile Include="RollerViewModelList.cs" />
+    <Compile Include="Roller\Roller01.xaml.cs">
+      <DependentUpon>Roller01.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Roller\Roller02.xaml.cs">
+      <DependentUpon>Roller02.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Roller\RollerArrow.xaml.cs">
+      <DependentUpon>RollerArrow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Roller\RollerArrowsLeftConverter.cs" />
+    <Compile Include="Roller\RollerArrowsRightConverter.cs" />
+    <Compile Include="Roller\RollerRoll.xaml.cs">
+      <DependentUpon>RollerRoll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Roller\RollerSingerFrame.xaml.cs">
+      <DependentUpon>RollerSingerFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Roller\Roller_Base.xaml.cs">
+      <DependentUpon>Roller_Base.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Roller\RollerConvertorMoveWay.cs" />
+    <Compile Include="Roller\RollerConvertorState.cs" />
+    <Compile Include="Roller\RollerConvertorTask.cs" />
+    <Compile Include="Roller\RollerViewModel.cs" />
+    <Compile Include="Roller\Roller_Bothway.cs" />
+    <Compile Include="Roller\Roller01_Oneway.cs" />
+    <Compile Include="Roller\Roller_Oneway.cs" />
+    <Compile Include="Scanner\KeyenceScanner\KeyenceScanner.xaml.cs">
+      <DependentUpon>KeyenceScanner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scanner\SingleScanner\SingleScanner01.xaml.cs">
+      <DependentUpon>SingleScanner01.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingForm.xaml.cs">
+      <DependentUpon>SettingForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StackingCrane\StackingCraneBody.xaml.cs">
+      <DependentUpon>StackingCraneBody.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StackingCrane\StackingCraneStateConvertor.cs" />
+    <Compile Include="StackingCrane\StackingCraneViewModelList.cs" />
+    <Compile Include="StackingCrane\StackingCrane.cs" />
+    <Compile Include="StackingCrane\StackingCraneDesign.cs" />
+    <Compile Include="StackingCrane\StackingCraneFacadeChooseBase.cs" />
+    <Compile Include="StackingCrane\StackingCraneViewModel.cs" />
+    <Compile Include="StackingCrane\StackingCraneBase.xaml.cs">
+      <DependentUpon>StackingCraneBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SysGroupBar\SysGroupBar.xaml.cs">
+      <DependentUpon>SysGroupBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SysGroupBar\SysInfoBarViewModel.cs" />
+    <Compile Include="SysGroup\SysGroupViewModel.cs" />
+    <Compile Include="SysInfoBase.cs" />
+    <Compile Include="SysInfoForm\SysInfoForm.xaml.cs">
+      <DependentUpon>SysInfoForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SysInfoForm\SysInfoFormViewModel.cs" />
+    <Compile Include="SysInfoConvertor.cs" />
+    <Compile Include="SysInfoList.cs" />
+    <Compile Include="SysInfo\SysInfo.xaml.cs">
+      <DependentUpon>SysInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SysInfo\SysInfoViewModel.cs" />
+    <Compile Include="SysGroup\SysGroup.xaml.cs">
+      <DependentUpon>SysGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolTip\ToolTipCommon.xaml.cs">
+      <DependentUpon>ToolTipCommon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TransformHelper.cs" />
+    <Compile Include="UIHelper.cs" />
+    <Compile Include="UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FloorControlList.cs" />
+    <Compile Include="UserControl2.xaml.cs">
+      <DependentUpon>UserControl2.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ABB\ABBXiPan.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Agv\Agv.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AreaEntry\AreaEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Cell\FlatCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Cell\FlatCellPin03.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Cell\FlatCell01.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Cell\FlatCellHorizontal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Chain\Chain02.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Chain\Chain03.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Chain\ChainDoubleTrack.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Chain\ChainRoll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommonStyle\CommStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Page>
+    <Page Include="DeviceInfoForm\DeviceInfoForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FaultPanel\FalutPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FloorButton\FloorButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GoodsShelf\GoodsShelf.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GoodsShelf\GoodsShelf01.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GoodsShelf\ShelfModel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GoodsShelf\ShelfModel01.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Hoister\HoisterBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Hoister\HoisterDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LiftTranslation\LiftTranslationDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LiftTranslation\LiftTranslationBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LogPanel\LogPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MeterBox\MeterBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Package\PackageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Palletizer\ClPalletizer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Rail\RailBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Rfid\ClRfidDoor\ClRfidDoor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Rfid\ClRfidDoor\ClStackRfidDoor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RGV\RgvBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RGV\RgvDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Roller\Roller01.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Roller\Roller02.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Roller\RollerArrow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Roller\RollerArrowsLeftDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Roller\RollerArrowsRightDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Roller\RollerDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Roller\RollerRoll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Roller\RollerSingerFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Roller\Roller_Base.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Scanner\KeyenceScanner\KeyenceScanner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scanner\SingleScanner\SingleScanner01.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StackingCrane\StackingCraneBody.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StackingCrane\StackingCraneDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StackingCrane\StackingCraneBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SysGroupBar\SysGroupBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SysInfoForm\SysInfoForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SysInfo\SysInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AreaEntry\AreaStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="AreaEntry\AreaEntry.xaml.cs">
+      <DependentUpon>AreaEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AreaEntry\AreaState.cs" />
+    <Page Include="SysGroup\SystemStateStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SysGroup\SysGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolTip\ToolTipCommon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Device\CLDC.CLWS.CLWCS.WareHouse\CLDC.CLWS.CLWCS.WareHouse.Device.csproj">
+      <Project>{0339859C-2936-4B4B-85BC-0774B5000C8B}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.Device</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ViewModel\CLDC.CLWS.CLWCS.WareHouse.ViewModel\CLDC.CLWS.CLWCS.WareHouse.ViewModel.csproj">
+      <Project>{2CF44D2E-6020-4D11-A74D-DBCA521A6BF3}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WHSE.Monitor.Client.Model.DataModel\WHSE.Monitor.Framework.Model.DataModel.csproj">
+      <Project>{6086b51e-e136-42af-bace-eca2cdc88342}</Project>
+      <Name>WHSE.Monitor.Framework.Model.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WHSE.Monitor.Client.Model.DataPool\WHSE.Monitor.Client.Model.DataPool.csproj">
+      <Project>{968444ca-dd68-44bc-92d6-dd18f52670c7}</Project>
+      <Name>WHSE.Monitor.Client.Model.DataPool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WHSE.Monitor.Framework.UserControls.Running.Abs\WHSE.Monitor.Framework.UserControls.Running.Abs.csproj">
+      <Project>{8b6b56ee-fc3b-475b-91b7-20293c524278}</Project>
+      <Name>WHSE.Monitor.Framework.UserControls.Running.Abs</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\ClRfid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Rfid\ClRfidDoor\Resource\拆码垛一体机%28无背景%29.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Rfid\ClRfidDoor\Resource\射频门%28无背景%29.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Palletizer\Resource\碟盘机%28无背景%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Palletizer\Resource\碟盘机无托盘%28无背景%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Scanner\Resource\相机条码枪支架.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MeterBox\Resource\托盘.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ABB\Resource\ABBXiPan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Scanner\SingleScanner\Resource\单一条码枪.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

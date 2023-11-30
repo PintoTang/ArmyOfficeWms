@@ -1,0 +1,237 @@
+﻿<Window xmlns:Component="clr-namespace:CL.WCS.WPF" x:Class="CL.WCS.WPF.UCDeviceRunning"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:viewModel="clr-namespace:CLDC.CLWS.CLWCS.WareHouse.ViewModel;assembly=CLDC.CLWS.CLWCS.WareHouse.ViewModel"
+             xmlns:convertor="clr-namespace:CLDC.CLWS.CLWCS.WareHouse.ViewModel.Convertor;assembly=CLDC.CLWS.CLWCS.WareHouse.ViewModel"
+             mc:Ignorable="d" 
+        
+             ResizeMode="NoResize"
+             WindowStartupLocation="CenterScreen"
+             WindowStyle="None"
+             d:DesignHeight="400" d:DesignWidth="1024" MinHeight="280" MinWidth="470" Title="运行设备">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Style/UserControlStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <viewModel:DispatchStateToIsChecked x:Key="DispatchStateToIsChecked" />
+            <viewModel:ConnectStateToIsOnLine x:Key="ConnectStateToIsOnLine" />
+            <viewModel:RunStatusToEmDescription x:Key="RunStatusToEmDescription" />
+
+            <viewModel:StartOrPauseToKind x:Key="StartOrPauseToKind" />
+            <convertor:UseStateToKind x:Key="UseStateToKind" />
+            <viewModel:DispatchStateToKind x:Key="DispatchStateToKind" />
+            <viewModel:UseStateToToolTip x:Key="UseStateToToolTip" />
+            <viewModel:RunStatusToToolTip x:Key="RunStatusToToolTip"/>
+            <viewModel:DispatchStateToToolTip x:Key="DispatchStateToToolTip" />
+            
+            <Style TargetType="Border">
+                <Setter Property="BorderThickness" Value="0.6"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <Component:UcStyle  x:Name="UcStyleWindows"/>
+        </DockPanel>
+        <DockPanel Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.Column="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition  Height="2*"/>
+                            <RowDefinition  Height="auto"/>
+                            <RowDefinition  Height="*"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="0" >
+                            <Border>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  Width="auto"/>
+                                        <ColumnDefinition  Width="auto"/>
+                                        <ColumnDefinition  Width="*"/>
+                                        <ColumnDefinition  Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <DockPanel Grid.Column="0" >
+                                        <Label Content="设备编号:" FontSize="14" FontWeight="Bold" Margin="2,0,0,0"/>
+                                        <Label Name="DeviceNum" Content="{Binding Device.Id}" VerticalAlignment="Center"/>
+                                    </DockPanel>
+                                    <DockPanel Grid.Column="1" >
+                                        <Label Content="设备名称:" FontSize="14" FontWeight="Bold" />
+                                        <Label Name="DeviceName" Content="{Binding Device.Name}" VerticalAlignment="Center"/>
+                                    </DockPanel>
+                                    <DockPanel Grid.Column="2" >
+                                        <Label Content="命名空间:" FontSize="14" FontWeight="Bold" />
+                                        <Label Name="DeviceNameSpace" Content="{Binding Device.NameSpace}" VerticalAlignment="Center"/>
+                                    </DockPanel>
+                                    <DockPanel Grid.Column="3" >
+                                        <Label Content="类名:"  FontSize="14" FontWeight="Bold" />
+                                        <Label Name="DeviceClsName" Content="{Binding Device.ClassName}" VerticalAlignment="Center"/>
+                                    </DockPanel>
+                                </Grid>
+                            </Border>
+                        </DockPanel>
+                        <DockPanel Grid.Row="1">
+                            <DataGrid   Name="DgvOrderList" Style="{StaticResource DataGridStyle}" 
+                                        ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                        materialDesign:DataGridAssist.CellPadding="4 2 2 2"
+                                        materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
+                                        ItemsSource="{Binding  UnfinishedOrderList}" >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="包号" HeaderStyle="{Binding dataGridColumnHeaderStyle}"   
+                                                                Binding="{Binding OrderId}" />
+                                    <DataGridTextColumn Header="条码"  Binding="{Binding PileNo}"/>
+                                    <DataGridTextColumn Header="当前地址" Binding="{Binding CurrAddr}"/>
+                                    <DataGridTextColumn Header="下步地址"  Binding="{Binding NextAddr}"/>
+                                    <DataGridTextColumn Header="出入库类型"  Binding="{Binding OrderType}"/>
+                                    <DataGridTextColumn Header="优先级" Binding="{Binding OrderPriority}"/>
+                                    <DataGridTextColumn Header="指令来源"  Binding="{Binding Source}"/>
+                                    <DataGridTextColumn Header="回库标识"  Binding="{Binding BackFlag}"/>
+                                    <DataGridTextColumn Header="垛箱条码"  Binding="{Binding BottomBoxBarcode}"/>
+                                    <DataGridTextColumn Header="是否需要上报" Binding="{Binding IsReport}"/>
+                                    <DataGridTextColumn Header="创建时间"  Binding="{Binding CreateTime}"/>
+                                    <DataGridTextColumn Header="文档编号"  Binding="{Binding DocumentCode}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
+                        <DockPanel Grid.Row="2" >
+                            <Border>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  />
+                                        <ColumnDefinition  />
+                                    </Grid.ColumnDefinitions>
+                                    <DockPanel Grid.Column="0" VerticalAlignment="Center">
+                                        <Button x:Name="BtnStart"  Command="{Binding CmdDeviceRunAndPause}" 
+                                                Margin="2,0,5,0" 
+                                    		    ToolTip="{Binding Device.CurRunState, Converter={StaticResource RunStatusToToolTip}}" >
+                                            <materialDesign:PackIcon Kind="{Binding Device.CurRunState, Converter={StaticResource StartOrPauseToKind}}" 
+                                                Width="30" Height="30"   VerticalAlignment="Center"/>
+                                        </Button>
+                                        <Button  x:Name="BtnStop" Visibility="Visible" Command="{Binding CmdDeviceStop}" 
+                                                 ToolTip="停止"   Margin="2,0,5,0">
+                                            <materialDesign:PackIcon Kind="StopCircleOutline" Width="30" Height="30"  VerticalAlignment="Center"/>
+                                        </Button>
+                                        <Button  x:Name="BtnReset" Command="{Binding CmdDeviceReset}" 
+                                                ToolTip="复位"  Margin="2,0,5,0">
+                                            <materialDesign:PackIcon Kind="Restore"  Width="30" Height="30" VerticalAlignment="Center"/>
+                                        </Button>
+                                        <Button   Command="{Binding CmdDeviceOperateDispatch}" 
+                                                      ToolTip="{Binding Device.CurDispatchState, Converter={StaticResource DispatchStateToToolTip}}"  
+                                                     Margin="2,0,5,0">
+                                            <materialDesign:PackIcon  Kind="{Binding Device.CurDispatchState, Converter={StaticResource DispatchStateToKind}}" 
+                                                                          Width="30" Height="30" VerticalAlignment="Center"/>
+                                        </Button>
+
+                                        <Button  Command="{Binding CmdDeviceOperateEnbled}" HorizontalAlignment="Left"
+                                                 ToolTip="{Binding Device.CurUseState, Converter={StaticResource UseStateToToolTip}}"   
+                                                 Margin="2,0,5,0">
+                                            <materialDesign:PackIcon   Kind="{Binding Device.CurUseState, Converter={StaticResource UseStateToKind}}"   
+                                                                       Width="30" Height="30" VerticalAlignment="Center"/>
+                                        </Button>
+
+                                    </DockPanel>
+                                    <DockPanel Grid.Column="1" HorizontalAlignment="Right">
+                                        <Button Name="BtnTakeGoods" Content="取货" Margin="2"/>
+                                        <Button Name="BtnMove" Content="移动" Margin="2"/>
+                                        <Button Name="BtnPutGoods" Content="放货" Margin="2"/>
+                                    </DockPanel>
+                                </Grid>
+                            </Border>
+                        </DockPanel>
+                        <DockPanel Grid.Row="3" >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <DockPanel Grid.Column="0" >
+                                    <Border >
+                                        <Grid >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="40"/>
+                                            </Grid.RowDefinitions>
+                                            <WrapPanel Grid.Row="0" VerticalAlignment="Center">
+                                                <CheckBox Name="CBoxIsDisPatch" Content="是否调度" Margin="2"
+                                                          IsChecked="{Binding Device.CurDispatchState, Converter={StaticResource DispatchStateToIsChecked}}" />
+                                                <RadioButton Name="RadioBtnAuto" Content="自动" Margin="2" />
+                                                <RadioButton Name="RadioBtnHand" Content="手动" Margin="2"/>
+                                            </WrapPanel>
+                                            <DockPanel Grid.Row="1">
+                                                <CheckBox Name="CBoxIsOnLine" Content="是否在线" Margin="2"
+                                                          IsChecked="{Binding Device.CurConnectState,Converter={StaticResource ConnectStateToIsOnLine}}" 
+                                                          HorizontalAlignment="Left" Width="80"/>
+                                            </DockPanel>
+                                            <DockPanel Grid.Row="2">
+                                                <CheckBox Name="CBoxIsAsk" Content="是否请求" Margin="2"  HorizontalAlignment="Left" Width="80"/>
+                                            </DockPanel>
+
+                                            <DockPanel Grid.Row="3" >
+                                                <Label Name="IblWorkStatu" Content="工作状态:" Margin="2"/>
+                                                <TextBlock Name="TBlockWorkStatu" Text="{Binding Device.CurRunState,Converter={StaticResource RunStatusToEmDescription }}"  Margin="5"/>
+                                            </DockPanel>
+                                            <DockPanel Grid.Row="4" HorizontalAlignment="Right">
+                                                <Button Content="配置"  />
+                                            </DockPanel>
+
+
+                                        </Grid>
+                                    </Border>
+                                </DockPanel>
+                                <DockPanel Grid.Column="1" >
+                                    <Border>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <DockPanel Grid.Row="0" HorizontalAlignment="Center" >
+                                                <Label Content="信息提示" />
+                                            </DockPanel>
+
+                                            <DockPanel Grid.Row="1">
+                                                <DataGrid  Name="DgvLogInfo" Style="{StaticResource DataGridStyle}" 
+                                               ItemsSource="{Binding LogInfoModelLst}"
+                                               CellStyle="{StaticResource DataGridCell_LogStyle}" >
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Header="时间" Binding="{Binding DateTime}"  CanUserSort="True" 
+                                                                SortMemberPath="DateTime"  SortDirection="Descending" Width="auto" />
+                                                        <DataGridTextColumn Header="内容" Binding="{Binding Content}" Width="*" />
+                                                    </DataGrid.Columns>
+                                                    <DataGrid.InputBindings>
+                                                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDeviceOpenLog}"  />
+                                                    </DataGrid.InputBindings>
+                                                </DataGrid>
+                                            </DockPanel>
+                                        </Grid>
+                                    </Border>
+                                </DockPanel>
+                            </Grid>
+                        </DockPanel>
+                    </Grid>
+                </DockPanel>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Label Content="控件显示区" />
+
+                </StackPanel>
+            </Grid>
+        </DockPanel>
+        </Grid>
+</Window>

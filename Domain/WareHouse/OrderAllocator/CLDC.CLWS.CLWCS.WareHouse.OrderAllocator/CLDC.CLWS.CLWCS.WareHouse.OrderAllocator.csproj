@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DBE17EAB-CBBF-4B30-9A09-EBB04CF03E3A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CLDC.CLWS.CLWCS.WareHouse.OrderAllocator</RootNamespace>
+    <AssemblyName>CLDC.CLWS.CLWCS.WareHouse.OrderAllocator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\..\..\..\LIB\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="OrderAllocator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel.csproj">
+      <Project>{FC860366-A4B2-4DA5-A389-88732CD4EC7C}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\Log\CLDC.Framework.Log.Helper\CLDC.Framework.Log.Helper.csproj">
+      <Project>{E8CC752C-2BB1-4426-A6A9-11292CB212B4}</Project>
+      <Name>CLDC.Framework.Log.Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataModel\CL.WCS.DataModelPckg\CL.WCS.DataModelPckg.csproj">
+      <Project>{13A51A97-875E-4526-B610-333C1353C34E}</Project>
+      <Name>CL.WCS.DataModelPckg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataModel\CLDC.CLWS.CLWCS.WareHouse.DataModel\CLDC.CLWS.CLWCS.WareHouse.DataModel.csproj">
+      <Project>{626151d3-ea45-4a40-93ac-3b5c15372490}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataModel\CLDC.CLWS.CLWCS.WareHouse.DataPool\CLDC.CLWS.CLWCS.WareHouse.DataPool.csproj">
+      <Project>{C22D70C3-EC25-45F1-A18C-35EEB0DC6AF6}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.DataPool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interface\CLDC.CLWS.CLWCS.WareHouse.Interface\CLDC.CLWS.CLWCS.WareHouse.Interface.csproj">
+      <Project>{fd59aa53-cdb4-4572-8040-5c711d666d88}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataModel\CL.Framework.CmdDataModelPckg\CL.Framework.CmdDataModelPckg.csproj">
+      <Project>{A1B9E189-1EFB-4BA3-BB2A-E54E0835BA35}</Project>
+      <Name>CL.Framework.CmdDataModelPckg</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

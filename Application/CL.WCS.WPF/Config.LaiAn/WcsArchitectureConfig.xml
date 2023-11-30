@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WcsArchitectureConfig PackIconKind="Atom" Name="基础数据" IsShowUi="true">
+  <ArchitectureData Id="1"  IsShowUi="true" PackIconKind="Atom" Name="地址数据" Class="WcsAddressManage" NameSpace="CLWCS.WareHouse.ArchitectureData.HeFei">
+    <Config>
+
+    </Config>
+  </ArchitectureData>
+</WcsArchitectureConfig>
+

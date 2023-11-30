@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CL.Framework.DataPoolPckg</name>
+    </assembly>
+    <members>
+        <member name="T:CL.Framework.DataPoolPckg.QueueDataPool`1">
+            <summary>
+            队列数据池
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:CL.Framework.DataPoolPckg.QueueDataPool`1.mutexORACLEPool">
+            <summary>
+            互斥锁
+            </summary>
+        </member>
+        <member name="M:CL.Framework.DataPoolPckg.QueueDataPool`1.#ctor">
+            <summary>
+            队列数据池
+            </summary>
+        </member>
+        <member name="M:CL.Framework.DataPoolPckg.QueueDataPool`1.Peek">
+            <summary>
+            返回位于 Queue 开始处的对象但不将其移除。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CL.Framework.DataPoolPckg.QueueDataPool`1.Dequeue">
+            <summary>
+            从池中取出数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CL.Framework.DataPoolPckg.QueueDataPool`1.Enqueue(`0)">
+            <summary>
+            增加一个数据到池中
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:CL.Framework.DataPoolPckg.QueueDataPool`1.Clear">
+            <summary>
+            清空
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:CL.Framework.DataPoolPckg.QueueDataPool`1.Count">
+            <summary>
+            数量
+            </summary>
+        </member>
+        <member name="T:CL.Framework.DataPoolPckg.StackDataPool`1">
+            <summary>
+            栈数据池
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:CL.Framework.DataPoolPckg.StackDataPool`1.#ctor">
+            <summary>
+            栈数据池
+            </summary>
+        </member>
+        <member name="M:CL.Framework.DataPoolPckg.StackDataPool`1.Pop">
+            <summary>
+            从池中取出数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CL.Framework.DataPoolPckg.StackDataPool`1.Push(`0)">
+            <summary>
+            增加一个数据到池中
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:CL.Framework.DataPoolPckg.StackDataPool`1.Clear">
+            <summary>
+            清空
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:CL.Framework.DataPoolPckg.StackDataPool`1.Count">
+            <summary>
+            数量
+            </summary>
+        </member>
+    </members>
+</doc>

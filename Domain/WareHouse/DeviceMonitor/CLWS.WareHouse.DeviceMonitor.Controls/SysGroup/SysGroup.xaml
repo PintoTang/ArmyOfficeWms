@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="WHSE.Monitor.Framework.UserControls.SysGroup"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:convertor="clr-namespace:WHSE.Monitor.Framework.UserControls"
+			 mc:Ignorable="d"  
+			 d:DesignHeight="45
+			 " d:DesignWidth="45" MouseLeftButtonUp="UserControl_MouseLeftButtonUp" Cursor="Hand"  SnapsToDevicePixels="True" Loaded="UserControl_Loaded">
+	<UserControl.Resources>
+
+		<convertor:SysInfoConvertor x:Key="ConvertorToState"/>
+		<!--<SolidColorBrush x:Key="fff" Color="Azure" />
+		<ResourceDictionary x:Key="stateStyle">
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="..\CommonStyle\CommStyle.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>-->
+
+
+
+
+
+
+
+
+
+	</UserControl.Resources>
+
+
+
+	<Grid HorizontalAlignment="Center" >
+		<Viewbox>
+			<Grid Height="45" Width="45">
+				<Path Stretch="Fill" Fill="#FF72B8D2" Data="F1 M 87.7012,33L 10.7014,33C 7.95117,33 5.20135,35.7498 5.20135,38.4999L 5.20135,49.5001C 5.20135,52.2499 7.95117,54.9998 10.7014,54.9998L 87.7012,54.9998C 90.451,54.9998 93.2014,52.2499 93.2014,49.5001L 93.2014,38.4999C 93.2014,35.7498 90.451,33 87.7012,33 Z M 49.2014,49.5001L 43.7012,49.5001L 43.7012,38.4999L 49.2014,38.4999L 49.2014,49.5001 Z M 60.2009,49.5001L 54.7014,49.5001L 54.7014,38.4999L 60.2009,38.4999L 60.2009,49.5001 Z M 82.2012,49.5001L 65.7011,49.5001L 65.7011,38.4999L 82.2012,38.4999L 82.2012,49.5001 Z M 87.7012,65.9998L 10.7014,65.9998C 7.95117,65.9998 5.20135,68.75 5.20135,71.4999L 5.20135,82.4999C 5.20135,85.2498 7.95117,88 10.7014,88L 87.7012,88C 90.451,88 93.2014,85.2498 93.2014,82.4999L 93.2014,71.4999C 93.2014,68.75 90.451,65.9998 87.7012,65.9998 Z M 49.2014,82.4999L 43.7012,82.4999L 43.7012,71.4999L 49.2014,71.4999L 49.2014,82.4999 Z M 60.2009,82.4999L 54.7014,82.4999L 54.7014,71.4999L 60.2009,71.4999L 60.2009,82.4999 Z M 82.2012,82.4999L 65.7011,82.4999L 65.7011,71.4999L 82.2012,71.4999L 82.2012,82.4999 Z M 87.7012,0L 10.7014,0C 7.95117,0 5.20135,2.74976 5.20135,5.50012L 5.20135,16.5001C 5.20135,19.25 7.95117,21.9998 10.7014,21.9998L 87.7012,21.9998C 90.451,21.9998 93.2014,19.25 93.2014,16.5001L 93.2014,5.50012C 93.2014,2.74976 90.451,0 87.7012,0 Z M 49.2014,16.5001L 43.7012,16.5001L 43.7012,5.50012L 49.2014,5.50012L 49.2014,16.5001 Z M 60.2009,16.5001L 54.7014,16.5001L 54.7014,5.50012L 60.2009,5.50012L 60.2009,16.5001 Z M 82.2012,16.5001L 65.7011,16.5001L 65.7011,5.50012L 82.2012,5.50012L 82.2012,16.5001 Z " HorizontalAlignment="Center" VerticalAlignment="Top" Width="30.333" Height="29.54" Margin="7.959,1,6.708,0"/>
+
+				<Label x:Name="lb_SysName" Content="[Name]" Padding="0"  VerticalAlignment="Top" Height="15" SnapsToDevicePixels="True" FontSize="10" HorizontalContentAlignment="Center" Margin="0,29.54,0,0" VerticalContentAlignment="Center"/>
+				<Button x:Name="btnIcon" Template="{Binding GroupState, Converter={StaticResource ConvertorToState}}" Click="btnIcon_Click"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="20" Height="21" Canvas.Left="30" Canvas.Top="10" Margin="0,0,0,14">
+					<!--Template="{Binding GroupState, Converter={StaticResource ConvertorToState}}"-->
+				</Button>
+			</Grid>
+		</Viewbox>
+
+	</Grid>
+</UserControl>

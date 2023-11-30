@@ -1,0 +1,25 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WHSE.Monitor.Framework.UserControls" x:Class="WHSE.Monitor.Framework.UserControls.HoisterBase" 
+             mc:Ignorable="d" Cursor="Hand"
+             d:DesignHeight="200" d:DesignWidth="200" Width="200" Height="200" Loaded="UserControl_Loaded" MouseLeftButtonUp="UserControl_MouseLeftButtonUp">
+    <UserControl.Resources>
+        <local:HoisterConvertor x:Key="ConvertorState"/>
+
+        
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid>
+
+           <Button  Style="{Binding DeviceDisplayState, Converter={StaticResource ConvertorState}}" Background="{x:Null}" BorderThickness="0"/>
+           
+        </Grid>
+        <Viewbox>
+        <Label x:Name="lb_DeviceName" FontSize="48" Content="[Hoister]" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  ></Label>
+        </Viewbox>
+    </Grid>
+</UserControl>

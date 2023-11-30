@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.WareHouse.Worker.Workers.Common.View.WorkerBasicPropertyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:domain="clr-namespace:CLDC.Infrastructrue.UserCtrl.Domain;assembly=CLDC.Infrastructrue.UserCtrl"
+             mc:Ignorable="d"  
+             d:DesignHeight="1000" d:DesignWidth="1200" Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <Label FontSize="16" FontWeight="Black" VerticalAlignment="Center" Content="{Binding Name}"></Label>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel Grid.Column="1">
+                    <TextBlock Height="50"></TextBlock>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Label FontWeight="Black" FontSize="16">组件编号：</Label>
+                        <TextBox  FontSize="16" Width="300" IsReadOnly="True" Text="{Binding WorkerId,Mode=OneWay}"/>
+                    </WrapPanel>
+                    <TextBlock Height="15"/>
+
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Label FontWeight="Black" FontSize="16">组件名称：</Label>
+                        <TextBox x:Name="TbName"  FontSize="16" Width="300" materialDesign:ValidationAssist.UsePopup="True">
+                            <TextBox.Text>
+                                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <domain:NotEmptyValidationRule  ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </WrapPanel>
+
+
+
+                    <TextBlock Height="15"></TextBlock>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Label FontWeight="Black" FontSize="16">命名空间：</Label>
+                        <TextBox FontSize="16" Width="300" IsReadOnly="True" Text="{Binding NameSpace,UpdateSourceTrigger=Explicit}"></TextBox>
+                    </WrapPanel>
+
+                    <TextBlock Height="15"></TextBlock>
+
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Label FontWeight="Black" FontSize="16">类型名称：</Label>
+                        <TextBox  FontSize="16" Width="300" IsReadOnly="True" Text="{Binding ClassName,UpdateSourceTrigger=Explicit}"></TextBox>
+                    </WrapPanel>
+
+                    <TextBlock Height="15"></TextBlock>
+
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Label FontWeight="Black" FontSize="16">组件标识：</Label>
+                        <TextBox Name="TbDeviceName" FontSize="16" Width="300" Text="{Binding WorkerName,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    </WrapPanel>
+
+                    <TextBlock Height="15"></TextBlock>
+
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Label FontWeight="Black" FontSize="16">设备容量：</Label>
+                        <TextBox Name="TbWorkSize" FontSize="16" Width="300" Text="{Binding WorkSize,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    </WrapPanel>
+                    
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

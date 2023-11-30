@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F7DE28EB-32D2-4682-8F2C-3DF73A4265C6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CLDC.CLWS.CLWCS.WareHouse.DeviceMonitor</RootNamespace>
+    <AssemblyName>CLDC.CLWS.CLWCS.WareHouse.DeviceMonitor</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\..\LIB\WPFUI\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DeviceMonitorAbstract.cs" />
+    <Compile Include="DeviceMonitorView.xaml.cs">
+      <DependentUpon>DeviceMonitorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceSimulationCommon\DeviceSimulationBase.cs" />
+    <Compile Include="DeviceSimulation\Roller\RollerRight.xaml.cs">
+      <DependentUpon>RollerRight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel.csproj">
+      <Project>{FC860366-A4B2-4DA5-A389-88732CD4EC7C}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\Framework\CLDC.CLWS.CLWCS.Framework\CLDC.CLWS.CLWCS.Framework.csproj">
+      <Project>{f4c897ad-9986-4bda-a106-c52054a4f110}</Project>
+      <Name>CLDC.CLWS.CLWCS.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\UserCtrl\CLDC.CLWS.CLWCS.Infrastructrue.UserCtrl\CLDC.Infrastructrue.UserCtrl.csproj">
+      <Project>{AA54A556-74A1-4FCC-A13C-87BC87AE8541}</Project>
+      <Name>CLDC.Infrastructrue.UserCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataModel\CLDC.CLWS.CLWCS.WareHouse.DataPool\CLDC.CLWS.CLWCS.WareHouse.DataPool.csproj">
+      <Project>{c22d70c3-ec25-45f1-a18c-35eeb0dc6af6}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.DataPool</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DeviceSimulation\AGV\" />
+    <Folder Include="DeviceSimulation\RGV\" />
+    <Folder Include="DeviceSimulation\Station\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="DeviceMonitorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceSimulation\Roller\RollerRight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

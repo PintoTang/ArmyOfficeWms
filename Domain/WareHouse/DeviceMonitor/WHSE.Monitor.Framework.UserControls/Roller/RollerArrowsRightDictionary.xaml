@@ -1,0 +1,135 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="FaultColor" Color="#9E2122" />
+    <SolidColorBrush x:Key="EmergencyColor" Color="#627086" />
+    <SolidColorBrush x:Key="ManualColor" Color="#FFDBCE5E" />
+    <SolidColorBrush x:Key="NormalColor" Color="#FF96A0b4" />
+    <SolidColorBrush x:Key="RunningColor" Color="Green" />
+
+    <Style x:Key="Failure" TargetType="Button">
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Path x:Name="path" Fill="{StaticResource FaultColor}" Data="M32.652153,0 L38.069153,0 38.941999,0 44.358999,0 30.234328,16.559 44.358999,33.118 38.941999,33.118 38.069155,33.118 32.652154,33.118 18.554963,16.591219 18.5,16.591219 18.527481,16.559 18.5,16.526781 18.554963,16.526781 z M14.152153,0 L19.569153,0 20.442,0 25.859,0 11.734329,16.559 25.859,33.118 20.442,33.118 19.569154,33.118 14.152154,33.118 0.054964066,16.591219 0,16.591219 0.027481079,16.559 0,16.526781 0.054964066,16.526781 z"  HorizontalAlignment="Right" Height="50" Margin="0,0,2,0" RenderTransformOrigin="0.5,0.500000003410228" Stretch="Fill" StrokeThickness="0" VerticalAlignment="Center" Width="55">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Grid>
+
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="sb_fault" RepeatBehavior="Forever" AutoReverse="True" >
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path">
+                                <EasingColorKeyFrame KeyTime="0" Value="White"/>
+                                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="Red"/>
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+
+
+                    <ControlTemplate.Triggers>
+                        <EventTrigger  RoutedEvent="FrameworkElement.Loaded" SourceName="path"  >
+                            <BeginStoryboard Storyboard="{StaticResource sb_fault}"  />
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>    
+    
+    <Style x:Key="Normal" TargetType="Button">
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Path x:Name="path" Fill="{StaticResource NormalColor}" Data="M32.652153,0 L38.069153,0 38.941999,0 44.358999,0 30.234328,16.559 44.358999,33.118 38.941999,33.118 38.069155,33.118 32.652154,33.118 18.554963,16.591219 18.5,16.591219 18.527481,16.559 18.5,16.526781 18.554963,16.526781 z M14.152153,0 L19.569153,0 20.442,0 25.859,0 11.734329,16.559 25.859,33.118 20.442,33.118 19.569154,33.118 14.152154,33.118 0.054964066,16.591219 0,16.591219 0.027481079,16.559 0,16.526781 0.054964066,16.526781 z"  HorizontalAlignment="Right" Height="50" Margin="0,0,2,0" RenderTransformOrigin="0.5,0.500000003410228" Stretch="Fill" StrokeThickness="0" VerticalAlignment="Center" Width="55">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Grid>
+                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Running" TargetType="Button">
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Path x:Name="path" Fill="{StaticResource RunningColor}" Data="M32.652153,0 L38.069153,0 38.941999,0 44.358999,0 30.234328,16.559 44.358999,33.118 38.941999,33.118 38.069155,33.118 32.652154,33.118 18.554963,16.591219 18.5,16.591219 18.527481,16.559 18.5,16.526781 18.554963,16.526781 z M14.152153,0 L19.569153,0 20.442,0 25.859,0 11.734329,16.559 25.859,33.118 20.442,33.118 19.569154,33.118 14.152154,33.118 0.054964066,16.591219 0,16.591219 0.027481079,16.559 0,16.526781 0.054964066,16.526781 z"  HorizontalAlignment="Right" Height="50" Margin="0,0,2,0" RenderTransformOrigin="0.5,0.500000003410228" Stretch="Fill" StrokeThickness="0" VerticalAlignment="Center" Width="55">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Grid>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Manual" TargetType="Button">
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Path x:Name="path" Fill="{StaticResource ManualColor}" Data="M32.652153,0 L38.069153,0 38.941999,0 44.358999,0 30.234328,16.559 44.358999,33.118 38.941999,33.118 38.069155,33.118 32.652154,33.118 18.554963,16.591219 18.5,16.591219 18.527481,16.559 18.5,16.526781 18.554963,16.526781 z M14.152153,0 L19.569153,0 20.442,0 25.859,0 11.734329,16.559 25.859,33.118 20.442,33.118 19.569154,33.118 14.152154,33.118 0.054964066,16.591219 0,16.591219 0.027481079,16.559 0,16.526781 0.054964066,16.526781 z"  HorizontalAlignment="Right" Height="50" Margin="0,0,2,0" RenderTransformOrigin="0.5,0.500000003410228" Stretch="Fill" StrokeThickness="0" VerticalAlignment="Center" Width="55">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Grid>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Emergency" TargetType="Button">
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Path x:Name="path" Fill="{StaticResource EmergencyColor}" Data="M32.652153,0 L38.069153,0 38.941999,0 44.358999,0 30.234328,16.559 44.358999,33.118 38.941999,33.118 38.069155,33.118 32.652154,33.118 18.554963,16.591219 18.5,16.591219 18.527481,16.559 18.5,16.526781 18.554963,16.526781 z M14.152153,0 L19.569153,0 20.442,0 25.859,0 11.734329,16.559 25.859,33.118 20.442,33.118 19.569154,33.118 14.152154,33.118 0.054964066,16.591219 0,16.591219 0.027481079,16.559 0,16.526781 0.054964066,16.526781 z"  HorizontalAlignment="Right" Height="50" Margin="0,0,2,0" RenderTransformOrigin="0.5,0.500000003410228" Stretch="Fill" StrokeThickness="0" VerticalAlignment="Center" Width="55">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Grid>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

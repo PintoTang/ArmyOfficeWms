@@ -1,0 +1,21 @@
+﻿<userControls:DeviceSimulation x:Class="WHSE.Monitor.Framework.UserControls.Cell.FlatCell01"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:userControls="clr-namespace:WHSE.Monitor.Framework.UserControls"
+             mc:Ignorable="d" 
+                               
+             d:DesignHeight="40" d:DesignWidth="27" x:Name="_this" Width="27" Height="40">
+    <Viewbox Stretch="Fill">
+        <Canvas Height="40" Width="27">
+            <StackPanel>
+                <Grid Height="32" Width="27" Background="LightBlue">
+                    <Path Data="M305.405,112.162 L385.405,205.14" Fill="#FF166328" HorizontalAlignment="Left" StrokeThickness="0.3"   Stretch="Fill" Stroke="#FF166328" VerticalAlignment="Top" Height="32" Width="27" />
+                    <Path Data="M384.25,112.162 L305.5625,204.14" Fill="#FF166328" HorizontalAlignment="Left"  StrokeThickness="0.3"  Stretch="Fill" Stroke="#FF166328" VerticalAlignment="Top"/>
+                </Grid>
+                <Rectangle Height="8" Width="27" Stroke="#FF166328" StrokeThickness="0.3" Fill="Yellow"></Rectangle>
+            </StackPanel>
+        </Canvas>
+    </Viewbox>
+</userControls:DeviceSimulation>

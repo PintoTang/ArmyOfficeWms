@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Palletizer.View.PalletizerHotDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:dataModel="clr-namespace:CLDC.CLWS.CLWCS.Infrastructrue.DataModel;assembly=CLDC.CLWS.CLWCS.Infrastructrue.DataModel"
+             xmlns:convertor="clr-namespace:CLDC.CLWS.CLWCS.WareHouse.ViewModel.Convertor;assembly=CLDC.CLWS.CLWCS.WareHouse.ViewModel"
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="300" d:DesignWidth="1200" Background="White" Name="_this">
+    <UserControl.Resources>
+        <convertor:UserLevelToVisibility x:Key="UserLevelToVisibility" />
+    </UserControl.Resources>
+    <Border  BorderBrush="Gray" BorderThickness="1" CornerRadius="3">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="码盘机实时数据" Grid.Row="1">
+                <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="3">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <WrapPanel Margin="3" Grid.Row="0" VerticalAlignment="Center">
+                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="添加数据"
+                                    Command="{Binding AddHotDataCommand}" Background="Transparent" Padding="1" BorderBrush="Transparent" Width="30" Height="30"
+                                    Visibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}">
+                                <materialDesign:PackIcon Kind="PlaylistPlus" Height="24" Width="24" />
+                            </Button>
+                            <TextBlock Width="5"></TextBlock>
+                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="删除数据" Command="{Binding DeleteHotDataCommand}" 
+                                    CommandParameter="{Binding ElementName=GridDeviceList,Path=SelectedValue}" Background="Transparent" Padding="1" BorderBrush="Transparent" 
+                                    Width="30" Height="30" Visibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}">
+                                <materialDesign:PackIcon Kind="PlaylistRemove" Height="24" Width="24" />
+                            </Button>
+                            <TextBlock Width="5"></TextBlock>
+                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="保存更改"  Command="{Binding SaveHotDataCommand}"  CommandParameter="{Binding ElementName=GridDeviceList,Path=SelectedValue}"
+                                    Width="30" Height="30" Background="Transparent" Padding="1" BorderBrush="Transparent"
+                                    Visibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}">
+                                <materialDesign:PackIcon Kind="PlaylistStar" Height="24" Width="24" />
+                            </Button>
+                        </WrapPanel>
+                        <WrapPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="重新上报叠盘完成" Command="{Binding NotifyPalletizerFinishCommand}" 
+                                    Margin="2"  Height="26" Width="26" Visibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}">
+                                <materialDesign:PackIcon Kind="Update" Height="24" Width="24"  />
+                            </Button>
+                            <TextBlock Width="10"></TextBlock>
+                        </WrapPanel>
+                        <DataGrid x:Name="GridDeviceList" Grid.Row="1"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      AutoGenerateColumns="False"
+                      CanUserSortColumns="True"  CanUserAddRows="False"
+                      CanUserDeleteRows="False" CanUserResizeRows="False"     
+                      materialDesign:DataGridAssist.CellPadding="4 2 2 2"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
+                      ItemsSource="{Binding  PalletizerHotData,Mode=TwoWay,UpdateSourceTrigger=LostFocus}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="序号"   Binding="{Binding ContentIndex,UpdateSourceTrigger=LostFocus}" MaxWidth="100"/>
+                                <DataGridTextColumn Header="条码"   Binding="{Binding ContentBarcode,UpdateSourceTrigger=LostFocus}"  Width="*"/>
+                                <DataGridTextColumn Header="添加时间"   Binding="{Binding AddTime,Mode=OneWay}" IsReadOnly="True" MinWidth="250"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </GroupBox>
+        </Grid>
+    </Border>
+</UserControl>

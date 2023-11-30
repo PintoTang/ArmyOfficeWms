@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace WHSE.Monitor.Framework.UserControls.Cell
+{
+    /// <summary>
+    /// FlatCell.xaml 的交互逻辑
+    /// </summary>
+    public partial class FlatCell : TransportDeviceBase
+    {
+        public FlatCell()
+        {
+            InitializeComponent();
+        }
+
+        public static readonly DependencyProperty CellNameProperty = DependencyProperty.Register(
+          "CellName", typeof(string), typeof(FlatCell), new PropertyMetadata(default(string)));
+
+        public string CellName
+        {
+            get { return (string)GetValue(CellNameProperty); }
+            set { SetValue(CellNameProperty, value); }
+        }
+    }
+}

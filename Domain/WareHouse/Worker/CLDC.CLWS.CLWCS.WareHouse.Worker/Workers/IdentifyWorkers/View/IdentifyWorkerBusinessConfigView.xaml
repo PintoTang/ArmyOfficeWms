@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.WareHouse.Worker.Workers.IdentifyWorkers.View.IdentifyWorkerBusinessConfigView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"  
+             d:DesignHeight="1000" d:DesignWidth="1200" Background="White" Name="_this">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition />
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Label FontSize="16" FontWeight="Black" Grid.Row="0" VerticalAlignment="Center" Content="组件业务参数配置"></Label>
+        <Grid Grid.Row="1" Background="Honeydew" Height="40" >
+            <WrapPanel   VerticalAlignment="Center" Opacity="0.8" Margin="30,0,0,0" MinWidth="500">
+                <TextBlock Width="20"></TextBlock>
+                <Label FontSize="14" FontWeight="Bold" >名称：</Label>
+                <TextBox x:Name="DeviceName" MinWidth="100" MaxWidth="300"  Text="{Binding Name}"/>
+                <TextBlock Width="20"></TextBlock>
+                <Label FontSize="14" FontWeight="Bold">命名空间：</Label>
+                <Label x:Name="Namespace"  Content="{Binding NameSpace}"/>
+                <TextBlock Width="20"></TextBlock>
+                <Label  FontSize="14" FontWeight="Bold" >类名：</Label>
+                <Label x:Name="ClassName"  Content="{Binding ClassName}"/>
+            </WrapPanel>
+        </Grid>
+        <WrapPanel Grid.Row="2" VerticalAlignment="Center" Margin="20,0,0,0">
+            <Label>验证通过口：</Label>
+            <TextBox Width="100" Text="{Binding Config.Routes.PassedDevice}"></TextBox>
+            <Label>验证失败口：</Label>
+            <TextBox Width="100" Text="{Binding Config.Routes.FailedDevice}"></TextBox>
+        </WrapPanel>
+    </Grid>
+</UserControl>

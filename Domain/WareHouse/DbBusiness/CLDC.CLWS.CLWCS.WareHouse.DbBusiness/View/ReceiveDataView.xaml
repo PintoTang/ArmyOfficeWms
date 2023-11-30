@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.WareHouse.DbBusiness.View.ReceiveDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:convertor="clr-namespace:CLDC.Infrastructrue.UserCtrl.Convertor;assembly=CLDC.Infrastructrue.UserCtrl"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:page="clr-namespace:CLDC.Infrastructrue.UserCtrl.View.Page;assembly=CLDC.Infrastructrue.UserCtrl"
+             mc:Ignorable="d" 
+             
+              d:DesignHeight="960" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Border">
+                <Setter Property="BorderThickness" Value="0.6"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
+            </Style>
+            <convertor:EnumDescriptionConverter x:Key="DescriptionConverter" />
+            <convertor:DateTimeStringConverter x:Key="DateTimeStringConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="1">
+            <Grid Background="White" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="2" BorderThickness="0.5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel VerticalAlignment="Center"  HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0">
+                            <Label Content="接口名称:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2"/>
+                            <TextBox Text="{Binding MethodName}" MinWidth="150" />
+                            <TextBlock Width="5" />
+                            <Label Content="处理结果:"  Margin="2" />
+                            <ComboBox Width="150" ItemsSource="{Binding Path=DicHandleStatusEnum}" 
+                                                  DisplayMemberPath="Value" SelectedValuePath="Key" 
+                                                  SelectedValue="{Binding HandleStatus,Mode=TwoWay}" IsEditable="True"/>
+                            <TextBlock Width="5" />
+                        </DockPanel>
+                        <DockPanel Grid.Row="1" VerticalAlignment="Center"  Grid.Column="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="160"/>
+                                </Grid.ColumnDefinitions>
+                                <DockPanel Grid.Column="0" HorizontalAlignment="Left">
+                                    <Label Content="接收时间:" VerticalAlignment="Center"/>
+                                    <DatePicker  Width="120"  
+                                        materialDesign:HintAssist.Hint="开始时间" SelectedDate="{Binding ReceiveFromTime,Converter={StaticResource DateTimeStringConverter}}"  />
+                                    <Label Content="  /  " VerticalAlignment="Center"/>
+                                    <DatePicker  Width="120"
+                                        materialDesign:HintAssist.Hint="结束时间" SelectedDate="{Binding ReceiveToTime,Converter={StaticResource DateTimeStringConverter}}" />
+                                    <TextBlock Width="40" />
+                                    <Label Content="处理时间:" VerticalAlignment="Center"/>
+                                    <DatePicker  Width="120" 
+                                        materialDesign:HintAssist.Hint="开始时间" SelectedDate="{Binding HandleFromTime,Converter={StaticResource DateTimeStringConverter}}"  />
+                                    <Label Content="  /  " VerticalAlignment="Center"/>
+                                    <DatePicker Width="120"
+                                        materialDesign:HintAssist.Hint="结束时间" SelectedDate="{Binding HandleToTime,Converter={StaticResource DateTimeStringConverter}}" />
+                                </DockPanel>
+                            </Grid>
+                        </DockPanel>
+                        <DockPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+                            <Button Name="BtnSearch" Width="65"  Content="查询" Style="{StaticResource MaterialDesignRaisedLightButton}"  Command="{Binding SearchDataCommand}"  Margin="2"/>
+                        </DockPanel>
+                    </Grid>
+                </Border>
+                <DataGrid Grid.Row="3"
+                                  Name="DgvDataInfo"
+                                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                  AutoGenerateColumns="False"
+                                  ItemsSource="{Binding  CurReceiveDataList, Mode=OneWay}"
+                                   CanUserSortColumns="True"  CanUserAddRows="False"
+                                   CanUserDeleteRows="False" CanUserResizeRows="False"
+                                   IsReadOnly="True"
+                                  materialDesign:DataGridAssist.CellPadding="4 2 2 2"
+                                  materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="仓库编码" MinWidth="80"  Binding="{Binding WhCode}"/>
+                        <DataGridTextColumn Header="数据来源"  MinWidth="80" Binding="{Binding Source}"/>
+                        <DataGridTextColumn Header="处理状态" MinWidth="80" Binding="{Binding HandleStatus,Converter={StaticResource DescriptionConverter}}"/>
+                        <DataGridTextColumn Header="方法名称"   MinWidth="100"  Binding="{Binding MethodName}"/>
+                        <DataGridTextColumn Header="接收时间"  MinWidth="100"  Binding="{Binding ReceiveDateTime}"/>
+                        <DataGridTextColumn Header="处理时间"  MinWidth="100"  Binding="{Binding HandleDateTime}"/>
+                        <DataGridTextColumn Header="结果信息"  MinWidth="100"  Binding="{Binding HandleMessage}"/>
+                        <DataGridTextColumn Header="备注" MinWidth="100" Width="Auto"  Binding="{Binding Note}"/>
+                        <DataGridTextColumn Header="输入参数"   MinWidth="300"  Binding="{Binding MethodParamValue}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <DockPanel Grid.Row="4" >
+                    <DockPanel VerticalAlignment="Center" >
+                        <page:UCSplitPager  x:Name="SplitPager" DataContext="{Binding PageViewModel}"/>
+                    </DockPanel>
+                </DockPanel>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</UserControl>

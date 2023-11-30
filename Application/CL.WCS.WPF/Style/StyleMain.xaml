@@ -1,0 +1,130 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <sys:String x:Key="TitleChinese">
+        仓储自动化控制系统
+    </sys:String>
+    <sys:String x:Key="TitleEnglish">
+        Warehouse Control System
+    </sys:String> 
+
+    <!--中文字体样式-->
+    <Style x:Key="ChineseStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontStyle" Value="Normal"/>
+        <Setter Property="Foreground" Value="#ffffff"/>
+        <Setter Property="FontFamily" Value="微软雅黑"/>
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+    <!--英文字体样式-->
+    <Style x:Key="EnglishStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="10.5"/>
+        <Setter Property="FontStyle" Value="Italic"/>
+        <Setter Property="Foreground" Value="#ffffff"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="Margin" Value="0,2,0,0"/>
+    </Style>
+
+
+
+
+    <Style TargetType="GroupBox" x:Key="GroupBoxMainStyle">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+
+
+    <Style x:Key="ButtonStyleClose" TargetType="{x:Type Button}">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="OnMouseMove">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="path">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="OnMouseLeave">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="path">
+                                <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                                <SplineDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid HorizontalAlignment="Stretch" Height="Auto" Margin="0" VerticalAlignment="Stretch">
+                        <Viewbox Margin="0" Width="25" Height="25">
+                            <Canvas Width="85.3333" Height="85.3333">
+                                <Path x:Name="path"  Stretch="Fill" Fill="#FFD41920" Data="F1 M 42.6667,85.3333C 54.0627,85.3333 64.7773,80.8947 72.8347,72.836C 80.8947,64.7773 85.3333,54.0627 85.3333,42.6667C 85.3333,31.2707 80.8947,20.556 72.8347,12.4987C 64.7773,4.43866 54.0627,0 42.6667,0C 31.2707,0 20.556,4.43866 12.4987,12.4974C 4.43867,20.556 0,31.2707 0,42.6667C 0,54.0627 4.43867,64.7773 12.4987,72.8347C 20.556,80.8947 31.2707,85.3333 42.6667,85.3333 Z " Opacity="0"/>
+                                <Path Width="39.9993" Height="39.9997" Canvas.Left="22.667" Canvas.Top="22.6671" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 23.448,61.8855C 23.9693,62.4068 24.6507,62.6668 25.3333,62.6668C 26.016,62.6668 26.6987,62.4068 27.2187,61.8855L 42.6667,46.4375L 58.1147,61.8855C 58.636,62.4068 59.3173,62.6668 60,62.6668C 60.6827,62.6668 61.3653,62.4068 61.8853,61.8855C 62.9267,60.8442 62.9267,59.1562 61.8853,58.1148L 46.4373,42.6668L 61.8853,27.2188C 62.9267,26.1775 62.9267,24.4895 61.8853,23.4482C 60.844,22.4068 59.156,22.4068 58.1147,23.4482L 42.6667,38.8962L 27.2187,23.4482C 26.1773,22.4068 24.4893,22.4068 23.448,23.4482C 22.4067,24.4895 22.4067,26.1775 23.448,27.2188L 38.896,42.6668L 23.448,58.1148C 22.4067,59.1562 22.4067,60.8442 23.448,61.8855 Z "/>
+                            </Canvas>
+                        </Viewbox>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="UIElement.MouseLeave">
+                            <BeginStoryboard x:Name="OnMouseLeave1_BeginStoryboard" Storyboard="{StaticResource OnMouseLeave}"/>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="UIElement.MouseEnter">
+                            <BeginStoryboard Storyboard="{StaticResource OnMouseMove}"/>
+                        </EventTrigger>
+                        <Trigger Property="IsKeyboardFocused" Value="true"/>
+                        <Trigger Property="ToggleButton.IsChecked" Value="true"/>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="#ADADAD"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ButtonStyleMin" TargetType="{x:Type Button}">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="OnMouseMove">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="path">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Key="OnMouseLeave">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="path">
+                                <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                                <SplineDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <Grid HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch">
+                        <Path x:Name="path" Stretch="Fill" Fill="#FFD41920" Data="F1 M 42.6667,85.3333C 54.0627,85.3333 64.7773,80.8947 72.8347,72.836C 80.8947,64.7773 85.3333,54.0627 85.3333,42.6667C 85.3333,31.2707 80.8947,20.556 72.8347,12.4987C 64.7773,4.43866 54.0627,0 42.6667,0C 31.2707,0 20.556,4.43866 12.4987,12.4974C 4.43867,20.556 0,31.2707 0,42.6667C 0,54.0627 4.43867,64.7773 12.4987,72.8347C 20.556,80.8947 31.2707,85.3333 42.6667,85.3333 Z " Opacity="0"/>
+                        <Path Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 260.421,390.072L 212.421,390.072C 210.949,390.072 209.754,391.266 209.754,392.738C 209.754,394.21 210.949,395.405 212.421,395.405L 260.421,395.405C 261.893,395.405 263.087,394.21 263.087,392.738C 263.087,391.266 261.893,390.072 260.421,390.072 Z " Margin="4.604,13.5,0,10.5" HorizontalAlignment="Left" Width="15.313"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="UIElement.MouseLeave">
+                            <BeginStoryboard x:Name="OnMouseLeave1_BeginStoryboard" Storyboard="{StaticResource OnMouseLeave}"/>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="UIElement.MouseEnter">
+                            <BeginStoryboard Storyboard="{StaticResource OnMouseMove}"/>
+                        </EventTrigger>
+                        <Trigger Property="IsKeyboardFocused" Value="true"/>
+                        <Trigger Property="ToggleButton.IsChecked" Value="true"/>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="#ADADAD"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+</ResourceDictionary>

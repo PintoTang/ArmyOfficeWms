@@ -1,0 +1,29 @@
+﻿<local:DeviceSimulation x:Class="WHSE.Monitor.Framework.UserControls.RailBase"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+         xmlns:local="clr-namespace:WHSE.Monitor.Framework.UserControls"
+             mc:Ignorable="d"  
+             d:DesignHeight="30" d:DesignWidth="200" Loaded="UserControl_Loaded" SnapsToDevicePixels="True">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="bgColor" Color="#969DB4"/>
+    </UserControl.Resources>
+    <Grid>
+      
+        <Grid>
+            <Rectangle x:Name="topline" Fill="{StaticResource bgColor}" Height="4" VerticalAlignment="Top" StrokeThickness="0" Margin="0,3,0,0" ></Rectangle>
+            <Rectangle x:Name="footline" Fill="{StaticResource bgColor}" Height="4" VerticalAlignment="Bottom" StrokeThickness="0" Margin="0,0,0,3" ></Rectangle>
+            <StackPanel x:Name="sPanel" Orientation="Horizontal">
+                <Grid x:Name="line" Width="7" HorizontalAlignment="Left" >
+                    <Rectangle  Fill="{StaticResource bgColor}" Margin="1,0"/>
+                    <Rectangle  Fill="{StaticResource bgColor}" Margin="0" VerticalAlignment="Top" Height="5"/>
+                    <Rectangle  Fill="{StaticResource bgColor}" VerticalAlignment="Bottom" Height="5"/>
+                </Grid>
+
+
+            </StackPanel>
+        </Grid>
+       
+    </Grid>
+</local:DeviceSimulation>

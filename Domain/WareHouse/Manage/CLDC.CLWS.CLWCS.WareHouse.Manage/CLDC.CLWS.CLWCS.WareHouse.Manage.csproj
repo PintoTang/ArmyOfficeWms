@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7F0FCA5E-4ADB-45C8-B025-D49E020807FA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CLDC.CLWS.CLWCS.WareHouse.Manage</RootNamespace>
+    <AssemblyName>CLDC.CLWS.CLWCS.WareHouse.Manage</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\..\..\..\LIB\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\..\LIB\WPFUI\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="OrderManage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransportManage.cs" />
+    <Compile Include="ViewModel\ExOrderDetailViewModel.cs" />
+    <Compile Include="ViewModel\AddOrderViewModel.cs" />
+    <Compile Include="ViewModel\HotOrderViewModel.cs" />
+    <Compile Include="ViewModel\HotTransportManageViewModel.cs" />
+    <Compile Include="ViewModel\HistoryExOrderViewModel.cs" />
+    <Compile Include="ViewModel\HistoryTransportManageViewModel.cs" />
+    <Compile Include="View\HistoryOrderManageView.xaml.cs">
+      <DependentUpon>HistoryOrderManageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HistoryTransportManageView.xaml.cs">
+      <DependentUpon>HistoryTransportManageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HotOrderView.xaml.cs">
+      <DependentUpon>HotOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HotTransportManageView.xaml.cs">
+      <DependentUpon>HotTransportManageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ExOrderDetailView.xaml.cs">
+      <DependentUpon>ExOrderDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RunStateToBackground.cs" />
+    <Compile Include="View\RunStatusToToolTip.cs" />
+    <Compile Include="View\OrderAddView.xaml.cs">
+      <DependentUpon>OrderAddView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\Database\CL.WCS.DBHelperAbstractPckg\CLDC.CLWS.CLWCS.Infrastructrue.DbHelper.csproj">
+      <Project>{ecc61dff-9dc8-44c0-a774-a3387b908081}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DbHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel.csproj">
+      <Project>{FC860366-A4B2-4DA5-A389-88732CD4EC7C}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\Framework\CLDC.CLWS.CLWCS.Framework\CLDC.CLWS.CLWCS.Framework.csproj">
+      <Project>{F4C897AD-9986-4BDA-A106-C52054A4F110}</Project>
+      <Name>CLDC.CLWS.CLWCS.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\Ioc\Infrastructrue.Ioc.DependencyFactory\Infrastructrue.Ioc.DependencyFactory.csproj">
+      <Project>{6DE18F2E-A70B-4D32-BAAB-54FFEBE7C4EF}</Project>
+      <Name>Infrastructrue.Ioc.DependencyFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\Log\CLDC.Framework.Log.Helper\CLDC.Framework.Log.Helper.csproj">
+      <Project>{E8CC752C-2BB1-4426-A6A9-11292CB212B4}</Project>
+      <Name>CLDC.Framework.Log.Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\UserCtrl\CLDC.CLWS.CLWCS.Infrastructrue.UserCtrl\CLDC.Infrastructrue.UserCtrl.csproj">
+      <Project>{AA54A556-74A1-4FCC-A13C-87BC87AE8541}</Project>
+      <Name>CLDC.Infrastructrue.UserCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Service\Authorize\CLDC.CLWS.CLWCS.Service.Authorize\CLDC.CLWS.CLWCS.Service.Authorize.csproj">
+      <Project>{797A97CD-A513-43AF-8A0A-F756CCE6F381}</Project>
+      <Name>CLDC.CLWS.CLWCS.Service.Authorize</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Service\OperateLog\CLDC.CLWS.CLWCS.Service.OperateLog\CLDC.CLWS.CLWCS.Service.OperateLog.csproj">
+      <Project>{4382C3A0-2F2A-4EAB-BB53-F417D75F0927}</Project>
+      <Name>CLDC.CLWS.CLWCS.Service.OperateLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Service\StartService\CL.WCS.SystemConfigPckg\CL.WCS.SystemConfigPckg.csproj">
+      <Project>{94710D61-2939-41D9-8354-636EED78C004}</Project>
+      <Name>CL.WCS.SystemConfigPckg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Service\ThreadHandle\CLDC.CLWS.CLWCS.Service.ThreadHandle\CLDC.CLWS.CLWCS.Service.ThreadHandle.csproj">
+      <Project>{2CAA3030-1381-4027-8304-F56B481A66F1}</Project>
+      <Name>CLDC.CLWS.CLWCS.Service.ThreadHandle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataModel\CL.WCS.DataModelPckg\CL.WCS.DataModelPckg.csproj">
+      <Project>{13A51A97-875E-4526-B610-333C1353C34E}</Project>
+      <Name>CL.WCS.DataModelPckg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataModel\CLDC.CLWS.CLWCS.WareHouse.DataModel\CLDC.CLWS.CLWCS.WareHouse.DataModel.csproj">
+      <Project>{626151D3-EA45-4A40-93AC-3B5C15372490}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataModel\CLDC.CLWS.CLWCS.WareHouse.DataPool\CLDC.CLWS.CLWCS.WareHouse.DataPool.csproj">
+      <Project>{C22D70C3-EC25-45F1-A18C-35EEB0DC6AF6}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.DataPool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DbBusiness\CLDC.CLWS.CLWCS.WareHouse.DbBusiness\CLDC.CLWS.CLWCS.WareHouse.DbBusiness.csproj">
+      <Project>{70c0679c-a181-4be4-a1cc-19506b8d7dff}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.DbBusiness</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interface\CLDC.CLWS.CLWCS.WareHouse.Interface\CLDC.CLWS.CLWCS.WareHouse.Interface.csproj">
+      <Project>{fd59aa53-cdb4-4572-8040-5c711d666d88}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Device\CLDC.CLWS.CLWCS.WareHouse\CLDC.CLWS.CLWCS.WareHouse.Device.csproj">
+      <Project>{0339859C-2936-4B4B-85BC-0774B5000C8B}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.Device</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataModel\CL.Framework.CmdDataModelPckg\CL.Framework.CmdDataModelPckg.csproj">
+      <Project>{A1B9E189-1EFB-4BA3-BB2A-E54E0835BA35}</Project>
+      <Name>CL.Framework.CmdDataModelPckg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OrderHandleCore\CLDC.CLWS.CLWCS.WareHouse.OrderHandle\CLDC.CLWS.CLWCS.WareHouse.OrderHandle.csproj">
+      <Project>{C7B903BA-C2C3-4C8F-A48D-D12B72B4EA3B}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.OrderHandle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Service\BusinessManage\Common\CLDC.CLWCS.WareHouse.DataMapper\CLDC.CLWCS.WareHouse.DataMapper.csproj">
+      <Project>{4E882F2B-EC95-42A3-91F4-067D7F4EDE5E}</Project>
+      <Name>CLDC.CLWCS.WareHouse.DataMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ViewModel\CLDC.CLWS.CLWCS.WareHouse.ViewModel\CLDC.CLWS.CLWCS.WareHouse.ViewModel.csproj">
+      <Project>{2CF44D2E-6020-4D11-A74D-DBCA521A6BF3}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="View\HistoryOrderManageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\HistoryTransportManageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\HotOrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HotTransportManageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OrderAddView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ExOrderDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

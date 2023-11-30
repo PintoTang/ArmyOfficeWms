@@ -1,0 +1,1192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0339859C-2936-4B4B-85BC-0774B5000C8B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CLDC.CLWS.CLWCS.WareHouse.Device</RootNamespace>
+    <AssemblyName>CLDC.CLWS.CLWCS.WareHouse.Device</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\..\..\..\LIB\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\..\LIB\WPFUI\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\LIB\Unity.3.0.1\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\LIB\Json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RFIDReaderAPI">
+      <HintPath>..\..\..\..\LIB\Device\RFIDReaderAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\LIB\Web\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataModel\AssistantDevice.cs" />
+    <Compile Include="DataModel\IDeviceTaskContent.cs" />
+    <Compile Include="DataModel\StringCharTask.cs" />
+    <Compile Include="DataModel\ViewModel\ExOrderSingalViewModel.cs" />
+    <Compile Include="DataModel\ViewModel\StringCharTaskViewModel.cs" />
+    <Compile Include="DataModel\View\ExOrderListView.xaml.cs">
+      <DependentUpon>ExOrderListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\View\ExOrderSingalView.xaml.cs">
+      <DependentUpon>ExOrderSingalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\View\StringCharTaskView.xaml.cs">
+      <DependentUpon>StringCharTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Common\View\DeviceShowCard.xaml.cs">
+      <DependentUpon>DeviceShowCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceBusiness\Identify\ClouRFIDBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\TaskDevice\RfidDoor\ClRfidDoor\ClStackRfidDoorBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\TaskDevice\Common\StackRfidBusinessAbstract.cs" />
+    <Compile Include="Devices\DeviceBusiness\TaskDevice\RfidDoor\YChuangRfidDoor\YChuangRfidDoorBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\TransportDevice\ABB\XYZABBBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\TransportDevice\Agv\ClouAgvRcsBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\TransportDevice\Agv\FourWayVehicleRcsBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\TransportDevice\Agv\HangChaAgvRcsBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\TransportDevice\Pda\ClouPda\ClouPdaBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\TransportDevice\Roller\RollerXDeviceBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\TransportDevice\Uwb\Eh2000\Eh2000UwbBusiness.cs" />
+    <Compile Include="Devices\DeviceControl\Common\IDoorDevice.cs" />
+    <Compile Include="Devices\DeviceControl\Common\IScanDevice.cs" />
+    <Compile Include="Devices\DeviceControl\Common\IShowScreen.cs" />
+    <Compile Include="Devices\DeviceControl\Common\IStackDevice.cs" />
+    <Compile Include="Devices\DeviceControl\Common\ISwitch.cs" />
+    <Compile Include="Devices\DeviceControl\Common\ITaskDevice.cs" />
+    <Compile Include="Devices\DeviceControl\Identify\CCD\CCDScannerHK1628M12MP.cs" />
+    <Compile Include="Devices\DeviceControl\Identify\KeyenceScanner\KeyenceScanner2000W.cs" />
+    <Compile Include="Devices\DeviceControl\Identify\Robot\RobotFuSha.cs" />
+    <Compile Include="Devices\DeviceControl\Station\SwitchableStationControlEx.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\ClStackRfid\CmdModel\AskStackActionCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\ClStackRfid\CmdModel\AskStackLoadedStatusCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\ClStackRfid\CmdModel\ClRfidDoorApiEnum.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\ClStackRfid\CmdModel\SendStackDispatchCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\ClStackRfid\ViewModel\AskStackLoadedStatusViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\ClStackRfid\ViewModel\AskStackActionViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\ClStackRfid\ViewModel\SendStackDispatchCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\ClStackRfid\View\AskStackLoadedStatusView.xaml.cs">
+      <DependentUpon>AskStackLoadedStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\ClStackRfid\View\AskStackActionView.xaml.cs">
+      <DependentUpon>AskStackActionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\ClStackRfid\View\SendStackDispatchCmdView.xaml.cs">
+      <DependentUpon>SendStackDispatchCmdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\Model\SendScanTaskCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\Model\SendShowCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\Model\SendStackTaskCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\Model\SendSwitchTaskCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\Model\RfidDoorApiEnum.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\View\SendScanTaskCmdView.xaml.cs">
+      <DependentUpon>SendScanTaskCmdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\View\SendShowCmdView.xaml.cs">
+      <DependentUpon>SendShowCmdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\View\SendStackTaskCmdView.xaml.cs">
+      <DependentUpon>SendStackTaskCmdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\View\SendSwitchTaskCmdView.xaml.cs">
+      <DependentUpon>SendSwitchTaskCmdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\ClStackRfid\ClStackRfidDoorControl.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\StackRfidControlAbstract.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\ViewModel\SendScanTaskCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\ViewModel\SendShowCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\ViewModel\SendStackTaskCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\ViewModel\SendSwitchTaskCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TaskDevice\RfidDoor\YChuangRfidDoor\YChuangRfidDoorControl.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\ABB\XYZABB\is_pallet_emptyMode.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\ABB\XYZABB\Model\XYZABBResSucMsg.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\ABB\XYZABB\Model\XYZABBResSucMsg2.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\ABB\XYZABB\XYZABBControl.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\ClouAgvRcs\ClouAgvRcsControl.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\ClouAgvRcs\Model\ClouAgvRcsApiEnum.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\ClouAgvRcs\Model\ClouRcsResSucMsg.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\ClouAgvRcs\Model\OrderAddCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\ClouAgvRcs\ViewModel\OrderAddCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\ClouAgvRcs\View\OrderAddView.xaml.cs">
+      <DependentUpon>OrderAddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\DeleteTaskCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\FourWayVehicleCarRunEnum.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\FourWayVehicleCarWalkingPath.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\FourWayVehicleMoveStepEnum.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\FourWayVehicleRcsApiEnum.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\FourWayVehicleRcsControl.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\PuluoGeAgvCarWalkingPath.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\ReportRCSPermitFinishCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\SelectTaskInfoCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\SendAddTaskCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\SendCarOperationCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\SendChangeTaskCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\SendDeviceActionCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\RequestRCSPermitCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\SendModeSwitchCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\SendTaskCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\SendTaskStateCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\Model\SyncResReMsgForFourWayVehicle.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\PuLuoGeAgvCarWalkingPathManage.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\ViewModel\DeleteTaskCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\ViewModel\ReportRCSPermitFinishViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\ViewModel\SelectTaskInfoCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\ViewModel\SendCarOperationCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\ViewModel\SendChangeTaskCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\ViewModel\SendDeviceActionCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\ViewModel\RequestRCSPermitViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\ViewModel\SendTaskCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\ViewModel\SendTaskStateCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\DeleteTaskView.xaml.cs">
+      <DependentUpon>DeleteTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\ReportRCSPermitFinishView.xaml.cs">
+      <DependentUpon>ReportRCSPermitFinishView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\SelectTaskInfoView.xaml.cs">
+      <DependentUpon>SelectTaskInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\SendAddTaskCmdView.xaml.cs">
+      <DependentUpon>SendAddTaskCmdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\SendCarOperationCmdView.xaml.cs">
+      <DependentUpon>SendCarOperationCmdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\SendChangeTaskView.xaml.cs">
+      <DependentUpon>SendChangeTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\SendDeviceActionView.xaml.cs">
+      <DependentUpon>SendDeviceActionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\RequestRCSPermitView.xaml.cs">
+      <DependentUpon>RequestRCSPermitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\SendTaskStateCmdView.xaml.cs">
+      <DependentUpon>SendTaskStateCmdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\SendTaskView.xaml.cs">
+      <DependentUpon>SendTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\HangChaAgvCarWalkingPathManage.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\Model\DeleteTaskCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\Model\HangChaAgvCarRunEnum.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\Model\HangChaAgvCarWalkingPath.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\Model\SelectTaskInfoCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\Model\SendAddTaskCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\Model\SendCarOperationCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\Model\SendDeviceActionCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\Model\SendNextAddrPermitCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\Model\SendTaskCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\Model\SendTaskStateCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\Model\HangChaAgvRcsControl.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\Model\HangChaAgvRcsApiEnum.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\Model\HangChaAgvMoveStepEnum.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\Model\SyncResReMsgForHangChaAgv.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\ViewModel\DeleteTaskCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\ViewModel\SelectTaskInfoCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\ViewModel\SendAddTaskCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\ViewModel\SendCarOperationCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\ViewModel\SendDeviceActionCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\ViewModel\SendNextAddrPermitCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\ViewModel\SendTaskCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\ViewModel\SendTaskStateCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\DeleteTaskView.xaml.cs">
+      <DependentUpon>DeleteTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\SelectTaskInfoView.xaml.cs">
+      <DependentUpon>SelectTaskInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\SendAddTaskCmdView.xaml.cs">
+      <DependentUpon>SendAddTaskCmdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\SendCarOperationCmdView.xaml.cs">
+      <DependentUpon>SendCarOperationCmdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\SendDeviceActionView.xaml.cs">
+      <DependentUpon>SendDeviceActionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\SendNextAddrPermitView.xaml.cs">
+      <DependentUpon>SendNextAddrPermitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\SendTaskStateCmdView.xaml.cs">
+      <DependentUpon>SendTaskStateCmdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\SendTaskView.xaml.cs">
+      <DependentUpon>SendTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\MNLMCha\MNLMChaAgvCarWalkingPathManage.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\MNLMCha\Model\MNLMChaAgvCarWalkingPath.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\MNLMCha\Model\MNLMChaAgvMoveStepEnum.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\Simulate3D\Model\AgvRunParamDataUploadCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\Simulate3D\Model\ClearGoodsCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\Simulate3D\Model\DeviceActionDataUploadCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\Simulate3D\Model\DeviceFaultRecCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\Simulate3D\Model\DeviceStautsDataUploadCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\Simulate3D\Model\GoodsTrackDataUploadCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\Simulate3D\Model\Simulate3DIOCEnum.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\Simulate3D\Simulate3DControl.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\Model\DeleteTaskCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\Model\ResponseResult.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\Model\SelectTaskInfoCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\Model\SendDeviceActionCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\Model\SendNextAddrPermitCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\Model\SendTaskCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\Model\YChuangAgvMoveStepEnum.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\Model\YingChuangAgvRcsApiEnum.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\YingChuangAgvRcsControl.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\ViewModel\DeleteTaskCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\ViewModel\SelectTaskInfoCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\ViewModel\SendDeviceActionCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\ViewModel\SendNextAddrPermitCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\ViewModel\SendTaskCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\View\DeleteTaskView.xaml.cs">
+      <DependentUpon>DeleteTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\View\SelectTaskInfoView.xaml.cs">
+      <DependentUpon>SelectTaskInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\View\SendDeviceActionView.xaml.cs">
+      <DependentUpon>SendDeviceActionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\View\SendNextAddrPermitView.xaml.cs">
+      <DependentUpon>SendNextAddrPermitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\View\SendTaskView.xaml.cs">
+      <DependentUpon>SendTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\TransportDevice\Pda\ClouPda\ClouPdaControl.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Uwb\Eh2000\Model\Eh2000UwbControl.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Uwb\Eh2000\Model\Eh2000UwbApiEnum.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Uwb\Eh2000\Model\PublishEinkCmd.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Uwb\Eh2000\ViewModel\Eh2000UwbCmdViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Uwb\Eh2000\View\Eh2000UwbCmdView.xaml.cs">
+      <DependentUpon>Eh2000UwbCmdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Common\Interface\IPalletize.cs" />
+    <Compile Include="Devices\Device\Common\Interface\IReadyMonitor.cs" />
+    <Compile Include="Devices\Device\Identify\CCDScanner\CCDScanner.cs" />
+    <Compile Include="Devices\Device\Identify\CCDScanner\CCDScannerViewModel.cs" />
+    <Compile Include="Devices\Device\Identify\ClouRFID\Model\ClouRfidDeviceProperty.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Pda\CmdModel\SendInstructCmd.cs" />
+    <Compile Include="Devices\Device\Identify\ClouRFID\Model\ConvertMode.cs" />
+    <Compile Include="Devices\Device\Identify\ClouRFID\Model\RFIDForClou.cs" />
+    <Compile Include="Devices\Device\Identify\Config\IdentifyDeviceProperty.cs" />
+    <Compile Include="DataModel\AgvMoveStepEnum.cs" />
+    <Compile Include="DataModel\DeviceDelegate.cs" />
+    <Compile Include="DataModel\TaskExcuteMessage.cs" />
+    <Compile Include="DataModel\TaskExcuteStatusType.cs" />
+    <Compile Include="DataModel\DeviceTypeEnum.cs" />
+    <Compile Include="DataModel\IChangeMode.cs" />
+    <Compile Include="DataModel\INotifyTaskStatus.cs" />
+    <Compile Include="DataModel\SizeProperties.cs" />
+    <Compile Include="DataModel\TransportMessage.cs" />
+    <Compile Include="DataModel\ViewModel\OpcElementViewModel.cs" />
+    <Compile Include="DataModel\ViewModel\TransportMessageViewModel.cs" />
+    <Compile Include="DataModel\View\OpcElementView.xaml.cs">
+      <DependentUpon>OpcElementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\View\TransportMessageView.xaml.cs">
+      <DependentUpon>TransportMessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceManage\DeviceManage.cs" />
+    <Compile Include="Devices\Common\TransportDirectionEnum.cs" />
+    <Compile Include="Devices\Convertor\AddrConvertToValue.cs" />
+    <Compile Include="Devices\Convertor\CurAddrToValue.cs" />
+    <Compile Include="Devices\Convertor\DeviceNameToValue.cs" />
+    <Compile Include="Devices\DeviceBusiness\Display\DisplayDeviceBusinessAbstract.cs" />
+    <Compile Include="Devices\DeviceBusiness\Display\EqLedScreen\EqLedScreenDeviceBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\Load\LoadBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\Palletizer\ClPalletizerBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\Palletizer\Common\PalletizerBusinessAbstract.cs" />
+    <Compile Include="Devices\DeviceBusiness\Swith\ClSwitchDeviceBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\TransportDevice\Agv\MNLMChaAgvBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\TransportDevice\Agv\HangChaAgvBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\TransportDevice\Agv\YingChuangAgvRcsBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\TransportDevice\stackingcrane\OpcStackingcrane\RobotTec\RobotTecStackingcraneBusiness.cs" />
+    <Compile Include="Devices\DeviceControl\Communication\Opc\CommunicationForOpc\IPlcDeviceCom.cs" />
+    <Compile Include="Devices\DeviceControl\Communication\Opc\CommunicationForOpc\IdentifyDeviceForOpc.cs" />
+    <Compile Include="DataModel\OpcElement.cs" />
+    <Compile Include="Devices\DeviceControl\Communication\Opc\IPlcItemCalculate.cs" />
+    <Compile Include="Devices\DeviceControl\Communication\Opc\OpcDataViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\Communication\Opc\UCOpcData.xaml.cs">
+      <DependentUpon>UCOpcData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceControl\Communication\Socket\CommuicationForSocket\IdentifyDeviceCommForClouRfid.cs" />
+    <Compile Include="Devices\DeviceControl\Communication\Opc\CommunicationForOpc\PlcDeviceForOpc.cs" />
+    <Compile Include="Devices\Common\CustomAttribute.cs" />
+    <Compile Include="Devices\DeviceBusiness\Common\DeviceBusinessBaseAbstract.cs" />
+    <Compile Include="Devices\DeviceBusiness\Station\Common\StationDeviceBusinessAbstract.cs" />
+    <Compile Include="Devices\DeviceBusiness\TransportDevice\Roller\RollerDeviceBusiness.cs" />
+    <Compile Include="Devices\DeviceControl\Common\DeviceControlBaseAbstract.cs" />
+    <Compile Include="Devices\DeviceControl\Communication\IIdentifyDeviceCom.cs" />
+    <Compile Include="Devices\DeviceControl\Display\Common\DisplayDeviceControlAbstract.cs" />
+    <Compile Include="Devices\DeviceControl\Display\EqLedScreen\EQ2008_DataStruct.cs" />
+    <Compile Include="Devices\DeviceControl\Display\EqLedScreen\EqLedConfig.cs" />
+    <Compile Include="Devices\DeviceControl\Display\EqLedScreen\EqLedHelper.cs" />
+    <Compile Include="Devices\DeviceControl\Display\EqLedScreen\EqLedScreenDeviceControl.cs" />
+    <Compile Include="Devices\DeviceControl\Display\EqLedScreen\EqLedStyle.cs" />
+    <Compile Include="Devices\DeviceControl\Identify\IdentifyControlForCommon.cs" />
+    <Compile Include="Devices\DeviceControl\Load\LoadControl.cs" />
+    <Compile Include="Devices\DeviceControl\Palletizer\ClPalletierControl.cs" />
+    <Compile Include="Devices\DeviceControl\Palletizer\Common\PalletierControlAbstract.cs" />
+    <Compile Include="Devices\DeviceControl\ProtocolAnalysis\Common\ProtocolAnalysisAbstract.cs" />
+    <Compile Include="Devices\DeviceControl\ProtocolAnalysis\Roller\RollerProtocolAnalysisAbstract.cs" />
+    <Compile Include="Devices\DeviceControl\ProtocolAnalysis\Stackingcrane\StackingcraneProtocolAbstract.cs" />
+    <Compile Include="Devices\DeviceControl\Station\Common\StationDeviceControlAbstract.cs" />
+    <Compile Include="Devices\DeviceControl\Swith\ClSwitchDeviceControl.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\HangChaAgvControl.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Agv\MNLMCha\MNLMChaAgvControl.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Roller\ProtocolAnalysis\RollerProtocolForCommon.cs" />
+    <Compile Include="Devices\Config\BusinessHandleBasicPropertyAbstract.cs" />
+    <Compile Include="Devices\Config\ControlHandleBasicProperty.cs" />
+    <Compile Include="Devices\Config\ControlHandlePropertyAbstract.cs" />
+    <Compile Include="Devices\Config\DeviceBasicProperty.cs" />
+    <Compile Include="Devices\Config\DevicePropertyAbstract.cs" />
+    <Compile Include="Devices\Config\EmptyBusinessHandleProperty.cs" />
+    <Compile Include="Devices\Config\CommonConfig.cs" />
+    <Compile Include="Devices\Config\EmptyProtocolTranslationConfigProperty.cs" />
+    <Compile Include="Devices\Config\EmptyProtocolTranslationProperty.cs" />
+    <Compile Include="Devices\Config\OpcCommunicationProperty.cs" />
+    <Compile Include="Devices\Config\ProtocolTranslationPropertyAbstract.cs" />
+    <Compile Include="Devices\Device\Identify\Robot\RobotCommunicateProperty.cs" />
+    <Compile Include="Devices\Device\Identify\Robot\RobotCommunicateView.xaml.cs">
+      <DependentUpon>RobotCommunicateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Identify\Robot\RobotDeviceProperty.cs" />
+    <Compile Include="Devices\Device\Identify\Robot\Robot.cs" />
+    <Compile Include="Devices\Device\Identify\Robot\RobotAssistantView.xaml.cs">
+      <DependentUpon>RobotAssistantView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Identify\Robot\RobotDetailView.xaml.cs">
+      <DependentUpon>RobotDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Identify\Robot\RobotViewModel.cs" />
+    <Compile Include="Devices\Device\Identify\KeyenceScanner\KeyenceCommunicateView.xaml.cs">
+      <DependentUpon>KeyenceCommunicateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Identify\KeyenceScanner\KeyenceRfidDeviceProperty.cs" />
+    <Compile Include="Devices\Device\Identify\KeyenceScanner\KeyenceScannerAssistantView.xaml.cs">
+      <DependentUpon>KeyenceScannerAssistantView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Identify\KeyenceScanner\KeyenceScannerDetailView.xaml.cs">
+      <DependentUpon>KeyenceScannerDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Identify\KeyenceScanner\KeyenceScannerViewModel.cs" />
+    <Compile Include="Devices\Device\Identify\KeyenceScanner\KeyenceScanner.cs" />
+    <Compile Include="Devices\Device\Identify\KeyenceScanner\KeyenceCommunicateProperty.cs" />
+    <Compile Include="Devices\Device\Identify\Model\IdentifyDeviceForSocket.cs" />
+    <Compile Include="Devices\Device\Identify\ViewModel\IdentityDeviceForSocketViewModel.cs" />
+    <!--<Compile Include="Devices\Device\TaskDevice\RfidDoor\ClStackRfid\Model\ClRfidDoorDevice.cs" />-->
+    <!--<Compile Include="Devices\Device\TaskDevice\RfidDoor\ClStackRfid\Model\ClRfidDoorDeviceProperty.cs" />-->
+    <!--<Compile Include="Devices\Device\TaskDevice\RfidDoor\ClStackRfid\Model\ClRfidDoorDeviceProperty.cs" />-->
+    <Compile Include="Devices\Device\Palletizer\PalletizerWithoutControl\Model\Config\PalletizeContent.cs" />
+    <Compile Include="Devices\Device\Palletizer\PalletizerWithoutControl\ViewModel\PalletizerHotDataViewModel.cs" />
+    <Compile Include="Devices\Device\Palletizer\PalletizerWithoutControl\View\PalletizerHotDataView.xaml.cs">
+      <DependentUpon>PalletizerHotDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Palletizer\PlletizerWithControl\Model\DePalletizeCmd.cs" />
+    <Compile Include="Devices\Device\Palletizer\PlletizerWithControl\Model\PalletizeCmd.cs" />
+    <Compile Include="Devices\Device\Palletizer\PlletizerWithControl\PalletizerWithTask.cs" />
+    <Compile Include="Devices\Device\Palletizer\PlletizerWithControl\ViewModel\PalletizerWithTaskViewModel.cs" />
+    <Compile Include="Devices\Device\Palletizer\PlletizerWithControl\View\PalletizerWithTaskDetailView.xaml.cs">
+      <DependentUpon>PalletizerWithTaskDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\ClRfidDoor\ClouRfidDoor.cs" />
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\ClRfidDoor\ClouRfidDoorApiEnum.cs" />
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\ClRfidDoor\ClouRfidDoorViewModel.cs" />
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\ClRfidDoor\ClouRfidDoorDetailView.xaml.cs">
+      <DependentUpon>ClouRfidDoorDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\ClStackRfid\Model\ClStackRfidDoorDevice.cs" />
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\ClStackRfid\Model\ClStackRfidDoorDeviceProperty.cs" />
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\ClStackRfid\ViewModel\ClRfidDoorViewModel.cs" />
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\ClStackRfid\View\ClRfidDoorAssistantView.xaml.cs">
+      <DependentUpon>ClRfidDoorAssistantView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\ClStackRfid\View\ClStackRfidDoorDetailView.xaml.cs">
+      <DependentUpon>ClStackRfidDoorDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\RfidDoorAbstract.cs" />
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\StackRfidDeviceAbstract.cs" />
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\YChuangRfidDoor\Model\YChuangRfidDoorDevice.cs" />
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\YChuangRfidDoor\Model\YChuangRfidDoorDeviceProperty.cs" />
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\YChuangRfidDoor\ViewModel\YChuangRfidDoorViewModel.cs" />
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\YChuangRfidDoor\View\YChuangRfidDoorAssistantView.xaml.cs">
+      <DependentUpon>YChuangRfidDoorAssistantView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TaskDevice\RfidDoor\YChuangRfidDoor\View\YChuangRfidDoorDetailView.xaml.cs">
+      <DependentUpon>YChuangRfidDoorDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TaskDevice\Common\View\TaskDeviceView.xaml.cs">
+      <DependentUpon>TaskDeviceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\ABB\XYZABB\Model\XYZABB.cs" />
+    <Compile Include="Devices\Device\TransportDevice\ABB\XYZABB\ViewModel\XYZABBViewModel.cs" />
+    <Compile Include="Devices\Device\TransportDevice\ABB\XYZABB\View\XYZABBDetailView.xaml.cs">
+      <DependentUpon>XYZABBDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\ABB\XYZABB\View\UCXYZABBView.xaml.cs">
+      <DependentUpon>UCXYZABBView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\ClouRcs\Model\ClouAgvRcs.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\ClouRcs\Model\ClouAgvRcsProperty.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\ClouRcs\ViewModel\ClouAgvRcsViewModel.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\ClouRcs\View\ClouAgvRcsAssistantView.xaml.cs">
+      <DependentUpon>ClouAgvRcsAssistantView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\ClouRcs\View\ClouAgvRcsDetailView.xaml.cs">
+      <DependentUpon>ClouAgvRcsDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\Common\AgvDeviceRequest.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\FourWayVehicle\Model\FourWayVehicleRcs.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\FourWayVehicle\Model\FourWayVehicleRcsProperty.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\FourWayVehicle\ViewModel\FourWayVehicleRcsViewModel.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\FourWayVehicle\View\FourWayVehicleAssistantView.xaml.cs">
+      <DependentUpon>FourWayVehicleAssistantView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\FourWayVehicle\View\FourWayVehicleDetailView.xaml.cs">
+      <DependentUpon>FourWayVehicleDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\FourWayVehicle\View\FourWayVehicleRcsAssistantView.xaml.cs">
+      <DependentUpon>FourWayVehicleRcsAssistantView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\FourWayVehicle\View\FourWayVehicleRcsDetailView.xaml.cs">
+      <DependentUpon>FourWayVehicleRcsDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\FourWayVehicle\View\UCFourWayVehicleView.xaml.cs">
+      <DependentUpon>UCFourWayVehicleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\HangCha\Model\HangChaAgvApiEnum.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\HangCha\Model\HangChaAgvRcs.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\HangCha\ViewModel\HangChaAgvRcsViewModel.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\HangCha\View\HangChaAgvRcsAssistantView.xaml.cs">
+      <DependentUpon>HangChaAgvRcsAssistantView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\HangCha\View\HangChaAgvRcsDetailView.xaml.cs">
+      <DependentUpon>HangChaAgvRcsDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\MNLMCha\Model\MNLMChaAgv.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\MNLMCha\ViewModel\MNLMChaAGVViewModel.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\MNLMCha\View\MNLMChaAgvDetailView.xaml.cs">
+      <DependentUpon>MNLMChaAgvDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\MNLMCha\View\UCMNLMChaAGVView.xaml.cs">
+      <DependentUpon>UCMNLMChaAGVView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\YingChuang\Model\YChuangAgvRcsProperty.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\YingChuang\Model\YingChuangAgvRcs.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\YingChuang\ViewModel\YingChuangAgvRcsViewModel.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\YingChuang\View\YingChuangAgvRcsAssistantView.xaml.cs">
+      <DependentUpon>YingChuangAgvRcsAssistantView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\YingChuang\View\YingChuangAgvRcsDetailView.xaml.cs">
+      <DependentUpon>YingChuangAgvRcsDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Common\Model\TransportBusinessHandleProperty.cs" />
+    <Compile Include="Devices\Device\Common\ViewModel\DeviceBasicPropertyViewModel.cs" />
+    <Compile Include="Devices\Device\Common\ViewModel\DeviceConfigViewModel.cs" />
+    <Compile Include="Devices\Device\Common\ViewModel\TransportBusinessPropertyViewModel.cs" />
+    <Compile Include="Devices\Device\Common\View\DeviceBasicPropertyView.xaml.cs">
+      <DependentUpon>DeviceBasicPropertyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Common\View\DeviceConfigView.xaml.cs">
+      <DependentUpon>DeviceConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Common\View\EmptyBusinessPropertyView.xaml.cs">
+      <DependentUpon>EmptyBusinessPropertyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Common\View\EmptyControlPropertyView.xaml.cs">
+      <DependentUpon>EmptyControlPropertyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Common\View\EmptyProtocolTranslationView.xaml.cs">
+      <DependentUpon>EmptyProtocolTranslationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Common\View\OpcCommunicationView.xaml.cs">
+      <DependentUpon>OpcCommunicationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Common\View\TransportBusinessPropertyView.xaml.cs">
+      <DependentUpon>TransportBusinessPropertyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Display\Model\DisplayDeviceProperty.cs" />
+    <Compile Include="Devices\Device\Display\View\DisplayConfigView.xaml.cs">
+      <DependentUpon>DisplayConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Display\View\DisplayDeviceDetailView.xaml.cs">
+      <DependentUpon>DisplayDeviceDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Identify\Model\IdentityDeviceProperty.cs" />
+    <Compile Include="Devices\Device\Palletizer\PalletizerWithoutControl\Model\Config\PalletizerDeviceProperty.cs" />
+    <Compile Include="Devices\Device\Palletizer\PalletizerWithoutControl\View\PalletizerBusinessPropertyView.xaml.cs">
+      <DependentUpon>PalletizerBusinessPropertyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Palletizer\PalletizerWithoutControl\View\PalletizerDetailView.xaml.cs">
+      <DependentUpon>PalletizerDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Station\Model\StationProperty.cs" />
+    <Compile Include="Devices\Device\Station\View\StationDetailView.xaml.cs">
+      <DependentUpon>StationDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Swith\Model\SwitchDeviceProperty.cs" />
+    <Compile Include="Devices\Device\Swith\View\SwithDetailView.xaml.cs">
+      <DependentUpon>SwithDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\HangCha\Model\HangChaProperty.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Pda\ClouPda\ClouPdaApiController.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Pda\ClouPda\ClouPdaDevice.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Pda\ClouPda\IClouPdaApi.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Pda\ClouPda\NotifyInstructFinishCmd.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Pda\ClouPda\View\ClouPdaDetailView.xaml.cs">
+      <DependentUpon>ClouPdaDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Roller\RollerProperty.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Roller\ViewModel\RollerDeviceViewModel.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\stackingcrane\OpcStackingcrane\ProtocolAnalysis\ProtocolAnalysisForOpcStackingcrane.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\stackingcrane\OpcStackingcrane\RobotTec\RobotTecStackingcraneControl.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\stackingcrane\OpcStackingcrane\StackingcraneCmdElement.cs" />
+    <Compile Include="Devices\Device\Common\Model\DeviceBaseAbstract.cs" />
+    <Compile Include="Devices\Device\Common\Model\DeviceBaseForTask.cs" />
+    <Compile Include="Devices\DeviceBusiness\Identify\IdentifyDeviceBusiness.cs" />
+    <Compile Include="Devices\DeviceBusiness\Identify\IdentifyDeviceBusinessAbstract.cs" />
+    <Compile Include="Devices\DeviceControl\Identify\IdentifyDeviceControlAbstract.cs" />
+    <Compile Include="Devices\DeviceControl\Identify\Opc\IdentifyControlForOpc.cs" />
+    <Compile Include="Devices\Device\Common\DeviceConfigManage.cs" />
+    <Compile Include="Devices\Device\Common\DeviceDataBase.cs" />
+    <Compile Include="Devices\Device\Common\ViewModel\DeviceViewModelAbstract.cs" />
+    <Compile Include="Devices\Device\Common\ViewModel\DeviceDetailViewModel.cs" />
+    <Compile Include="Devices\Device\Common\View\DeviceDetailView.xaml.cs">
+      <DependentUpon>DeviceDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Display\ViewModel\DeviceParamsDisPlayViewModel.cs" />
+    <Compile Include="Devices\Device\Display\Model\DisplayDeviceAbstract.cs" />
+    <Compile Include="Devices\Device\Display\ViewModel\DisplayDeviceViewModel.cs" />
+    <Compile Include="Devices\Device\Display\EqLedScreen\EqDisplayDevice.cs" />
+    <Compile Include="Devices\Device\Identify\ViewModel\DeviceParamsIdentityViewModel.cs" />
+    <Compile Include="Devices\Device\Identify\Model\IdentifyDevice.cs" />
+    <Compile Include="Devices\Device\Identify\ViewModel\IdentityDeviceViewModel.cs" />
+    <Compile Include="Devices\Device\Identify\View\IdentifyDeviceDetailView.xaml.cs">
+      <DependentUpon>IdentifyDeviceDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\Load\ViewModel\DeviceParamsRackPlaceViewModel.cs" />
+    <Compile Include="Devices\Device\Load\Model\LoadPlace.cs" />
+    <Compile Include="Devices\Device\Load\ViewModel\LoadPlaceViewModel.cs" />
+    <Compile Include="Devices\Device\Palletizer\PalletizerWithoutControl\Model\ClPalletizerDevice.cs" />
+    <Compile Include="Devices\Device\Palletizer\PalletizerWithoutControl\ViewModel\DeviceParamsPalletizerViewModel.cs" />
+    <Compile Include="Devices\Device\Palletizer\PalletizerWithoutControl\Model\PalletizerDeviceAbstract.cs" />
+    <Compile Include="Devices\Device\Palletizer\PalletizerWithoutControl\ViewModel\PalletizerDeviceViewModel.cs" />
+    <Compile Include="Devices\Device\Station\ViewModel\StationDeviceViewModel.cs" />
+    <Compile Include="Devices\Device\Station\ViewModel\DeviceParamsLoadViewModel.cs" />
+    <Compile Include="Devices\Device\Swith\ViewModel\DeviceParamsSwitchViewModel.cs" />
+    <Compile Include="Devices\Device\Swith\Model\SwitchDeviceAbstract.cs" />
+    <Compile Include="Devices\Device\Swith\ViewModel\SwitchDeviceViewModel.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\Common\AgvDeviceAbstract.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\HangCha\Model\HangChaAgv.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\HangCha\ViewModel\HangChaAGVViewModel.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Agv\HangCha\View\HangChaAgvAssistantView.xaml.cs">
+      <DependentUpon>HangChaAgvAssistantView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\HangCha\View\HangChaAgvDetailView.xaml.cs">
+      <DependentUpon>HangChaAgvDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Agv\HangCha\View\UCHangChaAGVView.xaml.cs">
+      <DependentUpon>UCHangChaAGVView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Common\Model\TransportDeviceBaseAbstract.cs" />
+    <Compile Include="Devices\DeviceBusiness\TransportDevice\Common\OrderDeviceBusinessAbstract.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Common\OrderDeviceControlAbstract.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Common\ViewModel\TransportDeviceViewModel.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Roller\View\ClRollerDeviceDetailView.xaml.cs">
+      <DependentUpon>ClRollerDeviceDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Roller\ClRoller.cs" />
+    <Compile Include="Devices\Device\Station\Model\SwitchableStation.cs" />
+    <Compile Include="Devices\Device\Station\Model\StationDeviceAbstract.cs" />
+    <Compile Include="Devices\DeviceBusiness\Station\SwitchableStationBusiness.cs" />
+    <Compile Include="Devices\DeviceControl\Station\SwitchableStationControl.cs" />
+    <Compile Include="Devices\DeviceBusiness\Station\StaticStationBusiness.cs" />
+    <Compile Include="Devices\DeviceControl\Station\StaticStationControl.cs" />
+    <Compile Include="Devices\DeviceControl\TransportDevice\Roller\RollerDeviceControl.cs" />
+    <Compile Include="Devices\Device\Identify\Model\IdentityDeviceAbstract.cs" />
+    <Compile Include="Devices\Device\Swith\Model\SwitchDevice.cs" />
+    <Compile Include="Devices\DeviceBusiness\Swith\Common\SwitchDeviceBusinessAbstract.cs" />
+    <Compile Include="Devices\DeviceControl\Swith\Common\SwitchDeviceControlAbstract.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Simulate3D\Model\Simulate3D.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Simulate3D\ViewModel\Simulate3DViewModel.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Stackingcrane\Common\StackingcraneDeviceAbstract.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Stackingcrane\Common\View\StackingcraneProtocolTranslationView.xaml.cs">
+      <DependentUpon>StackingcraneProtocolTranslationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Stackingcrane\OpcStackingcrane\RobotTec\Model\RobotTecStackingcrane.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Stackingcrane\OpcStackingcrane\RobotTec\Model\RobotTecStackingcraneProperty.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Stackingcrane\OpcStackingcrane\RobotTec\ViewModel\RobotTcViewModel.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Stackingcrane\OpcStackingcrane\RobotTec\ViewModel\StackingcraneProtocolTranslationViewModel.cs" />
+    <Compile Include="Devices\Device\TransportDevice\TransportPoint\TransportPointStation.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Uwb\EH2000\Model\Eh2000UwbDevice.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Uwb\EH2000\Model\Eh2000UwbProperty.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Uwb\EH2000\Model\UwbDeviceStandByEnum.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Uwb\EH2000\ViewModel\Eh2000UwbDeviceViewModel.cs" />
+    <Compile Include="Devices\Device\TransportDevice\Uwb\EH2000\View\Eh2000DetailView.xaml.cs">
+      <DependentUpon>Eh2000DetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Device\TransportDevice\Uwb\EH2000\View\Eh2000AssistantView.xaml.cs">
+      <DependentUpon>Eh2000AssistantView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskHandleCenter\IHandleTaskExcuteStatus.cs" />
+    <Compile Include="TaskHandleCenter\ITaskNotifyCentre.cs" />
+    <Compile Include="TransportManage\ITransportManage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Devices\DeviceControl\Communication\Socket\Common\" />
+    <Folder Include="Devices\DeviceControl\Identify\Opc\Common\" />
+    <Folder Include="Devices\DeviceControl\Identify\Socket\" />
+    <Folder Include="Devices\DeviceControl\TaskDevice\Common\" />
+    <Folder Include="Devices\DeviceControl\TransportDevice\Agv\Common\" />
+    <Folder Include="Devices\DeviceControl\TransportDevice\Tcp\" />
+    <Folder Include="Devices\Device\Identify\ClouRFID\ViewModel\" />
+    <Folder Include="Devices\Device\Identify\ClouRFID\View\" />
+    <Folder Include="Devices\Device\Load\View\" />
+    <Folder Include="Devices\Device\TransportDevice\Common\View\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\Communicate\CLDC.CLWS.CLWCS.Infrastructrue.Socket\CLDC.CLWS.CLWCS.Infrastructrue.Sockets.csproj">
+      <Project>{B83E999D-5389-4859-BD5C-434DA790D496}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.Sockets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\Communicate\CLDC.CLWS.CLWCS.Infrastructrue.WebService\CLDC.CLWS.CLWCS.Infrastructrue.WebService.csproj">
+      <Project>{3BDB301D-5E8F-4392-9E47-DF472A139F8C}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.WebService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\Database\CL.WCS.DBHelperAbstractPckg\CLDC.CLWS.CLWCS.Infrastructrue.DbHelper.csproj">
+      <Project>{ECC61DFF-9DC8-44C0-A774-A3387B908081}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DbHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel.csproj">
+      <Project>{FC860366-A4B2-4DA5-A389-88732CD4EC7C}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\Framework\CLDC.CLWS.CLWCS.Framework\CLDC.CLWS.CLWCS.Framework.csproj">
+      <Project>{F4C897AD-9986-4BDA-A106-C52054A4F110}</Project>
+      <Name>CLDC.CLWS.CLWCS.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\Ioc\Infrastructrue.Ioc.DependencyFactory\Infrastructrue.Ioc.DependencyFactory.csproj">
+      <Project>{6DE18F2E-A70B-4D32-BAAB-54FFEBE7C4EF}</Project>
+      <Name>Infrastructrue.Ioc.DependencyFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\Ioc\Infrastructrue.Ioc.Interface\Infrastructrue.Ioc.Interface.csproj">
+      <Project>{4ad2a2f6-71e1-4972-a012-763529c42172}</Project>
+      <Name>Infrastructrue.Ioc.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\Log\CLDC.Framework.Log.Helper\CLDC.Framework.Log.Helper.csproj">
+      <Project>{E8CC752C-2BB1-4426-A6A9-11292CB212B4}</Project>
+      <Name>CLDC.Framework.Log.Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\OpcClient\CL.Framework.OPCClientAbsPckg\CL.Framework.OPCClientAbsPckg.csproj">
+      <Project>{F012B248-A176-4AF8-AB32-813AC30DBC23}</Project>
+      <Name>CL.Framework.OPCClientAbsPckg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\OpcMonitor\CL.WCS.OPCMonitorAbstractPckg\CL.WCS.OPCMonitorAbstractPckg.csproj">
+      <Project>{57230729-25BA-44FB-9ACB-CF2A114603EE}</Project>
+      <Name>CL.WCS.OPCMonitorAbstractPckg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\Security\CLDC.Infrastructrue.DataValidation\CLDC.Infrastructrue.DataValidation.csproj">
+      <Project>{ef0a35d3-a590-4b55-afbc-4c8883a5301e}</Project>
+      <Name>CLDC.Infrastructrue.DataValidation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\UserCtrl\CLDC.CLWS.CLWCS.Infrastructrue.UserCtrl\CLDC.Infrastructrue.UserCtrl.csproj">
+      <Project>{AA54A556-74A1-4FCC-A13C-87BC87AE8541}</Project>
+      <Name>CLDC.Infrastructrue.UserCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructrue\Xml\CLDC.CLWS.CLWCS.Infrastructrue.Xml\CLDC.Infrastructrue.Xml.csproj">
+      <Project>{DE4DFBAE-EE43-4B9F-AE57-5C6A51E58A10}</Project>
+      <Name>CLDC.Infrastructrue.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Service\Authorize\CLDC.CLWS.CLWCS.Service.Authorize\CLDC.CLWS.CLWCS.Service.Authorize.csproj">
+      <Project>{797A97CD-A513-43AF-8A0A-F756CCE6F381}</Project>
+      <Name>CLDC.CLWS.CLWCS.Service.Authorize</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Service\OperateLog\CLDC.CLWS.CLWCS.Service.OperateLog\CLDC.CLWS.CLWCS.Service.OperateLog.csproj">
+      <Project>{4382C3A0-2F2A-4EAB-BB53-F417D75F0927}</Project>
+      <Name>CLDC.CLWS.CLWCS.Service.OperateLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Service\StartService\CL.WCS.SystemConfigPckg\CL.WCS.SystemConfigPckg.csproj">
+      <Project>{94710D61-2939-41D9-8354-636EED78C004}</Project>
+      <Name>CL.WCS.SystemConfigPckg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Service\StartService\CLDC.CLWS.CLWCS.Service.ConfigService\CLDC.CLWS.CLWCS.Service.ConfigService.csproj">
+      <Project>{16824839-76F4-49A9-8C64-F7B4BAD5A97E}</Project>
+      <Name>CLDC.CLWS.CLWCS.Service.ConfigService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Service\ThreadHandle\CLDC.CLWS.CLWCS.Service.ThreadHandle\CLDC.CLWS.CLWCS.Service.ThreadHandle.csproj">
+      <Project>{2CAA3030-1381-4027-8304-F56B481A66F1}</Project>
+      <Name>CLDC.CLWS.CLWCS.Service.ThreadHandle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataModel\CL.Framework.CmdDataModelPckg\CL.Framework.CmdDataModelPckg.csproj">
+      <Project>{a1b9e189-1efb-4ba3-bb2a-e54e0835ba35}</Project>
+      <Name>CL.Framework.CmdDataModelPckg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataModel\CL.WCS.DataModelPckg\CL.WCS.DataModelPckg.csproj">
+      <Project>{13a51a97-875e-4526-b610-333c1353c34e}</Project>
+      <Name>CL.WCS.DataModelPckg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataModel\CLDC.CLWS.CLWCS.WareHouse.DataModel\CLDC.CLWS.CLWCS.WareHouse.DataModel.csproj">
+      <Project>{626151d3-ea45-4a40-93ac-3b5c15372490}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataModel\CLDC.CLWS.CLWCS.WareHouse.DataPool\CLDC.CLWS.CLWCS.WareHouse.DataPool.csproj">
+      <Project>{C22D70C3-EC25-45F1-A18C-35EEB0DC6AF6}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.DataPool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DbBusiness\CLDC.CLWS.CLWCS.WareHouse.DbBusiness\CLDC.CLWS.CLWCS.WareHouse.DbBusiness.csproj">
+      <Project>{70c0679c-a181-4be4-a1cc-19506b8d7dff}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.DbBusiness</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Interface\CLDC.CLWS.CLWCS.WareHouse.Interface\CLDC.CLWS.CLWCS.WareHouse.Interface.csproj">
+      <Project>{FD59AA53-CDB4-4572-8040-5C711D666D88}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Service\BusinessManage\Common\CL.WCS.ConfigManagerPckg\CL.WCS.ConfigManagerPckg.csproj">
+      <Project>{60C5CE46-9083-4C25-A80C-ADC1374C327E}</Project>
+      <Name>CL.WCS.ConfigManagerPckg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Service\BusinessManage\Common\CLDC.CLWCS.WareHouse.DataMapper\CLDC.CLWCS.WareHouse.DataMapper.csproj">
+      <Project>{4e882f2b-ec95-42a3-91f4-067d7f4ede5e}</Project>
+      <Name>CLDC.CLWCS.WareHouse.DataMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ViewModel\CLDC.CLWS.CLWCS.WareHouse.ViewModel\CLDC.CLWS.CLWCS.WareHouse.ViewModel.csproj">
+      <Project>{2CF44D2E-6020-4D11-A74D-DBCA521A6BF3}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="DataModel\View\ExOrderListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataModel\View\ExOrderSingalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataModel\View\OpcElementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataModel\View\StringCharTaskView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataModel\View\TransportMessageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Common\View\DeviceShowCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\Communication\Opc\UCOpcData.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TaskDevice\RfidDoor\ClStackRfid\View\AskStackLoadedStatusView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TaskDevice\RfidDoor\ClStackRfid\View\AskStackActionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TaskDevice\RfidDoor\ClStackRfid\View\SendStackDispatchCmdView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\View\SendScanTaskCmdView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\View\SendShowCmdView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\View\SendStackTaskCmdView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TaskDevice\RfidDoor\Common\View\SendSwitchTaskCmdView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\ClouAgvRcs\View\OrderAddView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\DeleteTaskView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\ReportRCSPermitFinishView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\SelectTaskInfoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\SendAddTaskCmdView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\SendCarOperationCmdView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\SendChangeTaskView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\SendDeviceActionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\RequestRCSPermitView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\SendTaskStateCmdView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\FourWayVehicle\View\SendTaskView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\DeleteTaskView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\SelectTaskInfoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\SendAddTaskCmdView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\SendCarOperationCmdView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\SendDeviceActionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\SendNextAddrPermitView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\SendTaskStateCmdView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\HangCha\View\SendTaskView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\View\DeleteTaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\View\SelectTaskInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\View\SendDeviceActionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\View\SendNextAddrPermitView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Agv\YingChuan\View\SendTaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\DeviceControl\TransportDevice\Uwb\Eh2000\View\Eh2000UwbCmdView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Common\View\DeviceBasicPropertyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Common\View\DeviceConfigView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Common\View\EmptyBusinessPropertyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Common\View\EmptyControlPropertyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Common\View\EmptyProtocolTranslationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Common\View\OpcCommunicationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Common\View\TransportBusinessPropertyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Common\View\DeviceDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\Display\View\DisplayConfigView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Display\View\DisplayDeviceDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Identify\Robot\RobotCommunicateView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\Identify\Robot\RobotAssistantView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\Identify\Robot\RobotDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\Identify\KeyenceScanner\KeyenceCommunicateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Identify\KeyenceScanner\KeyenceScannerAssistantView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Identify\KeyenceScanner\KeyenceScannerDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Identify\View\IdentifyDeviceDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Palletizer\PalletizerWithoutControl\View\PalletizerHotDataView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\Palletizer\PalletizerWithoutControl\View\PalletizerBusinessPropertyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Palletizer\PalletizerWithoutControl\View\PalletizerDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Palletizer\PlletizerWithControl\View\PalletizerWithTaskDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TaskDevice\RfidDoor\ClRfidDoor\ClouRfidDoorDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TaskDevice\RfidDoor\ClStackRfid\View\ClRfidDoorAssistantView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TaskDevice\RfidDoor\ClStackRfid\View\ClStackRfidDoorDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TaskDevice\RfidDoor\YChuangRfidDoor\View\YChuangRfidDoorAssistantView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\TaskDevice\RfidDoor\YChuangRfidDoor\View\YChuangRfidDoorDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Station\View\StationDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\Swith\View\SwithDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\TaskDevice\Common\View\TaskDeviceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\ABB\XYZABB\View\XYZABBDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\ABB\XYZABB\View\UCXYZABBView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\ClouRcs\View\ClouAgvRcsAssistantView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\ClouRcs\View\ClouAgvRcsDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\FourWayVehicle\View\FourWayVehicleAssistantView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\FourWayVehicle\View\FourWayVehicleDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\FourWayVehicle\View\FourWayVehicleRcsAssistantView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\FourWayVehicle\View\FourWayVehicleRcsDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\FourWayVehicle\View\UCFourWayVehicleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\HangCha\View\HangChaAgvAssistantView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\HangCha\View\HangChaAgvDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\HangCha\View\UCHangChaAGVView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\HangCha\View\HangChaAgvRcsAssistantView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\HangCha\View\HangChaAgvRcsDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\MNLMCha\View\MNLMChaAgvDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\MNLMCha\View\UCMNLMChaAGVView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\YingChuang\View\YingChuangAgvRcsAssistantView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Agv\YingChuang\View\YingChuangAgvRcsDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Pda\ClouPda\View\ClouPdaDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Roller\View\ClRollerDeviceDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Stackingcrane\Common\View\StackingcraneProtocolTranslationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Uwb\EH2000\View\Eh2000DetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Devices\Device\TransportDevice\Uwb\EH2000\View\Eh2000AssistantView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Devices\Device\TaskDevice\RfidDoor\ClRfidDoor\Resource\射频门%28无背景%29H.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Devices\Device\TaskDevice\RfidDoor\ClStackRfid\Source\拆码垛一体机%28无背景%29H.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Devices\Device\TaskDevice\RfidDoor\YChuangRfidDoor\Source\射频门%28无背景%29H.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

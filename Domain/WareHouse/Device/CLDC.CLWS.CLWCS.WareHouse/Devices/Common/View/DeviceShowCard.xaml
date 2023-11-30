@@ -1,0 +1,178 @@
+﻿<viewModel:ViewAbstract x:Class="CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Common.View.DeviceShowCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:viewModel="clr-namespace:CLDC.CLWS.CLWCS.WareHouse.ViewModel;assembly=CLDC.CLWS.CLWCS.WareHouse.ViewModel"
+             xmlns:dataModel="clr-namespace:CLDC.CLWS.CLWCS.Infrastructrue.DataModel;assembly=CLDC.CLWS.CLWCS.Infrastructrue.DataModel"
+             xmlns:convertor="clr-namespace:CLDC.CLWS.CLWCS.WareHouse.ViewModel.Convertor;assembly=CLDC.CLWS.CLWCS.WareHouse.ViewModel"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+                        
+             d:DesignHeight="247" d:DesignWidth="400" MinWidth="400" MinHeight="247" MaxHeight="250" DataContextChanged="OnDataContextChanged">
+
+    <viewModel:ViewAbstract.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/CLDC.Infrastructrue.UserCtrl;component/Style/UserControlStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <convertor:UserLevelToVisibility x:Key="UserLevelToVisibility" />
+            <viewModel:RunStatusToToolTip x:Key="RunStatusToToolTip" />
+            <viewModel:StartOrPauseToKind x:Key="StartOrPauseToKind" />
+            <viewModel:DispatchStateToToolTip x:Key="DispatchStateToToolTip" />
+            <viewModel:DispatchStateToKind x:Key="DispatchStateToKind" />
+            <viewModel:UseStateToToolTip x:Key="UseStateToToolTip" />
+            <convertor:UseStateToKind x:Key="UseStateToKind" />
+            <viewModel:ConnectStateToKind x:Key="ConnectStateToKind" />
+            <viewModel:ConnectStateToBackground x:Key="ConnectStateToBackground" />
+            <viewModel:TaskStateToKind x:Key="TaskStateToKind" />
+            <viewModel:TaskStateToBackground x:Key="TaskStateToBackground" />
+            <viewModel:RunStatusToKind x:Key="RunStatusToKind" />
+            <viewModel:RunStateToBackground x:Key="RunStateToBackground" />
+            <viewModel:DispatchStatusToKind x:Key="DispatchStatusToKind" />
+            <viewModel:DispatchStatusToBackground x:Key="DispatchStatusToBackground" />
+            <viewModel:UseStatusToKind x:Key="UseStatusToKind" />
+            <viewModel:UseStatusToBackground x:Key="UseStatusToBackground" />
+        </ResourceDictionary>
+    </viewModel:ViewAbstract.Resources>
+    <Grid Background="Transparent">
+        <Border Background="Transparent" CornerRadius="6" Padding="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <materialDesign:ColorZone Height="30" Grid.Row="0" Mode="PrimaryMid" CornerRadius="6,6,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="80" Width="80"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition MinWidth="80" Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Name="LbId" Grid.Column="2" FontSize="12" Foreground="White" FontWeight="Bold"
+                               VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding Id}">
+                        </Label>
+                        <Label Content="{Binding Name}" Style="{StaticResource LableHeaderStyle}" Name="LbTitle" Grid.Column="1" FontSize="14" 
+                               Foreground="White" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Label.InputBindings>
+                                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding ShowDetailCommad}"></MouseBinding>
+                            </Label.InputBindings>
+                        </Label>
+                    </Grid>
+                </materialDesign:ColorZone>
+                <Grid x:Name="GridContent" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition x:Name="ColumnDefinitionContent" Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:ColorZone Grid.Column="0" Width="25" Mode="PrimaryLight" Visibility="{Binding IsShowControlZone}"
+                                              Height="{Binding ElementName=GridContent,Path=ActualHeight}" 
+                                              materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                        <StackPanel   Name="dock01" Width="25"  VerticalAlignment="Bottom">
+                            <Button x:Name="BtnStart" materialDesign:ShadowAssist.ShadowDepth='Depth2' Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                                Command="{Binding CmdDeviceRunAndPause}"  Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Visibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.运维人员}}"
+                                                Width="25" Padding="0" Height="25" 
+                                    		    ToolTip="{Binding Device.CurRunState, Converter={StaticResource RunStatusToToolTip}}" >
+                                <materialDesign:PackIcon Kind="{Binding Device.CurRunState, Converter={StaticResource StartOrPauseToKind}}" Width="22" Height="22"   />
+                            </Button>
+                            <Button  x:Name="BtnStop" Visibility="Collapsed" Command="{Binding CmdDeviceStop}" 
+                                                 materialDesign:ShadowAssist.ShadowDepth="Depth0" ToolTip="停止"   Padding="0"
+                                                 Width="{Binding Width, ElementName=dock01}" Height="25"  Margin="0,5">
+                                <materialDesign:PackIcon Kind="StopCircleOutline" Width="22" Height="22"  Margin="-2" />
+                            </Button>
+                            <Button  x:Name="BtnReset" Command="{Binding CmdDeviceReset}" Visibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}"
+                                                 materialDesign:ShadowAssist.ShadowDepth="Depth2" ToolTip="复位"  Padding="0" 
+                                                 Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                                 Width="25" Height="25"  Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
+                                <materialDesign:PackIcon Kind="Restore" Width="22" Height="22"   />
+                            </Button>
+                            <Button   Command="{Binding CmdDeviceOperateDispatch}" 
+                                                  materialDesign:ShadowAssist.ShadowDepth="Depth0" 
+                                                  ToolTip="{Binding Device.CurDispatchState, Converter={StaticResource DispatchStateToToolTip}}"  
+                                                  Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                                 Width="25" Height="25"  Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Visibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}">
+                                <materialDesign:PackIcon  Kind="{Binding Device.CurDispatchState, Converter={StaticResource DispatchStateToKind}}"  Width="22" Height="22"   />
+                            </Button>
+
+                            <Button  Command="{Binding CmdDeviceOperateEnbled}" 
+                                                 materialDesign:ShadowAssist.ShadowDepth="Depth0" 
+                                                 ToolTip="{Binding Device.CurUseState, Converter={StaticResource UseStateToToolTip}}"   
+                                                 Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                                 Width="25" Height="25"  Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Visibility="{Binding CurUserLevel,Converter={StaticResource UserLevelToVisibility},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}">
+                                <materialDesign:PackIcon   Kind="{Binding Device.CurUseState, Converter={StaticResource UseStateToKind}}"  Width="22" Height="22"   Margin="-2" />
+                            </Button>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    <TabControl Grid.Column="1" Name="TabCNodeInfo" Style="{StaticResource TabControlStyle}" BorderThickness="0" IsEnabled="{Binding IsEnabledDeviceOperate}">
+                        <TabControl.Resources>
+                            <Style TargetType="TabItem" BasedOn="{StaticResource TabControlTabItem}" />
+                        </TabControl.Resources>
+                        <TabItem Header="搬运信息"  Visibility="{Binding IsShowTransportZone}" Name="TabItemTask">
+                            <DataGrid   Name="DgvOrderList" Style="{StaticResource DataGridStyle}" 
+                                              materialDesign:DataGridAssist.CellPadding="4 2 2 2"
+                                             materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
+                                            ItemsSource="{Binding  TransportMessageViewModel.UnfinishedTransportList}" Width="auto"  >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="搬运编号" Binding="{Binding TransportOrderId}" />
+                                    <DataGridTextColumn Header="条码" Binding="{Binding TransportOrder.PileNo}" />
+                                    <DataGridTextColumn Header="起点设备" Binding="{Binding StartDevice.Name}" />
+                                    <DataGridTextColumn Header="搬运设备"  Binding="{Binding TransportDevice.Name}" />
+                                    <DataGridTextColumn Header="终点设备"  Binding="{Binding DestDevice.Name}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                        <TabItem Header="工作状态" Name ="TabItemWorkerState"  Visibility="{Binding IsShowCurrentStatusZone}">
+                            <Grid Name="DgvWorkStates">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="日志" Name="TabItemLog">
+                            <DataGrid  Name="DgvLogInfo" Style="{StaticResource DataGridStyle}" 
+                                               ItemsSource="{Binding LogInfoModelLst}"
+                                               CellStyle="{StaticResource DataGridCell_LogStyle}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="时间" Binding="{Binding DateTime}"  CanUserSort="True" 
+                                                                SortMemberPath="DateTime"  SortDirection="Descending" Width="100" />
+                                    <DataGridTextColumn Header="内容" Binding="{Binding Content}" MinWidth="300" Width="*" />
+                                </DataGrid.Columns>
+                                <DataGrid.InputBindings>
+                                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding CmdDeviceOpenLog}"  />
+                                </DataGrid.InputBindings>
+                            </DataGrid>
+                        </TabItem>
+                    </TabControl>
+
+                </Grid>
+                <Border x:Name="BorderStatus" Grid.Row="2" Height="25" CornerRadius="0,0,6,6" Background="#FFB8B8B8">
+                    <WrapPanel Name="dkplConn" HorizontalAlignment="Left"   Visibility="{Binding IsShowStatusZone}">
+                        <Label Name="lblConn" Content="通讯状态:"  Style="{StaticResource LblWorkStateStyle}"/>
+                        <materialDesign:PackIcon Kind="{Binding Device.CurConnectState,Converter={StaticResource ConnectStateToKind}}" 
+                                   Foreground="{Binding Device.CurConnectState,Converter={StaticResource ConnectStateToBackground}}" 
+                                   Width="20" Height="20" VerticalAlignment="Center"  />
+
+                        <Label Name="lblTask" Content="任务状态:"  Style="{StaticResource LblWorkStateStyle}"/>
+                        <materialDesign:PackIcon Kind="{Binding Device.CurWorkState,Converter={StaticResource TaskStateToKind}}" 
+                                 Foreground="{Binding Device.CurWorkState,Converter={StaticResource TaskStateToBackground}}"   
+                                 Width="20" Height="20" VerticalAlignment="Center"  />
+                        <Label Name="lblWork" Content="工作状态:"  Style="{StaticResource LblWorkStateStyle}"/>
+                        <materialDesign:PackIcon Kind="{Binding Device.CurRunState,Converter={StaticResource RunStatusToKind}}"    
+                                 Foreground="{Binding Device.CurRunState,Converter={StaticResource RunStateToBackground }}" 
+                                 Width="20" Height="20" VerticalAlignment="Center"/>
+                        <Label  Content="调度状态:" Style="{StaticResource LblWorkStateStyle}"/>
+                        <materialDesign:PackIcon  Kind="{Binding  Device.CurDispatchState,Converter={StaticResource DispatchStatusToKind}}"  
+                                 Foreground="{Binding  Device.CurDispatchState,Converter={StaticResource DispatchStatusToBackground}}"    
+                                 Width="20" Height="20" VerticalAlignment="Center"  />
+                        <Label  Content="启用状态:"  Style="{StaticResource LblWorkStateStyle}"/>
+                        <materialDesign:PackIcon Kind="{Binding  Device.CurUseState,Converter={StaticResource UseStatusToKind}}" 
+                                 Foreground="{Binding  Device.CurUseState,Converter={StaticResource UseStatusToBackground}}"    
+                                 Width="20" Height="20" VerticalAlignment="Center"  />
+                    </WrapPanel>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</viewModel:ViewAbstract>

@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.WareHouse.Device.Devices.DeviceControl.TaskDevice.RfidDoor.Common.View.SendStackTaskCmdView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="250" d:DesignWidth="400" Background="White">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <WrapPanel>
+                <Label>专机编号：</Label>
+                <TextBox MinWidth="150" IsEnabled="False" Text="{Binding DataModel.DEVICE_NO}"/>
+            </WrapPanel>
+            <TextBlock Height="10"/>
+            <WrapPanel>
+                <Label>任务编号：</Label>
+                <TextBox MinWidth="150" Text="{Binding DataModel.TASK_NO}"/>
+            </WrapPanel>
+            <TextBlock Height="10"/>
+            <WrapPanel>
+                <Label>任务类型：</Label>
+                <ComboBox MinWidth="80" ItemsSource="{Binding DicStackActionTypeList}" 
+                                                  DisplayMemberPath="Value" SelectedValuePath="Key" 
+                                                  SelectedValue="{Binding  DataModel.TASK_TYPE,Mode=TwoWay}"></ComboBox>
+                <Label>箱子类型：</Label>
+                <ComboBox MinWidth="80" ItemsSource="{Binding DicBoxTypeList}" 
+                                                  DisplayMemberPath="Value" SelectedValuePath="Key" 
+                                                  SelectedValue="{Binding  DataModel.BOX_TYPE,Mode=TwoWay}"></ComboBox>
+            </WrapPanel>
+            <TextBlock Height="10"/>
+            <WrapPanel>
+                <Label>拆叠数量：</Label>
+                <TextBox MinWidth="80" Text="{Binding DataModel.SEP_COUNT}"/>
+                <Label>跺总箱量：</Label>
+                <TextBox MinWidth="80" Text="{Binding DataModel.BOX_COUNT}"/>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

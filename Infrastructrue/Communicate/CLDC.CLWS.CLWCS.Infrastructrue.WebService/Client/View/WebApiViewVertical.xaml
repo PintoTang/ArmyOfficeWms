@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.Infrastructrue.WebService.View.WebApiViewVertical"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"  
+             d:DesignHeight="800" d:DesignWidth="600" Background="White" Name="_this">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CLDC.Infrastructrue.UserCtrl;component/Style/UserControlStyle.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+            <Grid Background="AntiqueWhite" Margin="2" Grid.Row="0">
+                <DockPanel  VerticalAlignment="Center">
+                    <Label Content="地址:" Margin="2" VerticalAlignment="Center"/>
+                    <TextBox Name="WebServiceUrl" MinWidth="200" Text="{Binding HttpUrl}" Margin="2" IsReadOnly="True" />
+                    <TextBlock Width="20" />
+                    <Label Content="接口名称:"  Margin="2" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="CbApi" Width="150" HorizontalAlignment="Left" ItemsSource="{Binding Path=DicApiNameList}" 
+                                                  DisplayMemberPath="Value" SelectedValuePath="Key" 
+                                                  SelectedValue="{Binding  SelectedApiName,Mode=TwoWay}" 
+                                                  VerticalAlignment="Center"/>
+                    <TextBlock Width="40"></TextBlock>
+                    <Label Content="通讯协议：" VerticalAlignment="Center" Margin="2" Visibility="Collapsed"></Label>
+                    <ComboBox x:Name="CbProtocol" Width="150" HorizontalAlignment="Left" ItemsSource="{Binding Path=DicProtocolNameList}" 
+                                                  DisplayMemberPath="Key" SelectedValuePath="Value" 
+                                                  SelectedValue="{Binding  SelectedProtocol,Mode=TwoWay}" 
+                                                  VerticalAlignment="Center" Visibility="Collapsed"/>
+                </DockPanel>
+            </Grid>
+            <Grid Row="1" Margin="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="4">
+                    <Border BorderThickness="2" CornerRadius="3" BorderBrush="Gray">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="60"/>
+                            </Grid.ColumnDefinitions>
+                            <ContentControl x:Name="ContentControlCmdView" Grid.Column="0" Content="{Binding RequestView}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <Button Grid.Column="1" Margin="5" Height="100" Style="{DynamicResource MaterialDesignToolButton}"  
+                                               Command="{Binding InvokeApiCommand}" CommandParameter="{Binding ElementName=ContentControlCmdView,Path=Content.DataContext}" ToolTip="调用">
+                                <materialDesign:PackIcon Kind="Send" Width="30" Height="30" />
+                            </Button>
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="2" Margin="4" Name="GridResponse">
+                    <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="3">
+                        <Grid>
+                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" BorderThickness="0"
+                                 VerticalAlignment="Top"  AcceptsReturn="True" TextWrapping="Wrap"
+                                 materialDesign:HintAssist.Hint="返回参数"  Height="{Binding ElementName=GridResponse,Path=ActualHeight}"
+                                 VerticalScrollBarVisibility="Auto" IsEnabled="True" Text="{Binding ReponseValue}"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="CLWCS.UpperServiceForHeFei.Interface.View.NotifyUnstackFinishCmdView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"  
+             d:DesignHeight="300" d:DesignWidth="300" Background="White">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <WrapPanel>
+                <Label>动作类型：</Label>
+                <ComboBox MinWidth="150" ItemsSource="{Binding DicActionTypeList}" 
+                          DisplayMemberPath="Value" SelectedValuePath="Key" 
+                          SelectedValue="{Binding  DataModel.DATA.ACTION,Mode=TwoWay}"/>
+            </WrapPanel>
+            <TextBlock Height="10"/>
+            <WrapPanel>
+                <Label>完成地址：</Label>
+                <TextBox MinWidth="150" Text="{Binding DataModel.DATA.ADDR}"/>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

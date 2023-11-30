@@ -1,0 +1,132 @@
+﻿<userControls:TransportDeviceBase x:Class="WHSE.Monitor.Framework.UserControls.Chain.Chain03"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:userControls="clr-namespace:WHSE.Monitor.Framework.UserControls"
+             xmlns:convertor="clr-namespace:WHSE.Monitor.Framework.UserControls.Convertor"
+             xmlns:chain="clr-namespace:WHSE.Monitor.Framework.UserControls.Chain"
+             xmlns:roller="clr-namespace:WHSE.Monitor.Framework.UserControls.Roller"
+             xmlns:package="clr-namespace:WHSE.Monitor.Framework.UserControls.Package"
+             mc:Ignorable="d" 
+             d:DesignHeight="120" d:DesignWidth="120"  x:Name="_This" Cursor="Hand">
+    <userControls:TransportDeviceBase.Resources>
+        <userControls:DirectionConvert x:Key="DirectionConvert" />
+        <convertor:ValueToBackgroudConvertor x:Key="OrderToBackgroud" />
+        <convertor:DireValueToIsMove x:Key="DireValueToMove"/>
+        <convertor:OrderToIsHasOrder x:Key="OrderToVisiable"></convertor:OrderToIsHasOrder>
+        <chain:DoubleToNullDouble x:Key="DoubleToNullDouble" />
+    </userControls:TransportDeviceBase.Resources>
+    <UserControl.ToolTip>
+        <ToolTip Background="Transparent" Foreground="Black" BorderBrush="Transparent" HasDropShadow="False">
+            <Grid>
+                <Viewbox Height="160" Width="250">
+                    <Canvas Height="160" Width="250">
+                        <Border Height="160" Width="250" BorderThickness="0" CornerRadius="20" Background="Snow">
+                            <Grid Width="220" Height="150">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <WrapPanel Grid.Row="0">
+                                    <Label FontWeight="Black">设备编号：</Label>
+                                    <Label Content="{Binding Device.Id}"></Label>
+                                </WrapPanel>
+                                <WrapPanel Grid.Row="1">
+                                    <Label FontWeight="Black">设备标识：</Label>
+                                    <Label Content="{Binding Device.DeviceName}"></Label>
+                                </WrapPanel>
+                                <WrapPanel Grid.Row="2">
+                                    <Label FontWeight="Black">设备名称：</Label>
+                                    <Label Content="{Binding Device.Name}"></Label>
+                                </WrapPanel>
+                                <WrapPanel Grid.Row="3">
+                                    <Label FontWeight="Black">当前地址：</Label>
+                                    <Label Content="{Binding Device.CurAddress}"></Label>
+                                </WrapPanel>
+                                <WrapPanel Grid.Row="4">
+                                    <Label FontWeight="Black">当前包号：</Label>
+                                    <Label Content="{Binding Device.CurOrderValue}"></Label>
+                                </WrapPanel>
+                            </Grid>
+                        </Border>
+                    </Canvas>
+                </Viewbox>
+            </Grid>
+        </ToolTip>
+    </UserControl.ToolTip>
+    <Grid>
+        <Grid.InputBindings>
+            <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding ShowDetailCommad}"></MouseBinding>
+        </Grid.InputBindings>
+        <Viewbox Stretch="Fill">
+            <Border  BorderThickness="1" BorderBrush="White">
+                <Canvas Name="CanvasChain"  Width="120" Height="120">
+                    <!--Content="{Binding Device.Id}"-->
+                    <Label Panel.ZIndex="1" Width="95" Height="88" Padding="0" FontSize="30" Foreground="Black" Content="{Binding Device.Id}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Canvas.Left="10" Canvas.Top="15" RenderTransformOrigin="0.5,0.5">
+
+                    </Label>
+                    <package:PackageView Panel.ZIndex="0" Canvas.Left="100" Canvas.Top="21" Width="232" Height="77" Visibility="Collapsed">
+                        <package:PackageView.Style>
+                            <Style TargetType="{x:Type package:PackageView}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Device.CurOrderValue,Converter={StaticResource OrderToVisiable}}" Value="true">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Device.CurOrderValue,Converter={StaticResource OrderToVisiable}}" Value="false">
+                                        <Setter Property="Visibility" Value='Collapsed'/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </package:PackageView.Style>
+                    </package:PackageView>
+                    <Rectangle Width="10" Height="100" Canvas.Left="110" Canvas.Top="10" Panel.ZIndex="0" Fill="Transparent">
+                        <Rectangle.Style>
+                            <Style TargetType="Rectangle">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Device.IsHasError}" Value="true">
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard x:Name="HasErrorStoryboard">
+                                                <Storyboard>
+                                                    <ColorAnimation
+                                                                Storyboard.TargetProperty="Fill.Color" From="Red" To="#FF5F6B85"
+                                                                 RepeatBehavior="Forever" Duration="0:0:0.5">
+                                                    </ColorAnimation>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </DataTrigger.EnterActions>
+                                        <DataTrigger.ExitActions>
+                                            <StopStoryboard BeginStoryboardName="HasErrorStoryboard"/>
+                                        </DataTrigger.ExitActions>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Rectangle.Style>
+                    </Rectangle>
+                    <Rectangle  Width="110" Height="96" Canvas.Left="0" Canvas.Top="10">
+                        <Rectangle.InputBindings>
+                            <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding ShowDetailCommad}"></MouseBinding>
+                        </Rectangle.InputBindings>
+                        <Rectangle.Style>
+                            <Style TargetType="Rectangle">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Device.IsLoaded}" Value="true">
+                                        <Setter Property="Fill" Value="Green"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Device.IsLoaded}" Value="false">
+                                        <Setter Property="Fill" Value="#8A8882"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Rectangle.Style>
+                    </Rectangle>
+                   
+                </Canvas>
+            </Border>
+        </Viewbox>
+
+    </Grid>
+</userControls:TransportDeviceBase>

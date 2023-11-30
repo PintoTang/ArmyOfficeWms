@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.WareHouse.Manage.View.HistoryTransportManageView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                xmlns:convertor="clr-namespace:CLDC.Infrastructrue.UserCtrl.Convertor;assembly=CLDC.Infrastructrue.UserCtrl"
+                xmlns:page="clr-namespace:CLDC.Infrastructrue.UserCtrl.View.Page;assembly=CLDC.Infrastructrue.UserCtrl"
+                xmlns:convertor1="clr-namespace:CLDC.CLWS.CLWCS.WareHouse.ViewModel.Convertor;assembly=CLDC.CLWS.CLWCS.WareHouse.ViewModel"
+                mc:Ignorable="d"  
+             d:DesignHeight="400" d:DesignWidth="1100" MinHeight="280" MinWidth="470">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Indigo.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}" x:Key="Caption">
+                <Setter Property="Opacity" Value=".68"></Setter>
+            </Style>
+            <Style TargetType="DataGridColumnHeader" x:Key="dataGridColumnHeaderStyle">
+                <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            </Style>
+            <Style TargetType="Border">
+                <Setter Property="BorderThickness" Value="0.6"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
+            </Style>
+            <convertor:EnumDescriptionConverter x:Key="DescriptionConverter" />
+            <convertor1:WcsAddrToShowConvertor x:Key="WcsAddrToShowConvertor" />
+        </ResourceDictionary>
+      
+    </UserControl.Resources>
+    <Border BorderThickness="0">
+        <Grid Background="White" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <materialDesign:ColorZone Grid.Row="0" Mode="Light" VerticalAlignment="Center" Height="30">
+                <Label VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" Foreground="Black" FontWeight="Black">历史搬运信息</Label>
+            </materialDesign:ColorZone>
+            <DockPanel Grid.Row="1">
+                <Grid Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="120"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <DockPanel Grid.Row="0">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <DockPanel Grid.Row="0" VerticalAlignment="Center"   >
+
+                                <Label Content="指令编号:" />
+                                <TextBox  Text="{Binding S_OrderID}"   Width="140" />
+                                <TextBlock Width="20"></TextBlock>
+
+                                <Label Content="开始设备:" />
+                                <TextBox   Text="{Binding S_StartId}" Width="140"/>
+                                <TextBlock Width="40"></TextBlock>
+
+                                <Label Content="结束设备:" />
+                                <TextBox   Text="{Binding S_DestId}" Width="140"/>
+                                <TextBlock Width="40"></TextBlock>
+
+                                <Label Content="搬运指令:" />
+                                <TextBox   Text="{Binding S_ExOrderId}" Width="140"/>
+                                <TextBlock Width="40"></TextBlock>
+
+                            </DockPanel>
+                            <DockPanel Grid.Row="1" VerticalAlignment="Center"   >
+                                <Label Content="开始地址:" />
+                                <TextBox Width="140" Text="{Binding S_StartAddr}"/>
+                                <TextBlock Width="40"></TextBlock>
+
+                                <Label Content="当前地址:" />
+                                <TextBox Width="140" Text="{Binding S_CurAddr}"/>
+                                <TextBlock Width="60"></TextBlock>
+
+                                <Label Content="目标地址:" />
+                                <TextBox Name="TBoxNextAddress" Width="140" Text="{Binding S_DestAddr}" />
+
+                                <TextBlock Width="40"></TextBlock>
+                                <Label Content="拥有者名称:" />
+                                <TextBox Width="140" Text="{Binding S_OwnerName}"/>
+                                <TextBlock Width="40"></TextBlock>
+                            </DockPanel>
+                            <DockPanel Grid.Row="2" VerticalAlignment="Center"  >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="160"/>
+                                    </Grid.ColumnDefinitions>
+                                    <DockPanel Grid.Column="0" HorizontalAlignment="Left">
+
+                                        <Label Content="结果状态:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <ComboBox Name="CBoxOrderStatus"  IsEditable="True" materialDesign:HintAssist.HintOpacity=".26"  Width="120"   
+                                              ItemsSource="{Binding TransportResultStatuLst}"  SelectedItem="{Binding S_TransportStatus}" />
+                                        <TextBlock Width="40"></TextBlock>
+
+                                        <Label Content="添加时间:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <DatePicker Name="LocaleStartDatePicker" Width="120" 
+                                                    materialDesign:HintAssist.Hint="开始时间" SelectedDate="{Binding S_AddStartTime}"  />
+                                        <Label Content="  ~  " />
+                                        <DatePicker Name="LocaleEndDatePicker" Width="120"
+                                                 materialDesign:HintAssist.Hint="结束时间" SelectedDate="{Binding S_AddEndTime}" />
+
+                                        <TextBlock Width="40"></TextBlock>
+                                        <Label Content="完成时间:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <DatePicker Width="120" 
+                                                    materialDesign:HintAssist.Hint="开始时间" SelectedDate="{Binding S_UpdateStartDateTime}"  />
+                                        <Label Content="  ~  " />
+                                        <DatePicker  Width="120"
+                                                 materialDesign:HintAssist.Hint="结束时间" SelectedDate="{Binding S_UpdateEndDateTime}" />
+                                    </DockPanel>
+                                    <DockPanel Grid.Column="1">
+                                        <Button Name="BtnSearch" Width="80"  Content="查询" Command="{Binding SearchTransportCommand}" Style="{StaticResource MaterialDesignRaisedLightButton}" Margin="-20,0,2,0"/>
+                                    </DockPanel>
+                                </Grid>
+                            </DockPanel>
+                        </Grid>
+                    </DockPanel>
+                    <DockPanel Grid.Row="1">
+                        <Border>
+                            <DataGrid
+                                  Name="DgvOrderHisInfo"
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                   AutoGenerateColumns="False"
+                                    ItemsSource="{Binding  CurrentShowTransportList}"
+                                   CanUserSortColumns="True"  CanUserAddRows="False"
+                                   CanUserDeleteRows="False" CanUserResizeRows="False"
+                                   IsReadOnly="True"
+                                  materialDesign:DataGridAssist.CellPadding="4 2 2 2"
+                                  materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="搬运条码"  Width="auto" Binding="{Binding PileNo}"/>
+                                    <DataGridTextColumn Header="开始设备"  Width="auto" Binding="{Binding StartId}"/>
+                                    <DataGridTextColumn Header="搬运设备"  Width="auto" Binding="{Binding TransportId}"/>
+                                    <DataGridTextColumn Header="结束设备"  Width="auto" Binding="{Binding DestId}"/>
+                                    <DataGridTextColumn Header="指令编号"  Width="auto" Binding="{Binding ExOrderId}"/>
+                                    <DataGridTextColumn Header="开始地址"  Width="auto" Binding="{Binding StartAddr,Converter={StaticResource WcsAddrToShowConvertor}}"/>
+                                    <DataGridTextColumn Header="当前地址"  Width="auto" Binding="{Binding CurAddr,Converter={StaticResource WcsAddrToShowConvertor}}"/>
+                                    <DataGridTextColumn Header="目标地址"  Width="auto" Binding="{Binding DestAddr,Converter={StaticResource WcsAddrToShowConvertor}}"/>
+                                    <DataGridTextColumn Header="拥有编号"  Width="auto" Binding="{Binding OwnerId}"/>
+                                    <DataGridTextColumn Header="结果状态"  Width="auto" Binding="{Binding TransportStatus,Converter={StaticResource DescriptionConverter}}"/>
+                                    <DataGridTextColumn Header="添加时间"  Width="auto" Binding="{Binding AddDateTime}"/>
+                                    <DataGridTextColumn Header="完成时间"  Width="auto" Binding="{Binding UpdateDateTime}"/>
+                                    <DataGridTextColumn Header="完成方式"  Width="auto" Binding="{Binding TransportFinishType,Converter={StaticResource DescriptionConverter}}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                    </DockPanel>
+                    <DockPanel Grid.Row="2" >
+                        <DockPanel VerticalAlignment="Center" >
+                            <page:UCSplitPager  x:Name="SplitPager" DataContext="{Binding PageViewModel}"/>
+                        </DockPanel>
+                    </DockPanel>
+
+                </Grid>
+            </DockPanel>
+        </Grid>
+    </Border>
+</UserControl>

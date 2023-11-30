@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CL.Framework.ConfigFilePckg</name>
+    </assembly>
+    <members>
+        <member name="T:CL.Framework.ConfigFilePckg.Config">
+            <summary>
+            Configuration类为XML文件的根节点
+            </summary>
+        </member>
+        <member name="P:CL.Framework.ConfigFilePckg.Config.ConnectionStrings">
+            <summary>
+            ConnectionStrings属性为连接字符串节点
+            </summary>
+        </member>
+        <member name="P:CL.Framework.ConfigFilePckg.Config.AppSettings">
+            <summary>
+            AppSetting为系统属性的键值对
+            </summary>
+        </member>
+        <member name="T:CL.Framework.ConfigFilePckg.ConnectionStrings">
+            <summary>
+            ConnectionStrings属性为连接字符串节点
+            </summary>
+        </member>
+        <member name="P:CL.Framework.ConfigFilePckg.ConnectionStrings.ConnectStringElement">
+            <summary>
+            添加多个连接字符串节点
+            </summary>
+        </member>
+        <member name="P:CL.Framework.ConfigFilePckg.ConnectionStrings.Item(System.String)">
+            <summary>
+            ConnectString索引器
+            </summary>
+            <param name="name">name为节点名称</param>
+            <returns>ConnectString连接字符串对象</returns>
+        </member>
+        <member name="T:CL.Framework.ConfigFilePckg.ConnectString">
+            <summary>
+            ConnectString连接字条串节点(包括三个属性)
+            </summary>
+        </member>
+        <member name="P:CL.Framework.ConfigFilePckg.ConnectString.Name">
+            <summary>
+            Name为节点名称
+            </summary>
+        </member>
+        <member name="P:CL.Framework.ConfigFilePckg.ConnectString.ConnectionString">
+            <summary>
+            ConnectionString为连接字条串
+            </summary>
+        </member>
+        <member name="P:CL.Framework.ConfigFilePckg.ConnectString.ProviderName">
+            <summary>
+            ProviderName为提供商名称
+            </summary>
+        </member>
+        <member name="T:CL.Framework.ConfigFilePckg.AppSettings">
+            <summary>
+            系统键值设置节点
+            </summary>
+        </member>
+        <member name="P:CL.Framework.ConfigFilePckg.AppSettings.AppSettingElement">
+            <summary>
+            Add添加多个键值对节点
+            </summary>
+        </member>
+        <member name="P:CL.Framework.ConfigFilePckg.AppSettings.Item(System.String)">
+            <summary>
+            AppSetting索引器
+            </summary>
+            <param name="key">key为键名称</param>
+            <returns>AppSetting为系统属性的键值对</returns>
+        </member>
+        <member name="T:CL.Framework.ConfigFilePckg.AppSetting">
+            <summary>
+            AppSetting为系统属性的键值对
+            </summary>
+        </member>
+        <member name="P:CL.Framework.ConfigFilePckg.AppSetting.Key">
+            <summary>
+            Key属性为键名称
+            </summary>
+        </member>
+        <member name="P:CL.Framework.ConfigFilePckg.AppSetting.Value">
+            <summary>
+            Value属性为值
+            </summary>
+        </member>
+        <member name="M:CL.Framework.ConfigFilePckg.ConfigFile.#ctor(System.String)">
+            <summary>
+            <para>ConfigFile构造函数</para>
+            <para>Exception: 文件不存在，抛出异常。异常信息为“未找到配置文件”</para>
+            </summary>
+            <param name="filePath">指定的xml文件路径</param>
+        </member>
+        <member name="T:CL.Framework.ConfigFilePckg.XmlAndObjectTransformer">
+            <summary>
+            用于处理Xml和类对象之间序列化和反序列化的公共静态类
+            </summary>
+        </member>
+        <member name="M:CL.Framework.ConfigFilePckg.XmlAndObjectTransformer.DeserializeXmlToObjectByFile``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CL.Framework.ConfigFilePckg.XmlAndObjectTransformer.SerializeObjectToXmlByFile``1(``0,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="filePath"></param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.Infrastructrue.Sockets.Client.View.SocketClientPropertyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"  
+             d:DesignHeight="200" d:DesignWidth="600" Background="White">
+    <Grid>
+        <Border  BorderBrush="Gray" BorderThickness="1" CornerRadius="3">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <GroupBox Header="服务端信息" Grid.Row="2" MinHeight="80">
+                    <Grid>
+                        <WrapPanel VerticalAlignment="Center">
+                            <Label>服务端IP：</Label>
+                            <TextBox Name="LbRemoteIp" MinWidth="100" Text="{Binding DataModel.RemoteIp}"/>
+                            <TextBlock Width="10"></TextBlock>
+                            <Label>服务端端口：</Label>
+                            <TextBox Name="LbRemotePort" MinWidth="50" Text="{Binding DataModel.RemotePort}"/>
+                        </WrapPanel>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="客户端信息" MinHeight="80"  Grid.Row="3">
+                    <Grid >
+                        <WrapPanel VerticalAlignment="Center" Grid.Row="0">
+                            <Label>客户端IP：</Label>
+                            <TextBox Name="LbLocalIp" MinWidth="100" Text="{Binding DataModel.LocalIp}"/>
+                            <TextBlock Width="10"></TextBlock>
+                            <Label>客户端端口：</Label>
+                            <TextBox Name="LbLocalPort" MinWidth="50" ToolTip="0为不绑定本地端口" Text="{Binding DataModel.LocalPort}"/>
+                            <TextBlock Width="10" ></TextBlock>
+                            <Label>协议类型：</Label>
+                            <ComboBox Name="CbProtocolType" MinWidth="100"
+                                      ItemsSource="{Binding DicProtocolType}" SelectedValue="{Binding DataModel.ProtocolType}" 
+                                      SelectedValuePath="Key" DisplayMemberPath="Value" />
+                        </WrapPanel>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

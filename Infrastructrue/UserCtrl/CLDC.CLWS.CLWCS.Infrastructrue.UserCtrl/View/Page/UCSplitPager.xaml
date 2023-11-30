@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="CLDC.Infrastructrue.UserCtrl.View.Page.UCSplitPager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"  
+            d:DesignHeight="40" d:DesignWidth="1000" >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignCaptionTextBlock}" x:Key="Caption">
+                <Setter Property="Opacity" Value=".68"></Setter>
+            </Style>
+            <Style TargetType="Border">
+                <Setter Property="BorderThickness" Value="0.6"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <DockPanel Grid.Column="0" VerticalAlignment="Center">
+                <Label Content="每页数量：" VerticalAlignment="Center"></Label>
+                <TextBox Width="50" Margin="5" Text="{Binding PageSize}"></TextBox>
+                <Label  Content="当前页:"  VerticalAlignment="Center" Margin="2"/>
+                <Label  Content="{Binding CurrentPage}"  VerticalAlignment="Center"/>
+                <Label  Content="/"  VerticalAlignment="Center"/>
+                <Label  Content="{Binding TotalPageSize}"  VerticalAlignment="Center"/>
+                <Label  Content="总页"  VerticalAlignment="Center"/>
+                <Label  Content="  总条数:"  VerticalAlignment="Center"/>
+                <Label  Content="{Binding TotalCount}" Width="100"  VerticalAlignment="Center"/>
+            </DockPanel>
+            <DockPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <Button Command="{Binding Firstpagecommand}" Width="20" Height="20" Padding="1" Style="{StaticResource MaterialDesignRaisedLightButton}">
+                    <materialDesign:PackIcon Kind="PageFirst" ToolTip="首页" />
+                </Button>
+                <TextBlock Width="6"/>
+                <Button   Command="{Binding PreviousCommand}" Width="20" Height="20" Padding="1" Style="{StaticResource MaterialDesignRaisedLightButton}">
+                    <materialDesign:PackIcon Kind="SkipPrevious"  ToolTip="上一页" />
+                </Button>
+                <TextBlock Width="6"/>
+                <Button  Command="{Binding NextPageCommand}" Width="20" Height="20" Padding="1" Style="{StaticResource MaterialDesignRaisedLightButton}">
+                    <materialDesign:PackIcon Kind="SkipNext" ToolTip="下一页" />
+                </Button>
+                <TextBlock Width="6"/>
+                <Button Command="{Binding Lastpagecommand}" Width="20" Height="20" Padding="1" Style="{StaticResource MaterialDesignRaisedLightButton}">
+                    <materialDesign:PackIcon Kind="PageLast" ToolTip="尾页" />
+                </Button>
+                <TextBlock Width="8"/>
+                <TextBox
+                                   Name="txtInputStationInfo"
+                                   materialDesign:HintAssist.Hint="输入页数查询"
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                    TextAlignment="Center"
+                                    BorderThickness="0.5"
+                                    MinWidth="30"
+                                    VerticalAlignment="Center"   Text="{Binding InputPage}" Background="White"/>
+                <TextBlock Width="6"/>
+                <Button  Content="Go" Command="{Binding GoCommand}" Style="{StaticResource MaterialDesignRaisedLightButton}"  Width="30"  Height="20" Padding="1" Margin="2,0,10,0"/>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</UserControl>

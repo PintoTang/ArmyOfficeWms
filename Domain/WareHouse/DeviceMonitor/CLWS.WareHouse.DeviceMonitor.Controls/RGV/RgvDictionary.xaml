@@ -1,0 +1,88 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="FaultColor" Color="#9E2122" />
+    <SolidColorBrush x:Key="EmergencyColor" Color="#627086" />
+    <SolidColorBrush x:Key="ManualColor" Color="#FFDBCE5E" />
+    <SolidColorBrush x:Key="NormalColor" Color="#959fb6" />
+    <SolidColorBrush x:Key="RunningColor" Color="Green" />
+
+    <Style x:Key="Failure" TargetType="Button">
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Rectangle  Fill="{StaticResource FaultColor}" RadiusX="8" RadiusY="8" ></Rectangle>
+                       
+                        <Grid  x:Name="grid" Background="White" Margin="15,5"  >
+                            <Rectangle  Fill="#363e4e" HorizontalAlignment="Left" Width="7"></Rectangle>
+                            <Rectangle  Fill="#363e4e" HorizontalAlignment="Right" Width="7"></Rectangle>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="sb_fault" RepeatBehavior="Forever" AutoReverse="True" >
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="grid">
+                                <EasingColorKeyFrame KeyTime="0" Value="White"/>
+                                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="Red"/>
+                                <!--<EasingColorKeyFrame KeyTime="0:0:0.8" Value="#9E2122"/>-->
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+
+                    <ControlTemplate.Triggers>
+                        <EventTrigger  RoutedEvent="FrameworkElement.Loaded" SourceName="grid"  >
+                            <BeginStoryboard Storyboard="{StaticResource sb_fault}"  />
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="Normal" TargetType="Button">
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid  >
+                        <Rectangle  Fill="{StaticResource NormalColor}" RadiusX="8" RadiusY="8"></Rectangle>
+                        <Grid Background="White" Margin="15,5"  >
+                            <Rectangle  Fill="#363e4e" HorizontalAlignment="Left" Width="7"></Rectangle>
+                            <Rectangle  Fill="#363e4e" HorizontalAlignment="Right" Width="7"></Rectangle>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="EmergencyStop" TargetType="Button">
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid  Background="{ StaticResource EmergencyColor}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Manual" TargetType="Button">
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid  Background="{StaticResource ManualColor}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Running" TargetType="Button">
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid  Background="{StaticResource RunningColor}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

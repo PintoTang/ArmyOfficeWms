@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.WareHouse.Worker.Workers.DispatchWorkers.FourWayVehicle.View.FourWayVehicleWorkerBusinessConfigView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:view="clr-namespace:CLDC.CLWS.CLWCS.Infrastructrue.WebService.Service.View;assembly=CLDC.CLWS.CLWCS.Infrastructrue.WebService"
+             mc:Ignorable="d"  
+             d:DesignHeight="1000" d:DesignWidth="1200" Background="White" Name="_this">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Label FontSize="16" FontWeight="Black" Grid.Row="0" VerticalAlignment="Center" Content="组件业务参数配置"></Label>
+        <Grid Grid.Row="1" Background="Honeydew" Height="40" >
+            <WrapPanel   VerticalAlignment="Center" Opacity="0.8" Margin="30,0,0,0" MinWidth="500">
+                <TextBlock Width="20"></TextBlock>
+                <Label FontSize="14" FontWeight="Bold" >名称：</Label>
+                <TextBox x:Name="DeviceName" MinWidth="100" MaxWidth="300"  Text="{Binding DataModel.Name}"/>
+                <TextBlock Width="20"></TextBlock>
+                <Label FontSize="14" FontWeight="Bold">命名空间：</Label>
+                <Label x:Name="Namespace"  Content="{Binding DataModel.NameSpace}"/>
+                <TextBlock Width="20"></TextBlock>
+                <Label  FontSize="14" FontWeight="Bold" >类名：</Label>
+                <Label x:Name="ClassName"  Content="{Binding DataModel.ClassName}"/>
+            </WrapPanel>
+        </Grid>
+        <Grid Grid.Row="2" VerticalAlignment="Center">
+            <view:WebApiServiceConfigView DataContext="{Binding WebApiConfigViewModel}"></view:WebApiServiceConfigView>
+        </Grid>
+        <GroupBox Header="排编号转换" Grid.Row="3" Margin="1" Height="200">
+            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="3">
+                <StackPanel>
+                    <WrapPanel Margin="3">
+                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="添加设备对应值" Command="{Binding AddDeviceCodeCommand}" Background="Transparent" Padding="1" BorderBrush="Transparent" Width="30" Height="30">
+                            <materialDesign:PackIcon Kind="PlaylistPlus" Height="24" Width="24" />
+                        </Button>
+                        <TextBlock Width="5"></TextBlock>
+                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="删除设备对应值" Command="{Binding DeleteDeviceCodeCommand}" CommandParameter="{Binding ElementName=GridColumnConvert,Path=SelectedValue}" Background="Transparent" Padding="1" BorderBrush="Transparent" Width="30" Height="30">
+                            <materialDesign:PackIcon Kind="PlaylistRemove" Height="24" Width="24" />
+                        </Button>
+                        <TextBlock Width="5"></TextBlock>
+                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="保存设备对应值"  Command="{Binding SaveDeviceCodeCommand}" Width="30" Height="30" Background="Transparent" Padding="1" BorderBrush="Transparent">
+                            <materialDesign:PackIcon Kind="PlaylistStar" Height="24" Width="24" />
+                        </Button>
+                    </WrapPanel>
+                    <DataGrid x:Name="GridColumnConvert" 
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      AutoGenerateColumns="False"
+                      CanUserSortColumns="True"  CanUserAddRows="False"
+                      CanUserDeleteRows="False" CanUserResizeRows="False"     
+                      materialDesign:DataGridAssist.CellPadding="4 2 2 2"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
+                      ItemsSource="{Binding  DeviceCodeLst,Mode=TwoWay,UpdateSourceTrigger=LostFocus}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="WCS值"   Binding="{Binding WcsValue,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" Width="*"/>
+                            <DataGridTextColumn Header="设备值"   Binding="{Binding DeviceValue,Mode=TwoWay,UpdateSourceTrigger=LostFocus}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+
+            </Border>
+        </GroupBox>
+    </Grid>
+</UserControl>

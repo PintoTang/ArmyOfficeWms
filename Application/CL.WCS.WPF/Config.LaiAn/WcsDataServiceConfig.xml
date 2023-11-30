@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WcsDataServiceConfig PackIconKind="Atom" Name="数据服务" IsShowUi="true">
+  <DataService Id="1"  IsShowUi="true" PackIconKind="Atom" Name="操作记录" Class="OperateLogManage" NameSpace="CLDC.CLWS.CLWCS.Service.OperateLog">
+    <Config>
+      
+    </Config>
+  </DataService>
+</WcsDataServiceConfig>
+

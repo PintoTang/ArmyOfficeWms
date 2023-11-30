@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3BDB301D-5E8F-4392-9E47-DF472A139F8C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CLDC.CLWS.CLWCS.Infrastructrue.WebService</RootNamespace>
+    <AssemblyName>CLDC.CLWS.CLWCS.Infrastructrue.WebService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\..\..\LIB\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf">
+      <HintPath>..\..\..\LIB\WPFUI\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SqlSugar, Version=5.0.3.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\SqlSugar.5.0.3.2\lib\SqlSugar.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\LIB\Web\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.SelfHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\LIB\Web\System.Web.Http.SelfHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client\Common\IInvokeCmd.cs" />
+    <Compile Include="Client\Common\IWebNetInvoke.cs" />
+    <Compile Include="Client\ViewModel\WebClientPropertyViewModel.cs" />
+    <Compile Include="Client\View\WebClientPropertyView.xaml.cs">
+      <DependentUpon>WebClientPropertyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Client\WebApi\WebApiInvoke.cs" />
+    <Compile Include="Client\WebApi\WebApiInvokeCmd.cs" />
+    <Compile Include="Client\WebServicePost\WebServicePostSoapInvoke.cs" />
+    <Compile Include="Client\WebServicePost\WebServicePostInvoke.cs" />
+    <Compile Include="Client\WebServiceWsdl\WebServiceWsdlInvoke.cs" />
+    <Compile Include="Client\View\WebApiViewVertical.xaml.cs">
+      <DependentUpon>WebApiViewVertical.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicCallWebService.cs" />
+    <Compile Include="HttpHelper.cs" />
+    <Compile Include="ICommunicationSender.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Common\IService.cs" />
+    <Compile Include="Service\Common\ServiceApiView.xaml.cs">
+      <DependentUpon>ServiceApiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Common\ServiceApiViewModel.cs" />
+    <Compile Include="Service\DbService\Model\DbServiceAbstract.cs" />
+    <Compile Include="Service\DbService\Model\DbServiceConfigProperty.cs" />
+    <Compile Include="Service\DbService\Model\DbServiceMonitor.cs" />
+    <Compile Include="Service\DbService\Model\IDbServiceHandle.cs" />
+    <Compile Include="Service\DbService\ViewModel\DbServiceMonitorViewModel.cs" />
+    <Compile Include="Service\DbService\View\DbServiceMonitorView.xaml.cs">
+      <DependentUpon>DbServiceMonitorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service\WebApi\ViewModel\WebApiServiceConfigViewModel.cs" />
+    <Compile Include="Service\WebApi\View\WebApiServiceConfigView.xaml.cs">
+      <DependentUpon>WebApiServiceConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service\WebApi\WebApiClientProperty.cs" />
+    <Compile Include="Service\Webservice\Model\WcfServer.cs" />
+    <Compile Include="Service\Webservice\Model\WcfServerHost.cs" />
+    <Compile Include="Service\WebApi\WebApiServiceHost.cs" />
+    <Compile Include="Client\ViewModel\WebApiViewModel.cs" />
+    <Compile Include="Client\View\WebApiView.xaml.cs">
+      <DependentUpon>WebApiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Common\WebClientCommunicationProperty.cs" />
+    <Compile Include="Service\Common\ServiceAbstract.cs" />
+    <Compile Include="Service\Webservice\Model\WebserviceConfigProperty.cs" />
+    <Compile Include="WebServiceHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Domain\WareHouse\DbBusiness\CLDC.CLWS.CLWCS.WareHouse.DbBusiness\CLDC.CLWS.CLWCS.WareHouse.DbBusiness.csproj">
+      <Project>{70C0679C-A181-4BE4-A1CC-19506B8D7DFF}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.DbBusiness</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Domain\WareHouse\Interface\CLDC.CLWS.CLWCS.WareHouse.Interface\CLDC.CLWS.CLWCS.WareHouse.Interface.csproj">
+      <Project>{FD59AA53-CDB4-4572-8040-5C711D666D88}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Domain\WareHouse\ViewModel\CLDC.CLWS.CLWCS.WareHouse.ViewModel\CLDC.CLWS.CLWCS.WareHouse.ViewModel.csproj">
+      <Project>{2CF44D2E-6020-4D11-A74D-DBCA521A6BF3}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Domain\WareHouse\DataModel\CL.Framework.CmdDataModelPckg\CL.Framework.CmdDataModelPckg.csproj">
+      <Project>{A1B9E189-1EFB-4BA3-BB2A-E54E0835BA35}</Project>
+      <Name>CL.Framework.CmdDataModelPckg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Service\Authorize\CLDC.CLWS.CLWCS.Service.Authorize\CLDC.CLWS.CLWCS.Service.Authorize.csproj">
+      <Project>{797A97CD-A513-43AF-8A0A-F756CCE6F381}</Project>
+      <Name>CLDC.CLWS.CLWCS.Service.Authorize</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Service\StartService\CL.WCS.SystemConfigPckg\CL.WCS.SystemConfigPckg.csproj">
+      <Project>{94710D61-2939-41D9-8354-636EED78C004}</Project>
+      <Name>CL.WCS.SystemConfigPckg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Service\ThreadHandle\CLDC.CLWS.CLWCS.Service.ThreadHandle\CLDC.CLWS.CLWCS.Service.ThreadHandle.csproj">
+      <Project>{2CAA3030-1381-4027-8304-F56B481A66F1}</Project>
+      <Name>CLDC.CLWS.CLWCS.Service.ThreadHandle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Database\CL.WCS.DBHelperAbstractPckg\CLDC.CLWS.CLWCS.Infrastructrue.DbHelper.csproj">
+      <Project>{ECC61DFF-9DC8-44C0-A774-A3387B908081}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DbHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel.csproj">
+      <Project>{FC860366-A4B2-4DA5-A389-88732CD4EC7C}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\CLDC.CLWS.CLWCS.Framework\CLDC.CLWS.CLWCS.Framework.csproj">
+      <Project>{f4c897ad-9986-4bda-a106-c52054a4f110}</Project>
+      <Name>CLDC.CLWS.CLWCS.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Ioc\Infrastructrue.Ioc.DependencyFactory\Infrastructrue.Ioc.DependencyFactory.csproj">
+      <Project>{6DE18F2E-A70B-4D32-BAAB-54FFEBE7C4EF}</Project>
+      <Name>Infrastructrue.Ioc.DependencyFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Log\CLDC.Framework.Log.Helper\CLDC.Framework.Log.Helper.csproj">
+      <Project>{E8CC752C-2BB1-4426-A6A9-11292CB212B4}</Project>
+      <Name>CLDC.Framework.Log.Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UserCtrl\CLDC.CLWS.CLWCS.Infrastructrue.UserCtrl\CLDC.Infrastructrue.UserCtrl.csproj">
+      <Project>{AA54A556-74A1-4FCC-A13C-87BC87AE8541}</Project>
+      <Name>CLDC.Infrastructrue.UserCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xml\CLDC.CLWS.CLWCS.Infrastructrue.Xml\CLDC.Infrastructrue.Xml.csproj">
+      <Project>{DE4DFBAE-EE43-4B9F-AE57-5C6A51E58A10}</Project>
+      <Name>CLDC.Infrastructrue.Xml</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Client\View\WebApiViewVertical.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Client\View\WebApiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Client\View\WebClientPropertyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Service\Common\ServiceApiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Service\DbService\View\DbServiceMonitorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Service\WebApi\View\WebApiServiceConfigView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service\Webservice\ViewModel\" />
+    <Folder Include="Service\Webservice\View\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

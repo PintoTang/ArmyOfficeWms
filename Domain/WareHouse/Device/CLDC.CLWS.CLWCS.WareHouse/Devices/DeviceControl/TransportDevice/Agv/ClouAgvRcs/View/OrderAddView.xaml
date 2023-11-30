@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.WareHouse.Device.Devices.DeviceControl.TransportDevice.Agv.ClouAgvRcs.View.OrderAddView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="300" d:DesignWidth="400" Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <WrapPanel>
+                <Label>订单编号：</Label>
+                <TextBox MinWidth="150"  Text="{Binding DataModel.orderCode}"/>
+            </WrapPanel>
+            <TextBlock Height="10"/>
+            <WrapPanel>
+                <Label>订单来源：</Label>
+                <TextBox MinWidth="150"  Text="{Binding DataModel.orderSource}"/>
+            </WrapPanel>
+            <TextBlock Height="10"/>
+            <WrapPanel>
+                <Label>任务优先级：</Label>
+                <TextBox MinWidth="60"  Text="{Binding DataModel.priority}" ToolTip="1-99"/>
+            </WrapPanel>
+            <TextBlock Height="10"/>
+            <WrapPanel>
+                <Label>开始执行时间：</Label>
+                <DatePicker MinWidth="100"  Text="{Binding DataModel.planBeginTime}"/>
+                <Label>结束执行时间：</Label>
+                <DatePicker MinWidth="100"  Text="{Binding DataModel.planEndTime}"/>
+            </WrapPanel>
+            <TextBlock Height="10"/>
+        </StackPanel>
+        <DataGrid Grid.Row="1" x:Name="TransportMessageGrid"
+                      materialDesign:DataGridAssist.CellPadding="4 2 2 2"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
+                      CanUserAddRows="True" CanUserDeleteRows="True" AutoGenerateColumns="False"
+                      ItemsSource="{Binding  DataModel.details,Mode=TwoWay}"
+                      >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="指令类型" MinWidth="40"  Binding="{Binding orderType}"/>
+                <DataGridTextColumn Header="货物条码" MinWidth="100" Binding="{Binding productCode}"/>
+                <DataGridTextColumn Header="货物名称" MinWidth="100" Binding="{Binding productName}"/>
+                <DataGridTextColumn Header="优先级" Binding="{Binding qty}" />
+                <DataGridTextColumn Header="开始地址" MinWidth="100" Binding="{Binding beginStationCode}"/>
+                <DataGridTextColumn Header="结束地址" MinWidth="100" Binding="{Binding endStationCode}"/>
+                <DataGridTextColumn Header="备用" MinWidth="100" Binding="{Binding actionExtra}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

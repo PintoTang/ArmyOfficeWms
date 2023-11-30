@@ -1,0 +1,55 @@
+﻿<UserControl
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"  x:Class="WHSE.Monitor.Framework.UserControls.SysInfo" 
+			 xmlns:convertor="clr-namespace:WHSE.Monitor.Framework.UserControls"
+			 mc:Ignorable="d" 
+			 d:DesignHeight="35" d:DesignWidth="30" BorderBrush="#FFE4E4E4" BorderThickness="0"  MouseLeftButtonUp="UserControl_MouseLeftButtonUp">
+
+	<UserControl.Resources>
+
+		<convertor:SysInfoConvertor x:Key="ConvertorToState"/>
+		<SolidColorBrush x:Key="fff" Color="Azure" />
+		<ResourceDictionary x:Key="stateStyle">
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="..\CommonStyle\CommStyle.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+
+
+
+
+
+
+
+
+
+	</UserControl.Resources>
+
+
+	<Grid  >
+		<Viewbox Margin="0,0,0,-3">
+			<Canvas Width="119.038" Height="162.093">
+				<Button  Template="{Binding SysState, Converter={StaticResource ConvertorToState }}"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Height="40" Canvas.Left="30" Canvas.Top="10">
+					<!--Template="{Binding SysState, Converter={StaticResource ConvertorToState }}"-->
+
+				
+				</Button>
+				<Path Width="94.647" Height="84.802" Canvas.Left="11.5" Canvas.Top="0" Stretch="Fill" Fill="#FF384058" Data="F1 M 111.105,0.0537109L 26.8976,0.0537109C 23.9224,0.0537109 21.5418,2.43433 21.5418,5.40955L 21.5418,62.54C 21.5418,65.5154 23.9224,67.8959 26.8976,67.8959L 62.0093,67.8959L 62.0093,77.4176L 45.0486,77.4176C 42.9658,77.4176 41.1805,79.2029 41.1805,81.2859L 41.1805,84.8564L 95.9304,84.8564L 95.9304,81.2859C 95.9304,79.2029 94.145,77.4176 92.062,77.4176L 75.1016,77.4176L 75.1016,67.8959L 110.808,67.8959C 113.783,67.8959 116.164,65.5154 116.164,62.54L 116.164,5.40955C 116.461,2.43433 114.081,0.0537109 111.105,0.0537109 Z M 64.9845,61.0522C 64.9845,58.9695 66.7698,57.1841 68.8527,57.1841C 70.9357,57.1841 72.721,58.9695 72.721,61.0522C 72.721,63.1353 70.9357,64.9205 68.8527,64.9205C 66.7698,64.9205 64.9845,63.1353 64.9845,61.0522 Z M 109.32,53.9113L 28.3854,53.9113L 28.3854,7.79016L 109.32,7.79016L 109.32,53.9113 Z " HorizontalAlignment="Center"/>
+				<Path Stretch="Fill" Fill="#FF2D3D5B" Data="F1 M 95.3334,114.24L 39.3334,114.24C 37.8606,114.24 36.6667,113.046 36.6667,111.573L 36.6667,90.2396C 36.6667,88.7668 37.8606,87.573 39.3334,87.573L 95.3334,87.573C 96.8062,87.573 98,88.7668 98,90.2396L 98,111.573C 98,113.046 96.8062,114.24 95.3334,114.24 Z " Height="26.667" Canvas.Left="28.176" Canvas.Top="87.187" Width="61.333"/>
+
+				<Label x:Name="lb_sysName"  VerticalAlignment="Top" Height="21.306" Padding="0" HorizontalAlignment="Center" Width="59.059" SnapsToDevicePixels="True" Foreground="White" Canvas.Left="29.334" Canvas.Top="89.802" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14"/>
+				<Path Width="118.038" Height="33" Canvas.Left="1" Canvas.Top="115.17" Stretch="Fill" StrokeThickness="0.666667" StrokeMiterLimit="2.75" Stroke="#FF2D3D5B" Fill="#FFFFFFFF" Data="F1 M 132,153.573L 4,153.573C 2.52722,153.573 1.33337,152.379 1.33337,150.906L 1.33337,116.24C 1.33337,114.767 2.52722,113.573 4,113.573L 132,113.573C 133.473,113.573 134.667,114.767 134.667,116.24L 134.667,150.906C 134.667,152.379 133.473,153.573 132,153.573 Z "/>
+				<Label x:Name="lb_ip" VerticalAlignment="Top" Height="15.426" Padding="0" Foreground="#FF2D3D5B" Canvas.Left="6.869" Canvas.Top="117.518" Width="109.099" VerticalContentAlignment="Center"/>
+				<Label x:Name="lb_actime" Content="{Binding LatestHeartbeatTime}" FontFamily="Microsoft YaHei Light" Margin="0" Padding="0" FontSize="10" Foreground="#FF2D3D5B" HorizontalAlignment="Left" VerticalAlignment="Top" Width="109.099" Height="12.671" Canvas.Left="6.869" Canvas.Top="132.944" VerticalContentAlignment="Center"/>
+			</Canvas>
+		</Viewbox>
+		
+
+
+
+
+	</Grid>
+</UserControl>

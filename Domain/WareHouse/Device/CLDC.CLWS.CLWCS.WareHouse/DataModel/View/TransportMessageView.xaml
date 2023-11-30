@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.WareHouse.Device.DataModel.View.TransportMessageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:convertor="clr-namespace:CLDC.Infrastructrue.UserCtrl.Convertor;assembly=CLDC.Infrastructrue.UserCtrl"
+             xmlns:convertor1="clr-namespace:CLDC.CLWS.CLWCS.WareHouse.ViewModel.Convertor;assembly=CLDC.CLWS.CLWCS.WareHouse.ViewModel"
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="1200" d:DesignWidth="1200"  Name="_this">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/CLDC.Infrastructrue.UserCtrl;component/Style/UserControlStyle.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <convertor:EnumDescriptionConverter x:Key="DescriptionConverter" />
+            <convertor1:WcsAddrToShowConvertor x:Key="WcsAddrToShowConvertor" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border Background="Gray" BorderThickness="1" CornerRadius="3" BorderBrush="Gray">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="TitleRow" Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Black" Grid.Row="0" Content="{Binding ElementName=_this,Path=TitleContent}" />
+            <WrapPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button Padding="3" Height="24" Width="24" Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"  Visibility="{Binding ElementName=_this,Path=ForceFinishVisibility}" Command="{Binding ForceFinishTransportCommand}" CommandParameter="{Binding ElementName=TransportMessageGrid,Path=SelectedValue}" ToolTip="强制完成">
+                    <materialDesign:PackIcon Kind="SendCircle" />
+                </Button>
+                <TextBlock Width="20"></TextBlock>
+                <Button Padding="3" Height="24" Width="24" Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"  Visibility="{Binding ElementName=_this,Path=ReDoVisibility}" Command="{Binding ReDoTransportCommand}" CommandParameter="{Binding ElementName=TransportMessageGrid,Path=SelectedValue}" ToolTip="重新执行">
+                    <materialDesign:PackIcon Kind="Redo" />
+                </Button>
+                <TextBlock Width="20"/>
+                <Button Padding="3" Height="24" Width="24" Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"  Visibility="{Binding ElementName=_this,Path=ForceFinishVisibility}" Command="{Binding ReBackFinishTransportCommand}" CommandParameter="{Binding ElementName=TransportMessageGrid,Path=SelectedValue}" ToolTip="回滚写起始地址OPC">
+                    <materialDesign:PackIcon Kind="StepBackward2" />
+                </Button>
+                <TextBlock Width="20"></TextBlock>
+            </WrapPanel>
+            <WrapPanel Grid.Row="0" VerticalAlignment="Center">
+                <Label  FontSize="15" FontWeight="Black">总数：</Label>
+                <TextBlock Width="10"/>
+                <Label FontSize="15" Content="{Binding ElementName=TransportMessageGrid,Path=Items.Count}"></Label>
+            </WrapPanel>
+            <Grid Grid.Row="1">
+                <DataGrid x:Name="TransportMessageGrid" Style="{StaticResource DataGridStyle}"
+                      materialDesign:DataGridAssist.CellPadding="4 2 2 2"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
+                      ItemsSource="{Binding  UnfinishedTransportList,Mode=OneWay}"
+                      >
+                    <DataGrid.InputBindings>
+                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OpenTransportDeviceCommand}" CommandParameter="{Binding ElementName=TransportMessageGrid, Path=CurrentCell}" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="搬运编号" Binding="{Binding TransportOrderId}"/>
+                        <DataGridTextColumn Header="搬运垛号" Binding="{Binding PileNo}" MinWidth="300"/>
+                        <DataGridTextColumn Header="搬运状态" Binding="{Binding TransportStatus,Converter={StaticResource DescriptionConverter}}"/>
+                        <DataGridTextColumn Header="开始设备"   Binding="{Binding StartDevice}" MinWidth="150"/>
+                        <DataGridTextColumn Header="搬运设备" Binding="{Binding TransportDevice}" MinWidth="150"/>
+                        <DataGridTextColumn Header="目标设备" Binding="{Binding DestDevice}" MinWidth="150"/>
+                        <DataGridTextColumn Header="开始地址" Binding="{Binding StartAddr,Converter={StaticResource WcsAddrToShowConvertor}}" MinWidth="150"/>
+                        <DataGridTextColumn Header="当前地址"   Binding="{Binding CurAddr,Converter={StaticResource WcsAddrToShowConvertor}}" MinWidth="150"/>
+                        <DataGridTextColumn Header="目标地址" Binding="{Binding DestAddr,Converter={StaticResource WcsAddrToShowConvertor}}" MinWidth="150"/>
+                        <DataGridTextColumn Header="归属设备" Binding="{Binding OwnerId}" MinWidth="150"/>
+                        <DataGridTextColumn Header="创建时间" Binding="{Binding AddDateTime}" MinWidth="200"/>
+                        <DataGridTextColumn Header="更新时间" Binding="{Binding UpdateDateTime}" MinWidth="200"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
