@@ -64,8 +64,8 @@
                         <Button  Name="BtnLogin" materialDesign:ButtonAssist.CornerRadius="5" Foreground="White"   BorderThickness="0"  FontSize="20" Content="登录" Margin="3" Click="BtnLogin_Click"   Style="{StaticResource MaterialDesignRaisedButton}"/>
                     </StackPanel>
                 </Grid>
-            </DockPanel> <!--../../Resources/Image/智慧工业lOGO-白色.png-->
-            <Image Source="{Binding Path=IconPath}" Margin="37,25,555,354" RenderTransformOrigin="0.73,0.853"/>
+            </DockPanel>
+            <!--<Image Source="{Binding Path=IconPath}" Margin="37,25,555,354" RenderTransformOrigin="0.73,0.853"/>-->
         </Grid>
     </Border>
 </Window>

@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="BarcodeModel.cs" />
     <Compile Include="BaseQueryInput.cs" />
+    <Compile Include="EnvironMonitorReturn.cs" />
     <Compile Include="LogRecord.cs" />
     <Compile Include="RobotReadyRecord.cs" />
     <Compile Include="RobotReadyRecordQueryInput.cs" />

@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.Service.WmsView.View.UcChart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CLDC.CLWS.CLWCS.Service.WmsView.View"
+                      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+         mc:Ignorable="d" 
+         d:DesignHeight="450" d:DesignWidth="450">
+    <Grid>
+        <Border BorderThickness="2" BorderBrush="Blue" Margin="10">
+            <lvc:PieChart Name="pipChart" LegendLocation="Bottom" DataClick="pipChart_DataClick" Hoverable="False"
+                  DataTooltip="{x:Null}">
+                <lvc:PieChart.Series>
+                    <lvc:PieSeries Title="在库" DataLabels="True" LabelPoint="{Binding PointLabel}" Values="6"/>
+                    <lvc:PieSeries Title="出库" DataLabels="True" LabelPoint="{Binding PointLabel}" Values="3"/>
+                    <lvc:PieSeries Title="报损" DataLabels="True" LabelPoint="{Binding PointLabel}" Values="1"/>
+                </lvc:PieChart.Series>
+            </lvc:PieChart>
+        </Border>
+    </Grid>
+</UserControl>

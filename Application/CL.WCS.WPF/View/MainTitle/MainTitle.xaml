@@ -45,7 +45,7 @@
                 </Grid>
             </Grid>
             <Grid x:Name="Logo" Grid.Column="1" Grid.Row="1">
-                <Image Source="{Binding Path=IconPath}"></Image>
+                <!--<Image Source="{Binding Path=IconPath}"></Image>-->
              </Grid> 
             <!--标题-->
             <Grid x:Name="gridTitle" Grid.Column="2" Grid.Row="1">

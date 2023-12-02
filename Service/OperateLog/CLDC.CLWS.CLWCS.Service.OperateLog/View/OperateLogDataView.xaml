@@ -6,8 +6,7 @@
              xmlns:convertor="clr-namespace:CLDC.Infrastructrue.UserCtrl.Convertor;assembly=CLDC.Infrastructrue.UserCtrl"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:page="clr-namespace:CLDC.Infrastructrue.UserCtrl.View.Page;assembly=CLDC.Infrastructrue.UserCtrl"
-             mc:Ignorable="d" 
-              d:DesignHeight="960" d:DesignWidth="1000">
+             mc:Ignorable="d" d:DesignHeight="960" d:DesignWidth="1000">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -87,17 +86,10 @@
                         </DockPanel>
                     </Grid>
                 </Border>
-                <DataGrid Grid.Row="3"
-                                  Name="DgvDataInfo"
-                                  ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                                  AutoGenerateColumns="False"
-                                  ItemsSource="{Binding  CurOperateLogDataList, Mode=OneWay}"
-                                   CanUserSortColumns="True"  CanUserAddRows="False"
-                                   CanUserDeleteRows="False" CanUserResizeRows="False"
-                                   IsReadOnly="True"
-                                  materialDesign:DataGridAssist.CellPadding="4 2 2 2"
-                                  materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2">
+                <DataGrid Grid.Row="3" Name="DgvDataInfo" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                  AutoGenerateColumns="False" ItemsSource="{Binding  CurOperateLogDataList, Mode=OneWay}" CanUserSortColumns="True"  CanUserAddRows="False"
+                                  CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True"
+                                  materialDesign:DataGridAssist.CellPadding="4 2 2 2" materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="账号"   MinWidth="100" Binding="{Binding LogUserAccount}"/>
                         <DataGridTextColumn Header="用户名"  MinWidth="150" Binding="{Binding LogUserName}"/>

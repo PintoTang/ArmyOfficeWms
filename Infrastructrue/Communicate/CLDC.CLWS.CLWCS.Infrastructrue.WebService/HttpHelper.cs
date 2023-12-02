@@ -196,6 +196,10 @@ namespace CLDC.CLWS.CLWCS.Infrastructrue.WebService
                 {
                     request.Headers.Add("Authorization", authHeaderData);
                 }
+                else if (type == 2)
+                {
+                    request.Headers.Add("userId", authHeaderData);
+                }
                 else
                 {
                     request.Headers.Add("access_token", authHeaderData);

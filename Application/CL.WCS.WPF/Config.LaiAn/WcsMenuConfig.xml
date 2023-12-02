@@ -11,11 +11,7 @@
   <WcsMenu Id="3"  IsShowUi="true" PackIconKind="Collection" Name="调度管理" Class="WorkerManageMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
     <Config>
     </Config>
-  </WcsMenu>
-  <WcsMenu Id="4"  IsShowUi="true" PackIconKind="CameraTimer" Name="指令管理" Class="TaskManageMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
-    <Config>
-    </Config>
-  </WcsMenu>
+  </WcsMenu>  
   <WcsMenu Id="5"  IsShowUi="true" PackIconKind="CloudCircle" Name="WCS服务" Class="WcsServiceManageMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
     <Config>
     </Config>
@@ -24,6 +20,14 @@
     <Config>
     </Config>
   </WcsMenu>-->
+  <WcsMenu Id="1"  IsShowUi="true" PackIconKind="CameraTimer" Name="主界面" Class="MainContentMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
+    <Config>
+    </Config>
+  </WcsMenu>
+  <WcsMenu Id="4"  IsShowUi="true" PackIconKind="CameraTimer" Name="指令管理" Class="TaskManageMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
+    <Config>
+    </Config>
+  </WcsMenu>
   <WcsMenu Id="7"  IsShowUi="true" PackIconKind="LetterDCircle" Name="基础数据" Class="ArchitectureMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
     <Config>
     </Config>

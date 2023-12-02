@@ -24,7 +24,6 @@ namespace CLWCS.HeFei.Project
         {
             DependencyResolver.RegisterType<IWmsWcsArchitecture, ArchitectureDataForHeFei>(new ContainerControlledLifetimeManager());
             DependencyResolver.RegisterType<DeviceMonitorAbstract, DeviceMonitorForHeFei>(new ContainerControlledLifetimeManager());
-
             return OperateResult.CreateSuccessResult();
         }
 

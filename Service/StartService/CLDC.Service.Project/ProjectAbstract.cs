@@ -91,19 +91,17 @@ namespace CLDC.Service.Project
                 return pInitlizeConfigResult;
             }
 
-             OperateResult restoreResult = Restore();
-            if (!restoreResult.IsSuccess)
-            {
-                return restoreResult;
-            }
+            //OperateResult restoreResult = Restore();
+            //if (!restoreResult.IsSuccess)
+            //{
+            //    return restoreResult;
+            //}
 
-            OperateResult pRestoreResult = ParticularRestore();
-
-            if (!pRestoreResult.IsSuccess)
-            {
-                return pRestoreResult;
-            }
-
+            //OperateResult pRestoreResult = ParticularRestore();
+            //if (!pRestoreResult.IsSuccess)
+            //{
+            //    return pRestoreResult;
+            //}
 
             OperateResult startResult = Start();
             if (!startResult.IsSuccess)

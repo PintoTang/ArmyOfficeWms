@@ -1,22 +1,17 @@
-﻿using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
+﻿using CLDC.CLWS.CLWCS.Framework;
+using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
+using CLDC.CLWS.CLWCS.Infrastructrue.WebService;
 using CLDC.CLWS.CLWCS.UpperService.Communicate;
 using CLDC.CLWS.CLWCS.WareHouse.DataModel;
-
-using System;
-using System.Collections.Generic;
-
-using System.Linq;
 using CLDC.CLWS.CLWCS.WareHouse.DbBusiness;
 using CLDC.CLWS.CLWCS.WareHouse.ViewModel;
-using Infrastructrue.Ioc.DependencyFactory;
-using CLDC.CLWS.CLWCS.Infrastructrue.WebService;
-using CLDC.CLWS.CLWCS.Service.Authorize;
 using CLDC.Infrastructrue.UserCtrl.ViewModel.Page;
-using GalaSoft.MvvmLight.Command;
-using RelayCommand = CLDC.CLWS.CLWCS.Infrastructrue.DataModel.RelayCommand;
-
-using CLDC.CLWS.CLWCS.Framework;
+using Infrastructrue.Ioc.DependencyFactory;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using RelayCommand = CLDC.CLWS.CLWCS.Infrastructrue.DataModel.RelayCommand;
 
 namespace CL.WCS.WPF
 {
