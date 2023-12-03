@@ -172,8 +172,8 @@ namespace CL.WCS.WPF
         /// </summary>
         private void LoadSystemIcon()
         {
-            _smallNotify.BalloonTipText = "智能仓库管理系统V2.0";
-            _smallNotify.Text = "智能仓库管理系统V2.0";
+            _smallNotify.BalloonTipText = "物资管理系统V2.0";
+            _smallNotify.Text = "物资管理系统V2.0";
             _smallNotify.Visible = true;
             _smallNotify.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath);
             _smallNotify.MouseDoubleClick += smallNotify_MouseDoubleClick;

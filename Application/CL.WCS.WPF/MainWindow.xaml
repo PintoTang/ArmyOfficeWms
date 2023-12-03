@@ -4,7 +4,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mainTitle="clr-namespace:CL.WCS.WPF.View.MainTitle"
         xmlns:model="clr-namespace:CLDC.Infrastructrue.UserCtrl.Model;assembly=CLDC.Infrastructrue.UserCtrl"
-        Title="智能仓库管理系统V2.0" Height="750" Width="800" Icon="Assets/Images/NewLogo.ico"  
+        Title="物资管理系统V2.0" Height="750" Width="800" Icon="Assets/Images/NewLogo.ico"  
         WindowState="Normal" ResizeMode="NoResize" Topmost="False"          
         WindowStyle="None"  Closed="MainWindow_OnClosed" ContentRendered="MainWindow_OnContentRendered">
     <Window.Resources>
