@@ -38,10 +38,17 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
         {
             int _timeSpac = 2;
             int timespac = Convert.ToInt32(1000 * _timeSpac);
-            Timer PolTimer = new Timer(new TimerCallback(GetDeviceData),new OperateResult(), 0, timespac);  //生成连接探测器
+            Task.Factory.StartNew(() =>
+            {
+                while (true)
+                {
+                    GetDeviceData();
+                    Thread.Sleep(2000);//2s刷新一下
+                }
+            });
         }
 
-        private void GetDeviceData(object pol)
+        private void GetDeviceData()
         {
             OperateResult<string> opResult = new OperateResult<string>();
             try
@@ -53,6 +60,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                     s_OutputParms = opResult.Content;
                     EnvironMonitorReturn responseResult = (EnvironMonitorReturn)opResult.Content;
                     string strTemperature = string.Empty; string strHumidity = string.Empty;
+                    string strTemper=string.Empty;string strHumi = string.Empty;
                     int infraredAlarm = 0; int infraredNoAlarm = 0;
                     int smokeAlarm = 0; int smokeNoAlarm = 0;
                     foreach (EnvironMonitorModel item in responseResult.data)
@@ -61,11 +69,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                         {
                             if (data.dataName.Contains("温度"))
                             {
-                                strTemperature += data.dataValue + "℃,";
+                                strTemperature += data.dataValue + "℃，";
+                                strTemper += data.dataName.Remove(data.dataName.IndexOf("温度")) + "，";
                             }
                             else if (data.dataName.Contains("湿度"))
                             {
-                                strHumidity += data.dataValue + "%RH,";
+                                strHumidity += data.dataValue + "%，";
+                                strHumi+= data.dataName.Remove(data.dataName.IndexOf("湿度")) + "，";
                             }
                             else if (data.dataName.Contains("红外"))
                             {
@@ -91,8 +101,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                             }
                         }
                     }
-                    this.Dispatcher.BeginInvoke(new Action(() => tbTemperature.Text = "实时温度:"+ strTemperature.TrimEnd(',')));
-                    this.Dispatcher.BeginInvoke(new Action(() => tbHumidity.Text = "实时湿度:" + strHumidity.TrimEnd(',')));
+                    this.Dispatcher.BeginInvoke(new Action(() => tbTemperature.Text = "实时温度:"+ strTemperature.TrimEnd('，')));
+                    this.Dispatcher.BeginInvoke(new Action(() => tbHumidity.Text = "实时湿度:" + strHumidity.TrimEnd('，')));
+                    this.Dispatcher.BeginInvoke(new Action(() => tbTepmer.Text = "温度区域:" + strTemper.TrimEnd('，')));
+                    this.Dispatcher.BeginInvoke(new Action(() => tbHumi.Text = "湿度区域:" + strHumi.TrimEnd('，')));
                     this.Dispatcher.BeginInvoke(new Action(() => tbInfrared.Text = "正常:" + infraredNoAlarm + "/" + (infraredAlarm + infraredNoAlarm) + ",报警:" + infraredAlarm + "/" + (infraredAlarm + infraredNoAlarm)));
                     this.Dispatcher.BeginInvoke(new Action(() => tbSmokeDetector.Text = "正常:" + smokeNoAlarm + "/" + (smokeAlarm + smokeNoAlarm) + ",报警:" + smokeAlarm + "/" + (smokeAlarm + smokeNoAlarm)));
                     //tbTemperature.Text += strTemperature.TrimEnd(',');

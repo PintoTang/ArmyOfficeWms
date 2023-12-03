@@ -1,9 +1,11 @@
 ﻿using CL.WCS.SystemConfigPckg.Model;
 using CL.WCS.SystemConfigPckg.ViewModel;
+using CLDC.CLWS.CLWCS.Infrastructrue.Sockets;
 using CLDC.Infrastructrue.UserCtrl.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -47,5 +49,36 @@ namespace CLDC.CLWCS.Service.MenuService.View
             this.Visibility = System.Windows.Visibility.Hidden;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                TcpCom tcp = new TcpCom();
+                tcp.RemoteIp= IPAddress.Parse("192.168.1.8");
+                tcp.RemoteIpPort = 20108;
+
+                if (!tcp.Connected)
+                {
+                    tcp.Connect();
+                }
+
+                byte[] buffer = new byte[9];
+                buffer[0] = 0xEF;
+                buffer[1] = 0xAA;
+                buffer[2] = 0x01;
+                buffer[3] = 0xAA;
+                buffer[4] = 0x02;
+                buffer[5] = 0x00;
+                buffer[6] = 0xAC;
+                buffer[7] = 0xEF;
+                buffer[8] = 0x55;
+                tcp.Send(buffer);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
     }
 }

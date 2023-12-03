@@ -8,6 +8,9 @@
              mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="1100">
     <Border CornerRadius="15" Background="White">
         <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/CLDC.CLWCS.Service.MenuService;component/Images/background.jpg" />
+            </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition/>
@@ -28,28 +31,15 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid  Grid.Row="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="60"/>
-                            <RowDefinition Height="60"/>
-                            <RowDefinition Height="60"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Button Content="库存管理" Height="40" Margin="5" Grid.Row="0" Grid.Column="0"></Button>
-                        <Button Content="环境设置" Height="40" Margin="5" Grid.Row="0" Grid.Column="1"></Button>
-                        <Button Content="入库管理" Height="40" Margin="5" Grid.Row="1" Grid.Column="0"></Button>
-                        <Button Content="报损管理" Height="40" Margin="5" Grid.Row="1" Grid.Column="1"></Button>
-                        <Button Content="出库管理" Height="40" Margin="5" Grid.Row="2" Grid.Column="0"></Button>
-                        <Button Content="视频监控" Height="40" Margin="5" Grid.Row="2" Grid.Column="1"></Button>
+                        <wmsView:UcManageButton Margin="35,20,0,10"/>
                     </Grid>
                     <Grid Grid.Row="1">
-                        <wmsView:UcChart x:Name="CtrlChart"/>
+                        <wmsView:UcChart x:Name="CtrlChart" Margin="35,0,0,0"/>
                     </Grid>
                 </Grid>
             </Grid>
             <wmsView:UcEnvironMonitor Grid.Column="2" Grid.Row="1"/>
+            
         </Grid>
     </Border>
 </UserControl>

@@ -66,6 +66,9 @@
     <Compile Include="View\UcEnvironMonitor.xaml.cs">
       <DependentUpon>UcEnvironMonitor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UcManageButton.xaml.cs">
+      <DependentUpon>UcManageButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UcTopTitle.xaml.cs">
       <DependentUpon>UcTopTitle.xaml</DependentUpon>
     </Compile>
@@ -78,6 +81,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UcEnvironMonitor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UcManageButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,6 +122,10 @@
       <Project>{626151D3-EA45-4A40-93AC-3B5C15372490}</Project>
       <Name>CLDC.CLWS.CLWCS.WareHouse.DataModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\Communicate\CLDC.CLWS.CLWCS.Infrastructrue.Socket\CLDC.CLWS.CLWCS.Infrastructrue.Sockets.csproj">
+      <Project>{B83E999D-5389-4859-BD5C-434DA790D496}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.Sockets</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructrue\Communicate\CLDC.CLWS.CLWCS.Infrastructrue.WebService\CLDC.CLWS.CLWCS.Infrastructrue.WebService.csproj">
       <Project>{3BDB301D-5E8F-4392-9E47-DF472A139F8C}</Project>
       <Name>CLDC.CLWS.CLWCS.Infrastructrue.WebService</Name>
@@ -128,7 +139,9 @@
       <Name>CLDC.CLWS.CLWCS.Framework</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\btnBackground.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\EntranceGuard.png" />
     <Resource Include="Images\Humidity.png" />

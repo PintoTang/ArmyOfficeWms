@@ -33,7 +33,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical" Grid.Row="0" >
-                <mainTitle:MainTitle x:Name="TitleZone" Height="60" ></mainTitle:MainTitle>
+                <mainTitle:MainTitle x:Name="TitleZone" Height="78" ></mainTitle:MainTitle>
             </StackPanel>
             <materialDesign:DrawerHost Grid.Row="1" x:Name="MainDrawerHost" IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
                 <materialDesign:DrawerHost.LeftDrawerContent>

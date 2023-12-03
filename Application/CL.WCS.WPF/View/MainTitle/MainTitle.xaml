@@ -12,6 +12,9 @@
     </UserControl.Resources>
     <materialDesign:ColorZone Height="78" Mode="PrimaryDark" materialDesign:ShadowAssist.ShadowDepth="Depth4">
         <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Resources/Image/Title.jpg" />
+            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="150"/>
@@ -60,7 +63,7 @@
                 <Grid Grid.Column="1"  >
                     <TextBlock HorizontalAlignment="Center" Text="{StaticResource TitleChinese}" Grid.Column="0"  Style="{StaticResource ChineseStyle}" />
                 </Grid>
-                <TextBlock HorizontalAlignment="Center" Text="{StaticResource TitleEnglish}" Grid.Column="1" Grid.Row="1" Style="{StaticResource EnglishStyle}"/>
+                <!--<TextBlock HorizontalAlignment="Center" Text="{StaticResource TitleEnglish}" Grid.Column="1" Grid.Row="1" Style="{StaticResource EnglishStyle}"/>-->
             </Grid>
             <Grid Grid.Column="3" Grid.RowSpan="3">
                 <Grid.RowDefinitions>

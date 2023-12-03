@@ -6,9 +6,14 @@
              xmlns:local="clr-namespace:CLDC.CLWS.CLWCS.Service.WmsView.View"
                       xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
          mc:Ignorable="d" 
-         d:DesignHeight="450" d:DesignWidth="450">
+         d:DesignHeight="460" d:DesignWidth="450">
     <Grid>
-        <Border BorderThickness="2" BorderBrush="Blue" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <local:UcTopTitle Grid.Row="0" TitleContent="在库管理"/>
+        <Border Grid.Row="1">
             <lvc:PieChart Name="pipChart" LegendLocation="Bottom" DataClick="pipChart_DataClick" Hoverable="False"
                   DataTooltip="{x:Null}">
                 <lvc:PieChart.Series>

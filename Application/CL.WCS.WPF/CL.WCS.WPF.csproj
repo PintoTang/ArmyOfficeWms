@@ -197,6 +197,7 @@
     <Resource Include="Resources\Image\NanWang.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Image\Title.jpg" />
     <Content Include="Resources\ReportViewer.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

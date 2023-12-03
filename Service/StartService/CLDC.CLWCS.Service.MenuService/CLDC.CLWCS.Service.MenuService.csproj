@@ -128,6 +128,10 @@
       <Project>{F618E7A7-1C88-42CE-9C93-C4631B4F5EC4}</Project>
       <Name>CLDC.CLWS.CLWCS.WareHouse.Worker</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\Communicate\CLDC.CLWS.CLWCS.Infrastructrue.Socket\CLDC.CLWS.CLWCS.Infrastructrue.Sockets.csproj">
+      <Project>{B83E999D-5389-4859-BD5C-434DA790D496}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.Sockets</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructrue\DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel.csproj">
       <Project>{FC860366-A4B2-4DA5-A389-88732CD4EC7C}</Project>
       <Name>CLDC.CLWS.CLWCS.Infrastructrue.DataModel</Name>
@@ -185,6 +189,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
