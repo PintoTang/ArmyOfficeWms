@@ -36,7 +36,7 @@ namespace CL.WCS.WPF.Theme
         /// </summary>
         public void SetGlobalSystemStyle(DepartmentEnum department)
         {
-            if (department.Equals(DepartmentEnum.CLOU))
+            if (department.Equals(DepartmentEnum.WEISS))
             {
                 Color primaryColor = Color.FromRgb(0, 54, 122);
                 Color PrimaryForegroundColor = Color.FromRgb(130, 218, 255);

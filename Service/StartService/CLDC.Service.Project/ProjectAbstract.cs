@@ -62,11 +62,11 @@ namespace CLDC.Service.Project
                 return pInitlizeResult;
             }
 
-            OperateResult rOpcServerResult = RegisterOpcServer();
-            if (!rOpcServerResult.IsSuccess)
-            {
-                return rOpcServerResult;
-            }
+            //OperateResult rOpcServerResult = RegisterOpcServer();
+            //if (!rOpcServerResult.IsSuccess)
+            //{
+            //    return rOpcServerResult;
+            //}
 
             OperateResult rServiceResult = RegisterService();
             if (!rServiceResult.IsSuccess)
@@ -103,16 +103,17 @@ namespace CLDC.Service.Project
             //    return pRestoreResult;
             //}
 
-            OperateResult startResult = Start();
-            if (!startResult.IsSuccess)
-            {
-                return startResult;
-            }
-            OperateResult pStartResult = ParticularStart();
-            if (!pStartResult.IsSuccess)
-            {
-                return pStartResult;
-            }
+            //OperateResult startResult = Start();
+            //if (!startResult.IsSuccess)
+            //{
+            //    return startResult;
+            //}
+
+            //OperateResult pStartResult = ParticularStart();
+            //if (!pStartResult.IsSuccess)
+            //{
+            //    return pStartResult;
+            //}
             return OperateResult.CreateSuccessResult();
         }
 
@@ -235,51 +236,43 @@ namespace CLDC.Service.Project
         private OperateResult InitilizeConfig()
         {
             LogHelper.WriteLog(_logName, string.Format("{0} 开始初始化指令管理", DateTime.Now), EnumLogLevel.Debug);
-
             OperateResult<OrderManage> createOrderManageHandler = CreateOrderManageHandler();
             if (!createOrderManageHandler.IsSuccess)
             {
                 return OperateResult.CreateFailedResult("创建指令管理失败,失败原因：" + createOrderManageHandler.Message, 1);
             }
-
             DependencyResolver.RegisterInstance(createOrderManageHandler.Content);
-
             LogHelper.WriteLog(_logName, string.Format("{0} 结束初始化指令管理", DateTime.Now), EnumLogLevel.Debug);
 
 
-            LogHelper.WriteLog(_logName, string.Format("{0} 开始初始化设备", DateTime.Now), EnumLogLevel.Debug);
+            //LogHelper.WriteLog(_logName, string.Format("{0} 开始初始化设备", DateTime.Now), EnumLogLevel.Debug);
+            //OperateResult initDevices = DeviceManage.Instance.InitDevices();
+            //if (!initDevices.IsSuccess)
+            //{
+            //    return initDevices;
+            //}
+            //LogHelper.WriteLog(_logName, string.Format("{0} 结束初始化设备", DateTime.Now), EnumLogLevel.Debug);
 
 
-            OperateResult initDevices = DeviceManage.Instance.InitDevices();
-            if (!initDevices.IsSuccess)
-            {
-                return initDevices;
-            }
+            //LogHelper.WriteLog(_logName, string.Format("{0} 开始初始化组件", DateTime.Now), EnumLogLevel.Debug);
+            //OperateResult initWorker = WorkerManage.Instance.InitWorkers();
+            //if (!initWorker.IsSuccess)
+            //{
+            //    return initWorker;
+            //}
+            //LogHelper.WriteLog(_logName, string.Format("{0} 结束初始化组件", DateTime.Now), EnumLogLevel.Debug);
 
-            LogHelper.WriteLog(_logName, string.Format("{0} 结束初始化设备", DateTime.Now), EnumLogLevel.Debug);
 
-            LogHelper.WriteLog(_logName, string.Format("{0} 开始初始化组件", DateTime.Now), EnumLogLevel.Debug);
+            //LogHelper.WriteLog(_logName, string.Format("{0} 开始初始化上层业务", DateTime.Now), EnumLogLevel.Debug);
+            //OperateResult initilzeUpperResult = UpperServiceBusinessManage.Instance.InitilizeAllUpperService();
+            //if (!initilzeUpperResult.IsSuccess)
+            //{
+            //    return initilzeUpperResult;
+            //}
+            //LogHelper.WriteLog(_logName, string.Format("{0} 结束初始化上层业务", DateTime.Now), EnumLogLevel.Debug);
 
-            OperateResult initWorker = WorkerManage.Instance.InitWorkers();
-
-            if (!initWorker.IsSuccess)
-            {
-                return initWorker;
-            }
-
-            LogHelper.WriteLog(_logName, string.Format("{0} 结束初始化组件", DateTime.Now), EnumLogLevel.Debug);
-
-            LogHelper.WriteLog(_logName, string.Format("{0} 开始初始化上层业务", DateTime.Now), EnumLogLevel.Debug);
-
-            OperateResult initilzeUpperResult = UpperServiceBusinessManage.Instance.InitilizeAllUpperService();
-            if (!initilzeUpperResult.IsSuccess)
-            {
-                return initilzeUpperResult;
-            }
-            LogHelper.WriteLog(_logName, string.Format("{0} 结束初始化上层业务", DateTime.Now), EnumLogLevel.Debug);
 
             LogHelper.WriteLog(_logName, string.Format("{0} 开始初始化基础数据管理", DateTime.Now), EnumLogLevel.Debug);
-
             OperateResult initilizeArchitectureResult = ArchitectureManage.Instance.Initilize();
             if (!initilizeArchitectureResult.IsSuccess)
             {
@@ -287,8 +280,8 @@ namespace CLDC.Service.Project
             }
             LogHelper.WriteLog(_logName, string.Format("{0} 结束初始化基础数据管理", DateTime.Now), EnumLogLevel.Debug);
 
-            LogHelper.WriteLog(_logName, string.Format("{0} 开始初始化数据管理", DateTime.Now), EnumLogLevel.Debug);
 
+            LogHelper.WriteLog(_logName, string.Format("{0} 开始初始化数据管理", DateTime.Now), EnumLogLevel.Debug);
             OperateResult initilizeOperateLogResult = WcsDataServiceManage.Instance.Initilize();
             if (!initilizeOperateLogResult.IsSuccess)
             {
@@ -296,14 +289,15 @@ namespace CLDC.Service.Project
             }
             LogHelper.WriteLog(_logName, string.Format("{0} 结束初始化数据管理", DateTime.Now), EnumLogLevel.Debug);
 
-            LogHelper.WriteLog(_logName, string.Format("{0} 开始初始化菜单", DateTime.Now), EnumLogLevel.Debug);
 
+            LogHelper.WriteLog(_logName, string.Format("{0} 开始初始化菜单", DateTime.Now), EnumLogLevel.Debug);
             OperateResult initilizeMenuResult = WcsMenuManage.Instance.Initilize();
             if (!initilizeMenuResult.IsSuccess)
             {
                 return initilizeMenuResult;
             }
             LogHelper.WriteLog(_logName, string.Format("{0} 结束初始化菜单", DateTime.Now), EnumLogLevel.Debug);
+
 
             return OperateResult.CreateSuccessResult();
         }
@@ -376,22 +370,23 @@ namespace CLDC.Service.Project
             }
             else if (SystemConfig.Instance.IsTrueOPC.Equals(OpcModeEnum.Automatic))
             {
-                try
-                {
-                    OperateResult<IDbHelper> dbHepler = RegisterAtsTestDbHelper();
-                    if (!dbHepler.IsSuccess)
-                    {
-                        return OperateResult.CreateFailedResult<OPCClientAbstract>(null, "自动化测试模式下，创建模拟Opc数据库连接失败：" + dbHepler.Message);
-                    }
-                    OpcItemAbstract opcServer = DependencyResolver.GetService<OpcItemAbstract>();
-                    opcClient = new OPCDataBaseRWClient(opcServer);
-                    opcClient.IsPrintRealTimeReadLog = SystemConfig.Instance.CurSystemConfig.IsRecordEventLog.Value;
-                    createResult = OperateResult.CreateSuccessResult(opcClient);
-                }
-                catch (Exception ex)
-                {
-                    createResult = OperateResult.CreateFailedResult<OPCClientAbstract>(null, string.Format("自动自测模式需要配置OPC数据库，请确认配置信息正确!：" + OperateResult.ConvertException(ex)));
-                }
+                //try
+                //{
+                //    OperateResult<IDbHelper> dbHepler = RegisterAtsTestDbHelper();
+                //    if (!dbHepler.IsSuccess)
+                //    {
+                //        return OperateResult.CreateFailedResult<OPCClientAbstract>(null, "自动化测试模式下，创建模拟Opc数据库连接失败：" + dbHepler.Message);
+                //    }
+                //    OpcItemAbstract opcServer = DependencyResolver.GetService<OpcItemAbstract>();
+                //    opcClient = new OPCDataBaseRWClient(opcServer);
+                //    opcClient.IsPrintRealTimeReadLog = SystemConfig.Instance.CurSystemConfig.IsRecordEventLog.Value;
+                //    createResult = OperateResult.CreateSuccessResult(opcClient);
+                //}
+                //catch (Exception ex)
+                //{
+                //    createResult = OperateResult.CreateFailedResult<OPCClientAbstract>(null, string.Format("自动自测模式需要配置OPC数据库，请确认配置信息正确!：" + OperateResult.ConvertException(ex)));
+                //}
+                createResult = OperateResult.CreateSuccessResult(opcClient);
                 return createResult;
             }
             else

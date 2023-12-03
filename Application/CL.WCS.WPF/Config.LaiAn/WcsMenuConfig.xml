@@ -15,24 +15,12 @@
   <WcsMenu Id="5"  IsShowUi="true" PackIconKind="CloudCircle" Name="WCS服务" Class="WcsServiceManageMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
     <Config>
     </Config>
-  </WcsMenu>
-  <WcsMenu Id="6"  IsShowUi="true" PackIconKind="Lan" Name="上层服务" Class="ServiceBusinessHandleManageMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
-    <Config>
-    </Config>
   </WcsMenu>-->
-  <WcsMenu Id="1"  IsShowUi="true" PackIconKind="CameraTimer" Name="主界面" Class="MainContentMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
+  <WcsMenu Id="1"  IsShowUi="true" PackIconKind="Codepen" Name="主界面" Class="MainContentMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
     <Config>
     </Config>
   </WcsMenu>
   <WcsMenu Id="4"  IsShowUi="true" PackIconKind="CameraTimer" Name="指令管理" Class="TaskManageMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
-    <Config>
-    </Config>
-  </WcsMenu>
-  <WcsMenu Id="7"  IsShowUi="true" PackIconKind="LetterDCircle" Name="基础数据" Class="ArchitectureMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
-    <Config>
-    </Config>
-  </WcsMenu>
-  <WcsMenu Id="8"  IsShowUi="true" PackIconKind="Database" Name="数据服务" Class="WcsDataServiceManageMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
     <Config>
     </Config>
   </WcsMenu>

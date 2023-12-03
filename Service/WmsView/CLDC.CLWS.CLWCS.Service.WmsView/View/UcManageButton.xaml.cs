@@ -1,4 +1,5 @@
 ﻿using CLDC.CLWS.CLWCS.Infrastructrue.Sockets;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Net;
 using System.Windows;
@@ -45,6 +46,11 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             {
 
             }
+        }
+
+        private void btnInOrder_Click(object sender, RoutedEventArgs e)
+        {
+            UcInOrderManage ucIn= new UcInOrderManage();
         }
     }
 }

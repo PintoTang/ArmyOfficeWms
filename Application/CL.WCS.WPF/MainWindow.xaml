@@ -5,8 +5,7 @@
         xmlns:mainTitle="clr-namespace:CL.WCS.WPF.View.MainTitle"
         xmlns:model="clr-namespace:CLDC.Infrastructrue.UserCtrl.Model;assembly=CLDC.Infrastructrue.UserCtrl"
         Title="智能仓库管理系统V2.0" Height="750" Width="800" Icon="Assets/Images/NewLogo.ico"  
-        WindowState="Normal" ResizeMode="NoResize" Topmost="False"  
-        
+        WindowState="Normal" ResizeMode="NoResize" Topmost="False"          
         WindowStyle="None"  Closed="MainWindow_OnClosed" ContentRendered="MainWindow_OnContentRendered">
     <Window.Resources>
         <ResourceDictionary>
@@ -23,7 +22,6 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-
     </Window.Resources>
     <Grid>
         <Grid x:Name="GridMain" Grid.Row="0">
@@ -41,8 +39,7 @@
                                               Height="{Binding ElementName=UserContentControl,Path=ActualHeight}"  
                                               VerticalContentAlignment="Stretch" MinWidth="180">
                         <StackPanel  Height="{Binding ElementName=UserContentControl,Path=ActualHeight}">
-                            <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
-                                    HorizontalAlignment="Right" Margin="16"
+                            <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" HorizontalAlignment="Right" Margin="16"
                                     IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" Width="40" Height="30"/>
                             <ListBox x:Name="ListBoxMenu"  PreviewMouseLeftButtonUp="ListBoxMenuMin_OnPreviewMouseLeftButtonUp">
                                 <ListBox.ItemTemplate>
@@ -60,8 +57,7 @@
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
-                        </StackPanel>
-                      
+                        </StackPanel>                      
                     </materialDesign:ColorZone>
                 </materialDesign:DrawerHost.LeftDrawerContent>
                 <materialDesign:DialogHost x:Name="DialogHostWait" Identifier="DialogHostWait" >
@@ -71,8 +67,8 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <materialDesign:ColorZone x:Name="ToolZone" Grid.Column="0" Mode="PrimaryLight" Height="{Binding ElementName=UserContentControl,Path=ActualHeight}"  VerticalContentAlignment="Stretch"
-                                                  materialDesign:ShadowAssist.ShadowDepth="Depth3">
+                        <materialDesign:ColorZone x:Name="ToolZone" Grid.Column="0" Mode="PrimaryLight" Height="{Binding ElementName=UserContentControl,Path=ActualHeight}" 
+                                                  VerticalContentAlignment="Stretch" materialDesign:ShadowAssist.ShadowDepth="Depth3">
                             <Grid  x:Name="GridMenu" Width="45" Background="Transparent">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="60"/>
@@ -96,15 +92,13 @@
                         <Grid x:Name="UserContentControl" Grid.Column="2">
 
                         </Grid>
-
                         <Grid x:Name="GridMessage" Background="DimGray" Width="350" MouseEnter="GridMessage_OnMouseEnter"  MouseLeave="GridMessage_OnMouseLeave"  HorizontalAlignment="Right" Grid.Column="2" Margin="0,0,-349,0" Opacity="0.9"  >
                         </Grid>
                     </Grid>
                 </materialDesign:DialogHost>
-            </materialDesign:DrawerHost>
-          
+            </materialDesign:DrawerHost>          
 
-            <Grid  x:Name="BottomZone" Grid.Row="2" Height="30" Background="Gray">
+            <!--<Grid  x:Name="BottomZone" Grid.Row="2" Height="30" Background="Gray">
                 <Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -114,7 +108,7 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" Margin="5,0,0,0">
-                            <Label x:Name="LbCopyRight" >本软件著作权归 深圳市科陆电子 所有</Label>
+                            <Label x:Name="LbCopyRight" >本软件著作权归 深圳市维斯物流自动化 所有</Label>
                             <TextBlock Width="10"></TextBlock>
                             <Label x:Name="LbVersion">软件版本 2.0.0.0</Label>
                             <TextBlock Width="10"></TextBlock>
@@ -133,7 +127,7 @@
                         </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
+            </Grid>-->
         </Grid>
         <materialDesign:Snackbar MessageQueue="{Binding MessageQueue}" x:Name="Snackbar"  HorizontalAlignment="Right"/>
     </Grid>

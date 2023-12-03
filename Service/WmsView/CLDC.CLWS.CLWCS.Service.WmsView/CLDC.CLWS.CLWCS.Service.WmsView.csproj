@@ -66,6 +66,9 @@
     <Compile Include="View\UcEnvironMonitor.xaml.cs">
       <DependentUpon>UcEnvironMonitor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UcInOrderManage.xaml.cs">
+      <DependentUpon>UcInOrderManage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UcManageButton.xaml.cs">
       <DependentUpon>UcManageButton.xaml</DependentUpon>
     </Compile>
@@ -81,6 +84,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UcEnvironMonitor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UcInOrderManage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,6 +144,14 @@
     <ProjectReference Include="..\..\..\Infrastructrue\Framework\CLDC.CLWS.CLWCS.Framework\CLDC.CLWS.CLWCS.Framework.csproj">
       <Project>{F4C897AD-9986-4BDA-A106-C52054A4F110}</Project>
       <Name>CLDC.CLWS.CLWCS.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\UserCtrl\CLDC.CLWS.CLWCS.Infrastructrue.UserCtrl\CLDC.Infrastructrue.UserCtrl.csproj">
+      <Project>{aa54a556-74a1-4fcc-a13c-87bc87ae8541}</Project>
+      <Name>CLDC.Infrastructrue.UserCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Authorize\CLDC.CLWS.CLWCS.Service.Authorize\CLDC.CLWS.CLWCS.Service.Authorize.csproj">
+      <Project>{797A97CD-A513-43AF-8A0A-F756CCE6F381}</Project>
+      <Name>CLDC.CLWS.CLWCS.Service.Authorize</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

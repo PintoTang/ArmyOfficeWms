@@ -213,7 +213,7 @@ namespace CL.WCS.SystemConfigPckg.ViewModel
                     string projectPath = projectPathResult.Content + "\\SystemConfig.xml";
 
                     SysConfig.WcsDatabaseConn.Value = GetEnPwdDataConnectString(SysConfig.WcsDataBaseType.Value,SysConfig.WcsDatabaseConn.Value);
-                    SysConfig.AtsDatabaseConn.Value = GetEnPwdDataConnectString(SysConfig.AtsDataBaseType.Value,SysConfig.AtsDatabaseConn.Value);
+                    //SysConfig.AtsDatabaseConn.Value = GetEnPwdDataConnectString(SysConfig.AtsDataBaseType.Value,SysConfig.AtsDatabaseConn.Value);
 
                     XmlSerializerHelper.SaveToXml(strFileName, SysConfig,typeof(SystemConfigMode), "SystemConfig");
                     XmlSerializerHelper.SaveToXml(projectPath, SysConfig, typeof(SystemConfigMode), "SystemConfig");

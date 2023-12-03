@@ -40,22 +40,19 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Orientation="Vertical" Margin="15,15,0,0" Grid.Row="0">
-                        <Label FontSize="18" Content="{Binding SysConfig.SysName.Name}"/>
-                        <TextBlock  Style="{StaticResource DescLableStyle}" Text="{Binding SysConfig.SysName.Description}" Margin="0,10,0,10"/>
-                        <TextBox FontSize="18" Width="250" HorizontalAlignment="Left" Text="{Binding SysConfig.SysName.Value}"
-                                 IsEnabled="{Binding CurUserLevel,Converter={StaticResource UserLevelToEnable},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}"></TextBox>
-                        <TextBlock Height="30"></TextBlock>
-
-                        <Label FontSize="18"  Content="{Binding SysConfig.WhCode.Name}"/>
-                        <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding SysConfig.WhCode.Description}" Margin="0,10,0,10"></TextBlock>
-                        <TextBox FontSize="18" Width="250" HorizontalAlignment="Left" Text="{Binding SysConfig.WhCode.Value}" IsEnabled="{Binding CurUserLevel,Converter={StaticResource UserLevelToEnable},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级管理员}}"/>
+                        <Label FontSize="18" Content="{Binding SysConfig.Department.Name}"/>
+                        <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding SysConfig.Department.Description}" Margin="0,10,0,10"/>
+                        <ComboBox FontSize="18"  Width="250" HorizontalAlignment="Left"  ItemsSource="{Binding DepartmentDic}" 
+                          DisplayMemberPath="Value" SelectedValuePath="Key" IsEnabled="{Binding CurUserLevel,Converter={StaticResource UserLevelToEnable},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级管理员}}"
+                          SelectedValue="{Binding  SysConfig.Department.Value,Mode=TwoWay}">
+                        </ComboBox>
                         <TextBlock Height="30"/>
 
-                        <Label FontSize="18"  Content="{Binding SysConfig.IsUseCellPile.Name}"/>
+                        <!--<Label FontSize="18"  Content="{Binding SysConfig.IsUseCellPile.Name}"/>
                         <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding SysConfig.IsUseCellPile.Description}" Margin="0,10,0,10"></TextBlock>
                         <ToggleButton HorizontalAlignment="Left" IsChecked="{Binding SysConfig.IsUseCellPile.Value}" Style="{StaticResource MaterialDesignSwitchToggleButton}" IsEnabled="{Binding CurUserLevel,Converter={StaticResource UserLevelToEnable},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级管理员}}"></ToggleButton>
-
-                        <TextBlock Height="30"/>
+                        <TextBlock Height="30"/>-->
+                        
                         <Label FontSize="18" Content="{Binding  SysConfig.OpcMode.Name}"/>
                         <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding  SysConfig.OpcMode.Description}" Margin="0,10,0,10"/>
                         <ComboBox FontSize="18"  Width="250" HorizontalAlignment="Left"  ItemsSource="{Binding OpcModeDic}" 
@@ -64,7 +61,7 @@
                         </ComboBox>
                         <TextBlock Height="30"/>
 
-                        <Label FontSize="18" Content="{Binding SysConfig.AtsDataBaseType.Name}"/>
+                        <!--<Label FontSize="18" Content="{Binding SysConfig.AtsDataBaseType.Name}"/>
                         <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding SysConfig.AtsDataBaseType.Description}" Margin="0,10,0,10"/>
                         <ComboBox FontSize="18"  Width="250" HorizontalAlignment="Left"  ItemsSource="{Binding DataBaseTypeDic}" 
                                                   DisplayMemberPath="Value" SelectedValuePath="Key" 
@@ -83,7 +80,7 @@
                                 </MultiBinding>
                             </ContentControl.Content>
                         </ContentControl>
-                        <TextBlock Height="30"/>
+                        <TextBlock Height="30"/>-->
 
                         <Label FontSize="18"  Content="{Binding SysConfig.IsRecordEventLog.Name}"/>
                         <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding SysConfig.IsRecordEventLog.Description}" Margin="0,10,0,10"></TextBlock>
@@ -100,23 +97,48 @@
                         </ComboBox>
                         <TextBlock Height="30"/>
 
-
-                    </StackPanel>
-                    <StackPanel Orientation="Vertical" Margin="15,15,0,0" Grid.Column="1">
-                        <Label FontSize="18" Content="{Binding SysConfig.Department.Name}"/>
-                        <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding SysConfig.Department.Description}" Margin="0,10,0,10"/>
-                        <ComboBox FontSize="18"  Width="250" HorizontalAlignment="Left"  ItemsSource="{Binding DepartmentDic}" 
-                                                  DisplayMemberPath="Value" SelectedValuePath="Key" IsEnabled="{Binding CurUserLevel,Converter={StaticResource UserLevelToEnable},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级管理员}}"
-                                                  SelectedValue="{Binding  SysConfig.Department.Value,Mode=TwoWay}">
+                        <Label FontSize="18" Content="{Binding SysConfig.MaxByteLength.Name}"/>
+                        <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding SysConfig.MaxByteLength.Description}" Margin="0,10,0,10"/>
+                        <ComboBox FontSize="18"  Width="250" HorizontalAlignment="Left"  ItemsSource="{Binding LogLenghtDic}" 
+                          DisplayMemberPath="Value" SelectedValuePath="Key" IsEnabled="{Binding CurUserLevel,Converter={StaticResource UserLevelToEnable},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}"
+                          SelectedValue="{Binding  SysConfig.MaxByteLength.Value,Mode=TwoWay}">
                         </ComboBox>
                         <TextBlock Height="30"/>
 
+                        <Label FontSize="18" Content="{Binding  SysConfig.MaxLogCount.Name}"/>
+                        <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding  SysConfig.MaxLogCount.Description}" Margin="0,10,0,10"/>
+                        <ComboBox FontSize="18"  Width="250" HorizontalAlignment="Left"  ItemsSource="{Binding LogNumMaxDic}" 
+                          DisplayMemberPath="Value" SelectedValuePath="Key"  IsEnabled="{Binding CurUserLevel,Converter={StaticResource UserLevelToEnable},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}"
+                          SelectedValue="{Binding  SysConfig.MaxLogCount.Value,Mode=TwoWay}">
+                        </ComboBox>
+                        <TextBlock Height="30"/>
 
-                        <Label FontSize="18" Content="{Binding  SysConfig.SysNo.Name}"/>
+                        <Label FontSize="18" Content="{Binding SysConfig.LogSavedDays.Name}"/>
+                        <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding SysConfig.LogSavedDays.Description}" Margin="0,10,0,10"/>
+                        <ComboBox FontSize="18"  Width="250" HorizontalAlignment="Left"  ItemsSource="{Binding LogSaveDaysDic}" 
+                          DisplayMemberPath="Value" SelectedValuePath="Key" IsEnabled="{Binding CurUserLevel,Converter={StaticResource UserLevelToEnable},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}"
+                          SelectedValue="{Binding  SysConfig.LogSavedDays.Value,Mode=TwoWay}">
+                        </ComboBox>
+                        <TextBlock Height="30"/>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Vertical" Margin="15,15,0,0" Grid.Column="1">
+                        <Label FontSize="18" Content="{Binding SysConfig.SysName.Name}"/>
+                        <TextBlock  Style="{StaticResource DescLableStyle}" Text="{Binding SysConfig.SysName.Description}" Margin="0,10,0,10"/>
+                        <TextBox FontSize="18" Width="250" HorizontalAlignment="Left" Text="{Binding SysConfig.SysName.Value}"
+                            IsEnabled="{Binding CurUserLevel,Converter={StaticResource UserLevelToEnable},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}"></TextBox>
+                        <TextBlock Height="30"></TextBlock>
+
+                        <Label FontSize="18"  Content="{Binding SysConfig.WhCode.Name}"/>
+                        <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding SysConfig.WhCode.Description}" Margin="0,10,0,10"></TextBlock>
+                        <TextBox FontSize="18" Width="250" HorizontalAlignment="Left" Text="{Binding SysConfig.WhCode.Value}" IsEnabled="{Binding CurUserLevel,Converter={StaticResource UserLevelToEnable},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级管理员}}"/>
+                        <TextBlock Height="30"/>         
+
+                        <!--<Label FontSize="18" Content="{Binding  SysConfig.SysNo.Name}"/>
                         <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding  SysConfig.SysNo.Description}" Margin="0,10,0,10"/>
                         <TextBox FontSize="18" Width="250" HorizontalAlignment="Left" Text="{Binding SysConfig.SysNo.Value}" IsEnabled="{Binding CurUserLevel,Converter={StaticResource UserLevelToEnable},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}"></TextBox>
+                        <TextBlock Height="30"/>-->
 
-                        <TextBlock Height="30"/>
                         <Label FontSize="18" Content="{Binding SysConfig.IsTrueWebService.Name}"/>
                         <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding SysConfig.IsTrueWebService.Description}" Margin="0,10,0,10"></TextBlock>
                         <ToggleButton HorizontalAlignment="Left" IsChecked="{Binding SysConfig.IsTrueWebService.Value}" IsEnabled="{Binding CurUserLevel,Converter={StaticResource UserLevelToEnable},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}" Style="{StaticResource MaterialDesignSwitchToggleButton}"/>
@@ -142,35 +164,7 @@
                             </ContentControl.Content>
                         </ContentControl>
                         <!--<TextBox FontSize="14" TextWrapping="NoWrap"    Width="400" HorizontalAlignment="Left" Text="{Binding SysConfig.WcsDatabaseConn.Value}" />-->
-                        <TextBlock Height="30"/>
-
-                        <Label FontSize="18" Content="{Binding SysConfig.MaxByteLength.Name}"/>
-                        <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding SysConfig.MaxByteLength.Description}" Margin="0,10,0,10"/>
-                        <ComboBox FontSize="18"  Width="250" HorizontalAlignment="Left"  ItemsSource="{Binding LogLenghtDic}" 
-                                                  DisplayMemberPath="Value" SelectedValuePath="Key" IsEnabled="{Binding CurUserLevel,Converter={StaticResource UserLevelToEnable},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}"
-                                                  SelectedValue="{Binding  SysConfig.MaxByteLength.Value,Mode=TwoWay}">
-                        </ComboBox>
-                        <TextBlock Height="30"/>
-
-                        <Label FontSize="18" Content="{Binding  SysConfig.MaxLogCount.Name}"/>
-                        <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding  SysConfig.MaxLogCount.Description}" Margin="0,10,0,10"/>
-                        <ComboBox FontSize="18"  Width="250" HorizontalAlignment="Left"  ItemsSource="{Binding LogNumMaxDic}" 
-                                                  DisplayMemberPath="Value" SelectedValuePath="Key"  IsEnabled="{Binding CurUserLevel,Converter={StaticResource UserLevelToEnable},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}"
-                                                  SelectedValue="{Binding  SysConfig.MaxLogCount.Value,Mode=TwoWay}">
-                        </ComboBox>
-                        <TextBlock Height="30"/>
-
-                        <Label FontSize="18" Content="{Binding SysConfig.LogSavedDays.Name}"/>
-                        <TextBlock Style="{StaticResource DescLableStyle}" Text="{Binding SysConfig.LogSavedDays.Description}" Margin="0,10,0,10"/>
-                        <ComboBox FontSize="18"  Width="250" HorizontalAlignment="Left"  ItemsSource="{Binding LogSaveDaysDic}" 
-                                                  DisplayMemberPath="Value" SelectedValuePath="Key" IsEnabled="{Binding CurUserLevel,Converter={StaticResource UserLevelToEnable},ConverterParameter={x:Static dataModel:RoleLevelEnum.超级运维人员}}"
-                                                  SelectedValue="{Binding  SysConfig.LogSavedDays.Value,Mode=TwoWay}">
-                        </ComboBox>
-                        <TextBlock Height="30"/>
-
-
-
-
+                        <TextBlock Height="30"/>                       
                     </StackPanel>
                 </Grid>
             </ScrollViewer>

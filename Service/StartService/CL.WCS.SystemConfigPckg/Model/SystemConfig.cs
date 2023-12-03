@@ -154,15 +154,15 @@ namespace CL.WCS.SystemConfigPckg.Model
 
                 CurSystemConfig = (SystemConfigMode)XmlSerializerHelper.LoadFromXml(strFileName, typeof(SystemConfigMode));
                 WcsDataBaseType = CurSystemConfig.WcsDataBaseType.Value;
-                AtsDataBaseType = CurSystemConfig.AtsDataBaseType.Value;
+                //AtsDataBaseType = CurSystemConfig.AtsDataBaseType.Value;
                 CurSystemConfig.WcsDatabaseConn.Value = GetUnPwdDataConnectString(WcsDataBaseType,CurSystemConfig.WcsDatabaseConn.Value);
-                CurSystemConfig.AtsDatabaseConn.Value = GetUnPwdDataConnectString(AtsDataBaseType, CurSystemConfig.AtsDatabaseConn.Value);
+                //CurSystemConfig.AtsDatabaseConn.Value = GetUnPwdDataConnectString(AtsDataBaseType, CurSystemConfig.AtsDatabaseConn.Value);
 
                 _IsTrueOPC = CurSystemConfig.OpcMode.Value;
 
                 WcsConnectionString = CurSystemConfig.WcsDatabaseConn.Value;
 
-                SysNo = CurSystemConfig.SysNo.Value;
+                //SysNo = CurSystemConfig.SysNo.Value;
 
               
 
@@ -171,7 +171,7 @@ namespace CL.WCS.SystemConfigPckg.Model
                 Department = CurSystemConfig.Department.Value;
 
 
-                _isUseCellPile = CurSystemConfig.IsUseCellPile.Value;
+                //_isUseCellPile = CurSystemConfig.IsUseCellPile.Value;
 
 
                 WhCode = CurSystemConfig.WhCode.Value;

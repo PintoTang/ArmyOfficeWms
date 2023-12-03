@@ -52,14 +52,11 @@ namespace CL.WCS.WPF
 
                 DelegateContainer.MaxMonitorScreen += MaxScreen;
                 DelegateContainer.MinMonitoScreen += MinScreen;
-
-
             }
             catch (Exception ex)
             {
                 LogHelper.WriteLog("未处理异常", ex);
             }
-
         }
 
 
@@ -113,11 +110,6 @@ namespace CL.WCS.WPF
             SetShowRenderControl(first.Name);
         }
 
-
-
-
-
-
         /// <summary>
         /// 主窗体初始化对象加载
         /// </summary>
@@ -125,7 +117,6 @@ namespace CL.WCS.WPF
         {
 
             //将所有的子集控件添加进去
-
             /*******************************************************************************
              * 
              *    例如此处展示了文件控件是如何添加进去的 
@@ -134,24 +125,19 @@ namespace CL.WCS.WPF
              *    3.显示
              *
              *******************************************************************************/
-
             try
             {
 
                 InitilizeMenu();
-
-                LbCopyRight.Content = string.Format("本软件著作权归 {0} 所有", SystemConfig.Instance.CopyRight);
-                LbSystemName.Content = SystemConfig.Instance.SysName;
-                LbVersion.Content = string.Format("系统版本：{0}", SystemConfig.Instance.Version);
-
-
+                //LbCopyRight.Content = string.Format("本软件著作权归 {0} 所有", SystemConfig.Instance.CopyRight);
+                //LbSystemName.Content = SystemConfig.Instance.SysName;
+                //LbVersion.Content = string.Format("系统版本：{0}", SystemConfig.Instance.Version);
                 ListBoxMenu.ItemsSource = _mainMenuItem;
                 ListBoxMenuMin.ItemsSource = _mainMenuItem;
             }
             catch (Exception ex)
             {
                 throw ex;
-
             }
         }
 
@@ -160,15 +146,15 @@ namespace CL.WCS.WPF
         private void MaxScreen()
         {
             TitleZone.Visibility = Visibility.Collapsed;
-            ToolZone.Visibility = Visibility.Collapsed;
-            BottomZone.Visibility = Visibility.Collapsed;
+            //ToolZone.Visibility = Visibility.Collapsed;
+            //BottomZone.Visibility = Visibility.Collapsed;
         }
 
         private void MinScreen()
         {
             TitleZone.Visibility = Visibility.Visible;
-            ToolZone.Visibility = Visibility.Visible;
-            BottomZone.Visibility = Visibility.Visible;
+            //ToolZone.Visibility = Visibility.Visible;
+            //BottomZone.Visibility = Visibility.Visible;
         }
 
 
@@ -199,7 +185,6 @@ namespace CL.WCS.WPF
             {
                 this.WindowState = System.Windows.WindowState.Normal;
                 SetWindowStartUpLocation();
-
             }
             else
             {
@@ -278,7 +263,6 @@ namespace CL.WCS.WPF
                 catch (Exception ex)
                 {
                     throw ex;
-
                 }
             }
         }
