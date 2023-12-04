@@ -6,7 +6,10 @@
              xmlns:local="clr-namespace:CLDC.CLWS.CLWCS.Service.WmsView.View"
              mc:Ignorable="d" 
              d:DesignHeight="440" d:DesignWidth="300" Loaded="UserControl_Loaded">
-    <Grid Background="Transparent">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="80"/>
@@ -15,42 +18,62 @@
             <RowDefinition Height="80"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
-        <local:UcTopTitle Grid.Row="0" VerticalAlignment="Top" TitleContent="环境监测"/>
+        <!--<local:UcTopTitle Grid.Row="0" VerticalAlignment="Top" TitleContent="环境监测"/>-->
+        <Label Grid.Row="0" Name="AdminTitle" Width="330" Height="40" Content="环境监测" Foreground="#12FFD5"
+                VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18" >
+            <Label.Background>
+                <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
+            </Label.Background>
+        </Label>
+        <Button Width="40" Height="20" Name="btnMoreAdmin" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5">
+            <Button.Background>
+                <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/icon_more.png" />
+            </Button.Background>
+        </Button>
+
+
+
+
         <StackPanel Grid.Row="1" Name="stackpanel1" Orientation="Horizontal">
             <Image Source="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/Temperature.png" Width="80" />
             <StackPanel Width="220">
-                <TextBlock Text="温度区域：" x:Name="tbTepmer" Foreground="White" FontSize="16px" Margin="10"></TextBlock>
-                <TextBlock Text="实时温度：" x:Name="tbTemperature" Foreground="White" FontSize="16px" Margin="10"></TextBlock>
+                <TextBlock Text="温度区域：" x:Name="tbTepmer" Foreground="#0EB094" FontFamily="AppleSystemUIFont;" FontSize="16px" Margin="10"></TextBlock>
+                <TextBlock Text="实时温度：" x:Name="tbTemperature" Foreground="#FFFFFF"  FontFamily="AppleSystemUIFont;" FontSize="16px" Margin="10"></TextBlock>                
             </StackPanel>
         </StackPanel>
+        <Line  Grid.Row="1" Grid.ColumnSpan="2" X1="17" Y1="80" X2="313" Y2="80" Stroke="#0EB094" StrokeThickness="1.5"/>
         <StackPanel Grid.Row="2" Name="stackpanel2" Orientation="Horizontal">
             <Image Source="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/Humidity.png" Width="80" />
             <StackPanel Width="220">
-                <TextBlock Text="湿度区域：" x:Name="tbHumi" Foreground="White" FontSize="16px" Margin="10"></TextBlock>
-                <TextBlock Text="实时湿度：" x:Name="tbHumidity" Foreground="White" FontSize="16px" Margin="10"></TextBlock>
+                <TextBlock Text="湿度区域：" x:Name="tbHumi" Foreground="#0EB094"  FontFamily="AppleSystemUIFont;" FontSize="16px" Margin="10"></TextBlock>
+                <TextBlock Text="实时湿度：" x:Name="tbHumidity" Foreground="#FFFFFF" FontFamily="AppleSystemUIFont;" FontSize="16px" Margin="10"></TextBlock>
             </StackPanel>
         </StackPanel>
+        <Line  Grid.Row="2" Grid.ColumnSpan="2" X1="17" Y1="80" X2="313" Y2="80" Stroke="#0EB094" StrokeThickness="1.5"/>
         <StackPanel Grid.Row="3" Name="stackpanel3" Orientation="Horizontal">
             <Image Source="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/Infrared.png" Width="80" />
             <StackPanel Width="220">
-                <TextBlock Text="红外" Foreground="White" FontSize="16px" Margin="10"></TextBlock>
-                <TextBlock Text="正常：" x:Name="tbInfrared" Foreground="White" FontSize="16px" Margin="10"></TextBlock>
+                <TextBlock Text="红外" Foreground="#0EB094" FontFamily="AppleSystemUIFont;" FontSize="16px" Margin="10"></TextBlock>
+                <TextBlock Text="正常：" x:Name="tbInfrared" Foreground="#FFFFFF" FontFamily="AppleSystemUIFont;" FontSize="16px" Margin="10"></TextBlock>
             </StackPanel>
         </StackPanel>
+        <Line  Grid.Row="3" Grid.ColumnSpan="2" X1="17" Y1="80" X2="313" Y2="80" Stroke="#0EB094" StrokeThickness="1.5"/>
         <StackPanel Grid.Row="4" Name="stackpanel4" Orientation="Horizontal">
             <Image Source="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/EntranceGuard.png" Width="80"/>
             <StackPanel Width="220">
-                <TextBlock Text="门禁" Foreground="White" FontSize="16px" Margin="10"></TextBlock>
-                <TextBlock Text="正常：" x:Name="tbEntranceGuard" Foreground="White" FontSize="16px" Margin="10"></TextBlock>
+                <TextBlock Text="门禁" Foreground="#0EB094" FontFamily="AppleSystemUIFont;" FontSize="16px" Margin="10"></TextBlock>
+                <TextBlock Text="正常：" x:Name="tbEntranceGuard" Foreground="#FFFFFF" FontFamily="AppleSystemUIFont;" FontSize="16px" Margin="10"></TextBlock>
             </StackPanel>
         </StackPanel>
+        <Line  Grid.Row="4" Grid.ColumnSpan="2" X1="17" Y1="80" X2="313" Y2="80" Stroke="#0EB094" StrokeThickness="1.5"/>
         <StackPanel Grid.Row="5" Name="stackpanel5" Orientation="Horizontal">
             <Image Source="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/SmokeDetector.png" Width="80"/>
             <StackPanel Width="220">
-                <TextBlock Text="烟感" Foreground="White" FontSize="16px" Margin="10"></TextBlock>
-                <TextBlock Text="正常：" x:Name="tbSmokeDetector" Foreground="White" FontSize="16px" Margin="10"></TextBlock>
+                <TextBlock Text="烟感" Foreground="#0EB094" FontFamily="AppleSystemUIFont;" FontSize="16px" Margin="10"></TextBlock>
+                <TextBlock Text="正常：" x:Name="tbSmokeDetector" Foreground="#FFFFFF" FontFamily="AppleSystemUIFont;" FontSize="16px" Margin="10"></TextBlock>
             </StackPanel>
         </StackPanel>
+        <Line  Grid.Row="5" Grid.ColumnSpan="2" X1="17" Y1="80" X2="313" Y2="80" Stroke="#0EB094" StrokeThickness="1.5"/>
 
 
     </Grid>

@@ -3,7 +3,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <sys:String x:Key="TitleChinese">
-        来安县人武部物资管理系统
+        来安县人武部战备物资管理系统
     </sys:String>
     <sys:String x:Key="TitleEnglish">
         Warehouse Management System

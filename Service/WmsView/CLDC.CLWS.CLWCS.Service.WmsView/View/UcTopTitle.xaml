@@ -11,14 +11,22 @@
         <ResourceDictionary Source="/CLDC.CLWS.CLWCS.Service.WmsView;component/Style/StyleMain.xaml"></ResourceDictionary>
     </UserControl.Resources>
     <materialDesign:ColorZone Mode="PrimaryLight" Height ="35">
-        <Grid Background ="Transparent">
+        <Grid Background ="#FFFFFF" Opacity="0.5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Name="TitleName" Grid.Column="0"  Content="{Binding ElementName=_this,Path=TitleContent}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="14" />
-            <Button Width="30" Grid.Column="2" Name="btnClose" Style="{StaticResource ButtonStyleClose}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="3"/>
+            <Label Name="TitleName" Grid.Column="0"  Content="{Binding ElementName=_this,Path=TitleContent}" Foreground="#12FFD5" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" >
+                <!--<Label.Background>
+                    <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
+                </Label.Background>-->
+            </Label>
+            <Button Width="40" Height="20" Grid.Column="2" Name="btnClose" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5">
+                <Button.Background>
+                    <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/icon_more.png" />
+                </Button.Background>
+            </Button>
         </Grid>
     </materialDesign:ColorZone>
 </UserControl>

@@ -19,7 +19,7 @@ using System.Linq.Expressions;
 
 namespace CLDC.CLWS.CLWCS.Service.Authorize.ViewModel
 {
-    public class AccountManageViewModel : ViewModelBase
+    public class AccountManageViewModel : ViewModelBase 
     {
         private string _curSearchAccCode = string.Empty;
         private RoleLevelEnum? _curSearchRoleLevel;

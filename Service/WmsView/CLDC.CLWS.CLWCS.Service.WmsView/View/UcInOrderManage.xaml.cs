@@ -13,5 +13,20 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             InitializeComponent();
             DataContext = new AccountManageViewModel();
         }
+
+        public void Show()
+        {
+            this.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        public void Hide()
+        {
+            this.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void BtnExit_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Hide();
+        }
     }
 }

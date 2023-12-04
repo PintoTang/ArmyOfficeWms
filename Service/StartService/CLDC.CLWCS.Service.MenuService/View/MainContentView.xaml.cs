@@ -1,7 +1,10 @@
 ﻿using CL.WCS.SystemConfigPckg.Model;
 using CL.WCS.SystemConfigPckg.ViewModel;
 using CLDC.CLWS.CLWCS.Infrastructrue.Sockets;
+using CLDC.CLWS.CLWCS.Service.WmsView.View;
 using CLDC.Infrastructrue.UserCtrl.Domain;
+using LiveCharts.Wpf;
+using LiveCharts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +32,24 @@ namespace CLDC.CLWCS.Service.MenuService.View
         {
             InitializeComponent();
             this.DataContext = new SystemConfigViewMode(SystemConfig.Instance.CurSystemConfig);
+            UserControl menuView = new UcDefaultView();
+            UserContentControl.Children.Add(menuView);
+            PointLabel = chartPoint => string.Format("{0}({1:p})", chartPoint.Y, chartPoint.Participation);
+            DataContext = this;
+        }
+
+        public Func<ChartPoint, string> PointLabel { get; set; }
+
+        private void pipChart_DataClick(object sender, LiveCharts.ChartPoint chartPoint)
+        {
+            var chart = (LiveCharts.Wpf.PieChart)chartPoint.ChartView;
+            //clear selected slice
+            foreach (PieSeries series in chart.Series)
+            {
+                series.PushOut = 0;
+                var selectedSeries = (PieSeries)chartPoint.SeriesView;
+                selectedSeries.PushOut = 8;
+            }
         }
 
         private string _useCtrlId = "系统主界面";
@@ -54,7 +75,7 @@ namespace CLDC.CLWCS.Service.MenuService.View
             try
             {
                 TcpCom tcp = new TcpCom();
-                tcp.RemoteIp= IPAddress.Parse("192.168.1.8");
+                tcp.RemoteIp = IPAddress.Parse("192.168.1.8");
                 tcp.RemoteIpPort = 20108;
 
                 if (!tcp.Connected)
@@ -78,7 +99,14 @@ namespace CLDC.CLWCS.Service.MenuService.View
             {
 
             }
-
         }
+
+        private void btnInOrder_Click(object sender, RoutedEventArgs e)
+        {
+            UcInOrderManage inOrderManage = new UcInOrderManage();
+            UserContentControl.Children.Add(inOrderManage);
+        }
+
+
     }
 }

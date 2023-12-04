@@ -33,7 +33,7 @@
                 <TextBlock Text="环境设置" Foreground="White" FontSize="20px"/>
             </Button.Content>
         </Button>
-        <Button  Grid.Row="1" x:Name="btnInOrder" Click="btnInOrder_Click" Grid.Column="0" Width="109px" Height="46px" BorderThickness="0">
+        <Button  Grid.Row="1" x:Name="btnInOrder" Command="{Binding InOrderManageCommand}" Grid.Column="0" Width="109px" Height="46px" BorderThickness="0">
             <Button.Background>
                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
             </Button.Background>

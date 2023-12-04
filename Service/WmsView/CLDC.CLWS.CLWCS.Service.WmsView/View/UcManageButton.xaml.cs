@@ -1,4 +1,6 @@
 ﻿using CLDC.CLWS.CLWCS.Infrastructrue.Sockets;
+using CLDC.CLWS.CLWCS.Service.Authorize.View;
+using CLDC.CLWS.CLWCS.Service.WmsView.ViewModel;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Net;
@@ -15,6 +17,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
         public UcManageButton()
         {
             InitializeComponent();
+            DataContext = new ManageButtonViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -48,9 +51,6 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             }
         }
 
-        private void btnInOrder_Click(object sender, RoutedEventArgs e)
-        {
-            UcInOrderManage ucIn= new UcInOrderManage();
-        }
+
     }
 }

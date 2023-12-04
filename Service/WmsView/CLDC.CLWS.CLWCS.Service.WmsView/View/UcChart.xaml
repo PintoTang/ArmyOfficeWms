@@ -12,14 +12,17 @@
             <RowDefinition Height="40"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <local:UcTopTitle Grid.Row="0" TitleContent="在库管理"/>
+        <local:UcTopTitle Grid.Row="0" TitleContent="在库管理" Margin="0,5,0,0"/>
         <Border Grid.Row="1">
             <lvc:PieChart Name="pipChart" LegendLocation="Bottom" DataClick="pipChart_DataClick" Hoverable="False"
                   DataTooltip="{x:Null}">
+                <lvc:PieChart.Background>
+                    <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
+                </lvc:PieChart.Background>
                 <lvc:PieChart.Series>
-                    <lvc:PieSeries Fill="LightGreen" Title="在库" FontSize="16" DataLabels="True" LabelPoint="{Binding PointLabel}" Values="6"/>
-                    <lvc:PieSeries Fill="Yellow" Title="出库" FontSize="16" DataLabels="True" LabelPoint="{Binding PointLabel}" Values="3"/>
-                    <lvc:PieSeries Fill="LightPink" Title="报损" FontSize="16" DataLabels="True" LabelPoint="{Binding PointLabel}" Values="1"/>
+                    <lvc:PieSeries Fill="#24D469" Title="在库        " FontSize="16" DataLabels="True" LabelPoint="{Binding PointLabel}" Values="11"/>
+                    <lvc:PieSeries Fill="#FFFD00" Title="出库        " FontSize="16" DataLabels="True" LabelPoint="{Binding PointLabel}" Values="6"/>
+                    <lvc:PieSeries Fill="#FD9D73" Title="报损        " FontSize="16" DataLabels="True" LabelPoint="{Binding PointLabel}" Values="3"/>
                 </lvc:PieChart.Series>
             </lvc:PieChart>
         </Border>

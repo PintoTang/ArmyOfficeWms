@@ -31,7 +31,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical" Grid.Row="0" >
-                <mainTitle:MainTitle x:Name="TitleZone" Height="78" ></mainTitle:MainTitle>
+                <mainTitle:MainTitle x:Name="TitleZone" Height="104" ></mainTitle:MainTitle>
             </StackPanel>
             <materialDesign:DrawerHost Grid.Row="1" x:Name="MainDrawerHost" IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
                 <materialDesign:DrawerHost.LeftDrawerContent>
@@ -41,7 +41,7 @@
                         <StackPanel  Height="{Binding ElementName=UserContentControl,Path=ActualHeight}">
                             <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" HorizontalAlignment="Right" Margin="16"
                                     IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" Width="40" Height="30"/>
-                            <ListBox x:Name="ListBoxMenu"  PreviewMouseLeftButtonUp="ListBoxMenuMin_OnPreviewMouseLeftButtonUp">
+                            <ListBox x:Name="ListBoxMenu" PreviewMouseLeftButtonUp="ListBoxMenuMin_OnPreviewMouseLeftButtonUp">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="model:MenuItem">
                                         <Grid Margin="0,5,0,5">
@@ -60,16 +60,16 @@
                         </StackPanel>                      
                     </materialDesign:ColorZone>
                 </materialDesign:DrawerHost.LeftDrawerContent>
-                <materialDesign:DialogHost x:Name="DialogHostWait" Identifier="DialogHostWait" >
+                <materialDesign:DialogHost x:Name="DialogHostWait" Identifier="DialogHostWait">
                     <Grid>
-                        <Grid.ColumnDefinitions>
+                        <!--<Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <materialDesign:ColorZone x:Name="ToolZone" Grid.Column="0" Mode="PrimaryLight" Height="{Binding ElementName=UserContentControl,Path=ActualHeight}" 
+                        </Grid.ColumnDefinitions>-->
+                        <materialDesign:ColorZone Visibility="Hidden" x:Name="ToolZone" Grid.Column="0" Mode="PrimaryLight" Height="{Binding ElementName=UserContentControl,Path=ActualHeight}" 
                                                   VerticalContentAlignment="Stretch" materialDesign:ShadowAssist.ShadowDepth="Depth3">
-                            <Grid  x:Name="GridMenu" Width="45" Background="Transparent">
+                            <Grid x:Name="GridMenu" Width="45" Background="Transparent" >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="60"/>
                                     <RowDefinition Height="*"/>

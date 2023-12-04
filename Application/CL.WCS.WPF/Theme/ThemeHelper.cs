@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Windows.Controls;
+using System.Windows.Media;
 using CL.WCS.SystemConfigPckg.Model;
 using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
@@ -38,8 +39,8 @@ namespace CL.WCS.WPF.Theme
         {
             if (department.Equals(DepartmentEnum.WEISS))
             {
-                Color primaryColor = Color.FromRgb(0, 54, 122);
-                Color PrimaryForegroundColor = Color.FromRgb(130, 218, 255);
+                Color primaryColor = Color.FromRgb(36, 93, 85);
+                Color PrimaryForegroundColor = Color.FromRgb(255, 255, 255);
                 Color SecondaryColor = Color.FromRgb(51, 136, 233);
                 Color SecondaryForegroundColor = Color.FromRgb(255, 255, 255);
                 PaletteHelperExtensions.ChangePrimaryColor(_paletteHelper, primaryColor);

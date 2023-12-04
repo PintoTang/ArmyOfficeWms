@@ -33,6 +33,19 @@
         <Setter Property="Background" Value="Transparent"/>
     </Style>
 
+    <Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="BorderBrush" Value="{StaticResource FontBlue}"/>
+        <Setter Property="Height" Value="200"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="Black" Opacity="0.12"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="Red"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
+
 
     <Style x:Key="ButtonStyleClose" TargetType="{x:Type Button}">
         <Setter Property="BorderThickness" Value="1"/>

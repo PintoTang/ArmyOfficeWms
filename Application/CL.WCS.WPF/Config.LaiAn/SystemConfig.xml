@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SystemConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="系统配置" Description="配置整体系统的基本信息">
-	<SysName Name="系统名称" Description="更改系统显示的名称信息" Value="来安县人武部物资管理系统" />
+	<SysName Name="系统名称" Description="更改系统显示的名称信息" Value="来安县人武部战备物资管理系统" />
 	<CurrentProject Name="项目名称" Description="更改项目的名称" Value="WMS_LA" />
 	<WhCode Name="仓库编号" Description="根据仓库的基础数据更改仓库编号" Value="WH_LA" />
 	<!--<SysNo Name="Wcs的系统编号" Description="Wcs的系统编号区别项目的系统" Value="ShenNanGuangXinWcs01"></SysNo>-->

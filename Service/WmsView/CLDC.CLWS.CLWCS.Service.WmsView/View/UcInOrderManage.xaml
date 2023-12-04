@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:CLDC.CLWS.CLWCS.Infrastructrue.DataModel;assembly=CLDC.CLWS.CLWCS.Infrastructrue.DataModel"
              xmlns:page="clr-namespace:CLDC.Infrastructrue.UserCtrl.View.Page;assembly=CLDC.Infrastructrue.UserCtrl"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             mc:Ignorable="d" d:DesignHeight="966" d:DesignWidth="1480" Background="White" x:Name="_this">
+             mc:Ignorable="d" d:DesignHeight="972" d:DesignWidth="1060" Width="1060" Height="972" Background="White" x:Name="_this">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -37,79 +37,81 @@
             </ObjectDataProvider>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="10"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition x:Name="ContentRow"/>
-            </Grid.RowDefinitions>
-            <Label FontSize="16"  Grid.Row="0" FontWeight="Black"  HorizontalAlignment="Left" VerticalAlignment="Center">入库管理</Label>
+    <Border CornerRadius="20,20,20,20">
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition x:Name="ContentRow"/>
+                </Grid.RowDefinitions>
+                <Label FontSize="16"  Grid.Row="0" FontWeight="Black"  HorizontalAlignment="Left" VerticalAlignment="Center">入库管理</Label>
 
-            <Grid Grid.Row="1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition x:Name="RowSearch" Height="80"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition/>
-                        <RowDefinition Height="5"/>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="100"/>
-                        </Grid.ColumnDefinitions>
-                        <WrapPanel Grid.Column="0" VerticalAlignment="Center">
-                            <Label >账号：</Label>
-                            <TextBox  Width="120" Text="{Binding CurSearchAccCode}"></TextBox>
-                            <TextBlock Width="24"/>
-                            <Label >等级：</Label>
-                            <ComboBox  Width="120" IsEditable="True" ItemsSource="{Binding RoleLevelTypeDic}" 
+                <Grid Grid.Row="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="RowSearch" Height="80"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="5"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            <WrapPanel Grid.Column="0" VerticalAlignment="Center">                                
+                                <Label >区域：</Label>
+                                <ComboBox  Width="120" IsEditable="True" ItemsSource="{Binding RoleLevelTypeDic}" 
                                   DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding  CurSearchRoleLevel,Mode=TwoWay}">
-                            </ComboBox>
-                            <TextBlock Width="24"/>
-                            <Label  >使用状态：</Label>
-                            <ComboBox Width="120" IsEditable="True" ItemsSource="{Binding UseStatusTypeDic}"
+                                </ComboBox>
+                                <TextBlock Width="24"/>
+                                <Label  >任务分类：</Label>
+                                <ComboBox Width="120" IsEditable="True" ItemsSource="{Binding UseStatusTypeDic}"
                                   DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding CurAccountUseStatus,Mode=TwoWay}">
-                            </ComboBox>
-                            <TextBlock Width="24"/>
-                            <Label   Content="组名："/>
-                            <ComboBox Width="120" IsEditable="True" ItemsSource="{Binding GroupTypeDic}"
-                                  DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding CurSearchGroupId,Mode=TwoWay}">
-                            </ComboBox>
-                        </WrapPanel>
-                        <Button Grid.Column="1" Width="60" Command="{Binding SearchCommand}">查询</Button>
-                    </Grid>
-                    <Grid Grid.Row="1">
-                        <WrapPanel VerticalAlignment="Center">
-                            <TextBlock Width="10"/>
-                            <Button Width="24" Height="24"  Padding="0"  Command="{Binding CreateAccountCommand}"
+                                </ComboBox>
+                                <TextBlock Width="24"/>
+                                <Label >装备：</Label>
+                                <TextBox  Width="120" Text="{Binding CurSearchAccCode}"></TextBox>
+                                <TextBlock Width="24"/>
+
+                                <Button x:Name="BtnExit" Click="BtnExit_Click">退出</Button>
+                            </WrapPanel>
+                            <Button Grid.Column="1" Width="60" Command="{Binding SearchCommand}">查询</Button>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <WrapPanel VerticalAlignment="Center">
+                                <TextBlock Width="10"/>
+                                <Button Width="24" Height="24"  Padding="0"  Command="{Binding CreateAccountCommand}"
                                 Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}"
                                 ToolTip="添加用户">
-                                <materialDesign:PackIcon Kind="Plus" Height="20" Width="20" />
-                            </Button>
-                            <TextBlock Width="10"/>
-                            <Button Width="24" Height="24"  Padding="0"   Command="{Binding DeleteAccountCommand}"
+                                    <materialDesign:PackIcon Kind="Plus" Height="20" Width="20" />
+                                </Button>
+                                <TextBlock Width="10"/>
+                                <Button Width="24" Height="24"  Padding="0"   Command="{Binding DeleteAccountCommand}"
                             Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="删除">
-                                <materialDesign:PackIcon Kind="Delete" Height="20" Width="20" />
-                            </Button>
-                            <TextBlock Width="10"/>
-                            <Button Width="24" Height="24"  Padding="0"  Command="{Binding EditAccountCommand}"
+                                    <materialDesign:PackIcon Kind="Delete" Height="20" Width="20" />
+                                </Button>
+                                <TextBlock Width="10"/>
+                                <Button Width="24" Height="24"  Padding="0"  Command="{Binding EditAccountCommand}"
                             Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="修改">
-                                <materialDesign:PackIcon Kind="Edit" Height="20" Width="20" />
-                            </Button>
-                        </WrapPanel>
-                    </Grid>
-                    <Grid Grid.Row="2" Margin="5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition Height="30"/>
-                        </Grid.RowDefinitions>
-                        <DataGrid Name="AccountGrid" 
+                                    <materialDesign:PackIcon Kind="Edit" Height="20" Width="20" />
+                                </Button>
+                            </WrapPanel>
+                        </Grid>
+                        <Grid Grid.Row="2" Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+                            <DataGrid Name="AccountGrid" 
                               ScrollViewer.VerticalScrollBarVisibility="Auto"
                               ScrollViewer.HorizontalScrollBarVisibility="Auto"
                               AutoGenerateColumns="False"
@@ -119,28 +121,29 @@
                               SelectedValue="{Binding SelectedValue}"
                               CanUserAddRows="False"
                               CanUserDeleteRows="False" CanUserResizeColumns="False">
-                            <DataGrid.InputBindings>
-                                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ShowDetailCommand}" CommandParameter="{Binding ElementName=AccountGrid,Path=SelectedItem}"/>
-                            </DataGrid.InputBindings>
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="账号" Width="*" Binding="{Binding AccCode}" IsReadOnly="True"/>
-                                <!--<DataGridTextColumn Header="密码" Width="*" Binding="{Binding Password,Converter={StaticResource PasswordConverter}}" IsReadOnly="True"/>-->
-                                <DataGridComboBoxColumn Header="权限等级" Width="*" IsReadOnly="True" SelectedItemBinding="{Binding RoleLevel}" ItemsSource="{Binding Source={StaticResource  RoleLevelEnum}}"/>
-                                <DataGridTextColumn Header="组名" Width="*" Binding="{Binding GroupId}"/>
-                                <DataGridComboBoxColumn Header="使用状态" Width="*" SelectedItemBinding="{Binding UseStatus}" ItemsSource="{Binding Source={StaticResource  UseStatusEnum}}"/>
-                                <!--Binding="{Binding UseStatus,Converter={StaticResource DescriptionConverter}}"-->
-                                <DataGridTextColumn Header="创建者" Width="*" Binding="{Binding CreaterId}" IsReadOnly="True"/>
-                                <DataGridTextColumn Header="修改者" Width="*" Binding="{Binding ModifierId}" IsReadOnly="True"/>
-                                <DataGridTextColumn Header="创建时间" Width="*" Binding="{Binding CreateTime}" IsReadOnly="True"/>
-                                <DataGridTextColumn Header="启用时间" Width="*" Binding="{Binding EnableTime}" IsReadOnly="True"/>
-                                <DataGridTextColumn Header="禁用时间" Width="*" Binding="{Binding DisableTime}" IsReadOnly="True"/>
-                                <DataGridTextColumn Header="修改时间" Width="*" Binding="{Binding ModifierTime}" IsReadOnly="True"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <page:UCSplitPager Grid.Row="1"></page:UCSplitPager>
+                                <DataGrid.InputBindings>
+                                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ShowDetailCommand}" CommandParameter="{Binding ElementName=AccountGrid,Path=SelectedItem}"/>
+                                </DataGrid.InputBindings>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="账号" Width="*" Binding="{Binding AccCode}" IsReadOnly="True"/>
+                                    <!--<DataGridTextColumn Header="密码" Width="*" Binding="{Binding Password,Converter={StaticResource PasswordConverter}}" IsReadOnly="True"/>-->
+                                    <DataGridComboBoxColumn Header="权限等级" Width="*" IsReadOnly="True" SelectedItemBinding="{Binding RoleLevel}" ItemsSource="{Binding Source={StaticResource  RoleLevelEnum}}"/>
+                                    <DataGridTextColumn Header="组名" Width="*" Binding="{Binding GroupId}"/>
+                                    <DataGridComboBoxColumn Header="使用状态" Width="*" SelectedItemBinding="{Binding UseStatus}" ItemsSource="{Binding Source={StaticResource  UseStatusEnum}}"/>
+                                    <!--Binding="{Binding UseStatus,Converter={StaticResource DescriptionConverter}}"-->
+                                    <DataGridTextColumn Header="创建者" Width="*" Binding="{Binding CreaterId}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="修改者" Width="*" Binding="{Binding ModifierId}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="创建时间" Width="*" Binding="{Binding CreateTime}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="启用时间" Width="*" Binding="{Binding EnableTime}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="禁用时间" Width="*" Binding="{Binding DisableTime}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="修改时间" Width="*" Binding="{Binding ModifierTime}" IsReadOnly="True"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <page:UCSplitPager Grid.Row="1"></page:UCSplitPager>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>
         </Grid>
-    </Grid>
+    </Border>
 </UserControl>

@@ -6,11 +6,11 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              
-             d:DesignHeight="78" d:DesignWidth="621.348" MouseLeftButtonDown="MainTitle_OnMouseLeftButtonDown">
+             d:DesignHeight="104" d:DesignWidth="621.348" MouseLeftButtonDown="MainTitle_OnMouseLeftButtonDown">
     <UserControl.Resources>
         <ResourceDictionary Source="../../Style/StyleMain.xaml"></ResourceDictionary>
     </UserControl.Resources>
-    <materialDesign:ColorZone Height="78" Mode="PrimaryDark" materialDesign:ShadowAssist.ShadowDepth="Depth4">
+    <materialDesign:ColorZone Height="104" Mode="PrimaryDark" materialDesign:ShadowAssist.ShadowDepth="Depth4">
         <Grid>
             <Grid.Background>
                 <ImageBrush ImageSource="/Resources/Image/Title.jpg" />
@@ -61,7 +61,7 @@
                     <RowDefinition Height="14"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Column="1"  >
-                    <TextBlock HorizontalAlignment="Center" Text="{StaticResource TitleChinese}" Grid.Column="0"  Style="{StaticResource ChineseStyle}" />
+                    <TextBlock HorizontalAlignment="Center" Text="{StaticResource TitleChinese}" Grid.Column="0"  Style="{StaticResource ChineseStyle}" Margin="0,8,0,0" />
                 </Grid>
                 <!--<TextBlock HorizontalAlignment="Center" Text="{StaticResource TitleEnglish}" Grid.Column="1" Grid.Row="1" Style="{StaticResource EnglishStyle}"/>-->
             </Grid>
