@@ -197,7 +197,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
         private int SearchTime = 4;
         private int ScanTime = 10;//设置读取扫描时间
         private int ChangeRangeTime = 8;
-       private  int PowerValue = 33;
+        private int PowerValue = 33;
         private int ReadMaxCount = 65;
         /// <summary>
         /// 科陆RFID
@@ -223,7 +223,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
             bool isConn = false;
             try
             {
-                isConn  = RFIDReader.CheckConnect(ipAndPort);
+                isConn = RFIDReader.CheckConnect(ipAndPort);
                 if (!isConn)
                 {
                     isConn = RFIDReader.CreateTcpConn(ipAndPort, this);
@@ -246,6 +246,12 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
 
         }
 
+        /// <summary>
+        /// 开始读取标签
+        /// </summary>
+        /// <param name="readCount">读取次数</param>
+        /// <param name="error">错误信息</param>
+        /// <returns></returns>
         public bool BeginRead(int readCount, out string error)
         {
             bool result = true;
@@ -268,7 +274,6 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
                 {
                     GetAntennaNo();
                 }
-                //SendData(1, string.Empty, EmCodeType.BarCode);
                 bool isFinish = false;
                 for (int i = 0; i < readCount; i++)
                 {
@@ -309,6 +314,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
             }
             return result;
         }
+
         public List<string> EndRead()
         {
             if (RunMode == 1)
@@ -318,6 +324,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
             }
             return rfidList;
         }
+
         /// <summary>
         /// 切换频道与基带参数的扫描模式
         /// </summary>
@@ -344,6 +351,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
             }
             return result;
         }
+
         private string PaseError(int errCode)
         {
             string error = string.Empty;
@@ -373,6 +381,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
             }
             return error;
         }
+
         private int ChannelSwitchScan(eRF_Range range, bool changeRange, int count, int searchType, ref bool isFinish)
         {
             int errCode = RFIDReader._RFIDConfig.SetEPCBaseBandParam(ipAndPort, 1, 7, 2, searchType);
@@ -422,6 +431,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
             }
             return result;
         }
+
         private void GetSleepTime(ref int scanTime, ref int sleepTime)
         {
             if (scanTime < sleepTime)
@@ -480,16 +490,16 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
             //}
             isReadAntenna = true;
         }
+
         /// <summary>
         /// 读取条码
         /// </summary>
         public void GetBarcode()
         {
             string error = string.Empty;
-
             if (!Connection())
             {
-                error = "与读写器创建连接失败";               
+                error = "与读写器创建连接失败";
             }
             if (!isReadAntenna)
             {
@@ -497,39 +507,23 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
             }
             string err = "";
             BeginRead(ReadMaxCount, out err);
-
             Thread.Sleep(300);
-            List<string> recBarCodeList= EndRead();
+            List<string> recBarCodeList = EndRead();
 
-            //int RtValue = RFIDReader._Tag6C.GetEPC(ipAndPort, antennaNo, eReadType.Inventory);
-            //if (RtValue != 0)
-            //{
-            //    LogHelper.WriteLog(stationName, "RFID 读标签失败：GetEPC_TID() 返回值=" + RtValue.ToString());
-            //}
-            //Thread.Sleep(15000);
-            //RtValue = RFIDReader._Tag6C.Stop(ipAndPort);
-            //if (RtValue != 0)
-            //{
-            //    LogHelper.WriteLog(stationName, "RFID 停止指令失败：Stop() 返回值=" + RtValue.ToString());
-            //}
-            //Thread.Sleep(3000);
             List<string> result = new List<string>();
             if (recBarCodeList.Count == 0)
             {
                 LogHelper.WriteLog(stationName, "RFID  recBarCodeList 没有读取到数据！");
             }
-
             if (rfidList.Count == 0)
             {
                 LogHelper.WriteLog(stationName, "RFID  rfidList 没有读取到数据！");
             }
-
             if (rfidList != null && rfidList.Count > 0)
             {
-                string str=string.Format("RFID 读取到的条码：未转换前 条码数量:{0}  条码信息:{1}",rfidList.Count.ToString(),  string.Join(",", rfidList.ToArray()));
+                string str = string.Format("RFID 读取到的条码：未转换前 条码数量:{0}  条码信息:{1}", rfidList.Count.ToString(), string.Join(",", rfidList.ToArray()));
                 LogHelper.WriteLog(stationName, str);
             }
-
             if (rfidList.Any())
             {
                 foreach (string itemBarcode in rfidList)
@@ -539,20 +533,6 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
                     {
                         formatBarcode = ToConvertBarCode(itemBarcode.Trim());
                     }
-                    //if (convertMode == ConvertMode.Hex)
-                    //{
-                    //    if (formatBarcode.Length % 2 != 0)
-                    //    {
-                    //        LogHelper.WriteLog(stationName, "RFID读取到条码:" + formatBarcode + ",不符合转换规则");
-                    //        rfidList.Clear();
-                    //        return;
-                    //    }
-                    //    formatBarcode = ConvertHexToDecimal(formatBarcode);
-                    //}
-                    //if (formatBarcode.Length >= 22 && convertMode == ConvertMode.Decimal)
-                    //{
-                    //    formatBarcode = formatBarcode.Substring(0, 22);
-                    //}
                     if (!result.Contains(formatBarcode))
                     {
                         result.Add(formatBarcode);
@@ -573,8 +553,6 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
             //三相表箱子	5	FC	WS
             //三相表条码	5	86	SF
             //互感器箱子	5	FA	WH
-
-            //0800186XXX
             string barCodeType = barCode.Substring(5, 2);
             switch (barCodeType)
             {
@@ -608,6 +586,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
             }
             return nexBarCode;
         }
+
         /// <summary>
         /// 条码上报处理
         /// </summary>
@@ -665,7 +644,6 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
                     if (!string.IsNullOrEmpty(code))
                     {
                         rfidList.Add(code);
-                        //SendData(2, code);
                     }
                 }
             }
@@ -673,90 +651,37 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
 
         public void PortConnecting(string connID)
         {
-            
+
         }
 
         private string CodeConvert(string code)
         {
             string result = code;
-            //try
-            //{
-
-
-            //    if (RfidConfigManager.LoadRfidConfig().CodeConvertList.Count > 0)
-            //    {
-            //        for (int i = RfidConfigManager.LoadRfidConfig().CodeConvertList.Count - 1; i >= 0; i--)
-            //        {
-            //            CodeConvert codeConvert = RfidConfigManager.LoadRfidConfig().CodeConvertList[i];
-            //            if (string.Compare(codeConvert.ConvertCode, code.Substring(codeConvert.StartIndex, codeConvert.ConvertCode.Length)) == 0)
-            //            {
-            //                StringBuilder sb = new StringBuilder();
-            //                if (codeConvert.StartIndex > 0)
-            //                {
-            //                    sb.Append(code.Substring(0, codeConvert.StartIndex));
-            //                }
-            //                sb.Append(codeConvert.ConvertValue);
-            //                sb.Append(code.Substring(codeConvert.StartIndex + codeConvert.ConvertCode.Length));
-            //                result = sb.ToString();
-            //                break;
-            //            }
-            //        }
-            //    }
-            //}
-            //catch
-            //{ }
             return result;
         }
         private string CodeMatch(string code)
         {
-            //string result = string.Empty;
-            //if (RfidConfigManager.LoadRfidConfig().CodeMatchList.Count > 0)
-            //{
-            //    if (RfidConfigManager.LoadRfidConfig().CodeMatchList.FirstOrDefault(x => code.IndexOf(x.MatchCode) == x.StartIndex) != null)
-            //    {
-            //        result = code;
-            //    }
-            //}
-            //else
-            //{
-            //    result = code;
-            //}
             return code;
         }
-        //private void SendData(int state, string barcode)
-        //{
-        //    if (DataEvent != null)
-        //    {
-        //        DataEvent(state, barcode);
-        //    }
-        //    if (isClear)
-        //    {
-        //        isClear = false;
-        //    }
-        //}
-        //public event Action<bool> ConnectEvent;
-
-        //public event Action<int, string> DataEvent;
-
 
         public void OutPutTagsOver()
         {
-           
+
         }
 
         public void PortClosing(string connID)
         {
-           
+
         }
 
         public void WriteDebugMsg(string msg)
         {
-            
+
         }
 
         public void WriteLog(string msg)
         {
-            
+
         }
     }
 }

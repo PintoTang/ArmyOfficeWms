@@ -24,23 +24,19 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device
     public class IdentifyDeviceCommForClouRfid : IIdentifyDeviceCom<List<string>>
     {
         private bool _isConnected = true;
-
+        public bool IsConnected
+        {
+            get { return _isConnected; }
+            private set { _isConnected = value; }
+        }
         public MessageReportDelegate MessageReportEvent { get; set; }
-
-        public void MessageReport(string message,EnumLogLevel messageLevel)
+        public void MessageReport(string message, EnumLogLevel messageLevel)
         {
             if (MessageReportEvent != null)
             {
                 MessageReportEvent(message, messageLevel);
             }
         }
-
-        public bool IsConnected
-        {
-            get { return _isConnected; }
-            private set { _isConnected = value; }
-        }
-
         public DeviceName DeviceName { get; set; }
         public int DeviceId { get; set; }
         public string Name { get; set; }
@@ -51,6 +47,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device
         private int remotePort { get; set; }
 
         public RFIDForClou RfidForClou { get; set; }
+
         /// <summary>
         /// 初始化对象
         /// </summary>
@@ -67,7 +64,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device
                 string strRfidInfo = remoteIpAddr + ":" + remotePort.ToString();
                 RfidForClou = new RFIDForClou(strRfidInfo, ConvertMode.Hex);
                 RfidForClou.ReceiveBarcodeHandler += RfidForClou_ReceiveBarcodeHandler;
-                this.OpcClient = DependencyHelper.GetService<OPCClientAbstract>();
+                //this.OpcClient = DependencyHelper.GetService<OPCClientAbstract>();
             }
             else
             {
@@ -82,7 +79,6 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device
             if (OnReceiveBarcode != null) OnReceiveBarcode(this.DeviceName, barcodeList, para);
         }
 
-
         /// <summary>
         /// 异步读取
         /// </summary>
@@ -91,7 +87,13 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device
         {
             await Task.Run(() => RfidForClou.GetBarcode());
         }
-       public OperateResult<List<string>> SendCommand(params object[] para)
+
+        /// <summary>
+        /// 同步读取
+        /// </summary>
+        /// <param name="para"></param>
+        /// <returns></returns>
+        public OperateResult<List<string>> SendCommand(params object[] para)
         {
             OperateResult<List<string>> opResult = new OperateResult<List<string>>();
             RfidForClou.GetBarcode();
@@ -159,6 +161,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device
             result.IsSuccess = true;
             return result;
         }
+
         /// <summary>
         /// OPC的客户端
         /// </summary>

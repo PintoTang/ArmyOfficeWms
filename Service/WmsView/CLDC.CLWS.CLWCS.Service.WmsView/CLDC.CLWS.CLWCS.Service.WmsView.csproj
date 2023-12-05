@@ -67,6 +67,7 @@
     <Compile Include="DataModel\InOrder.cs" />
     <Compile Include="DataModel\Material.cs" />
     <Compile Include="DataModel\Shelf.cs" />
+    <Compile Include="DataModel\TaskTypeEnum.cs" />
     <Compile Include="DataModel\UserInformationMode.cs" />
     <Compile Include="DataModel\Warehouse.cs" />
     <Compile Include="SqlSugar\WmsDataSqlSugar.cs" />

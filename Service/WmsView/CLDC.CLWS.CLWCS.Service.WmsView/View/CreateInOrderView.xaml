@@ -71,13 +71,13 @@
                                   AutoGenerateColumns="False"
                                   materialDesign:DataGridAssist.CellPadding="4 2 2 2"
                                   materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
-                                  ItemsSource="{Binding AccountList,Mode=OneWay}" 
+                                  ItemsSource="{Binding BarcodeList,Mode=OneWay}" 
                                   SelectedValue="{Binding SelectedValue}"
                                   CanUserAddRows="False"
                                   CanUserDeleteRows="False" CanUserResizeColumns="False">   
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="序号" Width="*" Binding="{Binding OrderSN}" IsReadOnly="True"/>
-                                <DataGridTextColumn Header="标签条码" Width="*" Binding="{Binding TaskType}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="序号" Width="*" Binding="{Binding SN}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="标签条码" Width="*" Binding="{Binding Barcode}" IsReadOnly="True"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>

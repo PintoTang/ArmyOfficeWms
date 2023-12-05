@@ -36,6 +36,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.DeviceControl.Identify
                 OnReceiveBarcodeEvent(deviceName, barcode, para);
             }
         }
+
         public override OperateResult ParticularInitConfig()
         {
             OperateResult result = OperateResult.CreateFailedResult();
@@ -72,8 +73,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.DeviceControl.Identify
                     return result;
                 }
 
-                communicate = (IIdentifyDeviceCom<BarcodeT>)Assembly.Load(communicationProperty.NameSpace)
-                                .CreateInstance(communicationProperty.NameSpace + "." + communicationProperty.ClassName);
+                communicate = (IIdentifyDeviceCom<BarcodeT>)Assembly.Load(communicationProperty.NameSpace).CreateInstance(communicationProperty.NameSpace + "." + communicationProperty.ClassName);
 
                 if (communicate == null)
                 {
@@ -86,7 +86,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.DeviceControl.Identify
                 }
                 communicate.Name = communicationProperty.Name;
                 communicate.OnReceiveBarcode += Communicate_OnReceiveBarcode;
-                communicate.MessageReportEvent+= MessageReportEvent;
+                communicate.MessageReportEvent += MessageReportEvent;
                 result = OperateResult.CreateSuccessResult();
             }
             catch (Exception ex)
@@ -97,7 +97,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.DeviceControl.Identify
             return result;
         }
 
-        private void MessageReportEvent(string message,EnumLogLevel messageLevel)
+        private void MessageReportEvent(string message, EnumLogLevel messageLevel)
         {
             LogMessage(message, messageLevel, true);
         }

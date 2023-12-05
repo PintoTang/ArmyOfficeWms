@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+	<Devices>
+    <IdentityDevice DeviceType="IdentityDevice" Name="电子标签识别" NameSpace="CLDC.CLWS.CLWCS.WareHouse.Device">
+      <Device DeviceId="102401" Name="入库条码枪01" IsShowUi="true" Class="IdentifyDevice" NameSpace="CLDC.CLWS.CLWCS.WareHouse.Device" DeviceName="BoxBarcodeIdentifier#3" CurAddress="Entrance:4_1_1" WorkSize="1">
+        <Config>
+        </Config>
+        <BusinessHandle Name="入库条码枪01业务" Class="IdentifyDeviceBusiness" NameSpace="CLDC.CLWS.CLWCS.WareHouse.Device">
+          <Config>
+          </Config>
+        </BusinessHandle>
+        <ControlHandle Name="入库条码枪01控制" Class="IdentifyControlForCommon" NameSpace="CLDC.CLWS.CLWCS.WareHouse.Device" Type="">
+          <ProtocolTranslation Class="" NameSpace="" Type="">
+            <Config Type="">
+            </Config>
+          </ProtocolTranslation>
+          <Communication Name="托盘条码枪通讯01" Class="IdentifyDeviceForOpc" NameSpace="CLDC.CLWS.CLWCS.WareHouse.Device" Type="">
+            <Config Type="">
+              <RemoteIp>192.168.1.116</RemoteIp>
+              <RemotePort>9090</RemotePort>
+            </Config>
+          </Communication>
+        </ControlHandle>
+      </Device>
+    </IdentityDevice>
+    
+	</Devices>
+</Configuration>

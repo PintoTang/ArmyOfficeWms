@@ -153,6 +153,9 @@
     <None Include="Resources\CLOU\Image\Logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Config.LaiAn\DeviceConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Config.LaiAn\ProjectConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
