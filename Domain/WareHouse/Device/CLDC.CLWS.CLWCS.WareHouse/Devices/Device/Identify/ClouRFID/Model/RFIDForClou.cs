@@ -1,26 +1,23 @@
-﻿using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
+﻿using CL.Framework.CmdDataModelPckg;
+using CL.WCS.ConfigManagerPckg;
+using CL.WCS.SystemConfigPckg.Model;
+using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
 using CLDC.CLWS.CLWCS.WareHouse.DataModel;
+using CLDC.CLWS.CLWCS.WareHouse.Device.DataModel;
 using CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.Model;
 using CLDC.CLWS.CLWCS.WareHouse.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+using CLDC.Framework.Log.Helper;
+using CLDC.Infrastructrue.Xml;
 using RFIDReaderAPI;
 using RFIDReaderAPI.Interface;
 using RFIDReaderAPI.Models;
-using CL.Framework.CmdDataModelPckg;
-using CL.WCS.OPCMonitorAbstractPckg;
-using CLDC.Framework.Log.Helper;
-using System.Threading;
-using CLDC.CLWS.CLWCS.WareHouse.Device.DataModel;
-using System.Xml;
+using System;
+using System.Collections.Generic;
 using System.IO;
-using CL.WCS.ConfigManagerPckg;
-using CLDC.Infrastructrue.Xml;
-using CL.WCS.SystemConfigPckg.Model;
+using System.Linq;
+using System.Threading;
+using System.Windows.Controls;
+using System.Xml;
 
 
 namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Model
@@ -492,8 +489,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
 
             if (!Connection())
             {
-                error = "与读写器创建连接失败";
-               
+                error = "与读写器创建连接失败";               
             }
             if (!isReadAntenna)
             {
@@ -523,7 +519,6 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
                 LogHelper.WriteLog(stationName, "RFID  recBarCodeList 没有读取到数据！");
             }
 
-
             if (rfidList.Count == 0)
             {
                 LogHelper.WriteLog(stationName, "RFID  rfidList 没有读取到数据！");
@@ -544,7 +539,6 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
                     {
                         formatBarcode = ToConvertBarCode(itemBarcode.Trim());
                     }
-
                     //if (convertMode == ConvertMode.Hex)
                     //{
                     //    if (formatBarcode.Length % 2 != 0)

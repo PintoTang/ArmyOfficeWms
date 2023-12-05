@@ -44,6 +44,9 @@
     <Reference Include="MaterialDesignThemes.Wpf">
       <HintPath>..\..\..\LIB\WPFUI\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="SqlSugar, Version=5.0.3.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\SqlSugar.5.0.3.2\lib\SqlSugar.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -60,7 +63,18 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModel\Area.cs" />
+    <Compile Include="DataModel\InOrder.cs" />
+    <Compile Include="DataModel\Material.cs" />
+    <Compile Include="DataModel\Shelf.cs" />
+    <Compile Include="DataModel\UserInformationMode.cs" />
+    <Compile Include="DataModel\Warehouse.cs" />
+    <Compile Include="SqlSugar\WmsDataSqlSugar.cs" />
+    <Compile Include="ViewModel\InOrderListViewModel.cs" />
     <Compile Include="ViewModel\ManageButtonViewModel.cs" />
+    <Compile Include="View\CreateInOrderView.xaml.cs">
+      <DependentUpon>CreateInOrderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UcChart.xaml.cs">
       <DependentUpon>UcChart.xaml</DependentUpon>
     </Compile>
@@ -79,7 +93,12 @@
     <Compile Include="View\UcTopTitle.xaml.cs">
       <DependentUpon>UcTopTitle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WmsDataAbstract.cs" />
     <Page Include="Style\StyleMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateInOrderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -126,6 +145,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -133,9 +153,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Domain\WareHouse\DataModel\CL.Framework.CmdDataModelPckg\CL.Framework.CmdDataModelPckg.csproj">
+      <Project>{A1B9E189-1EFB-4BA3-BB2A-E54E0835BA35}</Project>
+      <Name>CL.Framework.CmdDataModelPckg</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Domain\WareHouse\DataModel\CLDC.CLWS.CLWCS.WareHouse.DataModel\CLDC.CLWS.CLWCS.WareHouse.DataModel.csproj">
       <Project>{626151D3-EA45-4A40-93AC-3B5C15372490}</Project>
       <Name>CLDC.CLWS.CLWCS.WareHouse.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Domain\WareHouse\Device\CLDC.CLWS.CLWCS.WareHouse\CLDC.CLWS.CLWCS.WareHouse.Device.csproj">
+      <Project>{0339859C-2936-4B4B-85BC-0774B5000C8B}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.Device</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Domain\WareHouse\Service\BusinessManage\Common\CL.WCS.ConfigManagerPckg\CL.WCS.ConfigManagerPckg.csproj">
+      <Project>{60C5CE46-9083-4C25-A80C-ADC1374C327E}</Project>
+      <Name>CL.WCS.ConfigManagerPckg</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructrue\Communicate\CLDC.CLWS.CLWCS.Infrastructrue.Socket\CLDC.CLWS.CLWCS.Infrastructrue.Sockets.csproj">
       <Project>{B83E999D-5389-4859-BD5C-434DA790D496}</Project>
@@ -144,6 +176,10 @@
     <ProjectReference Include="..\..\..\Infrastructrue\Communicate\CLDC.CLWS.CLWCS.Infrastructrue.WebService\CLDC.CLWS.CLWCS.Infrastructrue.WebService.csproj">
       <Project>{3BDB301D-5E8F-4392-9E47-DF472A139F8C}</Project>
       <Name>CLDC.CLWS.CLWCS.Infrastructrue.WebService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\Database\CL.WCS.DBHelperAbstractPckg\CLDC.CLWS.CLWCS.Infrastructrue.DbHelper.csproj">
+      <Project>{ecc61dff-9dc8-44c0-a774-a3387b908081}</Project>
+      <Name>CLDC.CLWS.CLWCS.Infrastructrue.DbHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructrue\DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel\CLDC.CLWS.CLWCS.Infrastructrue.DataModel.csproj">
       <Project>{FC860366-A4B2-4DA5-A389-88732CD4EC7C}</Project>
@@ -160,6 +196,10 @@
     <ProjectReference Include="..\..\..\Infrastructrue\UserCtrl\CLDC.CLWS.CLWCS.Infrastructrue.UserCtrl\CLDC.Infrastructrue.UserCtrl.csproj">
       <Project>{aa54a556-74a1-4fcc-a13c-87bc87ae8541}</Project>
       <Name>CLDC.Infrastructrue.UserCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\Xml\CLDC.CLWS.CLWCS.Infrastructrue.Xml\CLDC.Infrastructrue.Xml.csproj">
+      <Project>{DE4DFBAE-EE43-4B9F-AE57-5C6A51E58A10}</Project>
+      <Name>CLDC.Infrastructrue.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Authorize\CLDC.CLWS.CLWCS.Service.Authorize\CLDC.CLWS.CLWCS.Service.Authorize.csproj">
       <Project>{797A97CD-A513-43AF-8A0A-F756CCE6F381}</Project>

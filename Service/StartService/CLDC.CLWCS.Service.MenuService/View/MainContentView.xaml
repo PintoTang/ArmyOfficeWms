@@ -29,16 +29,16 @@
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="330"/>
-                        <RowDefinition Height="345"/>
+                        <RowDefinition Height="300"/>
+                        <RowDefinition Height="333"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" Margin="0,55,0,0">
+                    <Grid Grid.Row="0" Margin="0,45,0,0">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="90"/>
-                                <RowDefinition Height="90"/>
-                                <RowDefinition Height="90"/>
+                                <RowDefinition Height="77"/>
+                                <RowDefinition Height="77"/>
+                                <RowDefinition Height="77"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
@@ -94,7 +94,7 @@
                             </Button>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Row="1" Margin="0,15,0,0">
+                    <Grid Grid.Row="1">
                         <Grid.Background>
                             <ImageBrush ImageSource="/CLDC.CLWCS.Service.MenuService;component/Images/box_left_bg.png" />
                         </Grid.Background>
@@ -132,9 +132,10 @@
                         </Grid.Background>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
-                            <RowDefinition Height="80"/>
-                            <RowDefinition Height="80"/>
-                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="70"/>
+                            <RowDefinition Height="70"/>
+                            <RowDefinition Height="70"/>
+                            <RowDefinition Height="70"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -196,7 +197,23 @@
                                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                             </Button.Background>
                             <Button.Content>
-                                <TextBlock Text="应急救援" Foreground="White" FontSize="20px"/>
+                                <TextBlock Text="抗洪防汛" Foreground="White" FontSize="20px"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="4" Grid.Column="0" Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
+                            </Button.Background>
+                            <Button.Content>
+                                <TextBlock Text="森林灭火" Foreground="White" FontSize="20px"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="4" Grid.Column="1" Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
+                            </Button.Background>
+                            <Button.Content>
+                                <TextBlock Text="反恐维稳" Foreground="White" FontSize="20px"/>
                             </Button.Content>
                         </Button>
                     </Grid>
@@ -211,7 +228,7 @@
                         <RowDefinition/>
                         <RowDefinition Height="700"/>
                     </Grid.RowDefinitions>
-                    <Grid  Grid.Row="0" Margin="0,55,0,0">
+                    <Grid  Grid.Row="0" Margin="0,45,0,0">
                         <Grid.Background>
                             <ImageBrush ImageSource="/CLDC.CLWCS.Service.MenuService;component/Images/box_left_bg.png" />
                         </Grid.Background>

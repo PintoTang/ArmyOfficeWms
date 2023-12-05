@@ -1,4 +1,4 @@
-﻿using CLDC.CLWS.CLWCS.Service.Authorize.ViewModel;
+﻿using CLDC.CLWS.CLWCS.Service.WmsView.ViewModel;
 using System.Windows.Controls;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.View
@@ -11,7 +11,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
         public UcInOrderManage()
         {
             InitializeComponent();
-            DataContext = new AccountManageViewModel();
+            DataContext = new InOrderListViewModel();
         }
 
         public void Show()

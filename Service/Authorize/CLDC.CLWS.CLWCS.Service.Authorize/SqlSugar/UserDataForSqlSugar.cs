@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq.Expressions;
-using CL.Framework.CmdDataModelPckg;
-using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
+﻿using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
 using CLDC.CLWS.CLWCS.Infrastructrue.DbHelper;
 using CLDC.CLWS.CLWCS.Service.Authorize.DataMode;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace CLDC.CLWS.CLWCS.Service.Authorize
 {
