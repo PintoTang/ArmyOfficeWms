@@ -29,28 +29,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
 		public int? Number { get; set; }
 
 		/// <summary>
-		/// 库房Id
-		/// </summary>
-		[SugarColumn]
-		public long? WarehouseId { get; set; }
-
-		/// <summary>
 		/// 仓库编码
 		/// </summary>
 		[SugarColumn]
 		public string WarehouseCode { get; set; }
-
-		/// <summary>
-		/// 
-		/// </summary>
-		[SugarColumn]
-		public string WarehouseName { get; set; }
-
-		/// <summary>
-		/// 库区Id
-		/// </summary>
-		[SugarColumn]
-		public long? AreaId { get; set; }
 
 		/// <summary>
 		/// 库区编码
@@ -64,10 +46,16 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
 		[SugarColumn]
 		public string AreaName { get; set; }
 
-		/// <summary>
-		/// 状态：0-禁用；1-正常
-		/// </summary>
-		[SugarColumn]
+        /// <summary>
+        /// 货架条码
+        /// </summary>
+        [SugarColumn]
+        public string Barcode { get; set; }
+
+        /// <summary>
+        /// 状态：0-禁用；1-正常
+        /// </summary>
+        [SugarColumn]
 		public int? Status { get; set; }
 
 		/// <summary>
@@ -89,22 +77,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
 		public int? CellCount { get; set; }
 
 		/// <summary>
-		/// 
-		/// </summary>
-		[SugarColumn]
-		public int? DisabledCellCount { get; set; }
-
-		/// <summary>
 		/// 深度，1：单深位，2：双深位，3：三深位，4：四深位，5：五深位
 		/// </summary>
 		[SugarColumn]
 		public int? Depth { get; set; }
-
-		/// <summary>
-		/// 货架类型：1-普通货架
-		/// </summary>
-		[SugarColumn]
-		public int? ShelfType { get; set; }
 
 		/// <summary>
 		/// 巷道Id

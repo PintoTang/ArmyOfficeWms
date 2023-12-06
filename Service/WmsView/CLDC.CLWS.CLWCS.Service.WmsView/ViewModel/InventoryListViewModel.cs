@@ -1,41 +1,59 @@
 ﻿using CLDC.CLWS.CLWCS.Framework;
 using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
-using CLDC.CLWS.CLWCS.Service.Authorize.DataMode;
-using CLDC.CLWS.CLWCS.Service.Authorize.View;
 using CLDC.CLWS.CLWCS.Service.Authorize;
-using CLDC.Infrastructrue.UserCtrl.Model;
+using CLDC.CLWS.CLWCS.Service.Authorize.DataMode;
+using CLDC.CLWS.CLWCS.Service.WmsView.Model;
+using CLDC.CLWS.CLWCS.Service.WmsView.View;
 using CLDC.Infrastructrue.UserCtrl;
+using CLDC.Infrastructrue.UserCtrl.Model;
 using GalaSoft.MvvmLight;
 using Infrastructrue.Ioc.DependencyFactory;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using CLDC.CLWS.CLWCS.Service.WmsView.View;
-using CLDC.CLWS.CLWCS.Service.WmsView.Model;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
 {
-    public class InOrderListViewModel : ViewModelBase
+    public class InventoryListViewModel : ViewModelBase
     {
-        private string _curSearchAccCode = string.Empty;
-        private RoleLevelEnum? _curSearchRoleLevel;
-        private AccountStatusEnum? _curAccountUseStatus;
+        private string _curMaterial = string.Empty;
+        private string _curArea;
+        private InvStatusEnum? _curInvStatus;
         private int? _curSearchGroupId;
         private AuthorizeService _authorizeService;
         private WmsDataService _wmsDataService;
+        public ObservableCollection<Inventory> InventoryList { get; set; }
+        public ObservableCollection<Area> AreaList { get; set; }
 
-        public InOrderListViewModel()
+
+        public InventoryListViewModel()
         {
-            AccountList = new ObservableCollection<InOrder>();
+            InventoryList = new ObservableCollection<Inventory>();
+            AreaList = new ObservableCollection<Area>();
             _authorizeService = DependencyHelper.GetService<AuthorizeService>();
             _wmsDataService = DependencyHelper.GetService<WmsDataService>();
+            InitCbArea();
         }
-        public ObservableCollection<InOrder> AccountList { get; set; }
+
+        private void InitCbArea()
+        {
+            AreaList.Clear();
+            try
+            {
+                var where = CombineSearchSql();
+                List<Area> accountListResult = _wmsDataService.GetAreaList(string.Empty);
+                if (accountListResult.Count > 0)
+                {
+                    accountListResult.ForEach(ite => AreaList.Add(ite));
+                }
+            }
+            catch (Exception ex)
+            {
+                SnackbarQueue.MessageQueue.Enqueue("查询异常：" + ex.Message);
+            }
+        }
 
         private readonly Dictionary<int, string> _groupTypeDic = new Dictionary<int, string>();
         public Dictionary<int, string> GroupTypeDic
@@ -74,57 +92,57 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             }
         }
 
-        private readonly Dictionary<AccountStatusEnum, string> _useStatusTypeDic = new Dictionary<AccountStatusEnum, string>();
-        public Dictionary<AccountStatusEnum, string> UseStatusTypeDic
+        private readonly Dictionary<InvStatusEnum, string> _invStatusDict = new Dictionary<InvStatusEnum, string>();
+        public Dictionary<InvStatusEnum, string> InvStatusDict
         {
             get
             {
-                if (_useStatusTypeDic.Count == 0)
+                if (_invStatusDict.Count == 0)
                 {
-                    foreach (var value in Enum.GetValues(typeof(AccountStatusEnum)))
+                    foreach (var value in Enum.GetValues(typeof(InvStatusEnum)))
                     {
-                        AccountStatusEnum em = (AccountStatusEnum)value;
-                        _useStatusTypeDic.Add(em, em.GetDescription());
+                        InvStatusEnum em = (InvStatusEnum)value;
+                        _invStatusDict.Add(em, em.GetDescription());
                     }
                 }
-                return _useStatusTypeDic;
+                return _invStatusDict;
 
             }
         }
 
         /// <summary>
-        /// 当前搜索的账号
+        /// 当前搜索的装备
         /// </summary>
-        public string CurSearchAccCode
+        public string CurMaterial
         {
-            get { return _curSearchAccCode; }
+            get { return _curMaterial; }
             set
             {
-                _curSearchAccCode = value;
+                _curMaterial = value;
                 RaisePropertyChanged();
             }
         }
         /// <summary>
-        /// 当前搜索的等级
+        /// 当前搜索的区域
         /// </summary>
-        public RoleLevelEnum? CurSearchRoleLevel
+        public string CurArea
         {
-            get { return _curSearchRoleLevel; }
+            get { return _curArea; }
             set
             {
-                _curSearchRoleLevel = value;
+                _curArea = value;
                 RaisePropertyChanged();
             }
         }
         /// <summary>
         /// 当前搜索的使用状态
         /// </summary>
-        public AccountStatusEnum? CurAccountUseStatus
+        public InvStatusEnum? CurInvStatus
         {
-            get { return _curAccountUseStatus; }
+            get { return _curInvStatus; }
             set
             {
-                _curAccountUseStatus = value;
+                _curInvStatus = value;
                 RaisePropertyChanged();
             }
         }
@@ -241,17 +259,17 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
 
         private void Search()
         {
-            if (ValidData.CheckSearchParmsLenAndSpecialCharts(CurSearchAccCode))
+            if (ValidData.CheckSearchParmsLenAndSpecialCharts(CurMaterial))
             {
                 MessageBoxEx.Show("输入的字符长度超过20或包含特殊字符，请重新输入!");
                 return;
             }
 
-            AccountList.Clear();
+            InventoryList.Clear();
             try
             {
                 var where = CombineSearchSql();
-                OperateResult<List<InOrder>> accountListResult = _wmsDataService.GetInOrderPageList(where);
+                OperateResult<List<Inventory>> accountListResult = _wmsDataService.GetInventoryPageList(where);
                 if (!accountListResult.IsSuccess)
                 {
                     SnackbarQueue.MessageQueue.Enqueue("查询出错：" + accountListResult.Message);
@@ -259,7 +277,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                 }
                 if (accountListResult.Content != null && accountListResult.Content.Count > 0)
                 {
-                    accountListResult.Content.ForEach(ite => AccountList.Add(ite));
+                    accountListResult.Content.ForEach(ite => InventoryList.Add(ite));
                 }
             }
             catch (Exception ex)
@@ -268,22 +286,22 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             }
         }
 
-        private Expression<Func<InOrder, bool>> CombineSearchSql()
+        private Expression<Func<Inventory, bool>> CombineSearchSql()
         {
             int curRoleLevel = (int)CookieService.CurSession.RoleLevel;
-            Expression<Func<InOrder, bool>> whereLambda = t => t.IsDeleted == false;
-            //if (!string.IsNullOrEmpty(CurSearchAccCode))
-            //{
-            //    whereLambda = whereLambda.AndAlso(t => t.AccCode == CurSearchAccCode);
-            //}
-            //if (CurSearchRoleLevel.HasValue)
-            //{
-            //    whereLambda = whereLambda.AndAlso(t => t.RoleLevel == CurSearchRoleLevel.Value);
-            //}
-            //if (CurAccountUseStatus.HasValue)
-            //{
-            //    whereLambda = whereLambda.AndAlso(t => t.UseStatus == CurAccountUseStatus.Value);
-            //}
+            Expression<Func<Inventory, bool>> whereLambda = t => t.IsDeleted == false;
+            if (!string.IsNullOrEmpty(CurMaterial))
+            {
+                whereLambda = whereLambda.AndAlso(t => t.MaterialDesc.Contains(CurMaterial));
+            }
+            if (!string.IsNullOrEmpty(CurArea))
+            {
+                whereLambda = whereLambda.AndAlso(t => t.AreaCode == CurArea);
+            }
+            if (CurInvStatus.HasValue)
+            {
+                whereLambda = whereLambda.AndAlso(t => t.Status == (int?)CurInvStatus.Value);
+            }
             //if (CurSearchGroupId.HasValue)
             //{
             //    whereLambda = whereLambda.AndAlso(t => t.GroupId == CurSearchGroupId.Value);

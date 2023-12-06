@@ -46,15 +46,10 @@
         </Grid.RowDefinitions>
         <Grid  Grid.Row="0">
             <Grid.Background>
-                <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/whDesigner.png" />
+                <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/map_box.png" />
             </Grid.Background>
         </Grid>
-        <!--<localview:UcTopTitle Grid.Row="1" TitleContent="出入库记录" Margin="0,30,0,0">
-            <localview:UcTopTitle.Background>
-                <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
-            </localview:UcTopTitle.Background>
-        </localview:UcTopTitle>-->
-        <Label Grid.Row="1" Name="AdminTitle" Width="1200" Height="40" Content="出入库记录" Foreground="#12FFD5" Margin="0,30,0,0"
+        <Label Grid.Row="1" Name="AdminTitle" Width="893" Height="40" Content="出入库记录" Foreground="#12FFD5" Margin="0,30,0,0"
                                         VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18" >
             <Label.Background>
                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />

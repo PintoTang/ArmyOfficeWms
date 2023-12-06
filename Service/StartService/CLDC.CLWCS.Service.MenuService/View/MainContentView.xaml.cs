@@ -1,25 +1,18 @@
 ﻿using CL.WCS.SystemConfigPckg.Model;
 using CL.WCS.SystemConfigPckg.ViewModel;
+using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
 using CLDC.CLWS.CLWCS.Infrastructrue.Sockets;
 using CLDC.CLWS.CLWCS.Service.WmsView.View;
 using CLDC.Infrastructrue.UserCtrl.Domain;
-using LiveCharts.Wpf;
 using LiveCharts;
+using LiveCharts.Definitions.Charts;
+using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Collections.ObjectModel;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CLDC.CLWCS.Service.MenuService.View
 {
@@ -34,22 +27,30 @@ namespace CLDC.CLWCS.Service.MenuService.View
             this.DataContext = new SystemConfigViewMode(SystemConfig.Instance.CurSystemConfig);
             UserControl menuView = new UcDefaultView();
             UserContentControl.Children.Add(menuView);
+            GetPieSeriesData();
             PointLabel = chartPoint => string.Format("{0}({1:p})", chartPoint.Y, chartPoint.Participation);
             DataContext = this;
         }
 
+        void GetPieSeriesData()
+        {
+            ///饼状图数据绑定
+        }
+
+
         public Func<ChartPoint, string> PointLabel { get; set; }
+
+        public List<PieSeries> PieSeriesList { get; set; }
+        public ObservableCollection<List<PieSeries>> PieSeriesCollection { get; set; }
 
         private void pipChart_DataClick(object sender, LiveCharts.ChartPoint chartPoint)
         {
-            var chart = (LiveCharts.Wpf.PieChart)chartPoint.ChartView;
-            //clear selected slice
-            foreach (PieSeries series in chart.Series)
-            {
-                series.PushOut = 0;
-                var selectedSeries = (PieSeries)chartPoint.SeriesView;
-                selectedSeries.PushOut = 8;
-            }
+            UcInventoryList inventoryList = new UcInventoryList();
+            //加载过的子控件就不要重复加载
+            UserContentControl.Children.Add(inventoryList);
+            //此处需要加系列的判断
+            inventoryList.ViewModel.CurInvStatus = (InvStatusEnum)1;
+            inventoryList.ViewModel.SearchCommand.Execute(null);
         }
 
         private string _useCtrlId = "系统主界面";

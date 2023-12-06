@@ -15,6 +15,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="70"/>
@@ -118,7 +119,7 @@
                                 <lvc:PieChart.Background>
                                     <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
                                 </lvc:PieChart.Background>
-                                <lvc:PieChart.Series>
+                                <lvc:PieChart.Series x:Name="pieChart">
                                     <lvc:PieSeries Fill="#24D469" Title="在库        " FontSize="16" DataLabels="True" LabelPoint="{Binding PointLabel}" Values="11"/>
                                     <lvc:PieSeries Fill="#FFFD00" Title="出库        " FontSize="16" DataLabels="True" LabelPoint="{Binding PointLabel}" Values="6"/>
                                     <lvc:PieSeries Fill="#FD9D73" Title="报损        " FontSize="16" DataLabels="True" LabelPoint="{Binding PointLabel}" Values="3"/>
@@ -126,7 +127,7 @@
                             </lvc:PieChart>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="2" Margin="0,15,0,65">
+                    <Grid Grid.Row="2" Margin="0,15,0,15">
                         <Grid.Background>
                             <ImageBrush ImageSource="/CLDC.CLWCS.Service.MenuService;component/Images/box_left_bg.png" />
                         </Grid.Background>
@@ -219,7 +220,7 @@
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid x:Name="UserContentControl" Grid.Row="1" Grid.Column="2" Margin="30,0,30,65">
+            <Grid x:Name="UserContentControl" Grid.Row="1" Grid.Column="2" Margin="30,0,30,15">
 
             </Grid>
             <Grid Grid.Row="1" Grid.Column="3">
@@ -258,9 +259,13 @@
                         <Label Grid.Row="2" Grid.Column="1" Content="李响" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="#FFFFFF "></Label>
                     </Grid>
                     <Grid Grid.Row="1">
-                        <wmsView:UcEnvironMonitor Margin="0,15,0,65"/>
+                        <wmsView:UcEnvironMonitor Margin="0,15,0,15"/>
                     </Grid>
                 </Grid>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="2"  >
+                <TextBlock VerticalAlignment="Center" FontSize="16" Foreground="#12FFD5" HorizontalAlignment="Center" Text="安徽军之星智能科技有限公司 版权所有" Margin="0,0,38,0" />
             </Grid>
 
         </Grid>

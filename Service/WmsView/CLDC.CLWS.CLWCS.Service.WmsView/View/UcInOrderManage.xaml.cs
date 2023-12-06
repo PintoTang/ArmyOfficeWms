@@ -1,4 +1,5 @@
-﻿using CLDC.CLWS.CLWCS.Service.WmsView.ViewModel;
+﻿using CLDC.CLWS.CLWCS.Service.Authorize.DataMode;
+using CLDC.CLWS.CLWCS.Service.WmsView.ViewModel;
 using System.Windows.Controls;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.View
@@ -8,11 +9,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
     /// </summary>
     public partial class UcInOrderManage : UserControl
     {
+        public InOrderListViewModel ViewModel { get; set; }
         public UcInOrderManage()
         {
             InitializeComponent();
-            DataContext = new InOrderListViewModel();
-        }
+            ViewModel = new InOrderListViewModel();
+            DataContext = ViewModel;
+        }        
 
         public void Show()
         {

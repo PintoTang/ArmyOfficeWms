@@ -26,7 +26,8 @@ namespace CLDC.CLWS.CLWCS.Framework
             bool checkNumLenght= Regex.IsMatch(userName, regStr);
             bool checkSpChar= CheckSpecialCharacters(userName);
             return checkNumLenght && !checkSpChar;
-        }
+        }        
+
         /**
        * 正则表达式验证密码  最少8位
        * @param input

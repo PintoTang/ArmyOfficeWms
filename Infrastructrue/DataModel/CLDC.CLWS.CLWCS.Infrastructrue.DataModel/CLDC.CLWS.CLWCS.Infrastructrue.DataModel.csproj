@@ -54,6 +54,7 @@
     <Compile Include="EnumLogLevel.cs" />
     <Compile Include="InfrastructrueDelegate.cs" />
     <Compile Include="InstanceProperty.cs" />
+    <Compile Include="InvStatusEnum.cs" />
     <Compile Include="IResponse.cs" />
     <Compile Include="IUnique.cs" />
     <Compile Include="MyCommand.cs" />

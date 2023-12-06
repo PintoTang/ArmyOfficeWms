@@ -11,10 +11,10 @@
 
     <!--中文字体样式-->
     <Style x:Key="ChineseStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="FontSize" Value="33"/>
         <Setter Property="FontStyle" Value="Normal"/>
-        <Setter Property="Foreground" Value="#ffffff"/>
-        <Setter Property="FontFamily" Value="微软雅黑"/>
+        <Setter Property="Foreground" Value="#71FFE1"/>
+        <Setter Property="FontFamily" Value="AppleSystemUIFont"/>
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
     <!--英文字体样式-->
@@ -25,8 +25,6 @@
         <Setter Property="FontFamily" Value="Arial"/>
         <Setter Property="Margin" Value="0,2,0,0"/>
     </Style>
-
-
 
 
     <Style TargetType="GroupBox" x:Key="GroupBoxMainStyle">

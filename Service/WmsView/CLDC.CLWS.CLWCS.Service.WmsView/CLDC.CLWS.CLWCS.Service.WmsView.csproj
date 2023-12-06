@@ -64,14 +64,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModel\Area.cs" />
+    <Compile Include="DataModel\Inventory.cs" />
     <Compile Include="DataModel\InOrder.cs" />
+    <Compile Include="DataModel\InOrderDetail.cs" />
     <Compile Include="DataModel\Material.cs" />
+    <Compile Include="DataModel\ReasonEnum.cs" />
+    <Compile Include="DataModel\RfidBarcode.cs" />
     <Compile Include="DataModel\Shelf.cs" />
     <Compile Include="DataModel\TaskTypeEnum.cs" />
     <Compile Include="DataModel\UserInformationMode.cs" />
     <Compile Include="DataModel\Warehouse.cs" />
+    <Compile Include="SqlSugar\IOrderSNGenerate.cs" />
+    <Compile Include="SqlSugar\OrderSNGenerate.cs" />
     <Compile Include="SqlSugar\WmsDataSqlSugar.cs" />
     <Compile Include="ViewModel\CreateInOrderViewModel.cs" />
+    <Compile Include="ViewModel\InventoryListViewModel.cs" />
     <Compile Include="ViewModel\InOrderListViewModel.cs" />
     <Compile Include="ViewModel\ManageButtonViewModel.cs" />
     <Compile Include="View\CreateInOrderView.xaml.cs">
@@ -88,6 +95,9 @@
     </Compile>
     <Compile Include="View\UcInOrderManage.xaml.cs">
       <DependentUpon>UcInOrderManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UcInventoryList.xaml.cs">
+      <DependentUpon>UcInventoryList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UcManageButton.xaml.cs">
       <DependentUpon>UcManageButton.xaml</DependentUpon>
@@ -118,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UcInOrderManage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UcInventoryList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,9 +238,6 @@
     <Resource Include="Images\box_left_title.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\whDesigner.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\background.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +245,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\img_touxiang.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\map_box.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

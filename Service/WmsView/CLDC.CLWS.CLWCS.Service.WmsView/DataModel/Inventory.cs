@@ -4,21 +4,21 @@ using System;
 namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
 {
 	/// <summary>
-	/// 入库单
+	/// 库存
 	/// </summary>
-	[SugarTable("t_InOrder")]
-	public class InOrder
-	{
+	[SugarTable("t_Inventory")]
+	public class Inventory
+    {
         /// <summary>
-        /// 入库单Id
+        /// 库存Id
         /// </summary>
-        [SugarColumn]
+        [SugarColumn(IsIdentity = true)]
         public long Id { get; set; }
 
-		/// <summary>
-		/// 入库单编号
-		/// </summary>
-		[SugarColumn]
+        /// <summary>
+        /// 关联单据编号
+        /// </summary>
+        [SugarColumn]
 		public string OrderSN { get; set; }
 
 		/// <summary>
@@ -75,10 +75,16 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
 		[SugarColumn]
 		public string BatchNo { get; set; }
 
-		/// <summary>
-		/// 有效期
-		/// </summary>
-		[SugarColumn]
+        /// <summary>
+        /// 装备条码
+        /// </summary>
+        [SugarColumn]
+        public string Barcode { get; set; }
+
+        /// <summary>
+        /// 有效期
+        /// </summary>
+        [SugarColumn]
 		public DateTime? ExpireDate { get; set; }
 
 		/// <summary>
@@ -107,7 +113,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
 
 
         /// <summary>
-        /// 状态：0-新建;1-已启动;2-作业中;3-已完成;
+        /// 状态：0-其它;1-在库;2-出库;3-报损;
         /// </summary>
         [SugarColumn]
 		public int? Status { get; set; }
