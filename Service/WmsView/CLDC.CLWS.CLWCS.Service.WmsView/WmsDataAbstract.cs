@@ -30,6 +30,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
         public abstract List<InOrder> GetAllInOrderList();
 
         /// <summary>
+        /// 根据名称获取物料列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public abstract List<Material> GetMaterialList(string name);
+
+        /// <summary>
         /// 删除入库单
         /// </summary>
         /// <param name="inOrder"></param>

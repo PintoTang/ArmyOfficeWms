@@ -19,7 +19,7 @@ using CLDC.CLWS.CLWCS.Service.WmsView.View;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
 {
-    internal class InOrderListViewModel : ViewModelBase
+    public class InOrderListViewModel : ViewModelBase
     {
         private string _curSearchAccCode = string.Empty;
         private RoleLevelEnum? _curSearchRoleLevel;

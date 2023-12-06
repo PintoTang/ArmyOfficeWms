@@ -71,6 +71,7 @@
     <Compile Include="DataModel\UserInformationMode.cs" />
     <Compile Include="DataModel\Warehouse.cs" />
     <Compile Include="SqlSugar\WmsDataSqlSugar.cs" />
+    <Compile Include="ViewModel\CreateInOrderViewModel.cs" />
     <Compile Include="ViewModel\InOrderListViewModel.cs" />
     <Compile Include="ViewModel\ManageButtonViewModel.cs" />
     <Compile Include="View\CreateInOrderView.xaml.cs">
@@ -95,6 +96,7 @@
       <DependentUpon>UcTopTitle.xaml</DependentUpon>
     </Compile>
     <Compile Include="WmsDataAbstract.cs" />
+    <Compile Include="WmsDataService.cs" />
     <Page Include="Style\StyleMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

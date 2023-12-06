@@ -54,12 +54,12 @@
                     <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource LableStyle}">物资类别：</Label>
                     <ComboBox x:Name="CbMaterialCategory" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
                     <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource LableStyle}">装备：</Label>
-                    <ComboBox x:Name="CbMaterialDesc" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
+                    <ComboBox x:Name="CbMaterialDesc" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200" IsEditable="True"  IsTextSearchEnabled = "true" TextBoxBase.TextChanged="CbMaterialDesc_TextChanged"/>
                     <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource LableStyle}">数量：</Label>
                     <TextBox x:Name="TbQty" Grid.Row="4" Grid.Column="1" Style="{StaticResource TextboxStyle}"></TextBox>
                     <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource LableStyle}">单位：</Label>
                     <ComboBox x:Name="CbUnit" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200"/>
-                    <Button Grid.Row="6" Grid.Column="1" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="BtnScanRfid" Click="BtnScanRfid_Click">读取标签</Button>
+                    <Button Grid.Row="6" Grid.Column="1" Width="100" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="BtnScanRfid" Command="{Binding ScanCommand}" >读取标签</Button>
                     <Grid Grid.Row="7" Grid.Column="1" Width="350" VerticalAlignment="Center" HorizontalAlignment="Left">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -71,7 +71,7 @@
                                   AutoGenerateColumns="False"
                                   materialDesign:DataGridAssist.CellPadding="4 2 2 2"
                                   materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
-                                  ItemsSource="{Binding BarcodeList,Mode=OneWay}" 
+                                  ItemsSource="{Binding BarcodeList}" 
                                   SelectedValue="{Binding SelectedValue}"
                                   CanUserAddRows="False"
                                   CanUserDeleteRows="False" CanUserResizeColumns="False">   
@@ -84,7 +84,7 @@
                 </Grid>
             </ScrollViewer>
             <WrapPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">
-                <Button x:Name="BtnSave" Click="BtnSave_OnClick">保存</Button>
+                <Button x:Name="BtnSave" Command="{Binding StopCommand}">保存</Button>
                 <TextBlock Width="20"/>
                 <Button x:Name="BtnExit" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">退出</Button>
                 <TextBlock Width="20"/>

@@ -14,6 +14,7 @@ using CL.WCS.ConfigManagerPckg;
 using CL.WCS.DataModelPckg;
 using CL.Framework.OPCClientAbsPckg;
 using Infrastructrue.Ioc.DependencyFactory;
+using static CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Model.RFIDForClou;
 
 namespace CLDC.CLWS.CLWCS.WareHouse.Device
 {
@@ -43,6 +44,8 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device
 
         public event BarcodeCallback<List<string>> OnReceiveBarcode;
 
+        public event BarcodeEventHandler BarcodeChangedEvent;
+
         private string remoteIpAddr { get; set; }
         private int remotePort { get; set; }
 
@@ -63,7 +66,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device
             {
                 string strRfidInfo = remoteIpAddr + ":" + remotePort.ToString();
                 RfidForClou = new RFIDForClou(strRfidInfo, ConvertMode.Hex);
-                RfidForClou.ReceiveBarcodeHandler += RfidForClou_ReceiveBarcodeHandler;
+                RfidForClou.BarcodeChangedEvent += Receive_BarcodeChanged;
                 //this.OpcClient = DependencyHelper.GetService<OPCClientAbstract>();
             }
             else
@@ -74,9 +77,9 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device
             return opResult;
         }
 
-        void RfidForClou_ReceiveBarcodeHandler(List<string> barcodeList, params object[] para)
+        private void Receive_BarcodeChanged(string barcode)
         {
-            if (OnReceiveBarcode != null) OnReceiveBarcode(this.DeviceName, barcodeList, para);
+            if (BarcodeChangedEvent != null) BarcodeChangedEvent(barcode);
         }
 
         /// <summary>
@@ -85,7 +88,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device
         /// <param name="para"></param>
         public async void SendCommandAsync(params object[] para)
         {
-            await Task.Run(() => RfidForClou.GetBarcode());
+            await Task.Run(() => RfidForClou.BeginRead(30,out string err));
         }
 
         /// <summary>
@@ -96,9 +99,17 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device
         public OperateResult<List<string>> SendCommand(params object[] para)
         {
             OperateResult<List<string>> opResult = new OperateResult<List<string>>();
-            RfidForClou.GetBarcode();
+            RfidForClou.BeginRead(30, out string err);
             return opResult;
         }
+
+        public OperateResult<List<string>> StopCommand(params object[] para)
+        {
+            OperateResult<List<string>> opResult = new OperateResult<List<string>>();
+            RfidForClou.EndRead();
+            return opResult;
+        }
+
 
         private OperateResult InitConfig()
         {

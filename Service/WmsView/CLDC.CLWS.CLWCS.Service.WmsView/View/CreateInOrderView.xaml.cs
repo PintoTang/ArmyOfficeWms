@@ -1,14 +1,13 @@
-﻿using CL.Framework.CmdDataModelPckg;
-using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
+﻿using CLDC.CLWS.CLWCS.Framework;
 using CLDC.CLWS.CLWCS.Service.WmsView.DataModel;
-using CLDC.CLWS.CLWCS.WareHouse.Device;
-using CLDC.CLWS.CLWCS.WareHouse.Device.Devices.DeviceControl.Communication;
+using CLDC.CLWS.CLWCS.Service.WmsView.ViewModel;
+using Infrastructrue.Ioc.DependencyFactory;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using CLDC.CLWS.CLWCS.Framework;
-using System.Text.RegularExpressions;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.View
 {
@@ -17,31 +16,18 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
     /// </summary>
     public partial class CreateInOrderView : UserControl
     {
-        public event BarcodeCallback<List<string>> OnReceiveBarcode;
-        public DeviceName DeviceName { get; set; }
-        public int DeviceId { get; set; }
-        public IdentifyDeviceCommForClouRfid HopelandRfid { get; set; }
+        private WmsDataService _wmsDataService;
 
         public CreateInOrderView()
         {
             InitializeComponent();
+            _wmsDataService = DependencyHelper.GetService<WmsDataService>();
             InitCbTaskType();
-            this.DeviceName = new DeviceName("电子标签识别", 1);
-            this.DeviceId = 102401;
-            HopelandRfid = new IdentifyDeviceCommForClouRfid();
-            HopelandRfid.OnReceiveBarcode += HopelandRfid_OnReceiveBarcode;
-            HopelandRfid.Initialize(DeviceId, DeviceName);
+            InitCbMaterialDesc();
+            DataContext = CreateInOrderViewModel.SingleInstance;
+            CreateInOrderViewModel.SingleInstance.BarcodeList.Clear();
         }
 
-        private void HopelandRfid_OnReceiveBarcode(DeviceName deviceName, List<string> barcode, params object[] para)
-        {
-            List<Barcodex> BarcodeList = new List<Barcodex>();
-            for (int i = 0; i < barcode.Count; i++)
-            {
-                BarcodeList.Add(new Barcodex() { Barcode = barcode[i], SN = i+1 });
-            }
-            this.Dispatcher.BeginInvoke(new Action(() => InOrderGrid.ItemsSource = BarcodeList));            
-        }
 
         private void BtnSave_OnClick(object sender, RoutedEventArgs e)
         {
@@ -50,8 +36,18 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
 
         private void BtnScanRfid_Click(object sender, RoutedEventArgs e)
         {
-            HopelandRfid.SendCommandAsync("test");
+
         }
+
+        private void CbMaterialDesc_TextChanged(object sender, RoutedEventArgs e)
+        {
+
+            CbMaterialDesc.ItemsSource = _wmsDataService.GetMaterialList(CbMaterialDesc.Text);
+            CbMaterialDesc.IsDropDownOpen = true;
+
+
+        }
+
 
         private readonly Dictionary<TaskTypeEnum, string> _taskTypeDict = new Dictionary<TaskTypeEnum, string>();
         public Dictionary<TaskTypeEnum, string> TaskTypeDict
@@ -77,12 +73,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             CbTaskType.ItemsSource = TaskTypeDict;
         }
 
+        private void InitCbMaterialDesc()
+        {
+            CbMaterialDesc.SelectedValuePath = "MaterialCode";
+            CbMaterialDesc.DisplayMemberPath = "MaterialDesc";
+            CbMaterialDesc.ItemsSource = _wmsDataService.GetMaterialList(string.Empty);
+        }
 
-    }
 
-    public class Barcodex
-    {
-        public int SN { get; set; }
-        public string Barcode { get; set; }
     }
 }

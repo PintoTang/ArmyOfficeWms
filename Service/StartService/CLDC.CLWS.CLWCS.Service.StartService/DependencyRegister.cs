@@ -9,6 +9,8 @@ using CLDC.CLWS.CLWCS.Service.Authorize;
 using CLDC.CLWS.CLWCS.Service.License;
 using CLDC.CLWS.CLWCS.Service.OperateLog;
 using Infrastructrue.Ioc.DependencyFactory;
+using CLDC.CLWS.CLWCS.Service.WmsView;
+using CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar;
 
 namespace CLDC.CLWS.CLWCS.Service.StartService
 {
@@ -44,6 +46,10 @@ namespace CLDC.CLWS.CLWCS.Service.StartService
 
                 #region 操作日志数据库操作
                 _dependencyContainer.RegisterType<OperateLogDataAbstract, OperateLogDataForSqlSugar>(new InjectionConstructor(new ResolvedParameter<IDbHelper>(DatabaseForSysType.WcsLocal.ToString())));
+                #endregion
+
+                #region Wms数据库操作
+                _dependencyContainer.RegisterType<WmsDataAbstract, WmsDataSqlSugar>(new InjectionConstructor(new ResolvedParameter<IDbHelper>(DatabaseForSysType.WcsLocal.ToString())));
                 #endregion
                 //switch (SystemConfig.Instance.WcsDataBaseType)
                 //{

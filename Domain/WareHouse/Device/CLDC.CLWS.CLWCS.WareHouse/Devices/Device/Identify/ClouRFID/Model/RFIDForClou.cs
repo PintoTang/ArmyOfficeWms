@@ -18,6 +18,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Controls;
 using System.Xml;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 
 namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Model
@@ -174,6 +175,24 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
         /// </summary>
         public byte AntIdx { get; set; }
         #endregion
+
+        public delegate void BarcodeEventHandler(string barcode);
+
+        public event BarcodeEventHandler BarcodeChangedEvent;
+        /// <summary>
+        /// 条码发生改变时触发事件
+        /// </summary>
+        private string barcode;
+        public string Barcode
+        {
+            get => barcode;
+            set
+            {
+                barcode = value;
+                BarcodeChangedEvent(value);
+            }
+        }
+
         public delegate void BarcodeCallback(List<string> barcodeList, params object[] para);
         /// <summary>
         /// 上报条码事件：上报设备名字、扫到的条码
@@ -275,37 +294,47 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
                     GetAntennaNo();
                 }
                 bool isFinish = false;
-                for (int i = 0; i < readCount; i++)
+
+
+
+                int errCode = RFIDReader._Tag6C.GetEPC(ipAndPort, antennaNo, eReadType.Inventory);
+                if (errCode != 0)
                 {
-                    int sleepTime = SearchTime;
-                    int scanTime = ScanTime;
-                    int changeRangeTime = ChangeRangeTime;
-                    GetSleepTime(ref scanTime, ref sleepTime);
-                    int nextSleepTime = changeRangeTime - sleepTime;
-                    result = ChannelSwitchScan(eRF_Range.FCC_902_to_928MHz, true, sleepTime, 0, ref isFinish, out error);
-                    if (scanTime <= 0 || nextSleepTime <= 0)
-                    {
-                        break;
-                    }
-                    GetSleepTime(ref scanTime, ref nextSleepTime);
-                    result = ChannelSwitchScan(eRF_Range.FCC_902_to_928MHz, false, nextSleepTime, 1, ref isFinish, out error);
-                    if (isFinish || !result || scanTime <= 0)
-                    {
-                        break;
-                    }
-                    GetSleepTime(ref scanTime, ref sleepTime);
-                    result = ChannelSwitchScan(eRF_Range.ETSI_866_to_868MHz, true, sleepTime, 0, ref isFinish, out error);
-                    if (scanTime <= 0 || nextSleepTime <= 0)
-                    {
-                        break;
-                    }
-                    GetSleepTime(ref scanTime, ref nextSleepTime);
-                    result = ChannelSwitchScan(eRF_Range.ETSI_866_to_868MHz, false, nextSleepTime, 1, ref isFinish, out error);
-                    if (isFinish || !result || scanTime <= 0)
-                    {
-                        break;
-                    }
+                    result = false;
+                    error = PaseError(errCode);
                 }
+
+                //for (int i = 0; i < readCount; i++)
+                //{
+                //    int sleepTime = SearchTime;
+                //    int scanTime = ScanTime;
+                //    int changeRangeTime = ChangeRangeTime;
+                //    GetSleepTime(ref scanTime, ref sleepTime);
+                //    int nextSleepTime = changeRangeTime - sleepTime;
+                //    result = ChannelSwitchScan(eRF_Range.FCC_902_to_928MHz, true, sleepTime, 0, ref isFinish, out error);
+                //    if (scanTime <= 0 || nextSleepTime <= 0)
+                //    {
+                //        break;
+                //    }
+                //    GetSleepTime(ref scanTime, ref nextSleepTime);
+                //    result = ChannelSwitchScan(eRF_Range.FCC_902_to_928MHz, false, nextSleepTime, 1, ref isFinish, out error);
+                //    if (isFinish || !result || scanTime <= 0)
+                //    {
+                //        break;
+                //    }
+                //    GetSleepTime(ref scanTime, ref sleepTime);
+                //    result = ChannelSwitchScan(eRF_Range.ETSI_866_to_868MHz, true, sleepTime, 0, ref isFinish, out error);
+                //    if (scanTime <= 0 || nextSleepTime <= 0)
+                //    {
+                //        break;
+                //    }
+                //    GetSleepTime(ref scanTime, ref nextSleepTime);
+                //    result = ChannelSwitchScan(eRF_Range.ETSI_866_to_868MHz, false, nextSleepTime, 1, ref isFinish, out error);
+                //    if (isFinish || !result || scanTime <= 0)
+                //    {
+                //        break;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -638,12 +667,14 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
             {
                 string code = tag.EPC;
                 code = CodeConvert(code);
+                Barcode = code;
                 if (!rfidList.Contains(code))
                 {
                     code = CodeMatch(code);
                     if (!string.IsNullOrEmpty(code))
                     {
                         rfidList.Add(code);
+                        Barcode = code;
                     }
                 }
             }

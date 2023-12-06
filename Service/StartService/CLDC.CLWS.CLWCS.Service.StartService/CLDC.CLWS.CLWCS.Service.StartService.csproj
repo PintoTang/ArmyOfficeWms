@@ -163,6 +163,10 @@
       <Project>{2CAA3030-1381-4027-8304-F56B481A66F1}</Project>
       <Name>CLDC.CLWS.CLWCS.Service.ThreadHandle</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\WmsView\CLDC.CLWS.CLWCS.Service.WmsView\CLDC.CLWS.CLWCS.Service.WmsView.csproj">
+      <Project>{7a2d25c0-2bad-4b67-ab5c-c8972f592e7b}</Project>
+      <Name>CLDC.CLWS.CLWCS.Service.WmsView</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CLDC.CLWS.CLWCS.Service.ConfigService\CLDC.CLWS.CLWCS.Service.ConfigService.csproj">
       <Project>{16824839-76f4-49a9-8c64-f7b4bad5a97e}</Project>
       <Name>CLDC.CLWS.CLWCS.Service.ConfigService</Name>

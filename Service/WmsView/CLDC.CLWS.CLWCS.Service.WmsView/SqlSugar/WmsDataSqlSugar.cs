@@ -56,6 +56,19 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             return inOrderList;
         }
 
+        public override List<Material> GetMaterialList(string name)
+        {
+            List<Material> materialList = null;
+            try
+            {
+                materialList = DbHelper.QueryList<Material>(t => t.MaterialDesc.Contains(name));
+            }
+            catch
+            { }
+            return materialList;
+        }
+
+
         public override OperateResult Insert(WmsDataModel data)
         {
             throw new NotImplementedException();
