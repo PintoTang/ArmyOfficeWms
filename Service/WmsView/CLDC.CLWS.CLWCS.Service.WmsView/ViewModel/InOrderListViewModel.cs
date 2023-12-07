@@ -88,7 +88,6 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                     }
                 }
                 return _useStatusTypeDic;
-
             }
         }
 

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Xml.Linq;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
 {
@@ -138,6 +139,18 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
 
             }
             return result;
+        }
+
+        public override double GetInvQtyByStatus(InvStatusEnum status)
+        {
+            double invQty = 0;
+            try
+            {
+                invQty = DbHelper.QueryCount<Inventory>(t => t.Status == (int)status);
+            }
+            catch
+            { }
+            return invQty;
         }
 
 

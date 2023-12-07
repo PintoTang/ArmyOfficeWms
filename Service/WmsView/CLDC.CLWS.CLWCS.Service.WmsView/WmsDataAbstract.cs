@@ -47,6 +47,8 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
 
         public abstract OperateResult<List<Inventory>> GetInventoryPageList(Expression<Func<Inventory, bool>> whereLambda = null);
 
+        public abstract double GetInvQtyByStatus(InvStatusEnum status);
+
         /// <summary>
         /// 根据名称获取物料列表
         /// </summary>

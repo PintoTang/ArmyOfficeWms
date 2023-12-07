@@ -64,5 +64,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
             return _wmsDataAccess.GetInventoryPageList(whereLambda);
         }
 
+        public double GetInvQtyByStatus(InvStatusEnum status)
+        {
+            return _wmsDataAccess.GetInvQtyByStatus(status);
+        }
+
     }
 }
