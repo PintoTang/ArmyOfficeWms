@@ -21,33 +21,39 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
         /// </summary>
         /// <param name="inOrder"></param>
         /// <returns></returns>
-        public abstract OperateResult CreateNewInOrder(InOrder inOrder);
+        public abstract OperateResult CreateNewInOrder(Order inOrder);
 
         /// <summary>
         /// 创建入库单明细
         /// </summary>
         /// <param name="inOrder"></param>
         /// <returns></returns>
-        public abstract OperateResult CreateNewOrderDetail(InOrderDetail orderDetail);
+        public abstract OperateResult CreateNewOrderDetail(List<OrderDetail> orderDetail);
 
         /// <summary>
         /// 创建库存
         /// </summary>
         /// <param name="inOrder"></param>
         /// <returns></returns>
-        public abstract OperateResult CreateNewInventory(Inventory inventory);
+        public abstract OperateResult CreateNewInventory(List<Inventory> inventorys);
 
         /// <summary>
         /// 获取所有入库单信息
         /// </summary>
         /// <returns></returns>
-        public abstract List<InOrder> GetAllInOrderList();
+        public abstract List<Order> GetAllInOrderList();
 
-        public abstract OperateResult<List<InOrder>> GetInOrderPageList(Expression<Func<InOrder, bool>> whereLambda = null);
+        public abstract OperateResult<List<Order>> GetInOrderPageList(Expression<Func<Order, bool>> whereLambda = null);
+
+        public abstract OperateResult<List<Order>> GetOrderAndMaterList(Expression<Func<Order, bool>> whereLambda = null);
 
         public abstract OperateResult<List<Inventory>> GetInventoryPageList(Expression<Func<Inventory, bool>> whereLambda = null);
 
         public abstract double GetInvQtyByStatus(InvStatusEnum status);
+
+        public abstract Inventory GetInventory(string Barcode);
+
+        public abstract OperateResult UpdateInventory(int invStatus, List<string> barcodes);
 
         /// <summary>
         /// 根据名称获取物料列表
@@ -82,9 +88,9 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
         /// </summary>
         /// <param name="inOrder"></param>
         /// <returns></returns>
-        public abstract OperateResult DeleteInOrder(InOrder inOrder);
+        public abstract OperateResult DeleteInOrder(Order inOrder);
 
-        public abstract OperateResult EditInOrder(InOrder inOrder);
+        public abstract OperateResult EditInOrder(Order inOrder);
 
         /// <summary>
 		/// 取指令表中最大的指令ID

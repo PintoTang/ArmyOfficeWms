@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using CLDC.CLWS.CLWCS.Service.WmsView.ViewModel;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.View
 {
@@ -23,6 +11,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
         public UcDefaultView()
         {
             InitializeComponent();
+            DataContext = new OrderListViewModel();
         }
+
+        private void OrderDetailGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
+        }
+
     }
 }

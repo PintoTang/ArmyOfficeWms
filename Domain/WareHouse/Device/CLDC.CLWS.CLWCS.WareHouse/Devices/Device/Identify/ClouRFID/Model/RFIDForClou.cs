@@ -216,7 +216,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
         private int SearchTime = 4;
         private int ScanTime = 10;//设置读取扫描时间
         private int ChangeRangeTime = 8;
-        private int PowerValue = 33;
+        private int PowerValue = 30;
         private int ReadMaxCount = 65;
         /// <summary>
         /// 科陆RFID
@@ -227,6 +227,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
         public RFIDForClou(string rfidInfo, ConvertMode convertMode)
             : base()
         {
+            PowerValue = int.Parse(SystemConfig.Instance.RfidPower);
             this.convertMode = convertMode;
             if (tempRFIDForClou == null)
             {
@@ -293,17 +294,12 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
                 {
                     GetAntennaNo();
                 }
-                bool isFinish = false;
-
-
-
                 int errCode = RFIDReader._Tag6C.GetEPC(ipAndPort, antennaNo, eReadType.Inventory);
                 if (errCode != 0)
                 {
                     result = false;
                     error = PaseError(errCode);
                 }
-
                 //for (int i = 0; i < readCount; i++)
                 //{
                 //    int sleepTime = SearchTime;
@@ -473,7 +469,7 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
         bool isReadAntenna = false;
         void GetAntennaNo()
         {
-            List<int> antList = new List<int> { 1, 2 };
+            List<int> antList = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
             int count = 0;
             for (int i = 0; i < antList.Count; i++)
             {
@@ -495,28 +491,6 @@ namespace CLDC.CLWS.CLWCS.WareHouse.Device.Devices.Device.Identify.ClouRFID.Mode
                 }
                 count++;
             }
-
-
-            //foreach (var item in antList.OrderBy(x => x))
-            //{
-            //    if (count == 0)
-            //    {
-            //        antennaNo = RFIDReader._Tag6C.GeteAntennaNo(item.ToString());
-            //    }
-            //    else
-            //    {
-            //        antennaNo = antennaNo | RFIDReader._Tag6C.GeteAntennaNo(item.ToString());
-            //    }
-            //    if (PowerValue > 0)
-            //    {
-            //        dicPowerParam[item] = PowerValue;
-            //    }
-            //    else
-            //    {
-            //        dicPowerParam = new Dictionary<int, int>();
-            //    }
-            //    count++;
-            //}
             isReadAntenna = true;
         }
 

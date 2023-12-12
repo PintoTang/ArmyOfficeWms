@@ -39,24 +39,29 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
             return _wmsDataAccess.GetShelfList(area);
         }
 
-        public OperateResult CreateNewInOrder(InOrder inOrder)
+        public OperateResult CreateNewInOrder(Order inOrder)
         {
             return _wmsDataAccess.CreateNewInOrder(inOrder);
         }
 
-        public OperateResult CreateNewOrderDetail(InOrderDetail orderDetail)
+        public OperateResult CreateNewOrderDetail(List<OrderDetail> orderDetail)
         {
             return _wmsDataAccess.CreateNewOrderDetail(orderDetail);
         }
 
-        public OperateResult CreateNewInventory(Inventory inventory)
+        public OperateResult CreateNewInventory(List<Inventory> inventorys)
         {
-            return _wmsDataAccess.CreateNewInventory(inventory);
+            return _wmsDataAccess.CreateNewInventory(inventorys);
         }
 
-        public OperateResult<List<InOrder>> GetInOrderPageList(Expression<Func<InOrder, bool>> whereLambda = null)
+        public OperateResult<List<Order>> GetInOrderPageList(Expression<Func<Order, bool>> whereLambda = null)
         {
             return _wmsDataAccess.GetInOrderPageList(whereLambda);
+        }
+
+        public OperateResult<List<Order>> GetOrderAndMaterList(Expression<Func<Order, bool>> whereLambda = null)
+        {
+            return _wmsDataAccess.GetOrderAndMaterList(whereLambda);
         }
 
         public OperateResult<List<Inventory>> GetInventoryPageList(Expression<Func<Inventory, bool>> whereLambda = null)
@@ -67,6 +72,16 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
         public double GetInvQtyByStatus(InvStatusEnum status)
         {
             return _wmsDataAccess.GetInvQtyByStatus(status);
+        }
+
+        public Inventory GetInventory(string Barcode)
+        {
+            return _wmsDataAccess.GetInventory(Barcode);
+        }
+
+        public OperateResult UpdateInventory(int invStatus, List<string> barcodes)
+        {
+            return _wmsDataAccess.UpdateInventory(invStatus, barcodes);
         }
 
     }

@@ -1,11 +1,14 @@
-﻿using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
+﻿using CLDC.CLWS.CLWCS.Framework;
+using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
 using CLDC.CLWS.CLWCS.Infrastructrue.DbHelper;
 using CLDC.CLWS.CLWCS.Service.Authorize;
 using CLDC.CLWS.CLWCS.Service.WmsView.Model;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 using System.Xml.Linq;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
@@ -17,7 +20,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
         {
         }
 
-        public override OperateResult CreateNewInOrder(InOrder inOrder)
+        public override OperateResult CreateNewInOrder(Order inOrder)
         {
             OperateResult createResult = OperateResult.CreateFailedResult();
             try
@@ -38,7 +41,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             return createResult;
         }
 
-        public override OperateResult CreateNewOrderDetail(InOrderDetail inOrder)
+        public override OperateResult CreateNewOrderDetail(List<OrderDetail> inOrder)
         {
             OperateResult createResult = OperateResult.CreateFailedResult();
             try
@@ -59,12 +62,12 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             return createResult;
         }
 
-        public override OperateResult CreateNewInventory(Inventory inventory)
+        public override OperateResult CreateNewInventory(List<Inventory> inventorys)
         {
             OperateResult createResult = OperateResult.CreateFailedResult();
             try
             {
-                bool result = DbHelper.Add(inventory) > 0;
+                bool result = DbHelper.Add(inventorys) > 0;
                 if (!result)
                 {
                     createResult.Message = "操作数据库错误";
@@ -81,35 +84,52 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
         }
 
 
-        public override OperateResult DeleteInOrder(InOrder inOrder)
+        public override OperateResult DeleteInOrder(Order inOrder)
         {
             throw new NotImplementedException();
         }
 
-        public override OperateResult EditInOrder(InOrder inOrder)
+        public override OperateResult EditInOrder(Order inOrder)
         {
             throw new NotImplementedException();
         }
 
-        public override List<InOrder> GetAllInOrderList()
+        public override List<Order> GetAllInOrderList()
         {
-            List<InOrder> inOrderList = null;
+            List<Order> inOrderList = null;
             try
             {
-                inOrderList = DbHelper.QueryList<InOrder>();
+                inOrderList = DbHelper.QueryList<Order>();
             }
             catch
             { }
             return inOrderList;
         }
 
-        public override OperateResult<List<InOrder>> GetInOrderPageList(Expression<Func<InOrder, bool>> whereLambda = null)
+        public override OperateResult<List<Order>> GetInOrderPageList(Expression<Func<Order, bool>> whereLambda = null)
         {
-
-            OperateResult<List<InOrder>> result = OperateResult.CreateFailedResult<List<InOrder>>("无数据");
+            OperateResult<List<Order>> result = OperateResult.CreateFailedResult<List<Order>>("无数据");
             try
             {
-                List<InOrder> list = DbHelper.QueryList(whereLambda);
+                List<Order> list = DbHelper.QueryList(whereLambda);
+                result.IsSuccess = true;
+                result.Content = list;
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = OperateResult.ConvertException(ex);
+
+            }
+            return result;
+        }
+
+        public override OperateResult<List<Order>> GetOrderAndMaterList(Expression<Func<Order, bool>> whereLambda = null)
+        {
+            OperateResult<List<Order>> result = OperateResult.CreateFailedResult<List<Order>>("无数据");
+            try
+            {
+                List<Order> list = DbHelper.QuerySqlList<Order>("SELECT top(20) a.MaterialDesc,b.InOutType,b.Reason,b.CreatedTime FROM [t_OrderDetail] as a left join [t_Order] as b on a.ordersn=b.ordersn where a.IsDeleted=0 and b.IsDeleted=0");
                 result.IsSuccess = true;
                 result.Content = list;
             }
@@ -124,7 +144,6 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
 
         public override OperateResult<List<Inventory>> GetInventoryPageList(Expression<Func<Inventory, bool>> whereLambda = null)
         {
-
             OperateResult<List<Inventory>> result = OperateResult.CreateFailedResult<List<Inventory>>("无数据");
             try
             {
@@ -146,13 +165,56 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             double invQty = 0;
             try
             {
-                invQty = DbHelper.QueryCount<Inventory>(t => t.Status == (int)status);
+                invQty = DbHelper.QueryCount<Inventory>(t => t.Status == status);
             }
             catch
             { }
             return invQty;
         }
 
+        public override Inventory GetInventory(string Barcode)
+        {
+            Inventory inventory = null;
+            try
+            {
+                inventory = DbHelper.Query<Inventory>(t => t.Barcode == Barcode);
+            }
+            catch
+            { }
+            return inventory;
+        }
+
+        public override OperateResult UpdateInventory(int invStatus, List<string> barcodes)
+        {
+            OperateResult createResult = OperateResult.CreateFailedResult();
+            try
+            {
+                StringBuilder idsStr = new StringBuilder();
+                for (int i = 0; i < barcodes.Count; i++)
+                {
+                    if (i > 0)
+                    {
+                        idsStr.Append(",");
+                    }
+                    idsStr.Append("'").Append(barcodes[i]).Append("'");
+                }
+
+                string sql = "UPDATE [dbo].[t_Inventory] SET [Status]=" + invStatus + " WHERE 1=1 AND [Barcode] in(" + idsStr + ")";
+                bool result = DbHelper.ExecuteNonQuery(sql) > 0;
+                if (!result)
+                {
+                    createResult.Message = "操作数据库错误";
+                }
+                createResult.IsSuccess = result;
+                return createResult;
+            }
+            catch (Exception ex)
+            {
+                createResult.IsSuccess = false;
+                createResult.Message = OperateResult.ConvertException(ex);
+            }
+            return createResult;
+        }
 
         public override List<Material> GetMaterialList(string name)
         {

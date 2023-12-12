@@ -19,4 +19,5 @@
 	<IsRecordEventLog Name="启用Evn日志" Description="是否打印Event日志" Value="false" />
 	<CopyRight Name="软件版权所属" Description="软件版权所属" Value="深圳市维斯物流自动化科技有限公司" />
 	<Version Name="软件版本号" Description="软件版本号" Value="V2.0.0.1" />
+  <RfidPower Power="读写器功率" Description="RFID读写器功率" Value="28"/>
 </SystemConfig>

@@ -58,5 +58,8 @@ namespace CL.WCS.SystemConfigPckg.Model
         [XmlElement("Version")]
         public ConfigItem<string> Version { get; set; }
 
+        [XmlElement("RfidPower")]
+        public ConfigItem<string> RfidPower { get; set; }
+
     }
 }

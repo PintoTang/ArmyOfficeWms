@@ -11,7 +11,7 @@
 
     <!--中文字体样式-->
     <Style x:Key="ChineseStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="33"/>
+        <Setter Property="FontSize" Value="46"/>
         <Setter Property="FontStyle" Value="Normal"/>
         <Setter Property="Foreground" Value="#71FFE1"/>
         <Setter Property="FontFamily" Value="AppleSystemUIFont"/>

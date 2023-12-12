@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ReasonConfig Name="出入库事由配置">
+  <Reason Id="1" Type="入库" Name="新购物资入库">
+  </Reason>
+  <Reason Id="2" Type="入库" Name="演练后归还入库">
+  </Reason>
+  <Reason Id="3" Type="出库" Name="演练前物资出库">
+  </Reason>
+  <Reason Id="4" Type="出库" Name="执行任务前出库">
+  </Reason>
+</ReasonConfig>

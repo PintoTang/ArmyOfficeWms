@@ -302,8 +302,8 @@ namespace CLDC.CLWS.CLWCS.Infrastructrue.Sockets
             {
                 string msg = ex.Message.ToString();
             }
-
         }
+
         /// <summary>
         /// 获取连接标志
         /// </summary>

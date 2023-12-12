@@ -6,14 +6,14 @@
              xmlns:local="clr-namespace:CLDC.CLWCS.Service.MenuService.View"
              xmlns:wmsView="clr-namespace:CLDC.CLWS.CLWCS.Service.WmsView.View;assembly=CLDC.CLWS.CLWCS.Service.WmsView" x:Class="CLDC.CLWCS.Service.MenuService.View.MainContentView"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-             mc:Ignorable="d" d:DesignHeight="1056" d:DesignWidth="1920" Width="1920" Height="1056">
+             mc:Ignorable="d" d:DesignHeight="940" d:DesignWidth="1920" Width="1920" Height="940">
     <Border CornerRadius="15" Background="White">
         <Grid>
             <Grid.Background>
                 <ImageBrush ImageSource="/CLDC.CLWCS.Service.MenuService;component/Images/background.jpg" />
             </Grid.Background>
             <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="0"/>
                 <RowDefinition/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
@@ -21,7 +21,7 @@
                 <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="330"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="330"/>
+                <ColumnDefinition Width="350"/>
                 <ColumnDefinition Width="70"/>
             </Grid.ColumnDefinitions>
             <DockPanel Grid.Row="0" Grid.ColumnSpan="3">
@@ -30,38 +30,24 @@
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="270"/>
                         <RowDefinition Height="300"/>
-                        <RowDefinition Height="333"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" Margin="0,45,0,0">
+                    <Grid Grid.Row="0">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="77"/>
-                                <RowDefinition Height="77"/>
-                                <RowDefinition Height="77"/>
+                                <RowDefinition Height="130"/>
+                                <RowDefinition Height="70"/>
+                                <RowDefinition Height="70"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150px" Height="60px" BorderThickness="0" Click="Button_Click">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
-                                </Button.Background>
-                                <Button.Content>
-                                    <TextBlock Text="库存管理" Foreground="White" FontSize="20px"/>
-                                </Button.Content>
-                            </Button>
-                            <Button  Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Width="150px" Height="60px" BorderThickness="0">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
-                                </Button.Background>
-                                <Button.Content>
-                                    <TextBlock Text="环境设置" Foreground="White" FontSize="20px"/>
-                                </Button.Content>
-                            </Button>
-                            <Button  Grid.Row="1" Grid.Column="0" x:Name="btnInOrder" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150px" Height="60px" BorderThickness="0" Click="btnInOrder_Click">
+                            <Image Grid.Row="0" Grid.ColumnSpan="2" Source="/CLDC.CLWCS.Service.MenuService;component/Images/star.png" />
+                            <Button x:Name="btnInOrder"  Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" 
+                                    VerticalAlignment="Top" Width="152px" Height="58px" BorderThickness="0" Click="btnInOrder_Click">
                                 <Button.Background>
                                     <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                                 </Button.Background>
@@ -69,15 +55,8 @@
                                     <TextBlock Text="入库管理" Foreground="White" FontSize="20px"/>
                                 </Button.Content>
                             </Button>
-                            <Button  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Width="150px" Height="60px" BorderThickness="0">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
-                                </Button.Background>
-                                <Button.Content>
-                                    <TextBlock Text="报损管理" Foreground="White" FontSize="20px"/>
-                                </Button.Content>
-                            </Button>
-                            <Button  Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150px" Height="60px" BorderThickness="0">
+                            <Button x:Name="btnOutOrder"  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" 
+                                    VerticalAlignment="Top" Width="152px" Height="58px" BorderThickness="0" Click="btnOutOrder_Click">
                                 <Button.Background>
                                     <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                                 </Button.Background>
@@ -85,14 +64,24 @@
                                     <TextBlock Text="出库管理" Foreground="White" FontSize="20px"/>
                                 </Button.Content>
                             </Button>
-                            <Button  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150px" Height="60px" BorderThickness="0">
+                            <Button x:Name="btnInvenroty" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" 
+                                    VerticalAlignment="Top" Width="152px" Height="58px" BorderThickness="0" Click="btnInvenroty_Click">
                                 <Button.Background>
                                     <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                                 </Button.Background>
                                 <Button.Content>
-                                    <TextBlock Text="视频监控" Foreground="White" FontSize="20px"/>
+                                    <TextBlock Text="库存管理" Foreground="White" FontSize="20px"/>
                                 </Button.Content>
                             </Button>
+                            <Button x:Name="btnSystemSetup"  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" 
+                                    VerticalAlignment="Top" Width="152px" Height="58px" BorderThickness="0" Click="btnSystemSetup_Click">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
+                                </Button.Background>
+                                <Button.Content>
+                                    <TextBlock Text="系统设置" Foreground="White" FontSize="20px"/>
+                                </Button.Content>
+                            </Button>                            
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="1">
@@ -104,7 +93,7 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <Label Grid.Row="0" Name="ChartTitle" Width="330" Height="40" Content="在库管理" Foreground="#12FFD5"
-                                VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18" >
+                                VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="20" >
                             <Label.Background>
                                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
                             </Label.Background>
@@ -115,113 +104,79 @@
                             </Button.Background>
                         </Button>
                         <Border Grid.Row="1">
-                            <!--<lvc:PieChart Name="pipChart" LegendLocation="Bottom" DataClick="pipChart_DataClick" Hoverable="False" DataTooltip="{x:Null}">
-                                <lvc:PieChart.Background>
-                                    <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
-                                </lvc:PieChart.Background>
-                                <lvc:PieChart.Series>
-                                    <lvc:PieSeries x:Name="aaa" Fill="#24D469" Title="在库        " FontSize="16" DataLabels="True" LabelPoint="{Binding PointLabel}" Values="11"/>
-                                    <lvc:PieSeries x:Name="bbb" Fill="#FFFD00" Title="出库        " FontSize="16" DataLabels="True" LabelPoint="{Binding PointLabel}" Values="6"/>
-                                    <lvc:PieSeries x:Name="ccc" Fill="#FD9D73" Title="报损        " FontSize="16" DataLabels="True" LabelPoint="{Binding PointLabel}" Values="3"/>
-                                </lvc:PieChart.Series>
-                            </lvc:PieChart>-->
-                            <lvc:PieChart LegendLocation="Bottom" Series="{Binding PieSeriesCollection}" DataClick="Chart_OnDataClick" Hoverable="False">
+                            <lvc:PieChart LegendLocation="Bottom" FontSize="20" Foreground="White" Series="{Binding PieSeriesCollection}" DataClick="Chart_OnDataClick" Hoverable="False">
                                 <lvc:PieChart.DataTooltip>
-                                    <lvc:DefaultTooltip BulletSize="10"></lvc:DefaultTooltip>
+                                    <lvc:DefaultTooltip BulletSize="33" FontSize="20" Background="#245D55"></lvc:DefaultTooltip>
                                 </lvc:PieChart.DataTooltip>
                             </lvc:PieChart>
                         </Border>
                     </Grid>
-                    <Grid Grid.Row="2" Margin="0,15,0,15">
+                    <Grid x:Name="TaskTypeGrid" Grid.Row="2" Margin="0,10,0,0">
                         <Grid.Background>
                             <ImageBrush ImageSource="/CLDC.CLWCS.Service.MenuService;component/Images/box_left_bg.png" />
                         </Grid.Background>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
-                            <RowDefinition Height="70"/>
-                            <RowDefinition Height="70"/>
-                            <RowDefinition Height="70"/>
-                            <RowDefinition Height="70"/>
+                            <RowDefinition Height="66"/>
+                            <RowDefinition Height="66"/>
+                            <RowDefinition Height="66"/>
+                            <RowDefinition Height="66"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Name="TaskTitle" Grid.Column="0" Grid.ColumnSpan="2" Width="330" Height="40" Content="任务分类" Foreground="#12FFD5" 
-                               VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18" >
+                               VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="20" >
                             <Label.Background>
                                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
                             </Label.Background>
                         </Label>
-                        <Button Width="40" Height="20" Grid.Column="1" Name="btnMoreTask" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5">
+                        <Button Tag="0" Width="40" Height="20" Grid.Column="1" Name="btnMoreTask" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5">
                             <Button.Background>
                                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/icon_more.png" />
                             </Button.Background>
                         </Button>
-                        <Button Grid.Row="1" Grid.Column="0" Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
+                        <!--<Button Tag="1" Grid.Row="1" Grid.Column="0" FontSize="20" Foreground="White" Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                             </Button.Background>
-                            <Button.Content>
-                                <TextBlock Text="指挥作业" Foreground="White" FontSize="20px"/>
-                            </Button.Content>
                         </Button>
-                        <Button Grid.Row="1" Grid.Column="1" Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
+                        <Button Tag="2" Grid.Row="1" Grid.Column="1" FontSize="20" Foreground="White"  Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                             </Button.Background>
-                            <Button.Content>
-                                <TextBlock Text="指挥通信" Foreground="White" FontSize="20px"/>
-                            </Button.Content>
                         </Button>
-                        <Button Grid.Row="2" Grid.Column="0" Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
+                        <Button Tag="3" Grid.Row="2" Grid.Column="0" FontSize="20" Foreground="White"  Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                             </Button.Background>
-                            <Button.Content>
-                                <TextBlock Text="工程防护" Foreground="White" FontSize="20px"/>
-                            </Button.Content>
                         </Button>
-                        <Button Grid.Row="2" Grid.Column="1" Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
+                        <Button Tag="4" Grid.Row="2" Grid.Column="1" FontSize="20" Foreground="White"  Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                             </Button.Background>
-                            <Button.Content>
-                                <TextBlock Text="野营保障" Foreground="White" FontSize="20px"/>
-                            </Button.Content>
                         </Button>
-                        <Button Grid.Row="3" Grid.Column="0" Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
+                        <Button Tag="5" Grid.Row="3" Grid.Column="0" FontSize="20" Foreground="White"  Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                             </Button.Background>
-                            <Button.Content>
-                                <TextBlock Text="军需给养" Foreground="White" FontSize="20px"/>
-                            </Button.Content>
                         </Button>
-                        <Button Grid.Row="3" Grid.Column="1" Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
+                        <Button Tag="6" Grid.Row="3" Grid.Column="1" FontSize="20" Foreground="White"  Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                             </Button.Background>
-                            <Button.Content>
-                                <TextBlock Text="抗洪防汛" Foreground="White" FontSize="20px"/>
-                            </Button.Content>
                         </Button>
-                        <Button Grid.Row="4" Grid.Column="0" Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
+                        <Button Tag="7" Grid.Row="4" Grid.Column="0" FontSize="20" Foreground="White"  Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                             </Button.Background>
-                            <Button.Content>
-                                <TextBlock Text="森林灭火" Foreground="White" FontSize="20px"/>
-                            </Button.Content>
                         </Button>
-                        <Button Grid.Row="4" Grid.Column="1" Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
+                        <Button Tag="8" Grid.Row="4" Grid.Column="1" FontSize="20" Foreground="White"  Width="135px" Height="55px" BorderThickness="0" Click="Button_Click">
                             <Button.Background>
                                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                             </Button.Background>
-                            <Button.Content>
-                                <TextBlock Text="反恐维稳" Foreground="White" FontSize="20px"/>
-                            </Button.Content>
-                        </Button>
+                        </Button>-->
                     </Grid>
                 </Grid>
             </Grid>
@@ -231,16 +186,16 @@
             <Grid Grid.Row="1" Grid.Column="3">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="700"/>
+                        <RowDefinition Height="350"/>
+                        <RowDefinition Height="615"/>
                     </Grid.RowDefinitions>
-                    <Grid  Grid.Row="0" Margin="0,45,0,0">
+                    <Grid  Grid.Row="0" Margin="0,60,0,0">
                         <Grid.Background>
                             <ImageBrush ImageSource="/CLDC.CLWCS.Service.MenuService;component/Images/box_left_bg.png" />
                         </Grid.Background>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
-                            <RowDefinition />
+                            <RowDefinition Height="205" />
                             <RowDefinition Height="40"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -248,7 +203,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Row="0" Grid.ColumnSpan="2" Name="AdminTitle" Width="330" Height="40" Content="管理员" Foreground="#12FFD5"
-                                        VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18" >
+                                        VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="20" >
                             <Label.Background>
                                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
                             </Label.Background>
@@ -264,13 +219,13 @@
                         <Label Grid.Row="2" Grid.Column="1" Content="李响" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="#FFFFFF "></Label>
                     </Grid>
                     <Grid Grid.Row="1">
-                        <wmsView:UcEnvironMonitor Margin="0,15,0,15"/>
+                        <wmsView:UcEnvironMonitor Margin="0,25,0,0"/>
                     </Grid>
                 </Grid>
             </Grid>
 
             <Grid Grid.Row="2" Grid.Column="2"  >
-                <TextBlock VerticalAlignment="Center" FontSize="16" Foreground="#12FFD5" HorizontalAlignment="Center" Text="安徽军之星智能科技有限公司 版权所有" Margin="0,0,38,0" />
+                <TextBlock VerticalAlignment="Center" FontSize="16" Foreground="#12FFD5" HorizontalAlignment="Center" Text="安徽军之星智能科技有限公司 版权所有" Margin="0,0,15,0" />
             </Grid>
 
         </Grid>

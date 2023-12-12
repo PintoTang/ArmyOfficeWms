@@ -12,36 +12,36 @@
         </Border.Background>
         <Grid Width="{Binding ElementName=_this,Path=ActualWidth}" Height="{Binding ElementName=_this,Path=ActualHeight}">
             <DockPanel>
-                <Grid  Width="269" Height="220"  HorizontalAlignment="Right" Margin="0,0,30,20" VerticalAlignment="Bottom">
+                <Grid  Width="269" Height="280"  HorizontalAlignment="Right" Margin="0,0,50,30" VerticalAlignment="Bottom">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="10"/>
-                        <RowDefinition  Height="50"/>
+                        <RowDefinition  Height="60"/>
                         <RowDefinition Height="10"/>
-                        <RowDefinition  Height="50"/>
+                        <RowDefinition  Height="60"/>
                         <RowDefinition Height="10"/>
-                        <RowDefinition  Height="30"/>
+                        <RowDefinition  Height="45"/>
                         <RowDefinition Height="10"/>
-                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="1" VerticalAlignment="Center" >
-                        <Border Background="White" MaxHeight="50" MinHeight="35" CornerRadius="5" ToolTip="输入账号">
+                        <Border Background="White" MaxHeight="60" MinHeight="55" CornerRadius="5" ToolTip="输入账号">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Width="10"></TextBlock>
-                                <materialDesign:PackIcon Kind="Person" Width="24" Height="24" VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                <materialDesign:PackIcon Kind="Person" Width="34" Height="34" VerticalAlignment="Center" ></materialDesign:PackIcon>
                                 <TextBlock Width="8"></TextBlock>
-                                <TextBox Name="TxtBoxUserName" VerticalContentAlignment="Center" Padding="5,0,0,0" Margin="2"  FontSize="14" Width="240"  Background="White" BorderThickness="0" 
+                                <TextBox Name="TxtBoxUserName" VerticalContentAlignment="Center" Padding="5,0,0,0" Margin="2"  FontSize="18" Width="240"  Background="White" BorderThickness="0" 
                                          materialDesign:HintAssist.Hint="请输入账号" materialDesign:TextFieldAssist.DecorationVisibility="Hidden"/>
                             </StackPanel>
                         </Border>
                     </StackPanel>
                     <StackPanel Grid.Row="3"  VerticalAlignment="Center">
-                        <Border Background="White" MaxHeight="50" MinHeight="35" CornerRadius="5" ToolTip="输入账号">
+                        <Border Background="White" MaxHeight="60" MinHeight="55" CornerRadius="5" ToolTip="输入账号">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Width="10"></TextBlock>
-                                <materialDesign:PackIcon Kind="Key" Width="24" Height="24" VerticalAlignment="Center" ></materialDesign:PackIcon>
+                                <materialDesign:PackIcon Kind="Key" Width="34" Height="34" VerticalAlignment="Center" ></materialDesign:PackIcon>
                                 <TextBlock Width="8"></TextBlock>
-                                <PasswordBox Name="TxtBoxPwd" Margin="2"  VerticalContentAlignment="Center" Padding="5,0,0,0" FontSize="14" Width="241"  Background="White" BorderThickness="0" 
+                                <PasswordBox Name="TxtBoxPwd" Margin="2"  VerticalContentAlignment="Center" Padding="5,0,0,0" FontSize="18" Width="241"  Background="White" BorderThickness="0" 
                                          materialDesign:HintAssist.Hint="请输入密码" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" />
                             </StackPanel>
                         </Border>
@@ -50,18 +50,18 @@
                         <Grid>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
                                 <TextBlock Width="20"></TextBlock>
-                                <CheckBox x:Name="TogBtnIsRmdPwd" Foreground="White" IsChecked ="True"  Style="{StaticResource MaterialDesignCheckBox}">记住密码</CheckBox>
-                                <TextBlock Width="110"></TextBlock>
-                                <Button x:Name="SysSet"  Width="60" Height="20" FontSize="12" Padding="1" Foreground="White" Click="SysSet_OnClick" Background="Transparent" BorderThickness="0" >
+                                <CheckBox x:Name="TogBtnIsRmdPwd" FontSize="18" Foreground="White" IsChecked ="True"  Style="{StaticResource MaterialDesignCheckBox}">记住密码</CheckBox>
+                                <TextBlock Width="35"></TextBlock>
+                                <Button x:Name="SysSet"  Width="120" Height="30" FontSize="18" Padding="1" Foreground="White" Click="SysSet_OnClick" Background="Transparent" BorderThickness="0" >
                                     系统设置
                                 </Button>
                             </StackPanel>
                         </Grid>
                     </StackPanel>
                     <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button  Name="BtnCancelLogin" materialDesign:ButtonAssist.CornerRadius="5" Foreground="White"   Content="取消" Click="BtnCancelLogin_Click" FontSize="20" Margin="3"  BorderThickness="0"  Style="{StaticResource MaterialDesignRaisedButton}"/>
-                        <TextBlock Width="40"></TextBlock>
-                        <Button  Name="BtnLogin" materialDesign:ButtonAssist.CornerRadius="5" Foreground="White"   BorderThickness="0"  FontSize="20" Content="登录" Margin="3" Click="BtnLogin_Click"   Style="{StaticResource MaterialDesignRaisedButton}"/>
+                        <Button Width="100" Height="46"  Name="BtnCancelLogin" materialDesign:ButtonAssist.CornerRadius="5" Foreground="White"   Content="取消" Click="BtnCancelLogin_Click" FontSize="20" Margin="3"  BorderThickness="0"  Style="{StaticResource MaterialDesignRaisedButton}"/>
+                        <TextBlock Width="56"></TextBlock>
+                        <Button Width="100" Height="46"  Name="BtnLogin" materialDesign:ButtonAssist.CornerRadius="5" Foreground="White"   BorderThickness="0"  FontSize="20" Content="登录" Margin="3" Click="BtnLogin_Click"   Style="{StaticResource MaterialDesignRaisedButton}"/>
                     </StackPanel>
                 </Grid>
             </DockPanel>

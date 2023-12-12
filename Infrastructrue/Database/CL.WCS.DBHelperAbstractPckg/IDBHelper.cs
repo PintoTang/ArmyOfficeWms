@@ -91,15 +91,15 @@ namespace CLDC.CLWS.CLWCS.Infrastructrue.DbHelper
 		int Update<TEntity>(ISqlSugarClient dbContext, List<TEntity> entitys, List<string> lstIgnoreColumns = null,
 			bool isLock = true) where TEntity : class, new();
 
-		/// <summary>
-		/// 更新实体
-		/// </summary>
-		/// <param name="entity">实体对象</param>
-		/// <param name="where">条件表达式</param>
-		/// <param name="lstIgnoreColumns">忽略列</param>
-		/// <param name="isLock">是否加锁</param>
-		/// <returns>受影响行数</returns>
-		int Update<TEntity>(ISqlSugarClient dbContext, TEntity entity, Expression<Func<TEntity, bool>> where,
+        /// <summary>
+        /// 更新实体
+        /// </summary>
+        /// <param name="entity">实体对象</param>
+        /// <param name="where">条件表达式</param>
+        /// <param name="lstIgnoreColumns">忽略列</param>
+        /// <param name="isLock">是否加锁</param>
+        /// <returns>受影响行数</returns>
+        int Update<TEntity>(ISqlSugarClient dbContext, TEntity entity, Expression<Func<TEntity, bool>> where,
 			List<string> lstIgnoreColumns = null, bool isLock = true) where TEntity : class, new();
 
 		/// <summary>

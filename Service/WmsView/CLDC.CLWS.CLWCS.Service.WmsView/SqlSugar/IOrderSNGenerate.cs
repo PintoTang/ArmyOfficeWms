@@ -17,7 +17,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
         /// <param name="documentCode"></param>
         /// <param name="backFlag"></param>
         /// <returns></returns>
-        OperateResult<InOrder> GenerateOrder(InOrder destOrder);
+        OperateResult<Order> GenerateOrder(Order destOrder);
 
         /// <summary>
         /// 获取唯一ID

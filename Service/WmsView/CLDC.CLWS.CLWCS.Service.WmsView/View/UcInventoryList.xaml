@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:CLDC.CLWS.CLWCS.Infrastructrue.DataModel;assembly=CLDC.CLWS.CLWCS.Infrastructrue.DataModel"         
              xmlns:page="clr-namespace:CLDC.Infrastructrue.UserCtrl.View.Page;assembly=CLDC.Infrastructrue.UserCtrl"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             mc:Ignorable="d" d:DesignHeight="972" d:DesignWidth="1060" Width="1060" Height="972" Background="White" x:Name="_this">
+             mc:Ignorable="d" d:DesignHeight="856" d:DesignWidth="1044" Width="1044" Height="856" Background="White" x:Name="_this">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -52,7 +52,7 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition x:Name="ContentRow"/>
                 </Grid.RowDefinitions>
-                <Label FontSize="16"  Grid.Row="0" FontWeight="Black"  HorizontalAlignment="Left" VerticalAlignment="Center">库存管理</Label>
+                <Label FontSize="20" Grid.Row="0" FontWeight="Bold" Foreground="#245D55"  HorizontalAlignment="Left" VerticalAlignment="Center">库存管理</Label>
 
                 <Grid Grid.Row="1">
                     <Grid>
@@ -68,18 +68,23 @@
                                 <ColumnDefinition Width="140"/>
                             </Grid.ColumnDefinitions>
                             <WrapPanel Grid.Column="0" VerticalAlignment="Center">
-                                <Label >状态：</Label>
-                                <ComboBox x:Name="cbTaskType" Width="120" IsEditable="True" ItemsSource="{Binding InvStatusDict}"
+                                <Label FontSize="18">状态：</Label>
+                                <ComboBox FontSize="18" x:Name="cbStatus" Width="120" IsEditable="True" ItemsSource="{Binding InvStatusDict}"
                                     DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding CurInvStatus,Mode=TwoWay}">
                                 </ComboBox>
                                 <TextBlock Width="24"/>
-                                <Label>物资区域：</Label>
-                                <ComboBox  Width="120" IsEditable="True" ItemsSource="{Binding AreaList}" 
+                                <Label FontSize="18">任务分类：</Label>
+                                <ComboBox FontSize="18" x:Name="cbTaskType" Width="120" IsEditable="True" ItemsSource="{Binding TaskTypeList}"
+                                    DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding CurTaskType,Mode=TwoWay}">
+                                </ComboBox>
+                                <TextBlock Width="24"/>
+                                <Label FontSize="18">存放区域：</Label>
+                                <ComboBox FontSize="18" Width="120" IsEditable="True" ItemsSource="{Binding AreaList}" 
                                   DisplayMemberPath="Name" SelectedValuePath="Code" SelectedValue="{Binding CurArea,Mode=TwoWay}">
                                 </ComboBox>
-                                <TextBlock Width="24"/>                                
-                                <Label>装备：</Label>
-                                <TextBox  Width="120" Text="{Binding CurMaterial}"></TextBox>
+                                <TextBlock Width="24"/>
+                                <Label FontSize="18">装备：</Label>
+                                <TextBox FontSize="18" Width="120" Text="{Binding CurMaterial}"></TextBox>
                                 <TextBlock Width="24"/>
                             </WrapPanel>
                             <Grid Grid.Column="1">
@@ -87,24 +92,19 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Width="60" Command="{Binding SearchCommand}">查询</Button>
-                                <Button Grid.Column="1" Width="60" x:Name="BtnExit" Click="BtnExit_Click">退出</Button>
+                                <Button Grid.Column="0" Width="68" FontSize="18" Command="{Binding SearchCommand}">查询</Button>
+                                <Button Grid.Column="1" Width="68" FontSize="18" x:Name="BtnExit" Click="BtnExit_Click">退出</Button>
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1">
-                            <WrapPanel VerticalAlignment="Center">
-                                <TextBlock Width="10"/>
-                                <Button Width="24" Height="24"  Padding="0"  Command="{Binding EditAccountCommand}" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="报损">
-                                    <materialDesign:PackIcon Kind="Edit" Height="20" Width="20" />
-                                </Button>
-                            </WrapPanel>
+
                         </Grid>
                         <Grid Grid.Row="2" Margin="5">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition Height="30"/>
                             </Grid.RowDefinitions>
-                            <DataGrid Name="InOrderGrid" 
+                            <DataGrid Name="InOrderGrid" FontSize="18"
                               ScrollViewer.VerticalScrollBarVisibility="Auto"
                               ScrollViewer.HorizontalScrollBarVisibility="Auto"
                               AutoGenerateColumns="False"
@@ -119,13 +119,13 @@
                                 </DataGrid.InputBindings>
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="物资区域" Width="*" Binding="{Binding AreaName}" IsReadOnly="True"/>
-                                    <DataGridTextColumn Header="任务类型" Width="*" Binding="{Binding TaskType}" IsReadOnly="True"/>
+                                    <DataGridComboBoxColumn Header="任务类型" Width="*" SelectedValueBinding="{Binding TaskType,Mode=TwoWay}" ItemsSource="{Binding TaskTypeList}"/>
                                     <DataGridTextColumn Header="装备" Width="*" Binding="{Binding MaterialDesc}"/>
-                                    <DataGridTextColumn Header="标签" Width="*" Binding="{Binding Barcode}"/>
-                                    <DataGridTextColumn Header="事由" Width="*" Binding="{Binding Reason}"/>
-                                    <DataGridComboBoxColumn Header="状态" Width="*" SelectedItemBinding="{Binding Status}" ItemsSource="{Binding Source={StaticResource InvStatusEnum}}"/>
-                                    <DataGridTextColumn Header="创建者" Width="*" Binding="{Binding CreatedUserName}" IsReadOnly="True"/>
-                                    <DataGridTextColumn Header="创建时间" Width="*" Binding="{Binding CreatedTime}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="标签" Width="150" Binding="{Binding Barcode}"/>
+                                    <DataGridTextColumn Header="事由" Width="220" Binding="{Binding Reason}"/>
+                                    <DataGridComboBoxColumn Header="状态" Width="50" SelectedItemBinding="{Binding Status}" ItemsSource="{Binding Source={StaticResource InvStatusEnum}}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="创建者" Width="80" Binding="{Binding CreatedUserName}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="创建时间" Width="180" Binding="{Binding CreatedTime}" IsReadOnly="True"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                             <page:UCSplitPager Grid.Row="1"></page:UCSplitPager>

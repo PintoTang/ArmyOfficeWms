@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:localview="clr-namespace:CLDC.CLWS.CLWCS.Service.WmsView.View"
-             xmlns:local="clr-namespace:CLDC.CLWS.CLWCS.Infrastructrue.DataModel;assembly=CLDC.CLWS.CLWCS.Infrastructrue.DataModel"
+             xmlns:local="clr-namespace:CLDC.CLWS.CLWCS.Service.WmsView.DataModel"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
@@ -12,28 +11,12 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="/CLDC.Infrastructrue.UserCtrl;component/Style/UserControlStyle.xaml" />
                 <ResourceDictionary Source="/CLDC.CLWS.CLWCS.Service.WmsView;component/Style/StyleMain.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            <ObjectDataProvider x:Key="RoleLevelEnum" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider x:Key="InOrOutEnum" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
                 <ObjectDataProvider.MethodParameters>
-                    <x:Type Type="local:RoleLevelEnum"/>
-                </ObjectDataProvider.MethodParameters>
-            </ObjectDataProvider>
-            <ObjectDataProvider x:Key="UseStatusEnum" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
-                <ObjectDataProvider.MethodParameters>
-                    <!--<x:Type Type="dataMode:AccountStatusEnum"/>-->
+                    <x:Type Type="local:InOrOutEnum"/>
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
         </ResourceDictionary>
@@ -49,8 +32,8 @@
                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/map_box.png" />
             </Grid.Background>
         </Grid>
-        <Label Grid.Row="1" Name="AdminTitle" Width="893" Height="40" Content="出入库记录" Foreground="#12FFD5" Margin="0,30,0,0"
-                                        VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18" >
+        <Label Grid.Row="1" Name="AdminTitle" Width="1100" Height="40" Content="出入库记录" Foreground="#12FFD5" Margin="0,22,0,0"
+                                        VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="20" >
             <Label.Background>
                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
             </Label.Background>
@@ -61,46 +44,55 @@
             </Button.Background>
         </Button>
         <Grid Grid.Row="2">
-            <DataGrid Name="AccountGrid" 
+            <DataGrid Name="OrderDetailGrid" 
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   AutoGenerateColumns="False"
                   materialDesign:DataGridAssist.CellPadding="4 2 2 2"
                   materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
-                  ItemsSource="{Binding AccountList,Mode=OneWay}" 
+                  ItemsSource="{Binding OrderDetailList,Mode=OneWay}" 
                   SelectedValue="{Binding SelectedValue}"
-                  CanUserAddRows="False"
+                  CanUserAddRows="False" LoadingRow="OrderDetailGrid_LoadingRow"
                   CanUserDeleteRows="False" CanUserResizeColumns="False">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="Background">
                             <Setter.Value>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                    <GradientStop Color="White" Offset="0"/>
-                                    <GradientStop Color="#245D55" Offset="0.5"/>
-                                    <GradientStop Color="White" Offset="1"/>
-                                </LinearGradientBrush>
+                                <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
                             </Setter.Value>
                         </Setter>
                         <Setter Property="Foreground" Value="#FFFFFF"/>
-                        <Setter Property="FontSize" Value="16" />
-                        <Setter Property="Height" Value="40"/>
+                        <Setter Property="FontSize" Value="18" />
+                        <Setter Property="Height" Value="35"/>
                         <Setter Property="VerticalContentAlignment" Value="Center"/>
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Foreground" Value="#FFFFFF"/>
+                        <Setter Property="FontSize" Value="18" />
+                        <Setter Property="Height" Value="35"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.CellStyle>
                 <DataGrid.Background>
                     <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
                 </DataGrid.Background>
-                <DataGrid.InputBindings>
-                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ShowDetailCommand}" CommandParameter="{Binding ElementName=AccountGrid,Path=SelectedItem}"/>
-                </DataGrid.InputBindings>
                 <DataGrid.Columns>
-                    <DataGridTextColumn  Header="序号" Width="100" Binding="{Binding AccCode}" IsReadOnly="True"/>
-                    <DataGridComboBoxColumn Header="装备" Width="250" IsReadOnly="True" SelectedItemBinding="{Binding RoleLevel}" ItemsSource="{Binding Source={StaticResource  RoleLevelEnum}}"/>
-                    <DataGridTextColumn Header="状态" Width="100" Binding="{Binding GroupId}"/>
-                    <DataGridComboBoxColumn Header="事由" Width="*" SelectedItemBinding="{Binding UseStatus}" ItemsSource="{Binding Source={StaticResource  UseStatusEnum}}"/>
-                    <DataGridTextColumn Header="时间" Width="180" Binding="{Binding CreaterId}" IsReadOnly="True"/>
+                    <DataGridTemplateColumn Width="60" Header="序号">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextAlignment="Center" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridRow}}, Path=Header}"
+                                           FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="装备" Width="300" Binding="{Binding MaterialDesc}" IsReadOnly="True"/>
+                    <DataGridComboBoxColumn Header="状态" Width="80" SelectedItemBinding="{Binding InOutType}" ItemsSource="{Binding Source={StaticResource  InOrOutEnum}}"/>
+                    <DataGridTextColumn Header="事由" Width="*" Binding="{Binding Reason}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="时间" Width="210" Binding="{Binding CreatedTime}" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

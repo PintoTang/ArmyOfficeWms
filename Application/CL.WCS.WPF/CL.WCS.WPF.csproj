@@ -162,6 +162,12 @@
     <Content Include="Config.LaiAn\SystemConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Config.LaiAn\ReasonConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config.LaiAn\TaskTypeConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Config.LaiAn\WcsMenuConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

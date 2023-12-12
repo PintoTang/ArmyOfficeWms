@@ -116,6 +116,11 @@ namespace CL.WCS.SystemConfigPckg.Model
         /// </summary>
         public string SysName { get; set; }
 
+        /// <summary>
+        /// Rfid功率
+        /// </summary>
+        public string RfidPower { get; set; }
+
 
 
 
@@ -155,7 +160,7 @@ namespace CL.WCS.SystemConfigPckg.Model
                 CurSystemConfig = (SystemConfigMode)XmlSerializerHelper.LoadFromXml(strFileName, typeof(SystemConfigMode));
                 WcsDataBaseType = CurSystemConfig.WcsDataBaseType.Value;
                 //AtsDataBaseType = CurSystemConfig.AtsDataBaseType.Value;
-                CurSystemConfig.WcsDatabaseConn.Value = GetUnPwdDataConnectString(WcsDataBaseType,CurSystemConfig.WcsDatabaseConn.Value);
+                CurSystemConfig.WcsDatabaseConn.Value = GetUnPwdDataConnectString(WcsDataBaseType, CurSystemConfig.WcsDatabaseConn.Value);
                 //CurSystemConfig.AtsDatabaseConn.Value = GetUnPwdDataConnectString(AtsDataBaseType, CurSystemConfig.AtsDatabaseConn.Value);
 
                 _IsTrueOPC = CurSystemConfig.OpcMode.Value;
@@ -164,15 +169,9 @@ namespace CL.WCS.SystemConfigPckg.Model
 
                 //SysNo = CurSystemConfig.SysNo.Value;
 
-              
-
                 IsTrueWebService = CurSystemConfig.IsTrueWebService.Value;
 
                 Department = CurSystemConfig.Department.Value;
-
-
-                //_isUseCellPile = CurSystemConfig.IsUseCellPile.Value;
-
 
                 WhCode = CurSystemConfig.WhCode.Value;
 
@@ -182,13 +181,13 @@ namespace CL.WCS.SystemConfigPckg.Model
 
                 SysName = CurSystemConfig.SysName.Value;
 
+                RfidPower = CurSystemConfig.RfidPower.Value;
             }
             catch (Exception ex)
             {
                 Log.getDebugFile().Info(ex.Message);
                 throw ex;
             }
-
         }
 
         private string GetUnPwdDataConnectString(DatabaseTypeEnum wcsDataBaseType ,string configConnectString)

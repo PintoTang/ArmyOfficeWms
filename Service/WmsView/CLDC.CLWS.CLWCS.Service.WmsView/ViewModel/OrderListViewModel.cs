@@ -1,0 +1,249 @@
+﻿using CLDC.CLWS.CLWCS.Framework;
+using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
+using CLDC.CLWS.CLWCS.Service.WmsView.DataModel;
+using CLDC.CLWS.CLWCS.Service.WmsView.Model;
+using CLDC.CLWS.CLWCS.Service.WmsView.View;
+using CLDC.Infrastructrue.UserCtrl;
+using CLDC.Infrastructrue.UserCtrl.Model;
+using GalaSoft.MvvmLight;
+using Infrastructrue.Ioc.DependencyFactory;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
+{
+    public class OrderListViewModel : ViewModelBase
+    {
+        private WmsDataService _wmsDataService;
+        private string _curMaterial = string.Empty;
+        private string _curArea;
+        private int? _curTaskType;
+        public ObservableCollection<Inventory> InventoryList { get; set; }
+        public ObservableCollection<Order> OrderDetailList { get; set; }
+        public ObservableCollection<Area> AreaList { get; set; }
+        public ObservableCollection<TaskButton> TaskTypeList { get; set; }
+        public ObservableCollection<Reason> ReasonList { get; set; }
+        /// <summary>
+        /// 当前搜索的装备
+        /// </summary>
+        public string CurMaterial
+        {
+            get { return _curMaterial; }
+            set
+            {
+                _curMaterial = value;
+                RaisePropertyChanged();
+            }
+        }
+        /// <summary>
+        /// 当前搜索的区域
+        /// </summary>
+        public string CurArea
+        {
+            get { return _curArea; }
+            set
+            {
+                _curArea = value;
+                RaisePropertyChanged();
+            }
+        }
+        /// <summary>
+        /// 当前搜索的任务分类
+        /// </summary>
+        public int? CurTaskType
+        {
+            get { return _curTaskType; }
+            set
+            {
+                _curTaskType = value;
+                RaisePropertyChanged();
+            }
+        }
+        public ObservableCollection<Order> OrderList { get; set; }
+
+
+        public OrderListViewModel()
+        {
+            OrderDetailList = new ObservableCollection<Order>();
+            OrderList = new ObservableCollection<Order>();
+            ReasonList = new ObservableCollection<Reason>();
+            _wmsDataService = DependencyHelper.GetService<WmsDataService>();
+            InitReasonList();
+
+            Task.Factory.StartNew(() =>
+            {
+                while (true)
+                {
+                    QureyOrderDetail();
+                    Thread.Sleep(5000);//30秒刷新一下
+                }
+            });
+        }
+
+        
+
+        private void InitReasonList()
+        {
+            ReasonList.Clear();
+            try
+            {
+                if (ReasonConfig.Instance.ReasonList.Count > 0)
+                {
+                    ReasonConfig.Instance.ReasonList.ForEach(ite => ReasonList.Add(ite));
+                }
+            }
+            catch (Exception ex)
+            {
+                SnackbarQueue.MessageQueue.Enqueue("事由配置文件异常：" + ex.Message);
+            }
+        }
+
+        private GalaSoft.MvvmLight.Command.RelayCommand<string> _searchCommand;
+
+        public GalaSoft.MvvmLight.Command.RelayCommand<string> SearchCommand
+        {
+            get
+            {
+                if (_searchCommand == null)
+                {
+                    _searchCommand = new GalaSoft.MvvmLight.Command.RelayCommand<string>(Search);
+                }
+                return _searchCommand;
+            }
+        }
+
+        private void Search(string inOrOut)
+        {
+            int inOrOutType=int.Parse(inOrOut);
+            if (ValidData.CheckSearchParmsLenAndSpecialCharts(CurMaterial))
+            {
+                MessageBoxEx.Show("输入的字符长度超过20或包含特殊字符，请重新输入!");
+                return;
+            }
+
+            OrderList.Clear();
+            try
+            {
+                var where = CombineSearchSql(inOrOutType);
+                OperateResult<List<Order>> accountListResult = _wmsDataService.GetInOrderPageList(where);
+                if (!accountListResult.IsSuccess)
+                {
+                    SnackbarQueue.MessageQueue.Enqueue("查询出错：" + accountListResult.Message);
+                    return;
+                }
+                if (accountListResult.Content != null && accountListResult.Content.Count > 0)
+                {
+                    accountListResult.Content.ForEach(ite => OrderList.Add(ite));
+                }
+            }
+            catch (Exception ex)
+            {
+                SnackbarQueue.MessageQueue.Enqueue("查询异常：" + ex.Message);
+            }
+        }
+        private Expression<Func<Order, bool>> CombineSearchSql(int inOrOut)
+        {
+            Expression<Func<Order, bool>> whereLambda = t => t.IsDeleted == false;
+            whereLambda = whereLambda.AndAlso(t => t.InOutType == (InOrOutEnum)inOrOut);
+
+            if (CurTaskType.HasValue)
+            {
+                whereLambda = whereLambda.AndAlso(t => t.TaskType == CurTaskType.Value);
+            }
+            if (!string.IsNullOrEmpty(CurArea))
+            {
+                whereLambda = whereLambda.AndAlso(t => t.AreaCode == CurArea);
+            }
+            return whereLambda;
+        }
+
+        private void QureyOrderDetail()
+        {
+            System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                OrderDetailList.Clear();
+                try
+                {
+                    OperateResult<List<Order>> accountListResult = _wmsDataService.GetOrderAndMaterList();
+                    if (!accountListResult.IsSuccess)
+                    {
+                        SnackbarQueue.MessageQueue.Enqueue("查询出错：" + accountListResult.Message);
+                        return;
+                    }
+                    if (accountListResult.Content != null && accountListResult.Content.Count > 0)
+                    {
+                        accountListResult.Content.ForEach(ite => OrderDetailList.Add(ite));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    SnackbarQueue.MessageQueue.Enqueue("查询异常：" + ex.Message);
+                }
+            }));
+        }
+
+
+        private RelayCommand _createInOrderCommand;
+        public RelayCommand CreateInOrderCommand
+        {
+            get
+            {
+                if (_createInOrderCommand == null)
+                {
+                    _createInOrderCommand = new RelayCommand(CreateNewOrder);
+                }
+                return _createInOrderCommand;
+            }
+        }
+        private async void CreateNewOrder()
+        {
+            CreateNewOrderView createNewOrder = new CreateNewOrderView();
+            await MaterialDesignThemes.Wpf.DialogHost.Show(createNewOrder, "DialogHostWait");
+        }
+
+
+        private RelayCommand _createOutOrderCommand;
+        public RelayCommand CreateOutOrderCommand
+        {
+            get
+            {
+                if (_createOutOrderCommand == null)
+                {
+                    _createOutOrderCommand = new RelayCommand(CreateOutOrder);
+                }
+                return _createOutOrderCommand;
+            }
+        }
+        private async void CreateOutOrder()
+        {
+            CreateOutOrderView createOutOrder = new CreateOutOrderView();
+            await MaterialDesignThemes.Wpf.DialogHost.Show(createOutOrder, "DialogHostWait");
+        }
+
+
+        private RelayCommand _createReturnOrderCommand;
+        public RelayCommand CreateReturnOrderCommand
+        {
+            get
+            {
+                if (_createReturnOrderCommand == null)
+                {
+                    _createReturnOrderCommand = new RelayCommand(CreateReturnOrder);
+                }
+                return _createReturnOrderCommand;
+            }
+        }
+        private async void CreateReturnOrder()
+        {
+            CreateReturnOrderView createReturnOrder = new CreateReturnOrderView();
+            await MaterialDesignThemes.Wpf.DialogHost.Show(createReturnOrder, "DialogHostWait");
+        }
+
+
+        
+    }
+}

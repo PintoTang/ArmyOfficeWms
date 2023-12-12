@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CL.WCS.SystemConfigPckg.Model;
 using CLDC.CLWS.CLWCS.Service.License;
 using Infrastructrue.Ioc.DependencyFactory;
 
@@ -28,13 +29,8 @@ namespace CL.WCS.WPF.View.MainTitle
             DataContext = new MainTitleViewModel();
         }
         public delegate void TitleHandler();
-
         public event TitleHandler OnMinClick;
-
         public event TitleHandler DragMove;
-
-       
-
         public event TitleHandler OnCloseApp;
         public event TitleHandler OnLogout;
         private void btnMin_Click(object sender, RoutedEventArgs e)
@@ -55,7 +51,7 @@ namespace CL.WCS.WPF.View.MainTitle
 
         private void BtnLogout_OnClick(object sender, RoutedEventArgs e)
         {
-            if (OnLogout!=null)
+            if (OnLogout != null)
             {
                 OnLogout();
             }
@@ -73,10 +69,11 @@ namespace CL.WCS.WPF.View.MainTitle
 
         private void MainTitle_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (DragMove!=null)
+            if (DragMove != null)
             {
                 DragMove();
             }
         }
     }
+
 }

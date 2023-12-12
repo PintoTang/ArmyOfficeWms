@@ -43,7 +43,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 while (true)
                 {
                     GetDeviceData();
-                    Thread.Sleep(2000);//2s刷新一下
+                    Thread.Sleep(1000);//2s刷新一下
                 }
             });
         }
@@ -54,7 +54,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             try
             {
                 //请求设备信息及实时数据
-                opResult = HttpHelper.CreateHttpResponse("http://192.168.1.111:9001/" + "app/GetDeviceData?groupId=", false, null, "2", 2);
+                opResult = HttpHelper.CreateHttpResponse("http://localhost:9001/" + "app/GetDeviceData?groupId=", false, null, "2", 2);
                 if (opResult.IsSuccess)
                 {
                     s_OutputParms = opResult.Content;
@@ -69,13 +69,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                         {
                             if (data.dataName.Contains("温度"))
                             {
-                                strTemperature += data.dataValue + "℃，";
-                                strTemper += data.dataName.Remove(data.dataName.IndexOf("温度")) + "，";
+                                strTemperature += data.dataValue + "℃|";
+                                strTemper += data.dataName.Remove(data.dataName.IndexOf("温度")) + "|";
                             }
                             else if (data.dataName.Contains("湿度"))
                             {
-                                strHumidity += data.dataValue + "%，";
-                                strHumi+= data.dataName.Remove(data.dataName.IndexOf("湿度")) + "，";
+                                strHumidity += data.dataValue + "%|";
+                                strHumi+= data.dataName.Remove(data.dataName.IndexOf("湿度")) + "|";
                             }
                             else if (data.dataName.Contains("红外"))
                             {
@@ -101,10 +101,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                             }
                         }
                     }
-                    this.Dispatcher.BeginInvoke(new Action(() => tbTemperature.Text = "实时温度:"+ strTemperature.TrimEnd('，')));
-                    this.Dispatcher.BeginInvoke(new Action(() => tbHumidity.Text = "实时湿度:" + strHumidity.TrimEnd('，')));
-                    this.Dispatcher.BeginInvoke(new Action(() => tbTepmer.Text = "温度区域:" + strTemper.TrimEnd('，')));
-                    this.Dispatcher.BeginInvoke(new Action(() => tbHumi.Text = "湿度区域:" + strHumi.TrimEnd('，')));
+                    this.Dispatcher.BeginInvoke(new Action(() => tbTemperature.Text = "实时温度:"+ strTemperature.TrimEnd('|')));
+                    this.Dispatcher.BeginInvoke(new Action(() => tbHumidity.Text = "实时湿度:" + strHumidity.TrimEnd('|')));
+                    this.Dispatcher.BeginInvoke(new Action(() => tbTepmer.Text = "温度区域:" + strTemper.TrimEnd('|')));
+                    this.Dispatcher.BeginInvoke(new Action(() => tbHumi.Text = "湿度区域:" + strHumi.TrimEnd('|')));
                     this.Dispatcher.BeginInvoke(new Action(() => tbInfrared.Text = "正常:" + infraredNoAlarm + "/" + (infraredAlarm + infraredNoAlarm) + ",报警:" + infraredAlarm + "/" + (infraredAlarm + infraredNoAlarm)));
                     this.Dispatcher.BeginInvoke(new Action(() => tbSmokeDetector.Text = "正常:" + smokeNoAlarm + "/" + (smokeAlarm + smokeNoAlarm) + ",报警:" + smokeAlarm + "/" + (smokeAlarm + smokeNoAlarm)));
                     //tbTemperature.Text += strTemperature.TrimEnd(',');

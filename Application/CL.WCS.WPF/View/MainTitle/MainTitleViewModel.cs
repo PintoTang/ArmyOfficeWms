@@ -19,5 +19,15 @@ namespace CL.WCS.WPF.View.MainTitle
                 return path;
             }
         }
+
+        public string Title
+        {
+            get
+            {
+                return SystemConfig.Instance.SysName;
+            }
+        }
+
+
     }
 }

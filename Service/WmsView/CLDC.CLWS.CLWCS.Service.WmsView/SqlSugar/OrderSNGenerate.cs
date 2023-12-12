@@ -1,13 +1,8 @@
-﻿using CL.Framework.CmdDataModelPckg;
-using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
+﻿using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
 using CLDC.CLWS.CLWCS.Service.WmsView.Model;
 using Infrastructrue.Ioc.DependencyFactory;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
 {
@@ -17,7 +12,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
         public OrderSNGenerate()
         {
             OrderDatabaseHandler = DependencyHelper.GetService<WmsDataAbstract>();
-            maxOrderID = OrderDatabaseHandler.GetMaxID("Id", "t_InOrder", "");//该方法如果不存在数据返回0
+            maxOrderID = OrderDatabaseHandler.GetMaxID("Id", "t_Order", "");//该方法如果不存在数据返回0
         }
         private object objLock = new object();
         /// <summary>
@@ -25,7 +20,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
         /// </summary>
         private long maxOrderID = 1;
 
-        public OperateResult<InOrder> GenerateOrder(InOrder destOrder)
+        public OperateResult<Order> GenerateOrder(Order destOrder)
         {
             lock (objLock)
             {
@@ -35,10 +30,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
 
                 if (destOrder.Id == -0x7FFFFFFF)
                 {
-                    return OperateResult.CreateFailedResult<InOrder>(null, "指令生成失败，无效的订单号");
+                    return OperateResult.CreateFailedResult<Order>(null, "指令生成失败，无效的订单号");
                 }
                 string msg = string.Format("指令生成成功，指令：{0}", destOrder);
-                OperateResult<InOrder> result = OperateResult.CreateSuccessResult(destOrder);
+                OperateResult<Order> result = OperateResult.CreateSuccessResult(destOrder);
                 result.Message = msg;
                 return result;
             }

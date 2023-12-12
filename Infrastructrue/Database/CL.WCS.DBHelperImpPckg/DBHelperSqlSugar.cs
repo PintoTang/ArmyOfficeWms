@@ -27,9 +27,9 @@ namespace CL.WCS.DBHelperImpPckg
         private const int TimeOut = 180;
         private const string txtName = "数据库操作异常日志";
         private string _DatabaseName = string.Empty;
-        private int _dbType = 0; 
+        private int _dbType = 0;
 
-        public DBHelperSqlSugar(int dbType,string connectionString, string strDatabaseName)
+        public DBHelperSqlSugar(int dbType, string connectionString, string strDatabaseName)
         {
             _dbType = dbType;
             _dbConnectionString = connectionString;
@@ -52,7 +52,7 @@ namespace CL.WCS.DBHelperImpPckg
 
         public ISqlSugarClient CreateContext()
         {
-            
+
             ISqlSugarClient dbContext = new SqlSugarClient(new ConnectionConfig()
             {
                 ConnectionString = _dbConnectionString,
@@ -111,7 +111,7 @@ namespace CL.WCS.DBHelperImpPckg
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns>受影响行数</returns>
-        public int Add<TEntity>(ISqlSugarClient dbContext, TEntity entity) where TEntity:class,new()
+        public int Add<TEntity>(ISqlSugarClient dbContext, TEntity entity) where TEntity : class, new()
         {
             try
             {
@@ -1105,9 +1105,18 @@ namespace CL.WCS.DBHelperImpPckg
         }
         public int ExecuteNonQuery(string sql, Hashtable paramList = null)
         {
-            using (var dbContext = CreateContext())
+            try
             {
-                return ExecuteNonQuery(dbContext, sql, paramList);
+                using (var dbContext = CreateContext())
+                {
+                    return ExecuteNonQuery(dbContext, sql, paramList);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (PrintLogToUIEvent != null)
+                    PrintLogToUIEvent(_DatabaseName, "保存失败", ex.Message);
+                return 0;
             }
         }
         #endregion

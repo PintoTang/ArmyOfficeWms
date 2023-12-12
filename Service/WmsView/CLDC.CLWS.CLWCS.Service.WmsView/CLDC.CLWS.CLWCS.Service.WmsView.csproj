@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CLDC.Framework.Log, Version=1.0.13.529, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\LIB\NetLog\CLDC.Framework.Log.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight">
       <HintPath>..\..\..\LIB\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
@@ -41,6 +45,7 @@
     <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a" />
     <Reference Include="MaterialDesignThemes.Wpf">
       <HintPath>..\..\..\LIB\WPFUI\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
@@ -64,28 +69,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModel\Area.cs" />
+    <Compile Include="DataModel\InOrOutEnum.cs" />
     <Compile Include="DataModel\Inventory.cs" />
-    <Compile Include="DataModel\InOrder.cs" />
-    <Compile Include="DataModel\InOrderDetail.cs" />
+    <Compile Include="DataModel\Order.cs" />
+    <Compile Include="DataModel\OrderDetail.cs" />
     <Compile Include="DataModel\Material.cs" />
-    <Compile Include="DataModel\ReasonEnum.cs" />
     <Compile Include="DataModel\RfidBarcode.cs" />
     <Compile Include="DataModel\Shelf.cs" />
     <Compile Include="DataModel\TaskTypeEnum.cs" />
-    <Compile Include="DataModel\UserInformationMode.cs" />
+    <Compile Include="DataModel\WmsDataModel.cs" />
     <Compile Include="DataModel\Warehouse.cs" />
+    <Compile Include="ReasonConfig.cs" />
     <Compile Include="SqlSugar\IOrderSNGenerate.cs" />
     <Compile Include="SqlSugar\OrderSNGenerate.cs" />
     <Compile Include="SqlSugar\WmsDataSqlSugar.cs" />
-    <Compile Include="ViewModel\CreateInOrderViewModel.cs" />
+    <Compile Include="TaskTypeConfig.cs" />
+    <Compile Include="ReasonConfigModel.cs" />
+    <Compile Include="TaskTypeConfigModel.cs" />
+    <Compile Include="ViewModel\CreateOrderViewModel.cs" />
     <Compile Include="ViewModel\InventoryListViewModel.cs" />
-    <Compile Include="ViewModel\InOrderListViewModel.cs" />
-    <Compile Include="ViewModel\ManageButtonViewModel.cs" />
-    <Compile Include="View\CreateInOrderView.xaml.cs">
-      <DependentUpon>CreateInOrderView.xaml</DependentUpon>
+    <Compile Include="ViewModel\OrderListViewModel.cs" />
+    <Compile Include="View\CreateNewOrderView.xaml.cs">
+      <DependentUpon>CreateNewOrderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UcChart.xaml.cs">
-      <DependentUpon>UcChart.xaml</DependentUpon>
+    <Compile Include="View\CreateOutOrderView.xaml.cs">
+      <DependentUpon>CreateOutOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CreateReturnOrderView.xaml.cs">
+      <DependentUpon>CreateReturnOrderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UcDefaultView.xaml.cs">
       <DependentUpon>UcDefaultView.xaml</DependentUpon>
@@ -93,14 +104,14 @@
     <Compile Include="View\UcEnvironMonitor.xaml.cs">
       <DependentUpon>UcEnvironMonitor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UcInOrderManage.xaml.cs">
-      <DependentUpon>UcInOrderManage.xaml</DependentUpon>
+    <Compile Include="View\UcInOrderList.xaml.cs">
+      <DependentUpon>UcInOrderList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UcInventoryList.xaml.cs">
       <DependentUpon>UcInventoryList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UcManageButton.xaml.cs">
-      <DependentUpon>UcManageButton.xaml</DependentUpon>
+    <Compile Include="View\UcOutOrderList.xaml.cs">
+      <DependentUpon>UcOutOrderList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UcTopTitle.xaml.cs">
       <DependentUpon>UcTopTitle.xaml</DependentUpon>
@@ -111,11 +122,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\CreateInOrderView.xaml">
+    <Page Include="View\CreateNewOrderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UcChart.xaml">
+    <Page Include="View\CreateOutOrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateReturnOrderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,7 +142,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UcInOrderManage.xaml">
+    <Page Include="View\UcInOrderList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -135,7 +150,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UcManageButton.xaml">
+    <Page Include="View\UcOutOrderList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,6 +192,10 @@
     <ProjectReference Include="..\..\..\Domain\WareHouse\DataModel\CLDC.CLWS.CLWCS.WareHouse.DataModel\CLDC.CLWS.CLWCS.WareHouse.DataModel.csproj">
       <Project>{626151D3-EA45-4A40-93AC-3B5C15372490}</Project>
       <Name>CLDC.CLWS.CLWCS.WareHouse.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Domain\WareHouse\DataModel\CLDC.CLWS.CLWCS.WareHouse.DataPool\CLDC.CLWS.CLWCS.WareHouse.DataPool.csproj">
+      <Project>{C22D70C3-EC25-45F1-A18C-35EEB0DC6AF6}</Project>
+      <Name>CLDC.CLWS.CLWCS.WareHouse.DataPool</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Domain\WareHouse\Device\CLDC.CLWS.CLWCS.WareHouse\CLDC.CLWS.CLWCS.WareHouse.Device.csproj">
       <Project>{0339859C-2936-4B4B-85BC-0774B5000C8B}</Project>

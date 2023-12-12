@@ -4,5 +4,6 @@
     {
         public int SN { get; set; }
         public string Barcode { get; set; }
+        public string MaterialDesc { get; set;}
     }
 }

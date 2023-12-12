@@ -1,4 +1,5 @@
-﻿using SqlSugar;
+﻿using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
+using SqlSugar;
 using System;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
@@ -113,10 +114,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
 
 
         /// <summary>
-        /// 状态：0-其它;1-在库;2-出库;3-报损;
+        /// 状态：1-在库;2-出库;3-报损;
         /// </summary>
         [SugarColumn]
-		public int? Status { get; set; }
+		public InvStatusEnum? Status { get; set; }
 
 		/// <summary>
 		/// 存储区域编码
