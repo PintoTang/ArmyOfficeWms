@@ -309,7 +309,7 @@ namespace CLDC.CLWCS.Service.MenuService.View
             }
             SystemConfigView systemConfig = new SystemConfigView();
             UserContentControl.Children.Add(systemConfig);
-            //inventoryList.ViewModel.SearchCommand.Execute(null);        
+            //inventoryList.ViewModel.SearchCommand.Execute(null);
         }
 
 

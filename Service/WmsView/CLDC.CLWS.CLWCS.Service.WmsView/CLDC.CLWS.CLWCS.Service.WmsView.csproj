@@ -268,5 +268,8 @@
   <ItemGroup>
     <Resource Include="Images\map_box.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\warehouse.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

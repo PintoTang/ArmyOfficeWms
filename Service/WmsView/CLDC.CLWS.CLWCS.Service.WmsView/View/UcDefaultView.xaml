@@ -31,6 +31,19 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/map_box.png" />
             </Grid.Background>
+            <ContentControl Name="ImageContainer" ClipToBounds="True"  Cursor="SizeAll" Margin="50,90,40,30"
+                            MouseLeftButtonDown="ImgMouseLeftButtonDown" MouseRightButtonDown="ImgMouseRightButtonDown" 
+                            MouseUp="ImgMouseUp" MouseMove="ImgMouseMove" MouseWheel="ImgMouseWheel">
+                <Image Name="ImgWarehouse" RenderOptions.BitmapScalingMode="NearestNeighbor"  Stretch="Fill">
+                    <Image.RenderTransform>
+                        <TransformGroup x:Name="group">
+                            <ScaleTransform x:Name="scaler"/>
+                            <TranslateTransform x:Name="transer"/>
+                            <RotateTransform x:Name="rotater"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </ContentControl>
         </Grid>
         <Label Grid.Row="1" Name="AdminTitle" Width="1100" Height="40" Content="出入库记录" Foreground="#12FFD5" Margin="0,22,0,0"
                                         VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="20" >
