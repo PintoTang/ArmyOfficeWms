@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:dataModel="clr-namespace:CLDC.CLWS.CLWCS.Infrastructrue.DataModel;assembly=CLDC.CLWS.CLWCS.Infrastructrue.DataModel"
              xmlns:systemConfigPckg="clr-namespace:CL.WCS.SystemConfigPckg"
              mc:Ignorable="d"  
@@ -170,6 +171,7 @@
             </ScrollViewer>
             <Grid Grid.Row="2">
                 <Button Width="80" Height="40" HorizontalAlignment="Right" Margin="0,0,100,0" Command="{Binding SaveCommand}">保存</Button>
+                <Button Width="80" Height="40" HorizontalAlignment="Right" Margin="0,0,10,0" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">退出</Button>
             </Grid>
         </Grid>
         <Grid x:Name="DescContent" Grid.Column="2" Visibility="Collapsed">

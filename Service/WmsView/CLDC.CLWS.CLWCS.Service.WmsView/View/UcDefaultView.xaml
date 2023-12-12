@@ -103,9 +103,9 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="装备" Width="300" Binding="{Binding MaterialDesc}" IsReadOnly="True"/>
-                    <DataGridComboBoxColumn Header="状态" Width="80" SelectedItemBinding="{Binding InOutType}" ItemsSource="{Binding Source={StaticResource  InOrOutEnum}}"/>
+                    <DataGridComboBoxColumn Header="状态" Width="80" SelectedItemBinding="{Binding InOutType}" ItemsSource="{Binding Source={StaticResource InOrOutEnum}}"/>
                     <DataGridTextColumn Header="事由" Width="*" Binding="{Binding Reason}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="时间" Width="210" Binding="{Binding CreatedTime}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="时间" Width="198" Binding="{Binding CreatedTime,StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

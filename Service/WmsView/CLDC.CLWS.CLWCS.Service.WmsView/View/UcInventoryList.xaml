@@ -118,15 +118,13 @@
                                     <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ShowDetailCommand}" CommandParameter="{Binding ElementName=InOrderGrid,Path=SelectedItem}"/>
                                 </DataGrid.InputBindings>
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="物资区域" Width="*" Binding="{Binding AreaName}" IsReadOnly="True"/>
-                                    <DataGridComboBoxColumn Header="任务类型" Width="*" SelectedValueBinding="{Binding TaskType,Mode=TwoWay}" ItemsSource="{Binding TaskTypeList}"/>
+                                    <DataGridTextColumn Header="物资区域" Width="100" Binding="{Binding AreaName}" IsReadOnly="True"/>
+                                    <DataGridComboBoxColumn Header="任务类型" Width="100" SelectedValueBinding="{Binding TaskType,Mode=TwoWay}" ItemsSource="{Binding TaskTypeList}"/>
                                     <DataGridTextColumn Header="装备" Width="*" Binding="{Binding MaterialDesc}"/>
-                                    <DataGridTextColumn Header="标签" Width="150" Binding="{Binding Barcode}"/>
+                                    <DataGridTextColumn Header="标签" Width="270" Binding="{Binding Barcode}"/>
                                     <DataGridTextColumn Header="事由" Width="220" Binding="{Binding Reason}"/>
                                     <DataGridComboBoxColumn Header="状态" Width="50" SelectedItemBinding="{Binding Status}" ItemsSource="{Binding Source={StaticResource InvStatusEnum}}" IsReadOnly="True"/>
-                                    <DataGridTextColumn Header="创建者" Width="80" Binding="{Binding CreatedUserName}" IsReadOnly="True"/>
-                                    <DataGridTextColumn Header="创建时间" Width="180" Binding="{Binding CreatedTime}" IsReadOnly="True"/>
-                                </DataGrid.Columns>
+                                    </DataGrid.Columns>
                             </DataGrid>
                             <page:UCSplitPager Grid.Row="1"></page:UCSplitPager>
                         </Grid>

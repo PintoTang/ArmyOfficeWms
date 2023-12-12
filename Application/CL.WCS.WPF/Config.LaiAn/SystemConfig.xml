@@ -9,7 +9,7 @@
 	<OpcMode Name="系统启动环境" Description="设置启动系统运行的环境" Value="Automatic" />
 	<!--<AtsDatabaseConn Name="Opc数据库" Description="Opc的数据库连接串配置" Value="Data Source=.;Initial Catalog =ArmyOfficeWms;User Id=sa;Password=831CF57B8435B5BB;" />
 	<AtsDataBaseType Name="Opc数据库类型" Description="Opc数据库类型" Value="SqlServer" />-->
-	<Department Name="公司名称" Description="配置整个系统启动的界面风格" Value="WEISS" />
+	<Department Name="公司名称" Description="系统版权所属" Value="WEISS" />
 	<WcsDataBaseType Name="Wms数据库类型" Description="Wms数据库类型" Value="SqlServer" />
 	<WcsDatabaseConn Name="Wms数据库" Description="Wms系统数据库连接串" Value="Data Source=.;Initial Catalog =ArmyOfficeWms;User Id=sa;Password=831CF57B8435B5BB;" />
 	<MaxByteLength Name="单日志文件大小" Description="单日志文件大小" Value="30" />

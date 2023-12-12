@@ -5,9 +5,9 @@ namespace CL.WCS.SystemConfigPckg.Model
     public enum DepartmentEnum
     {
         /// <summary>
-        /// 深圳市维斯物流自动化
+        /// 安徽军之星智能科技有限公司
         /// </summary>
-        [Description("深圳市维斯物流自动化")] 
+        [Description("安徽军之星智能科技有限公司")] 
         WEISS,
         /// <summary>
         /// 南网

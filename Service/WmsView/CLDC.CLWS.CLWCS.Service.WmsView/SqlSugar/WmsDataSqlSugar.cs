@@ -129,7 +129,8 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             OperateResult<List<Order>> result = OperateResult.CreateFailedResult<List<Order>>("无数据");
             try
             {
-                List<Order> list = DbHelper.QuerySqlList<Order>("SELECT top(20) a.MaterialDesc,b.InOutType,b.Reason,b.CreatedTime FROM [t_OrderDetail] as a left join [t_Order] as b on a.ordersn=b.ordersn where a.IsDeleted=0 and b.IsDeleted=0");
+                List<Order> list = DbHelper.QuerySqlList<Order>("SELECT top(100) a.MaterialDesc,b.InOutType,b.Reason,b.CreatedTime FROM [t_OrderDetail] as a " +
+                    "left join [t_Order] as b on a.ordersn=b.ordersn where a.IsDeleted=0 and b.IsDeleted=0 Order by b.CreatedTime Desc");
                 result.IsSuccess = true;
                 result.Content = list;
             }
