@@ -15,40 +15,28 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
         public long Id { get; set; }
 
         /// <summary>
-		/// 任务单编号
+		/// 
 		/// </summary>
 		[SugarColumn]
         public string OrderSN { get; set; }
 
         /// <summary>
-        /// 
+        /// 设备码
         /// </summary>
         [SugarColumn]
         public string Barcode { get; set; }
 
         /// <summary>
-        /// 物料号
+        /// 物资编码
         /// </summary>
         [SugarColumn]
         public string MaterialCode { get; set; }
 
         /// <summary>
-        /// 物料名称
+        /// 物资名称
         /// </summary>
         [SugarColumn]
         public string MaterialDesc { get; set; }
-
-        /// <summary>
-        /// 物料类别
-        /// </summary>
-        [SugarColumn]
-        public int? MaterCategory { get; set; }
-
-        /// <summary>
-        /// 物料基本单位Id
-        /// </summary>
-        [SugarColumn]
-        public long? UnitId { get; set; }
 
         /// <summary>
         /// 物料基本单位

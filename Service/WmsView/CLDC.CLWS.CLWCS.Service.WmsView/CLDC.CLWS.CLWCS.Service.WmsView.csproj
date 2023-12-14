@@ -113,6 +113,9 @@
     <Compile Include="View\UcOutOrderList.xaml.cs">
       <DependentUpon>UcOutOrderList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UcSetupView.xaml.cs">
+      <DependentUpon>UcSetupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UcTopTitle.xaml.cs">
       <DependentUpon>UcTopTitle.xaml</DependentUpon>
     </Compile>
@@ -151,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UcOutOrderList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UcSetupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -240,6 +247,10 @@
     <ProjectReference Include="..\..\Authorize\CLDC.CLWS.CLWCS.Service.Authorize\CLDC.CLWS.CLWCS.Service.Authorize.csproj">
       <Project>{797A97CD-A513-43AF-8A0A-F756CCE6F381}</Project>
       <Name>CLDC.CLWS.CLWCS.Service.Authorize</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\StartService\CL.WCS.SystemConfigPckg\CL.WCS.SystemConfigPckg.csproj">
+      <Project>{94710D61-2939-41D9-8354-636EED78C004}</Project>
+      <Name>CL.WCS.SystemConfigPckg</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

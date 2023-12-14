@@ -25,19 +25,14 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="/CLDC.Infrastructrue.UserCtrl;component/Style/UserControlStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <ObjectDataProvider x:Key="RoleLevelEnum" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider x:Key="InvStatusEnum" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
                 <ObjectDataProvider.MethodParameters>
-                    <x:Type Type="local:RoleLevelEnum"/>
-                </ObjectDataProvider.MethodParameters>
-            </ObjectDataProvider>
-            <ObjectDataProvider x:Key="UseStatusEnum" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
-                <ObjectDataProvider.MethodParameters>
-                    <!--<x:Type Type="dataMode:AccountStatusEnum"/>-->
+                    <x:Type Type="local:InvStatusEnum"/>
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border CornerRadius="20,20,20,20">
+    <Border Background="#245D55" CornerRadius="2">
         <Grid>
             <Grid.Background>
                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
@@ -68,14 +63,9 @@
                                 <ColumnDefinition Width="140"/>
                             </Grid.ColumnDefinitions>
                             <WrapPanel Grid.Column="0" VerticalAlignment="Center">
-                                <Label FontSize="18">存放区域：</Label>
-                                <ComboBox FontSize="18" Width="120" IsEditable="True" ItemsSource="{Binding AreaList}" 
-                                        DisplayMemberPath="Name" SelectedValuePath="Code" SelectedValue="{Binding CurArea,Mode=TwoWay}">
-                                </ComboBox>
-                                <TextBlock Width="24"/>
                                 <Label FontSize="18">任务分类：</Label>
-                                <ComboBox FontSize="18" x:Name="cbTaskType" Width="120" IsEditable="True" ItemsSource="{Binding TaskTypeList}"
-                                        DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding CurTaskType,Mode=TwoWay}">
+                                <ComboBox FontSize="18" x:Name="cbArea" Width="120" IsEditable="True" ItemsSource="{Binding AreaList}"
+                                        DisplayMemberPath="AreaName" SelectedValuePath="AreaCode" SelectedValue="{Binding CurArea,Mode=TwoWay}">
                                 </ComboBox>
                                 <TextBlock Width="24"/>
                                 <Label FontSize="18">装备：</Label>
@@ -94,7 +84,7 @@
                         <Grid Grid.Row="1">
                             <WrapPanel VerticalAlignment="Center">
                                 <TextBlock Width="20"/>
-                                <Button Width="100" Height="40" FontSize="18" Padding="0"  Command="{Binding CreateInOrderCommand}">新购入库</Button>
+                                <Button Width="100" Height="40" FontSize="18" Padding="0"  Command="{Binding CreateInOrderCommand}" CommandParameter="1">新购入库</Button>
                                 <TextBlock Width="20"/>
                                 <Button Width="100" Height="40" FontSize="18" Padding="0"  Command="{Binding CreateReturnOrderCommand}">归还入库</Button>
                             </WrapPanel>
@@ -112,21 +102,38 @@
                               materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
                               ItemsSource="{Binding OrderList,Mode=OneWay}" 
                               SelectedValue="{Binding SelectedValue}"
+                                      HorizontalContentAlignment="Center"
+                                      VerticalContentAlignment="Center"
                               CanUserAddRows="False"
                               CanUserDeleteRows="False" CanUserResizeColumns="False">
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="Foreground" Value="#FFFFFF"/>
+                                        <Setter Property="FontSize" Value="18" />
+                                        <Setter Property="Height" Value="35"/>
+                                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
                                 <DataGrid.InputBindings>
                                     <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ShowDetailCommand}" CommandParameter="{Binding ElementName=InOrderGrid,Path=SelectedItem}"/>
                                 </DataGrid.InputBindings>
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="入库单号" Width="*" Binding="{Binding OrderSN}" IsReadOnly="True"/>
-                                    <DataGridTextColumn Header="任务类型" Width="*" Binding="{Binding TaskType}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="任务分类" Width="90" Binding="{Binding AreaName}" IsReadOnly="True"/>
                                     <DataGridTextColumn Header="装备" Width="120" Binding="{Binding MaterialDesc}"/>
                                     <DataGridTextColumn Header="数量" Width="50" Binding="{Binding Qty}"/>
                                     <DataGridTextColumn Header="单位" Width="50" Binding="{Binding UnitName}"/>
-                                    <DataGridTextColumn Header="事由" Width="220" Binding="{Binding Reason}"/>
-                                    <DataGridComboBoxColumn Header="状态" Width="80" SelectedItemBinding="{Binding Status}" ItemsSource="{Binding Source={StaticResource  UseStatusEnum}}"/>
+                                    <DataGridTextColumn Header="事由" Width="200" Binding="{Binding Reason}"/>
+                                    <DataGridComboBoxColumn Header="状态" Width="80" SelectedItemBinding="{Binding Status}" 
+                                                            ItemsSource="{Binding Source={StaticResource InvStatusEnum}}"/>
                                     <DataGridTextColumn Header="创建者" Width="80" Binding="{Binding CreatedUserName}" IsReadOnly="True"/>
-                                    <DataGridTextColumn Header="创建时间" Width="200" Binding="{Binding CreatedTime}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="创建时间" Width="200" Binding="{Binding CreatedTime,StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}" IsReadOnly="True"/>
                                     </DataGrid.Columns>
                             </DataGrid>
                             <page:UCSplitPager Grid.Row="1"></page:UCSplitPager>

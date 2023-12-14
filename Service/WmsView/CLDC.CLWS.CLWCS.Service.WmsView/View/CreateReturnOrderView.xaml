@@ -7,7 +7,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:CLDC.CLWS.CLWCS.Service.WmsView.View"
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="600"  Height="800" Width="600"
-             Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
+             Background="Transparent" BorderThickness="0" BorderBrush="Transparent"
+             Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <Style x:Key="LableStyle" TargetType="Label">
             <Setter Property="FontSize" Value="16"/>
@@ -89,7 +90,7 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition Width="35"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" FontSize="20" FontWeight="Black" Foreground="#12FFD5" VerticalAlignment="Center">装备归还</Label>
+                <Label Grid.Column="0" FontSize="20" FontWeight="Black" Foreground="#12FFD5" VerticalAlignment="Center">归还入库</Label>
                 <Button Grid.Column="1" Width="30" Style="{StaticResource ButtonStyleClose}" Name="btnClose"
                         Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3"/>
             </Grid>
@@ -103,27 +104,22 @@
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LableStyle}">任务分类：</Label>
-                    <!--<TextBox x:Name="TbAccount" Grid.Row="0" Grid.Column="1" Style="{StaticResource TextboxStyle}"></TextBox>-->
-                    <ComboBox x:Name="CbTaskType" Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" />
-                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LableStyle}">出入事由：</Label>
-                    <ComboBox x:Name="CbReason" Grid.Row="1" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" />
-                    <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource LableStyle}">存放区域：</Label>
-                    <ComboBox x:Name="CbArea" Grid.Row="2" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" SelectionChanged="CbArea_SelectionChanged"/>
-                    <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource LableStyle}">存放货架：</Label>
-                    <ComboBox x:Name="CbShelf" Grid.Row="3" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" />
-                    <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource LableStyle}">扫描数量：</Label>
-                    <Label x:Name="lbScanQty" Grid.Row="4" Grid.Column="1" Style="{StaticResource LableStyle}" HorizontalAlignment="Left" Content="{Binding BarcodeCount}" Height="38"></Label>
-                    <Grid Grid.Row="5" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LableStyle}">出入事由：</Label>
+                    <ComboBox x:Name="CbReason" Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" />
+                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LableStyle}">任务分类：</Label>
+                    <ComboBox x:Name="CbArea" Grid.Row="1" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" SelectionChanged="CbArea_SelectionChanged"/>
+                    <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource LableStyle}">货架：</Label>
+                    <ComboBox x:Name="CbShelf" Grid.Row="2" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" />
+                    <Label Grid.Row="3" Grid.Column="0" VerticalAlignment="Top" Style="{StaticResource LableStyle}" Margin="0,5,0,0">装备标签：</Label>
+                    <Grid Grid.Row="3" Grid.Column="1"  Width="400" Height="480" VerticalAlignment="Center" HorizontalAlignment="Left">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
-                        <DataGrid Name="BarcodeGrid" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"
+                        <DataGrid Name="BarcodeGrid" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="0,10,0,0"
                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                 AutoGenerateColumns="False"
@@ -134,16 +130,18 @@
                                 CanUserAddRows="False"
                                 CanUserDeleteRows="False" CanUserResizeColumns="False">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Width="80" Header="序号" FontSize="15" FontWeight="Black" Binding="{Binding SN}" IsReadOnly="True"/>
-                                <DataGridTextColumn Width="200" Header="装备" FontSize="15" FontWeight="Black" Binding="{Binding MaterialDesc}" IsReadOnly="True"/>
-                                <DataGridTextColumn Width="250" Header="标签条码" FontSize="15" FontWeight="Black" Binding="{Binding Barcode}" IsReadOnly="True"/>
+                                <DataGridTextColumn Width="40" Header="序号" FontSize="15" FontWeight="Black" Binding="{Binding SN}" IsReadOnly="True"/>
+                                <DataGridTextColumn Width="*" Header="装备" FontSize="15" FontWeight="Black" Binding="{Binding MaterialDesc}" IsReadOnly="True"/>
+                                <DataGridTextColumn Width="223" Header="标签条码" FontSize="15" FontWeight="Black" Binding="{Binding Barcode}" IsReadOnly="True"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
+                    <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource LableStyle}">扫描数量：</Label>
+                    <Label x:Name="lbScanQty" Grid.Row="5" Grid.Column="1" Style="{StaticResource LableStyle}" HorizontalAlignment="Left" Content="{Binding BarcodeCount}" Height="38"></Label>
                 </Grid>
             </ScrollViewer>
             <WrapPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">
-                <Button x:Name="BtnStart" Click="BtnStart_OnClick" Command="{Binding ScanCommand}">开始入库</Button>
+                <Button x:Name="BtnStart" Click="BtnStart_OnClick">开始入库</Button>
                 <TextBlock Width="20"/>
                 <Button x:Name="BtnStop" Click="BtnStop_OnClick" Command="{Binding StopCommand}">结束入库</Button>
                 <TextBlock Width="20"/>

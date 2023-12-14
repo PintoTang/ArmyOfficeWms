@@ -3,9 +3,12 @@ using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
 using CLDC.CLWS.CLWCS.Service.WmsView.DataModel;
 using CLDC.CLWS.CLWCS.Service.WmsView.Model;
 using CLDC.CLWS.CLWCS.WareHouse.Device;
+using CLDC.Infrastructrue.UserCtrl.Model;
 using GalaSoft.MvvmLight;
 using Infrastructrue.Ioc.DependencyFactory;
 using System;
+using System.Collections.Generic;
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
@@ -21,6 +24,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
 
         public event BarcodeEventHandler BarcodeChangedEvent;
         private ObservableCollection<RfidBarcode> _barcodeList { get; set; }
+        public ObservableCollection<Reason> ReasonList { get; set; }
 
         private WmsDataService _wmsDataService;
         public ObservableCollection<RfidBarcode> BarcodeList 
@@ -48,6 +52,19 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                 RaisePropertyChanged(() => BarcodeCount);
             }
         }
+        private string _curReason;
+        /// <summary>
+        /// 当前选择的事由
+        /// </summary>
+        public string CurReason
+        {
+            get { return _curReason; }
+            set
+            {
+                _curReason = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private static readonly Lazy<CreateOrderViewModel> lazy = new Lazy<CreateOrderViewModel>(() => 
                                         new CreateOrderViewModel(), LazyThreadSafetyMode.PublicationOnly);
@@ -63,12 +80,14 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         {
             _wmsDataService = DependencyHelper.GetService<WmsDataService>();
             this.BarcodeList = new ObservableCollection<RfidBarcode>();
+            this.ReasonList = new ObservableCollection<Reason>();
             this.DeviceName = new DeviceName("电子标签识别", 1);
             this.DeviceId = 102401;
             HopelandRfid = new IdentifyDeviceCommForClouRfid();
             HopelandRfid.BarcodeChangedEvent += HopelandRfid_BarcodeChangedEvent;
             HopelandRfid.Initialize(DeviceId, DeviceName);
 
+            InitCbReason();
             ///////测试数据///////
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E282780220000000001E3D28", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E282780220000000001E3B4D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
@@ -76,18 +95,36 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E282780200000000001E34E3", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E282780200000000001E3330", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E282780220000000001E3C3B", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-        //    this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780220000000001E3D28", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-        //    this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780220000000001E3B4D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-        //    this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780200000000001E3C3D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-        //    this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780200000000001E34E3", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-        //    this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780200000000001E3330", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-        //    this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3C3B", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-        //    this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3D28", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-        //    this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3B4D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-        //    this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780200000000001E3C3D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-        //    this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780200000000001E34E3", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-        //    this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780200000000001E3330", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-        //    this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3C3B", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780220000000001E3D28", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780220000000001E3B4D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780200000000001E3C3D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780200000000001E34E3", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780200000000001E3330", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3C3B", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3D28", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3B4D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780200000000001E3C3D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780200000000001E34E3", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780200000000001E3330", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3C3B", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeCount=this.BarcodeList.Count.ToString();
+        }
+
+        private void InitCbReason()
+        {
+            ReasonList.Clear();
+            try
+            {
+                List<Reason> accountListResult = ReasonConfig.Instance.ReasonList;
+                if (accountListResult.Count > 0)
+                {
+                    accountListResult.ForEach(ite => ReasonList.Add(ite));
+                }
+            }
+            catch (Exception ex)
+            {
+                SnackbarQueue.MessageQueue.Enqueue("查询异常：" + ex.Message);
+            }
         }
 
         private void HopelandRfid_BarcodeChangedEvent(string barcode)

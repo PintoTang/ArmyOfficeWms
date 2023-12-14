@@ -22,7 +22,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         private WmsDataService _wmsDataService;
         private string _curMaterial = string.Empty;
         private string _curArea;
-        private int? _curTaskType;
+        private string _curTaskType;
         public ObservableCollection<Inventory> InventoryList { get; set; }
         public ObservableCollection<Order> OrderDetailList { get; set; }
         public ObservableCollection<Area> AreaList { get; set; }
@@ -55,7 +55,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         /// <summary>
         /// 当前搜索的任务分类
         /// </summary>
-        public int? CurTaskType
+        public string CurTaskType
         {
             get { return _curTaskType; }
             set
@@ -72,8 +72,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             OrderDetailList = new ObservableCollection<Order>();
             OrderList = new ObservableCollection<Order>();
             ReasonList = new ObservableCollection<Reason>();
+            AreaList = new ObservableCollection<Area>();
             _wmsDataService = DependencyHelper.GetService<WmsDataService>();
             InitReasonList();
+            InitCbArea();
 
             Task.Factory.StartNew(() =>
             {
@@ -85,7 +87,22 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             });
         }
 
-        
+        private void InitCbArea()
+        {
+            AreaList.Clear();
+            try
+            {
+                List<Area> accountListResult = _wmsDataService.GetAreaList(string.Empty);
+                if (accountListResult.Count > 0)
+                {
+                    accountListResult.ForEach(ite => AreaList.Add(ite));
+                }
+            }
+            catch (Exception ex)
+            {
+                SnackbarQueue.MessageQueue.Enqueue("查询异常：" + ex.Message);
+            }
+        }
 
         private void InitReasonList()
         {
@@ -138,7 +155,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                 }
                 if (accountListResult.Content != null && accountListResult.Content.Count > 0)
                 {
-                    accountListResult.Content.ForEach(ite => OrderList.Add(ite));
+                    accountListResult.Content.ForEach(ite =>
+                    {
+                        var material = _wmsDataService.GetOrderDetail(ite.OrderSN);
+                        var area = _wmsDataService.GetAreaList(ite.AreaCode);
+                        ite.MaterialDesc = material?.MaterialDesc;
+                        OrderList.Add(ite);
+                    });
                 }
             }
             catch (Exception ex)
@@ -150,11 +173,6 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         {
             Expression<Func<Order, bool>> whereLambda = t => t.IsDeleted == false;
             whereLambda = whereLambda.AndAlso(t => t.InOutType == (InOrOutEnum)inOrOut);
-
-            if (CurTaskType.HasValue)
-            {
-                whereLambda = whereLambda.AndAlso(t => t.TaskType == CurTaskType.Value);
-            }
             if (!string.IsNullOrEmpty(CurArea))
             {
                 whereLambda = whereLambda.AndAlso(t => t.AreaCode == CurArea);

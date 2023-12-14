@@ -22,11 +22,11 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         private string _curMaterial = string.Empty;
         private string _curArea;
         private InvStatusEnum? _curInvStatus;
-        private int? _curTaskType;
+        private string _curTaskType;
         private WmsDataService _wmsDataService;
         public ObservableCollection<Inventory> InventoryList { get; set; }
         public ObservableCollection<Area> AreaList { get; set; }
-        public ObservableCollection<TaskButton> TaskTypeList { get; set; }
+
         /// <summary>
         /// 当前搜索的装备
         /// </summary>
@@ -66,7 +66,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         /// <summary>
         /// 当前搜索的任务分类
         /// </summary>
-        public int? CurTaskType
+        public string CurTaskType
         {
             get { return _curTaskType; }
             set
@@ -97,9 +97,8 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         {
             InventoryList = new ObservableCollection<Inventory>();
             AreaList = new ObservableCollection<Area>();
-            TaskTypeList = new ObservableCollection<TaskButton>();
             _wmsDataService = DependencyHelper.GetService<WmsDataService>();
-            InitCbArea(); InitCbTaskType();
+            InitCbArea(); 
         }
 
         private void InitCbArea()
@@ -111,22 +110,6 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                 if (accountListResult.Count > 0)
                 {
                     accountListResult.ForEach(ite => AreaList.Add(ite));
-                }
-            }
-            catch (Exception ex)
-            {
-                SnackbarQueue.MessageQueue.Enqueue("查询异常：" + ex.Message);
-            }
-        }
-
-        private void InitCbTaskType()
-        {
-            TaskTypeList.Clear();
-            try
-            {
-                if (TaskTypeConfig.Instance.TaskButtonList.Count > 0)
-                {
-                    TaskTypeConfig.Instance.TaskButtonList.ForEach(ite => TaskTypeList.Add(ite));
                 }
             }
             catch (Exception ex)
@@ -192,30 +175,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             {
                 whereLambda = whereLambda.AndAlso(t => t.Status == CurInvStatus.Value);
             }
-            if (CurTaskType.HasValue)
-            {
-                whereLambda = whereLambda.AndAlso(t => t.TaskType == CurTaskType.Value);
-            }
             return whereLambda;
-        }
-
-        private RelayCommand _createNewOrderCommand;
-        public RelayCommand CreateNewOrderCommand
-        {
-            get
-            {
-                if (_createNewOrderCommand == null)
-                {
-                    _createNewOrderCommand = new RelayCommand(CreateNewOrder);
-                }
-                return _createNewOrderCommand;
-            }
-        }
-
-        private async void CreateNewOrder()
-        {
-            CreateNewOrderView createNewOrder = new CreateNewOrderView();
-            await MaterialDesignThemes.Wpf.DialogHost.Show(createNewOrder, "DialogHostWait");
         }
 
     }

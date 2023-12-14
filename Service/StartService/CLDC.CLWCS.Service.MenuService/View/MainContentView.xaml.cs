@@ -6,6 +6,7 @@ using CLDC.CLWS.CLWCS.Framework;
 using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
 using CLDC.CLWS.CLWCS.Infrastructrue.Sockets;
 using CLDC.CLWS.CLWCS.Service.WmsView;
+using CLDC.CLWS.CLWCS.Service.WmsView.DataModel;
 using CLDC.CLWS.CLWCS.Service.WmsView.View;
 using CLDC.Infrastructrue.UserCtrl.Domain;
 using CLDC.Infrastructrue.UserCtrl.Model;
@@ -39,46 +40,36 @@ namespace CLDC.CLWCS.Service.MenuService.View
             UserControl menuView = new UcDefaultView();
             UserContentControl.Children.Add(menuView);
             DataContext = this;
-            BindTaskTypeButtonName();
-            Task.Factory.StartNew(() =>
-            {
-                while (true)
-                {
-                    GetPieSeriesData();
-                    Thread.Sleep(15000);//30秒刷新一下
-                }
-            });            
+            CreateTaskTypeButtons();
+            GetPieSeriesData();
         }
 
-        private void BindTaskTypeButtonName()
+        /// <summary>
+        /// 根据配置文件动态生产任务类型按钮
+        /// </summary>
+        private void CreateTaskTypeButtons()
         {
             try
             {
-                //var ucChildrens = TaskTypeGrid.Children;
-                //for (int i = ucChildrens.Count - 1; i >= 0; i--)
-                //{
-                //    if (ucChildrens[i] is Button && (ucChildrens[i] as Button).Tag.ToString() != "0")
-                //    {
-                //        var ccc = TaskTypeConfig.Instance.TaskButtonList;
-                //        (ucChildrens[i] as Button).Content = TaskTypeConfig.Instance.TaskButtonList[int.Parse((ucChildrens[i] as Button).Tag.ToString())-1].Name;
-                //    }
-                //}
-
-                foreach(var item in TaskTypeConfig.Instance.TaskButtonList.Where(x=>x.Show==true))
+                var areaLst = _wmsDataService.GetAreaList(string.Empty);
+                if (areaLst.Count > 0)
                 {
-                    Button button=new Button();
-                    button.Tag = item.Id;
-                    button.Content = item.Name;
-                    button.FontSize = 20; 
-                    button.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-                    button.Width = 135;button.Height = 55;
-                    button.Click += Button_Click;
-                    ImageBrush imageBrush = new ImageBrush();
-                    imageBrush.ImageSource = new BitmapImage(new Uri("Images/btnBackground.png", UriKind.Relative));
-                    button.Background = imageBrush;
-                    Grid.SetRow(button, item.Row);
-                    Grid.SetColumn(button, item.Column);
-                    TaskTypeGrid.Children.Add(button);
+                    foreach (var item in areaLst)
+                    {
+                        Button button = new Button();
+                        button.Tag = item.AreaCode;
+                        button.Content = item.AreaName;
+                        button.FontSize = 20;
+                        button.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+                        button.Width = 135; button.Height = 55;
+                        button.Click += Button_Click;
+                        ImageBrush imageBrush = new ImageBrush();
+                        imageBrush.ImageSource = new BitmapImage(new Uri("Images/btnBackground.png", UriKind.Relative));
+                        button.Background = imageBrush;
+                        Grid.SetRow(button, (int)item.ROW);
+                        Grid.SetColumn(button, (int)item.COLUMN);
+                        TaskTypeGrid.Children.Add(button);
+                    }
                 }
             }
             catch (Exception ex)
@@ -122,38 +113,45 @@ namespace CLDC.CLWCS.Service.MenuService.View
             }
         }
 
+        /// <summary>
+        /// 定时获取饼图数据
+        /// </summary>
         private void GetPieSeriesData()
         {
-            List<string> titles = new List<string>();
-            List<double> pieValues = new List<double>();
-            foreach (var dict in InvStatusDict)
+            Task.Factory.StartNew(() =>
             {
-                titles.Add(dict.Value);
-                var invQty = _wmsDataService.GetInvQtyByStatus(dict.Key);
-                pieValues.Add(invQty);
-            }
-            Dispatcher.BeginInvoke
-                (new Action
+                while (true)
+                {
+                    List<string> titles = new List<string>();
+                    List<double> pieValues = new List<double>();
+                    foreach (var dict in InvStatusDict)
+                    {
+                        titles.Add(dict.Value);
+                        var invQty = _wmsDataService.GetInvQtyByStatus(dict.Key);
+                        pieValues.Add(invQty);
+                    }
+                    Dispatcher.BeginInvoke(new Action
                         (delegate
-                                    {
-                                        PieSeriesCollection.Clear();
-                                        ChartValues<double> chartvalue = new ChartValues<double>();
-                                        for (int i = 0; i < titles.Count; i++)
-                                        {
-                                            chartvalue = new ChartValues<double>();
-                                            chartvalue.Add(pieValues[i]);
-                                            PieSeries series = new PieSeries();
-                                            series.FontSize = 26;
-                                            series.DataLabels = true;
-                                            series.Title = titles[i]+"   ";
-                                            series.Values = chartvalue;
-                                            PieSeriesCollection.Add(series);
-                                        }
-                                    }
-                        )
-               );
+                            {
+                                PieSeriesCollection.Clear();
+                                ChartValues<double> chartvalue = new ChartValues<double>();
+                                for (int i = 0; i < titles.Count; i++)
+                                {
+                                    chartvalue = new ChartValues<double>();
+                                    chartvalue.Add(pieValues[i]);
+                                    PieSeries series = new PieSeries();
+                                    series.FontSize = 20;
+                                    series.DataLabels = true;
+                                    series.Title = titles[i] + "   ";
+                                    series.Values = chartvalue;
+                                    PieSeriesCollection.Add(series);
+                                }
+                            }
+                        ));
+                    Thread.Sleep(int.Parse(SystemConfig.Instance.Interval) * 1000);
+                }
+            });
         }
-
 
         public Func<ChartPoint, string> PointLabel { get; set; }
 
@@ -219,7 +217,7 @@ namespace CLDC.CLWCS.Service.MenuService.View
             }
             UcInventoryList inventoryList = new UcInventoryList();
             UserContentControl.Children.Add(inventoryList);
-            inventoryList.ViewModel.CurTaskType = int.Parse((sender as Button).Tag.ToString());
+            inventoryList.ViewModel.CurArea = (sender as Button).Tag.ToString();
             inventoryList.ViewModel.SearchCommand.Execute(null);
         }
 
@@ -261,9 +259,18 @@ namespace CLDC.CLWCS.Service.MenuService.View
         }
 
         private void btnInOrder_Click(object sender, RoutedEventArgs e)
-        {
+        {           
+            var ucChildrens = UserContentControl.Children;
+            for (int i = ucChildrens.Count - 1; i >= 0; i--)
+            {
+                if (ucChildrens[i] is UcInOrderList)
+                {
+                    ucChildrens.Remove(ucChildrens[i]);
+                }
+            }
             UcInOrderList inOrderList = new UcInOrderList();
-            UserContentControl.Children.Add(inOrderList);            
+            UserContentControl.Children.Add(inOrderList);
+            inOrderList.ViewModel.SearchCommand.Execute(((int)InOrOutEnum.入库).ToString());
         }
 
         private void btnInvenroty_Click(object sender, RoutedEventArgs e)
@@ -294,7 +301,7 @@ namespace CLDC.CLWCS.Service.MenuService.View
             }
             UcOutOrderList outOrderList = new UcOutOrderList();
             UserContentControl.Children.Add(outOrderList);
-            //inventoryList.ViewModel.SearchCommand.Execute(null);
+            outOrderList.ViewModel.SearchCommand.Execute(((int)InOrOutEnum.出库).ToString());
         }
 
         private void btnSystemSetup_Click(object sender, RoutedEventArgs e)
@@ -302,14 +309,13 @@ namespace CLDC.CLWCS.Service.MenuService.View
             var ucChildrens = UserContentControl.Children;
             for (int i = ucChildrens.Count - 1; i >= 0; i--)
             {
-                if (ucChildrens[i] is SystemConfigView)
+                if (ucChildrens[i] is UcSetupView)
                 {
                     ucChildrens.Remove(ucChildrens[i]);
                 }
             }
-            SystemConfigView systemConfig = new SystemConfigView();
-            UserContentControl.Children.Add(systemConfig);
-            //inventoryList.ViewModel.SearchCommand.Execute(null);
+            UcSetupView ucSetup = new UcSetupView();
+            UserContentControl.Children.Add(ucSetup);
         }
 
 

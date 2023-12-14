@@ -6,7 +6,8 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:CLDC.CLWS.CLWCS.Service.WmsView.View"
              mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="600"  Height="800" Width="600"
-             Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
+             Background="Transparent" BorderThickness="0" BorderBrush="Transparent"
+             Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <Style x:Key="LableStyle" TargetType="Label">
             <Setter Property="FontSize" Value="16"/>
@@ -105,40 +106,31 @@
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="40"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="Auto"/>                        
+                        <!--<RowDefinition Height="40"/>-->
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LableStyle}">任务分类：</Label>
-                    <!--<TextBox x:Name="TbAccount" Grid.Row="0" Grid.Column="1" Style="{StaticResource TextboxStyle}"></TextBox>-->
-                    <ComboBox x:Name="CbTaskType" Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" />
-                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LableStyle}">出入事由：</Label>
-                    <ComboBox x:Name="CbReason" Grid.Row="1" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38"/>
-                    <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource LableStyle}">存放区域：</Label>
-                    <ComboBox x:Name="CbArea" Grid.Row="2" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" SelectionChanged="CbArea_SelectionChanged"/>
-                    <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource LableStyle}">存放货架：</Label>
-                    <ComboBox x:Name="CbShelf" Grid.Row="3" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" />
-                    <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource LableStyle}">装备：</Label>
-                    <ComboBox x:Name="CbMaterialDesc" Grid.Row="4" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" IsEditable="True"  IsTextSearchEnabled = "true" TextBoxBase.TextChanged="CbMaterialDesc_TextChanged"/>
-                    <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource LableStyle}">数量：</Label>
-                    <TextBox x:Name="TbQty" Grid.Row="5" Grid.Column="1" Width="350" Height="38"  Style="{StaticResource TextboxStyle}"></TextBox>
-                    <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource LableStyle}">单位：</Label>
-                    <ComboBox x:Name="CbUnit" Grid.Row="6" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" />
-                    <WrapPanel Grid.Row="7" Grid.Column="1">
-                        <Button Width="100" Height="38" x:Name="BtnBeginScan" Command="{Binding ScanCommand}">开始扫描</Button>
-                        <Button Width="100" Height="38" x:Name="BtnStopScan" Command="{Binding StopCommand}" HorizontalAlignment="Right">结束扫描</Button>
-                    </WrapPanel>
-                    <Label Grid.Row="8" Grid.Column="0" Style="{StaticResource LableStyle}">扫描数量：</Label>
-                    <Label x:Name="lbScanQty" Grid.Row="8" Grid.Column="1" Style="{StaticResource LableStyle}" HorizontalAlignment="Left" Content="{Binding BarcodeCount}" Height="38"></Label>
-                    <Grid Grid.Row="9" Grid.Column="1" Width="350" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LableStyle}">出入事由：</Label>
+                    <ComboBox x:Name="CbReason" Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38"/>
+                    <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LableStyle}">任务分类：</Label>
+                    <ComboBox x:Name="CbArea" Grid.Row="1" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" SelectionChanged="CbArea_SelectionChanged"/>
+                    <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource LableStyle}">货架：</Label>
+                    <ComboBox x:Name="CbShelf" Grid.Row="2" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" />
+                    <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource LableStyle}">装备：</Label>
+                    <ComboBox x:Name="CbMaterialDesc" Grid.Row="3" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" SelectionChanged="CbMaterialDesc_SelectionChanged"/>
+                    <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource LableStyle}">数量：</Label>
+                    <TextBox x:Name="TbQty" Grid.Row="4" Grid.Column="1" Width="350" Height="38"  Style="{StaticResource TextboxStyle}"></TextBox>
+                    <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource LableStyle}">单位：</Label>
+                    <TextBox x:Name="tbUnitName" Grid.Row="5" Grid.Column="1" Width="350" Height="38"  Style="{StaticResource TextboxStyle}" IsReadOnly="True"></TextBox>
+                    <Label Grid.Row="6" Grid.Column="0"  Margin="0,5,0,0" VerticalAlignment="Top" Style="{StaticResource LableStyle}">装备标签：</Label>
+                    <Grid Grid.Row="6" Grid.Column="1" Width="350" Height="300" VerticalAlignment="Center" HorizontalAlignment="Left">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
-                        <DataGrid Name="BarcodeGrid" VerticalAlignment="Center" HorizontalAlignment="Left"
+                        <DataGrid Name="BarcodeGrid" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="0,10,0,0"
                                   ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                                   AutoGenerateColumns="False"
                                   materialDesign:DataGridAssist.CellPadding="4 2 2 2"
                                   materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
@@ -152,12 +144,19 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
+                    <Label Grid.Row="7" Grid.Column="0" Style="{StaticResource LableStyle}">扫描数量：</Label>
+                    <Label x:Name="lbScanQty" Grid.Row="7" Grid.Column="1" Content="{Binding BarcodeCount}" 
+                             Style="{StaticResource LableStyle}" Width="350" Height="38"></Label>
+                    <!--<WrapPanel Grid.Row="8" Grid.Column="1" Margin="1">
+                        <Button Width="100" Height="38" x:Name="BtnBeginScan" Command="{Binding ScanCommand}">开始扫描</Button>
+                        <Button Width="100" Height="38" x:Name="BtnStopScan" Command="{Binding StopCommand}" HorizontalAlignment="Right">结束扫描</Button>
+                    </WrapPanel>-->
                 </Grid>
             </ScrollViewer>
             <WrapPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">
-                <Button x:Name="BtnSave" Click="BtnSave_OnClick" Command="{Binding StopCommand}">保存</Button>
+                <Button x:Name="BtnStart" Click="BtnStart_OnClick">开始入库</Button>
                 <TextBlock Width="20"/>
-                <Button x:Name="BtnExit" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">退出</Button>
+                <Button x:Name="BtnStop" Click="BtnStop_OnClick" Command="{Binding StopCommand}">结束入库</Button>
                 <TextBlock Width="20"/>
             </WrapPanel>
         </Grid>

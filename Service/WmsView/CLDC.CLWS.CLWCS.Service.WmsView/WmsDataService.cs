@@ -19,19 +19,23 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
             _wmsDataAccess = wmsDataAccess;
         }
 
-        public List<Material> GetMaterialList(string name)
+        public List<Material> GetMaterialList(string area)
         {
-            return _wmsDataAccess.GetMaterialList(name);
+            return _wmsDataAccess.GetMaterialList(area);
         }
 
-        public List<Material> GetUnitList(string name)
+        public Material GetMaterial(string materCode)
         {
-            return _wmsDataAccess.GetUnitList(name);
+            return _wmsDataAccess.GetMaterial(materCode);
+        }
+        public OrderDetail GetOrderDetail(string orderSn)
+        {
+            return _wmsDataAccess.GetOrderDetail(orderSn);
         }
 
-        public List<Area> GetAreaList(string name)
+        public List<Area> GetAreaList(string code)
         {
-            return _wmsDataAccess.GetAreaList(name);
+            return _wmsDataAccess.GetAreaList(code);
         }
 
         public List<Shelf> GetShelfList(string area)

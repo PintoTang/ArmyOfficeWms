@@ -121,6 +121,11 @@ namespace CL.WCS.SystemConfigPckg.Model
         /// </summary>
         public string RfidPower { get; set; }
 
+        /// <summary>
+        /// 数据刷新间隔
+        /// </summary>
+        public string Interval { get; set; }
+
 
 
 
@@ -182,6 +187,8 @@ namespace CL.WCS.SystemConfigPckg.Model
                 SysName = CurSystemConfig.SysName.Value;
 
                 RfidPower = CurSystemConfig.RfidPower.Value;
+
+                Interval = CurSystemConfig.Interval.Value;
             }
             catch (Exception ex)
             {

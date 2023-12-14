@@ -23,7 +23,7 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="500"/>
+            <RowDefinition Height="555"/>
             <RowDefinition Height="65"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -31,10 +31,10 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/map_box.png" />
             </Grid.Background>
-            <ContentControl Name="ImageContainer" ClipToBounds="True"  Cursor="SizeAll" Margin="50,90,40,30"
+            <ContentControl Name="ImageContainer" ClipToBounds="True"  Cursor="SizeAll" Margin="14,74,4,14"
                             MouseLeftButtonDown="ImgMouseLeftButtonDown" MouseRightButtonDown="ImgMouseRightButtonDown" 
                             MouseUp="ImgMouseUp" MouseMove="ImgMouseMove" MouseWheel="ImgMouseWheel">
-                <Image Name="ImgWarehouse" RenderOptions.BitmapScalingMode="NearestNeighbor"  Stretch="Fill">
+                <Image Name="ImgWarehouse" RenderOptions.BitmapScalingMode="NearestNeighbor"  Stretch="Fill" Source="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/warehouse.png">
                     <Image.RenderTransform>
                         <TransformGroup x:Name="group">
                             <ScaleTransform x:Name="scaler"/>
@@ -58,15 +58,15 @@
         </Button>
         <Grid Grid.Row="2">
             <DataGrid Name="OrderDetailGrid" 
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                   AutoGenerateColumns="False"
                   materialDesign:DataGridAssist.CellPadding="4 2 2 2"
                   materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
                   ItemsSource="{Binding OrderDetailList,Mode=OneWay}" 
                   SelectedValue="{Binding SelectedValue}"
                   CanUserAddRows="False" LoadingRow="OrderDetailGrid_LoadingRow"
-                  CanUserDeleteRows="False" CanUserResizeColumns="False">
+                  CanUserDeleteRows="False" CanUserResizeColumns="True">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="Background">

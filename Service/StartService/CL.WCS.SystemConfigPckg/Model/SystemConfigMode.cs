@@ -60,6 +60,8 @@ namespace CL.WCS.SystemConfigPckg.Model
 
         [XmlElement("RfidPower")]
         public ConfigItem<string> RfidPower { get; set; }
+        [XmlElement("Interval")]
+        public ConfigItem<string> Interval { get; set; }
 
     }
 }

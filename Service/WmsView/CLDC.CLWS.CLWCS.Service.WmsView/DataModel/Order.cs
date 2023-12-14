@@ -1,4 +1,5 @@
-﻿using CLDC.CLWS.CLWCS.Service.WmsView.DataModel;
+﻿using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
+using CLDC.CLWS.CLWCS.Service.WmsView.DataModel;
 using SqlSugar;
 using System;
 
@@ -17,7 +18,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
         public long Id { get; set; }
 
         /// <summary>
-        /// 出入库类型：1-入库；2-出库；
+        /// 出入库类型：1-入库；2-出库；3-报损；
         /// </summary>
         [SugarColumn]
         public InOrOutEnum? InOutType { get; set; }
@@ -29,13 +30,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
         public string OrderSN { get; set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        [SugarColumn]
-        public int? TaskType { get; set; }
-
-        /// <summary>
-        /// 
+        /// 出入库事由
         /// </summary>
         [SugarColumn]
         public string Reason { get; set; }
@@ -53,10 +48,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
         public string Remark { get; set; }
 
         /// <summary>
-        /// 单据状态
+        /// 状态：0-新建;1-已启动;2-作业中;3-已完成;
         /// </summary>
         [SugarColumn]
-        public int? Status { get; set; }
+        public InvStatusEnum? Status { get; set; }
 
         /// <summary>
         /// 存储区域编码
@@ -69,6 +64,12 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
         /// </summary>
         [SugarColumn]
         public string AreaName { get; set; }
+
+        /// <summary>
+        /// 物资单位
+        /// </summary>
+        [SugarColumn]
+        public string UnitName { get; set; }
 
         /// <summary>
         /// 创建人
@@ -94,11 +95,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
         [SugarColumn]
         public long? TenantId { get; set; }
 
-
         /// <summary>
-        /// 装备
+        /// 物资名称
         /// </summary>
-        [SugarColumn(IsIgnore = true)]
+        [SugarColumn(IsIgnore =true)]
         public string MaterialDesc { get; set; }
     }
 }

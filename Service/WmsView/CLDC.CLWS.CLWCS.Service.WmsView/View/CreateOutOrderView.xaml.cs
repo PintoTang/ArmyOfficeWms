@@ -29,8 +29,12 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
         {
             InitializeComponent();
             _wmsDataService = DependencyHelper.GetService<WmsDataService>();
-            _orderGeneraterHandler = DependencyHelper.GetService<OrderSNGenerate>();
-            InitCbTaskType(); InitCbArea(); InitCbReason(); InitCbShelf();
+            _orderGeneraterHandler = DependencyHelper.GetService<OrderSNGenerate>();            
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            InitCbArea(); InitCbReason(); InitCbShelf();
             DataContext = CreateOrderViewModel.SingleInstance;
             //CreateOrderViewModel.SingleInstance.BarcodeList.Clear();
         }
@@ -40,19 +44,19 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             //先停止扫描再保存数据
             CreateOrderViewModel.SingleInstance.StopCommand.Execute(null);
 
-            if (CbTaskType.SelectedIndex == -1)
+            if (CbArea.SelectedIndex == -1)
             {
                 MessageBoxEx.Show("请选择任务分类", "提示", MessageBoxButton.OK);
                 return;
             }
             if (CbReason.SelectedIndex == -1 && string.IsNullOrEmpty(CbReason.Text))
             {
-                MessageBoxEx.Show("请选择或填写事由", "提示", MessageBoxButton.OK);
+                MessageBoxEx.Show("请选择出入事由", "提示", MessageBoxButton.OK);
                 return;
             }
-            if (CbArea.SelectedIndex == -1)
+            if (BarcodeGrid.Items.Count == 0)
             {
-                MessageBoxEx.Show("请选择存放区域", "提示", MessageBoxButton.OK);
+                MessageBoxEx.Show("未识别到装备标签,请重新扫描!");
                 return;
             }
 
@@ -76,9 +80,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 orderDetail.Barcode = barcode;
                 orderDetail.Remark = string.Empty;
                 orderDetail.IsDeleted = false;
-                orderDetail.UnitId = inventory.UnitId;
                 orderDetail.UnitName = inventory.UnitName;
-                orderDetail.MaterCategory = inventory.MaterialCategory;
                 orderDetail.MaterialCode = inventory.MaterialCode;
                 orderDetail.MaterialDesc = inventory.MaterialDesc;
                 orderDetail.ShelfCode = (string)CbShelf.SelectedValue;
@@ -109,8 +111,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             newOrder.Reason = (string)CbReason.Text;
             newOrder.OrderSN = orderSN;
             newOrder.Qty = BarcodeGrid.Items.Count;
-            newOrder.Status = 0;
-            newOrder.TaskType = (int)CbTaskType.SelectedValue;
+            newOrder.Status = InvStatusEnum.在库;
 
             OperateResult createResult = _wmsDataService.CreateNewInOrder(newOrder);
             if (!createResult.IsSuccess)
@@ -125,19 +126,14 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
 
         private void BtnStart_OnClick(object sender, RoutedEventArgs e)
         {
-            if (CbTaskType.SelectedIndex == -1)
+            if (CbArea.SelectedIndex == -1)
             {
                 MessageBoxEx.Show("请选择任务分类", "提示", MessageBoxButton.OK);
                 return;
             }
             if (CbReason.SelectedIndex == -1 && string.IsNullOrEmpty(CbReason.Text))
             {
-                MessageBoxEx.Show("请选择或填写事由", "提示", MessageBoxButton.OK);
-                return;
-            }
-            if (CbArea.SelectedIndex == -1)
-            {
-                MessageBoxEx.Show("请选择存放区域", "提示", MessageBoxButton.OK);
+                MessageBoxEx.Show("请选择出入事由", "提示", MessageBoxButton.OK);
                 return;
             }
             if (BarcodeGrid.Items.Count == 0)
@@ -145,6 +141,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 MessageBoxEx.Show("未识别到装备标签,请重新扫描!");
                 return;
             }
+            CreateOrderViewModel.SingleInstance.ScanCommand.Execute(null);
         }
 
         private readonly Dictionary<TaskTypeEnum, string> _taskTypeDict = new Dictionary<TaskTypeEnum, string>();
@@ -171,17 +168,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             CbReason.ItemsSource = ReasonConfig.Instance.ReasonList.Where(x => x.Type == "出库");
         }
 
-        private void InitCbTaskType()
-        {
-            CbTaskType.SelectedValuePath = "Key";
-            CbTaskType.DisplayMemberPath = "Value";
-            CbTaskType.ItemsSource = TaskTypeDict;
-        }
-
         private void InitCbArea()
         {
-            CbArea.SelectedValuePath = "Code";
-            CbArea.DisplayMemberPath = "Name";
+            CbArea.SelectedValuePath = "AreaCode";
+            CbArea.DisplayMemberPath = "AreaName";
             CbArea.ItemsSource = _wmsDataService.GetAreaList(string.Empty);
         }
 
@@ -196,7 +186,6 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
         {
             InitCbShelf();
         }
-
 
     }
 }

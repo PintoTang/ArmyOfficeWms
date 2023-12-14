@@ -63,11 +63,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
         public abstract List<Material> GetMaterialList(string name);
 
         /// <summary>
-        /// 获取单位列表
+        /// 获取物资信息
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public abstract List<Material> GetUnitList(string name);
+        public abstract Material GetMaterial(string materCode);
+
+        public abstract OrderDetail GetOrderDetail(string orderSn);
 
         /// <summary>
         /// 获取存放区域

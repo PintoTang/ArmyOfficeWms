@@ -217,36 +217,48 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             return createResult;
         }
 
-        public override List<Material> GetMaterialList(string name)
+        public override List<Material> GetMaterialList(string area)
         {
             List<Material> materialList = null;
             try
             {
-                materialList = DbHelper.QueryList<Material>(t => t.MaterialDesc.Contains(name));
+                materialList = DbHelper.QueryList<Material>(t => t.AreaCode == area);
             }
             catch
             { }
             return materialList;
         }
 
-        public override List<Material> GetUnitList(string name)
+        public override Material GetMaterial(string materCode)
         {
-            List<Material> materialList = null;
+            Material material = null;
             try
             {
-                materialList = DbHelper.QueryList<Material>().Select(x=>new Material { UnitId=x.UnitId,UnitName=x.UnitName}).Distinct().ToList();
+                material = DbHelper.QueryList<Material>().FirstOrDefault(x => x.MaterialCode == materCode);
             }
             catch
             { }
-            return materialList;
+            return material;
         }
 
-        public override List<Area> GetAreaList(string name)
+        public override OrderDetail GetOrderDetail(string orderSn)
+        {
+            OrderDetail model = null;
+            try
+            {
+                model = DbHelper.QueryList<OrderDetail>().FirstOrDefault(x => x.OrderSN == orderSn && x.IsDeleted == false);
+            }
+            catch
+            { }
+            return model;
+        }
+
+        public override List<Area> GetAreaList(string code)
         {
             List<Area> areaList = null;
             try
             {
-                areaList = DbHelper.QueryList<Area>();
+                areaList = DbHelper.QueryList<Area>(t => t.AreaCode.Contains(code) && t.Status == 1);
             }
             catch
             { }
