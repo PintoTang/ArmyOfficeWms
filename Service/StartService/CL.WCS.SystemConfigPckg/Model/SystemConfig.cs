@@ -126,6 +126,11 @@ namespace CL.WCS.SystemConfigPckg.Model
         /// </summary>
         public string Interval { get; set; }
 
+        /// <summary>
+        /// 远程IP地址
+        /// </summary>
+        public string RemoteIp { get; set; }
+
 
 
 
@@ -189,6 +194,8 @@ namespace CL.WCS.SystemConfigPckg.Model
                 RfidPower = CurSystemConfig.RfidPower.Value;
 
                 Interval = CurSystemConfig.Interval.Value;
+
+                RemoteIp = CurSystemConfig.RemoteIp.Value;
             }
             catch (Exception ex)
             {

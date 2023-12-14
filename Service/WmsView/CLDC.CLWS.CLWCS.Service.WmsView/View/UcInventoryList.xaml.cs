@@ -1,4 +1,9 @@
-﻿using CLDC.CLWS.CLWCS.Service.WmsView.ViewModel;
+﻿using CLDC.CLWS.CLWCS.Service.WmsView.Model;
+using CLDC.CLWS.CLWCS.Service.WmsView.ViewModel;
+using Microsoft.Win32;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.View
@@ -31,9 +36,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             Hide();
         }
 
-        private void InOrderGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        private void InventoryGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
+
     }
 }

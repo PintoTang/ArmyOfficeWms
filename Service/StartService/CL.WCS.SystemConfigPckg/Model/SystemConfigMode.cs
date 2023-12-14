@@ -62,6 +62,8 @@ namespace CL.WCS.SystemConfigPckg.Model
         public ConfigItem<string> RfidPower { get; set; }
         [XmlElement("Interval")]
         public ConfigItem<string> Interval { get; set; }
+        [XmlElement("ModbudHub")]
+        public ConfigItem<string> RemoteIp { get; set; }
 
     }
 }

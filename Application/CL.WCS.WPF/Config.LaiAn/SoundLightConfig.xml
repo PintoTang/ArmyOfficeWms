@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SoundLightConfig Name="声光报警配置">
+  <Command Area="A1" Light="1" Sound="1" SoundContent="人武部首长机关及民兵应急连携行物资，存放于携行器材库"
+           Code="EF AA 01 AA 16 03 02 00 01 C6 EF 55">
+  </Command>
+  <Command Area="A2" Light="1" Sound="1" SoundContent="人武部首长机关指挥保障模块，存放于运行器材库，A,B,C,D,区域"
+           Code="EF AA 02 AA 16 03 02 00 01 C6 EF 55">
+  </Command>
+  <Command Area="A3" Light="1" Sound="1" SoundContent="所属分类，人武部首长机关指挥保障模块，存放于运行器材库B区域，5号运行箱组内"
+          Code="EF AA 03 AA 16 03 02 00 02 C7 EF 55">
+  </Command>
+  <Command Area="A6" Light="6" Sound="5" SoundContent="所属分类，民兵应急连反恐维稳模块，存放于运行器材库E区域，4号器材架"
+          Code="EF AA 06 AA 16 03 02 00 05 CA EF 55">
+  </Command>
+</SoundLightConfig>

@@ -237,7 +237,6 @@ namespace CLDC.CLWCS.Service.MenuService.View
                     SnackbarQueue.MessageQueue.Enqueue("TCP连接失败！");
                 }
                 //EF AA 06 AA 16 03 02 00 05 CA EF 55
-                //EF AA 02 AA 16 03 02 00 01 C6 EF 55
                 byte[] buffer = new byte[12];
                 buffer[0] = 0xEF;
                 buffer[1] = 0xAA;

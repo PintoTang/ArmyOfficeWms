@@ -26,7 +26,6 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         public ObservableCollection<Inventory> InventoryList { get; set; }
         public ObservableCollection<Order> OrderDetailList { get; set; }
         public ObservableCollection<Area> AreaList { get; set; }
-        public ObservableCollection<TaskButton> TaskTypeList { get; set; }
         public ObservableCollection<Reason> ReasonList { get; set; }
         /// <summary>
         /// 当前搜索的装备

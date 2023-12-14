@@ -58,7 +58,7 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition x:Name="RowSearch" Height="80"/>
-                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="40"/>
                             <RowDefinition/>
                             <RowDefinition Height="5"/>
                         </Grid.RowDefinitions>
@@ -92,14 +92,21 @@
                             </Grid>
                         </Grid>
                         <Grid Grid.Row="1">
-
+                            <WrapPanel VerticalAlignment="Center">
+                                <TextBlock Width="20"/>
+                                <Button x:Name="btnExport" Width="100" Height="40" FontSize="18" Padding="0" Command="{Binding ExportCommand}">导出数据</Button>
+                                <TextBlock Width="20"/>
+                                <Button Width="100" Height="40" FontSize="18" Padding="0" Command="{Binding SoundLightCommand}" CommandParameter="{Binding CurArea}" >声光定位</Button>
+                                <TextBlock Width="20"/>
+                                <Button Width="100" Height="40" FontSize="18" Padding="0" >快速出动</Button>
+                            </WrapPanel>
                         </Grid>
                         <Grid Grid.Row="2" Margin="5">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition Height="30"/>
                             </Grid.RowDefinitions>
-                            <DataGrid Name="InOrderGrid" FontSize="18"
+                            <DataGrid Name="InventoryGrid" FontSize="18"
                               ScrollViewer.VerticalScrollBarVisibility="Auto"
                               ScrollViewer.HorizontalScrollBarVisibility="Auto"
                               AutoGenerateColumns="False"
@@ -107,7 +114,7 @@
                               materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
                               ItemsSource="{Binding InventoryList,Mode=OneWay}" 
                               SelectedValue="{Binding SelectedValue}"
-                              CanUserAddRows="False" LoadingRow="InOrderGrid_LoadingRow"
+                              CanUserAddRows="False" LoadingRow="InventoryGrid_LoadingRow"
                               CanUserDeleteRows="False" CanUserResizeColumns="False">
                                 <DataGrid.InputBindings>
                                     <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ShowDetailCommand}" CommandParameter="{Binding ElementName=InOrderGrid,Path=SelectedItem}"/>
