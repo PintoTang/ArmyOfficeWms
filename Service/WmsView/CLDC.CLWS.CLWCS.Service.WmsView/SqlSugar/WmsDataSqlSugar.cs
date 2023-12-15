@@ -277,6 +277,18 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             return shelfList;
         }
 
+        public override Shelf GetShelf(string barcode)
+        {
+            Shelf model = null;
+            try
+            {
+                model = DbHelper.QueryList<Shelf>().FirstOrDefault(x => x.Barcode == barcode);
+            }
+            catch
+            { }
+            return model;
+        }
+
 
         public override OperateResult Insert(WmsDataModel data)
         {

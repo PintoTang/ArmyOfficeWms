@@ -43,6 +43,11 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
             return _wmsDataAccess.GetShelfList(area);
         }
 
+        public Shelf GetShelf(string barcode)
+        {
+            return _wmsDataAccess.GetShelf(barcode);
+        }
+
         public OperateResult CreateNewInOrder(Order inOrder)
         {
             return _wmsDataAccess.CreateNewInOrder(inOrder);

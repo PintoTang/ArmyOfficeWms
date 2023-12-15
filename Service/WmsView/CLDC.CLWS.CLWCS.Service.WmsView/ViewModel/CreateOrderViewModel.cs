@@ -66,6 +66,62 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             }
         }
 
+        private string _curShelfName;
+        /// <summary>
+        /// 当前选择的事由
+        /// </summary>
+        public string CurShelfName
+        {
+            get { return _curShelfName; }
+            set
+            {
+                _curShelfName = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private string _curShelfCode;
+        /// <summary>
+        /// 当前选择的事由
+        /// </summary>
+        public string CurShelfCode
+        {
+            get { return _curShelfCode; }
+            set
+            {
+                _curShelfCode = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private string _curAreaCode;
+        /// <summary>
+        /// 当前选择的事由
+        /// </summary>
+        public string CurAreaCode
+        {
+            get { return _curAreaCode; }
+            set
+            {
+                _curAreaCode = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private string _curAreaName;
+        /// <summary>
+        /// 当前选择的事由
+        /// </summary>
+        public string CurAreaName
+        {
+            get { return _curAreaName; }
+            set
+            {
+                _curAreaName = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private static readonly Lazy<CreateOrderViewModel> lazy = new Lazy<CreateOrderViewModel>(() => 
                                         new CreateOrderViewModel(), LazyThreadSafetyMode.PublicationOnly);
         public static CreateOrderViewModel SingleInstance
@@ -99,14 +155,14 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780220000000001E3B4D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780200000000001E3C3D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780200000000001E34E3", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780200000000001E3330", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3C3B", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3D28", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3B4D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780200000000001E3C3D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780200000000001E34E3", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780200000000001E3330", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3C3B", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780200000000001E3330", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3C3B", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3D28", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3B4D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780200000000001E3C3D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780200000000001E34E3", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780200000000001E3330", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3C3B", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
             this.BarcodeCount=this.BarcodeList.Count.ToString();
         }
 
@@ -134,13 +190,24 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                 if (this.BarcodeList.FirstOrDefault(x => x.Barcode == barcode) == null)
                 {
                     Inventory inventory = _wmsDataService.GetInventory(barcode);
-                    this.BarcodeList.Add(new RfidBarcode()
+                    Shelf shelf = _wmsDataService.GetShelf(barcode);
+                    if (shelf != null)
                     {
-                        Barcode = barcode,
-                        SN = this.BarcodeList.Count + 1,
-                        MaterialDesc = inventory?.MaterialDesc
-                    });
-                    BarcodeCount = this.BarcodeList.Count.ToString();
+                        CurShelfCode = shelf.Code;
+                        CurShelfName = shelf.Name;
+                        CurAreaCode = shelf.AreaCode;
+                        CurAreaName = shelf.AreaName;
+                    }
+                    else
+                    {
+                        this.BarcodeList.Add(new RfidBarcode()
+                        {
+                            Barcode = barcode,
+                            SN = this.BarcodeList.Count + 1,
+                            MaterialDesc = inventory?.MaterialDesc
+                        });
+                        BarcodeCount = this.BarcodeList.Count.ToString();
+                    }
                 }
             }));
         }

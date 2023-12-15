@@ -31,9 +31,9 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/map_box.png" />
             </Grid.Background>
-            <ContentControl Name="ImageContainer" ClipToBounds="True"  Cursor="SizeAll" Margin="14,74,4,14"
-                            MouseLeftButtonDown="ImgMouseLeftButtonDown" MouseRightButtonDown="ImgMouseRightButtonDown" 
-                            MouseUp="ImgMouseUp" MouseMove="ImgMouseMove" MouseWheel="ImgMouseWheel">
+            <ContentControl Name="ImageContainer" ClipToBounds="True"  Cursor="SizeAll" Margin="14,74,4,14">
+                <!--MouseLeftButtonDown="ImgMouseLeftButtonDown" MouseRightButtonDown="ImgMouseRightButtonDown" 
+                    MouseUp="ImgMouseUp" MouseMove="ImgMouseMove" MouseWheel="ImgMouseWheel"-->
                 <Image Name="ImgWarehouse" RenderOptions.BitmapScalingMode="NearestNeighbor"  Stretch="Fill" Source="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/warehouse.png">
                     <Image.RenderTransform>
                         <TransformGroup x:Name="group">

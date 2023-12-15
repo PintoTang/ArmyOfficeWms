@@ -86,7 +86,7 @@
                                 <TextBlock Width="20"/>
                                 <Button Width="100" Height="40" FontSize="18" Padding="0"  Command="{Binding CreateInOrderCommand}" CommandParameter="1">新购入库</Button>
                                 <TextBlock Width="20"/>
-                                <Button Width="100" Height="40" FontSize="18" Padding="0"  Command="{Binding CreateReturnOrderCommand}">归还入库</Button>
+                                <Button Width="100" Height="40" FontSize="18" Padding="0"  Command="{Binding CreateReturnOrderCommand}" CommandParameter="2">归还入库</Button>
                             </WrapPanel>
                         </Grid>
                         <Grid Grid.Row="2" Margin="5">

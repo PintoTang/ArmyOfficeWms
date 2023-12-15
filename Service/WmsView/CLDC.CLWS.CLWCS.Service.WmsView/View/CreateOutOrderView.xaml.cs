@@ -36,7 +36,8 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
         {
             InitCbArea(); InitCbReason(); InitCbShelf();
             DataContext = CreateOrderViewModel.SingleInstance;
-            //CreateOrderViewModel.SingleInstance.BarcodeList.Clear();
+            CreateOrderViewModel.SingleInstance.BarcodeList.Clear();
+            CreateOrderViewModel.SingleInstance.BarcodeCount = "0";
         }
 
         private void BtnStop_OnClick(object sender, RoutedEventArgs e)

@@ -168,20 +168,13 @@
     <Content Include="Config.LaiAn\ReasonConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Config.LaiAn\TaskTypeConfig.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Config.LaiAn\WcsMenuConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\EQ2008_Dll.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\Image\LoginImage.jpg" />
     <Resource Include="Resources\Image\LoginImage02.jpg" />
-    <Resource Include="Resources\Image\智慧工业lOGO-白色.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Resources\Image\NanWang.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

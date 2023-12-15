@@ -1,26 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <WcsMenuConfig PackIconKind="Atom" Name="主菜单" IsShowUi="true">
-  <!--<WcsMenu Id="1"  IsShowUi="true" PackIconKind="Codepen" Name="实时监控" Class="DeviceMonitoMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
-    <Config>       
-    </Config>
-  </WcsMenu>
-  <WcsMenu Id="2"  IsShowUi="true" PackIconKind="Kodi" Name="设备管理" Class="DeviceManageMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
-    <Config>
-    </Config>
-  </WcsMenu>
-  <WcsMenu Id="3"  IsShowUi="true" PackIconKind="Collection" Name="调度管理" Class="WorkerManageMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
-    <Config>
-    </Config>
-  </WcsMenu>  
-  <WcsMenu Id="5"  IsShowUi="true" PackIconKind="CloudCircle" Name="WCS服务" Class="WcsServiceManageMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
-    <Config>
-    </Config>
-  </WcsMenu>-->
   <WcsMenu Id="1"  IsShowUi="true" PackIconKind="Codepen" Name="主界面" Class="MainContentMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
-    <Config>
-    </Config>
-  </WcsMenu>
-  <WcsMenu Id="4"  IsShowUi="true" PackIconKind="CameraTimer" Name="指令管理" Class="TaskManageMenu" NameSpace="CLDC.CLWCS.Service.MenuService">
     <Config>
     </Config>
   </WcsMenu>

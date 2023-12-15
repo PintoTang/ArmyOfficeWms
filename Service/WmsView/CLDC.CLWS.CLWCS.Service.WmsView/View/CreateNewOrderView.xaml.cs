@@ -38,7 +38,8 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             InitCbArea(); InitCbReason(); InitCbShelf();
             CbReason.SelectedIndex = 0;
             DataContext = CreateOrderViewModel.SingleInstance;
-            //CreateOrderViewModel.SingleInstance.BarcodeList.Clear();
+            CreateOrderViewModel.SingleInstance.BarcodeList.Clear();
+            CreateOrderViewModel.SingleInstance.BarcodeCount = "0";
         }
 
         private void CbMaterialDesc_TextChanged(object sender, RoutedEventArgs e)
@@ -176,16 +177,22 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
 
             List<OrderDetail> detailList = new List<OrderDetail>();
             List<Inventory> inventoryList = new List<Inventory>();
-            for (int i = 0; i < BarcodeGrid.Items.Count; i++)
+            foreach (var item in BarcodeGrid.ItemsSource)
             {
+                RfidBarcode barcodeItem = item as RfidBarcode;
+                Inventory invExist = _wmsDataService.GetInventory(barcodeItem.Barcode);
+                if (invExist != null && invExist.Status == InvStatusEnum.在库)
+                {
+                    MessageBoxEx.Show("装备标签：" + invExist.Barcode + "是在库的状态，请检查!", "错误", MessageBoxButton.OK);
+                    return;
+                }
+
                 OrderDetail orderDetail = new OrderDetail();
                 orderDetail.OrderSN = orderSN;
-                DataGridTextColumn barColumn = this.BarcodeGrid.Columns[1] as DataGridTextColumn;
-                FrameworkElement cellData = barColumn.GetCellContent(this.BarcodeGrid.Items[i]);
-                if (cellData != null)
-                {
-                    orderDetail.Barcode = (cellData as TextBlock).Text;
-                }
+                //DataGridTextColumn barColumn = this.BarcodeGrid.Columns[1] as DataGridTextColumn;
+                //FrameworkElement cellData = barColumn.GetCellContent(this.BarcodeGrid.Items[i]);
+                //if (cellData != null)
+                orderDetail.Barcode = barcodeItem.Barcode;
                 orderDetail.Remark = string.Empty;
                 orderDetail.IsDeleted = false;
                 orderDetail.UnitName = tbUnitName.Text;
@@ -211,10 +218,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 inventory.Qty = 1;
                 inventory.Status = InvStatusEnum.在库;
                 inventory.UnitName = tbUnitName.Text;
-                if (cellData != null)//构件类型
-                {
-                    inventory.Barcode = (cellData as TextBlock).Text;
-                }
+                inventory.Barcode = barcodeItem.Barcode;
                 inventoryList.Add(inventory);
             }
             OperateResult createDetailResult = _wmsDataService.CreateNewOrderDetail(detailList);

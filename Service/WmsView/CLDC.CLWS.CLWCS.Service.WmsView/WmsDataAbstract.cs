@@ -85,6 +85,8 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
         /// <returns></returns>
         public abstract List<Shelf> GetShelfList(string area);
 
+        public abstract Shelf GetShelf(string barcode);
+
         /// <summary>
         /// 删除入库单
         /// </summary>

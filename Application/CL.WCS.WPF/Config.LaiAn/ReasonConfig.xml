@@ -1,11 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ReasonConfig Name="出入库事由配置">
-  <Reason Id="1" Type="入库" Name="新购物资入库">
+  <Reason Id="1" Type="入库" Name="首次入库">
   </Reason>
-  <Reason Id="2" Type="入库" Name="演练后归还入库">
+  <Reason Id="2" Type="入库" Name="归还入库">
   </Reason>
-  <Reason Id="3" Type="出库" Name="演练前物资出库">
+  <Reason Id="3" Type="入库" Name="调拨入库">
   </Reason>
-  <Reason Id="4" Type="出库" Name="执行任务前出库">
+  <Reason Id="4" Type="出库" Name="演练出库">
+  </Reason>
+  <Reason Id="5" Type="出库" Name="任务出库">
+  </Reason>
+  <Reason Id="6" Type="出库" Name="报废出库">
   </Reason>
 </ReasonConfig>

@@ -110,9 +110,11 @@
                     <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LableStyle}">出入事由：</Label>
                     <ComboBox x:Name="CbReason" Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" />
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LableStyle}">任务分类：</Label>
-                    <ComboBox x:Name="CbArea" Grid.Row="1" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" SelectionChanged="CbArea_SelectionChanged"/>
+                    <Label x:Name="lbArea" Content="{Binding CurAreaName}" Grid.Row="1" Grid.Column="1" Style="{StaticResource LableStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38"></Label>
+                    <Label x:Name="lbAreaCode" Content="{Binding CurAreaCode}" Grid.Row="1" Grid.Column="1" Style="{StaticResource LableStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" Visibility="Hidden"></Label>
                     <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource LableStyle}">货架：</Label>
-                    <ComboBox x:Name="CbShelf" Grid.Row="2" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" />
+                    <Label x:Name="lbShelf" Content="{Binding CurShelfName}" Grid.Row="2" Grid.Column="1" Style="{StaticResource LableStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38"></Label>
+                    <Label x:Name="lbShelfCode" Content="{Binding CurShelfCode}" Grid.Row="2" Grid.Column="1" Style="{StaticResource LableStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" Visibility="Hidden"></Label>
                     <Label Grid.Row="3" Grid.Column="0" VerticalAlignment="Top" Style="{StaticResource LableStyle}" Margin="0,5,0,0">装备标签：</Label>
                     <Grid Grid.Row="3" Grid.Column="1"  Width="400" Height="480" VerticalAlignment="Center" HorizontalAlignment="Left">
                         <Grid.RowDefinitions>
