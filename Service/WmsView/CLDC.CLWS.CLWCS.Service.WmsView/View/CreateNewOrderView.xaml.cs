@@ -34,11 +34,11 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            InitCbMaterialDesc();
+            InitCbMaterialDesc(); InitCbTeam();
             InitCbArea(); InitCbReason(); InitCbShelf();
             CbReason.SelectedIndex = 0;
             DataContext = CreateOrderViewModel.SingleInstance;
-            CreateOrderViewModel.SingleInstance.BarcodeList.Clear();
+            //CreateOrderViewModel.SingleInstance.BarcodeList.Clear();
             CreateOrderViewModel.SingleInstance.BarcodeCount = "0";
         }
 
@@ -86,6 +86,20 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             CbArea.ItemsSource = _wmsDataService.GetAreaList(string.Empty);
         }
 
+        private void InitCbTeam()
+        {
+            List<AreaTeam> list = new List<AreaTeam>();
+            CbTeam.SelectedValuePath = "Name";
+            CbTeam.DisplayMemberPath = "Name";
+            for (int i = 1; i < 4; i++)
+            {
+                AreaTeam team = new AreaTeam();
+                team.Id = i; team.Name = i + "排"; team.Remark = string.Empty;
+                list.Add(team);
+            }
+            CbTeam.ItemsSource = list;
+        }
+
         private void InitCbShelf()
         {
             CbShelf.SelectedValuePath = "Code";
@@ -119,6 +133,11 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 MessageBoxEx.Show("请选择任务分类", "提示", MessageBoxButton.OK);
                 return;
             }
+            if (CbTeam.SelectedIndex == -1)
+            {
+                MessageBoxEx.Show("请选择任务分队", "提示", MessageBoxButton.OK);
+                return;
+            }
             if (CbReason.SelectedIndex == -1 && string.IsNullOrEmpty(CbReason.Text))
             {
                 MessageBoxEx.Show("请选择事由", "提示", MessageBoxButton.OK);
@@ -144,6 +163,11 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             if (CbArea.SelectedIndex == -1)
             {
                 MessageBoxEx.Show("请选择任务分类", "提示", MessageBoxButton.OK);
+                return;
+            }
+            if (CbTeam.SelectedIndex == -1)
+            {
+                MessageBoxEx.Show("请选择任务分队", "提示", MessageBoxButton.OK);
                 return;
             }
             if (CbReason.SelectedIndex == -1 && string.IsNullOrEmpty(CbReason.Text))
@@ -219,6 +243,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 inventory.Status = InvStatusEnum.在库;
                 inventory.UnitName = tbUnitName.Text;
                 inventory.Barcode = barcodeItem.Barcode;
+                inventory.AreaTeam = (string)CbTeam.SelectedValue;
                 inventoryList.Add(inventory);
             }
             OperateResult createDetailResult = _wmsDataService.CreateNewOrderDetail(detailList);
@@ -247,6 +272,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             newOrder.OrderSN = orderSN;
             newOrder.Qty = int.Parse(TbQty.Text);
             newOrder.Status = InvStatusEnum.在库;
+            newOrder.AreaTeam = (string)CbTeam.SelectedValue;
 
             OperateResult createResult = _wmsDataService.CreateNewInOrder(newOrder);
             if (!createResult.IsSuccess)

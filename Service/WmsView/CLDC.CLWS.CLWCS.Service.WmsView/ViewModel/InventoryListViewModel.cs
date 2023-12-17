@@ -3,6 +3,7 @@ using CLDC.CLWS.CLWCS.Framework;
 using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
 using CLDC.CLWS.CLWCS.Infrastructrue.Sockets;
 using CLDC.CLWS.CLWCS.Service.Authorize;
+using CLDC.CLWS.CLWCS.Service.WmsView.DataModel;
 using CLDC.CLWS.CLWCS.Service.WmsView.Model;
 using CLDC.CLWS.CLWCS.Service.WmsView.View;
 using CLDC.Infrastructrue.UserCtrl;
@@ -33,11 +34,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
     {
         private string _curMaterial = string.Empty;
         private string _curArea;
+        private string _curTeam;
         private InvStatusEnum? _curInvStatus;
         private string _curTaskType;
         private WmsDataService _wmsDataService;
         public ObservableCollection<Inventory> InventoryList { get; set; }
         public ObservableCollection<Area> AreaList { get; set; }
+        public ObservableCollection<AreaTeam> TeamList { get; set; }
 
         /// <summary>
         /// 当前搜索的装备
@@ -60,6 +63,18 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             set
             {
                 _curArea = value;
+                RaisePropertyChanged();
+            }
+        }
+        /// <summary>
+        /// 当前搜索的分队
+        /// </summary>
+        public string CurTeam
+        {
+            get { return _curTeam; }
+            set
+            {
+                _curTeam = value;
                 RaisePropertyChanged();
             }
         }
@@ -109,8 +124,9 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         {
             InventoryList = new ObservableCollection<Inventory>();
             AreaList = new ObservableCollection<Area>();
+            TeamList = new ObservableCollection<AreaTeam>();
             _wmsDataService = DependencyHelper.GetService<WmsDataService>();
-            InitCbArea(); 
+            InitCbArea(); InitTeam();
         }
 
         private void InitCbArea()
@@ -127,6 +143,19 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             catch (Exception ex)
             {
                 SnackbarQueue.MessageQueue.Enqueue("查询异常：" + ex.Message);
+            }
+        }
+
+        private void InitTeam()
+        {
+            TeamList.Clear();
+            {
+                for (int i = 1; i < 4; i++)
+                {
+                    AreaTeam team = new AreaTeam();
+                    team.Id = i; team.Name = i + "排"; team.Remark = string.Empty;
+                    TeamList.Add(team);
+                }
             }
         }
 
@@ -182,6 +211,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             if (!string.IsNullOrEmpty(CurArea))
             {
                 whereLambda = whereLambda.AndAlso(t => t.AreaCode == CurArea);
+            }
+            if (!string.IsNullOrEmpty(CurTeam))
+            {
+                whereLambda = whereLambda.AndAlso(t => t.AreaTeam == CurTeam);
             }
             if (CurInvStatus.HasValue)
             {
@@ -346,9 +379,6 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             }
             return returnBytes;
         }
-
-
-
 
     }
 }

@@ -71,16 +71,22 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
         public InvStatusEnum? Status { get; set; }
 
         /// <summary>
-        /// 存储区域编码
+        /// 任务分类编码
         /// </summary>
         [SugarColumn]
         public string AreaCode { get; set; }
 
         /// <summary>
-        /// 存储区域名称
+        /// 任务分类名称
         /// </summary>
         [SugarColumn]
         public string AreaName { get; set; }
+
+        /// <summary>
+        /// 任务所属分队
+        /// </summary>
+        [SugarColumn]
+        public string AreaTeam { get; set; }        
 
         /// <summary>
         /// 货架编号

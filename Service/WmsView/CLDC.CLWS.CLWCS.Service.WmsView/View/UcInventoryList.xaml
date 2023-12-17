@@ -75,7 +75,11 @@
                                 <TextBlock Width="24"/>
                                 <Label FontSize="18">任务分类：</Label>
                                 <ComboBox FontSize="18" Width="120" IsEditable="True" ItemsSource="{Binding AreaList}" 
-                                  DisplayMemberPath="AreaName" SelectedValuePath="AreaCode" SelectedValue="{Binding CurArea,Mode=TwoWay}">
+                                    DisplayMemberPath="AreaName" SelectedValuePath="AreaCode" SelectedValue="{Binding CurArea,Mode=TwoWay}">
+                                </ComboBox>
+                                <Label FontSize="18">任务分队：</Label>
+                                <ComboBox FontSize="18" Width="120" IsEditable="True" ItemsSource="{Binding TeamList}" 
+                                    DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding CurTeam,Mode=TwoWay}">
                                 </ComboBox>
                                 <TextBlock Width="24"/>
                                 <Label FontSize="18">装备：</Label>
@@ -129,6 +133,7 @@
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
                                     <DataGridTextColumn Header="任务分类" Width="100" Binding="{Binding AreaName}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="任务分队" Width="100" Binding="{Binding AreaTeam}" IsReadOnly="True"/>
                                     <DataGridTextColumn Header="装备" Width="*" Binding="{Binding MaterialDesc}"/>
                                     <DataGridTextColumn Header="标签" Width="270" Binding="{Binding Barcode}"/>
                                     <DataGridTextColumn Header="事由" Width="220" Binding="{Binding Reason}"/>

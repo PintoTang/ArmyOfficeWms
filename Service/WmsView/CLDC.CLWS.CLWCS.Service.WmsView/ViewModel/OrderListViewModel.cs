@@ -22,11 +22,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         private WmsDataService _wmsDataService;
         private string _curMaterial = string.Empty;
         private string _curArea;
+        private string _curTeam;
         private string _curTaskType;
         public ObservableCollection<Inventory> InventoryList { get; set; }
         public ObservableCollection<Order> OrderDetailList { get; set; }
         public ObservableCollection<Area> AreaList { get; set; }
         public ObservableCollection<Reason> ReasonList { get; set; }
+        public ObservableCollection<AreaTeam> TeamList { get; set; }
         /// <summary>
         /// 当前搜索的装备
         /// </summary>
@@ -52,6 +54,18 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             }
         }
         /// <summary>
+        /// 当前搜索的分队
+        /// </summary>
+        public string CurTeam
+        {
+            get { return _curTeam; }
+            set
+            {
+                _curTeam = value;
+                RaisePropertyChanged();
+            }
+        }
+        /// <summary>
         /// 当前搜索的任务分类
         /// </summary>
         public string CurTaskType
@@ -65,17 +79,17 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         }
         public ObservableCollection<Order> OrderList { get; set; }
 
-
         public OrderListViewModel()
         {
             OrderDetailList = new ObservableCollection<Order>();
             OrderList = new ObservableCollection<Order>();
             ReasonList = new ObservableCollection<Reason>();
             AreaList = new ObservableCollection<Area>();
+            TeamList = new ObservableCollection<AreaTeam>();
             _wmsDataService = DependencyHelper.GetService<WmsDataService>();
             InitReasonList();
             InitCbArea();
-
+            InitTeam();
             Task.Factory.StartNew(() =>
             {
                 while (true)
@@ -100,6 +114,19 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             catch (Exception ex)
             {
                 SnackbarQueue.MessageQueue.Enqueue("查询异常：" + ex.Message);
+            }
+        }
+
+        private void InitTeam()
+        {
+            TeamList.Clear();
+            {
+                for (int i = 1; i < 4; i++)
+                {
+                    AreaTeam team = new AreaTeam();
+                    team.Id = i; team.Name = i + "排"; team.Remark = string.Empty;
+                    TeamList.Add(team);
+                }
             }
         }
 
@@ -175,6 +202,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             if (!string.IsNullOrEmpty(CurArea))
             {
                 whereLambda = whereLambda.AndAlso(t => t.AreaCode == CurArea);
+            }
+            if (!string.IsNullOrEmpty(CurTeam))
+            {
+                whereLambda = whereLambda.AndAlso(t => t.AreaTeam == CurTeam);
             }
             return whereLambda;
         }

@@ -30,13 +30,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             InitializeComponent();
             _wmsDataService = DependencyHelper.GetService<WmsDataService>();
             _orderGeneraterHandler = DependencyHelper.GetService<OrderSNGenerate>();
-            CbReason.SelectedIndex = 1;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             //InitCbArea(); InitCbShelf();
             InitCbReason();
+            CbReason.SelectedIndex = 1;
             DataContext = CreateOrderViewModel.SingleInstance;
             CreateOrderViewModel.SingleInstance.BarcodeList.Clear();
             CreateOrderViewModel.SingleInstance.BarcodeCount = "0";

@@ -66,6 +66,12 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
         public string AreaName { get; set; }
 
         /// <summary>
+        /// 任务所属分队
+        /// </summary>
+        [SugarColumn]
+        public string AreaTeam { get; set; }
+
+        /// <summary>
         /// 物资单位
         /// </summary>
         [SugarColumn]

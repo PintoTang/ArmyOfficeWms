@@ -69,13 +69,19 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                         {
                             if (data.dataName.Contains("温度"))
                             {
-                                strTemperature += data.dataValue + "℃|";
+                                if (data.dataName.Contains("运行库温度"))
+                                {
+                                    strTemperature = (double.Parse(data.dataValue) + 0.05) + "℃|" + data.dataValue + "℃|";
+                                }
                                 strTemper += data.dataName.Remove(data.dataName.IndexOf("温度")) + "|";
                             }
                             else if (data.dataName.Contains("湿度"))
                             {
-                                strHumidity += data.dataValue + "%|";
-                                strHumi+= data.dataName.Remove(data.dataName.IndexOf("湿度")) + "|";
+                                if (data.dataName.Contains("运行库湿度"))
+                                {
+                                    strHumidity = (double.Parse(data.dataValue) + 0.05) + "%|" + data.dataValue + "%|";
+                                }
+                                strHumi += data.dataName.Remove(data.dataName.IndexOf("湿度")) + "|";
                             }
                             else if (data.dataName.Contains("红外"))
                             {
@@ -107,10 +113,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                     this.Dispatcher.BeginInvoke(new Action(() => tbHumi.Text = "湿度区域:" + strHumi.TrimEnd('|')));
                     this.Dispatcher.BeginInvoke(new Action(() => tbInfrared.Text = "正常:" + infraredNoAlarm + "/" + (infraredAlarm + infraredNoAlarm) + ",报警:" + infraredAlarm + "/" + (infraredAlarm + infraredNoAlarm)));
                     this.Dispatcher.BeginInvoke(new Action(() => tbSmokeDetector.Text = "正常:" + smokeNoAlarm + "/" + (smokeAlarm + smokeNoAlarm) + ",报警:" + smokeAlarm + "/" + (smokeAlarm + smokeNoAlarm)));
-                    //tbTemperature.Text += strTemperature.TrimEnd(',');
-                    //tbHumidity.Text += strHumidity.TrimEnd(',');
-                    //tbInfrared.Text = "正常:" + infraredNoAlarm + "/" + (infraredAlarm + infraredNoAlarm) + ",报警:" + infraredAlarm + "/" + (infraredAlarm + infraredNoAlarm);
-                    //tbSmokeDetector.Text = "正常:" + smokeNoAlarm + "/" + (smokeAlarm + smokeNoAlarm) + ",报警:" + smokeAlarm + "/" + (smokeAlarm + smokeNoAlarm);
+                    this.Dispatcher.BeginInvoke(new Action(() => tbEntranceGuard.Text = "正常:2/2,报警:0/2"));
                 }
                 else
                 {

@@ -122,6 +122,20 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             }
         }
 
+        private string _curAreaTeam;
+        /// <summary>
+        /// 当前选择的分队
+        /// </summary>
+        public string CurAreaTeam
+        {
+            get { return _curAreaTeam; }
+            set
+            {
+                _curAreaTeam = value;
+                RaisePropertyChanged();
+            }
+        }        
+
         private static readonly Lazy<CreateOrderViewModel> lazy = new Lazy<CreateOrderViewModel>(() => 
                                         new CreateOrderViewModel(), LazyThreadSafetyMode.PublicationOnly);
         public static CreateOrderViewModel SingleInstance
@@ -197,6 +211,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                         CurShelfName = shelf.Name;
                         CurAreaCode = shelf.AreaCode;
                         CurAreaName = shelf.AreaName;
+                        CurAreaTeam = inventory?.AreaTeam;
                     }
                     else
                     {
