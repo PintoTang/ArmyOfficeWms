@@ -143,12 +143,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             return result;
         }
 
-        public override OperateResult<List<Inventory>> GetInventoryPageList(Expression<Func<Inventory, bool>> whereLambda = null)
+        public override OperateResult<List<Inventory>> GetInventoryPageList(string where)
         {
             OperateResult<List<Inventory>> result = OperateResult.CreateFailedResult<List<Inventory>>("无数据");
             try
             {
-                List<Inventory> list = DbHelper.QueryList(whereLambda);
+                List<Inventory> list = DbHelper.QuerySqlList<Inventory>("SELECT [AreaName],[AreaTeam],[MaterialDesc],[ShelfName],SUM([Qty]) as Qty,[Status]" +
+                    " FROM [ArmyOfficeWms].[dbo].[t_Inventory] Where 1=1 " + where + " GROUP BY [AreaName],[AreaTeam],[MaterialDesc],[ShelfName],[Status] ");
                 result.IsSuccess = true;
                 result.Content = list;
             }

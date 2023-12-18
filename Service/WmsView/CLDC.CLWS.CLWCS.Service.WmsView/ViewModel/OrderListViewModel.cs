@@ -127,6 +127,8 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                     team.Id = i; team.Name = i + "排"; team.Remark = string.Empty;
                     TeamList.Add(team);
                 }
+                TeamList.Add(new AreaTeam { Id = 4, Name = "首长机关" });
+                TeamList.Add(new AreaTeam { Id = 5, Name = "民兵" });
             }
         }
 
@@ -236,62 +238,50 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         }
 
 
-        private RelayCommand _createInOrderCommand;
-        public RelayCommand CreateInOrderCommand
+        private GalaSoft.MvvmLight.Command.RelayCommand<string> _createInOrderCommand;
+        public GalaSoft.MvvmLight.Command.RelayCommand<string> CreateInOrderCommand
         {
             get
             {
                 if (_createInOrderCommand == null)
                 {
-                    _createInOrderCommand = new RelayCommand(CreateNewOrder);
+                    _createInOrderCommand = new GalaSoft.MvvmLight.Command.RelayCommand<string>(CreateInOrder);
                 }
                 return _createInOrderCommand;
             }
         }
-        private async void CreateNewOrder()
+        private async void CreateInOrder(string reason)
         {
-            CreateNewOrderView createNewOrder = new CreateNewOrderView();
-            await MaterialDesignThemes.Wpf.DialogHost.Show(createNewOrder, "DialogHostWait");
+            if (reason == "1")
+            {
+                CreateReturnOrderView createReturnOrder = new CreateReturnOrderView();
+                await MaterialDesignThemes.Wpf.DialogHost.Show(createReturnOrder, "DialogHostWait");
+            }
+            else
+            {
+                CreateNewOrderView createNewOrder = new CreateNewOrderView(reason);
+                await MaterialDesignThemes.Wpf.DialogHost.Show(createNewOrder, "DialogHostWait");
+            }
         }
 
 
-        private RelayCommand _createOutOrderCommand;
-        public RelayCommand CreateOutOrderCommand
+        private GalaSoft.MvvmLight.Command.RelayCommand<string> _createOutOrderCommand;
+        public GalaSoft.MvvmLight.Command.RelayCommand<string> CreateOutOrderCommand
         {
             get
             {
                 if (_createOutOrderCommand == null)
                 {
-                    _createOutOrderCommand = new RelayCommand(CreateOutOrder);
+                    _createOutOrderCommand = new GalaSoft.MvvmLight.Command.RelayCommand<string>(CreateOutOrder);
                 }
                 return _createOutOrderCommand;
             }
         }
-        private async void CreateOutOrder()
+        private async void CreateOutOrder(string reason)
         {
-            CreateOutOrderView createOutOrder = new CreateOutOrderView();
+            CreateOutOrderView createOutOrder = new CreateOutOrderView(reason);
             await MaterialDesignThemes.Wpf.DialogHost.Show(createOutOrder, "DialogHostWait");
         }
-
-
-        private RelayCommand _createReturnOrderCommand;
-        public RelayCommand CreateReturnOrderCommand
-        {
-            get
-            {
-                if (_createReturnOrderCommand == null)
-                {
-                    _createReturnOrderCommand = new RelayCommand(CreateReturnOrder);
-                }
-                return _createReturnOrderCommand;
-            }
-        }
-        private async void CreateReturnOrder()
-        {
-            CreateReturnOrderView createReturnOrder = new CreateReturnOrderView();
-            await MaterialDesignThemes.Wpf.DialogHost.Show(createReturnOrder, "DialogHostWait");
-        }
-
 
         
     }

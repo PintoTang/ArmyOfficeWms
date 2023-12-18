@@ -10,6 +10,6 @@
   </Reason>
   <Reason Id="5" Type="出库" Name="任务出库">
   </Reason>
-  <Reason Id="6" Type="出库" Name="报废出库">
+  <Reason Id="6" Type="出库" Name="报损出库">
   </Reason>
 </ReasonConfig>

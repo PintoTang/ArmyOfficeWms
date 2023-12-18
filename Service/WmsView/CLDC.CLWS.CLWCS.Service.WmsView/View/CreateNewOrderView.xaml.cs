@@ -24,19 +24,25 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
     {
         private WmsDataService _wmsDataService;
         private readonly IOrderSNGenerate _orderGeneraterHandler;
+        private string reason = string.Empty;
 
-        public CreateNewOrderView()
+        public CreateNewOrderView(string _reason)
         {
             InitializeComponent();
             _wmsDataService = DependencyHelper.GetService<WmsDataService>();
-            _orderGeneraterHandler = DependencyHelper.GetService<OrderSNGenerate>();            
+            _orderGeneraterHandler = DependencyHelper.GetService<OrderSNGenerate>();
+            this.reason = _reason;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             InitCbMaterialDesc(); InitCbTeam();
             InitCbArea(); InitCbReason(); InitCbShelf();
-            CbReason.SelectedIndex = 0;
+            if (reason == "2")
+                lbTitle.Content = "调拨入库";
+            else
+                lbTitle.Content = "首次入库";
+            CbReason.SelectedIndex = int.Parse(reason);
             DataContext = CreateOrderViewModel.SingleInstance;
             //CreateOrderViewModel.SingleInstance.BarcodeList.Clear();
             CreateOrderViewModel.SingleInstance.BarcodeCount = "0";
@@ -97,6 +103,8 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 team.Id = i; team.Name = i + "排"; team.Remark = string.Empty;
                 list.Add(team);
             }
+            list.Add(new AreaTeam { Id = 4, Name = "首长机关" });
+            list.Add(new AreaTeam { Id = 5, Name = "民兵" });
             CbTeam.ItemsSource = list;
         }
 

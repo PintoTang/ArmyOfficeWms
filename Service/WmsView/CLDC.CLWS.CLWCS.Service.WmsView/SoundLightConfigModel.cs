@@ -24,6 +24,8 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
     {
         [XmlAttribute("Area")]
         public string Area { get; set; }
+        [XmlAttribute("Team")]
+        public string Team { get; set; }
 
         [XmlAttribute("Light")]
         public int Light { get; set; }

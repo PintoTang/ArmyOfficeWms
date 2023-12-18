@@ -35,6 +35,7 @@
                     <x:Type Type="local:InvStatusEnum"/>
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
+            <localView:MultiParamterConverter x:Key="MultiConverter"></localView:MultiParamterConverter>
         </ResourceDictionary>
     </UserControl.Resources>
     <Border Background="#245D55" CornerRadius="2">
@@ -74,11 +75,11 @@
                                 </ComboBox>
                                 <TextBlock Width="24"/>
                                 <Label FontSize="18">任务分类：</Label>
-                                <ComboBox FontSize="18" Width="120" IsEditable="True" ItemsSource="{Binding AreaList}" 
+                                <ComboBox x:Name="cbArea" FontSize="18" Width="120" IsEditable="True" ItemsSource="{Binding AreaList}" 
                                     DisplayMemberPath="AreaName" SelectedValuePath="AreaCode" SelectedValue="{Binding CurArea,Mode=TwoWay}">
                                 </ComboBox>
                                 <Label FontSize="18">任务分队：</Label>
-                                <ComboBox FontSize="18" Width="120" IsEditable="True" ItemsSource="{Binding TeamList}" 
+                                <ComboBox x:Name="cbTeam" FontSize="18" Width="120" IsEditable="True" ItemsSource="{Binding TeamList}" 
                                     DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding CurTeam,Mode=TwoWay}">
                                 </ComboBox>
                                 <TextBlock Width="24"/>
@@ -100,9 +101,9 @@
                                 <TextBlock Width="20"/>
                                 <Button x:Name="btnExport" Width="100" Height="40" FontSize="18" Padding="0" Command="{Binding ExportCommand}">导出数据</Button>
                                 <TextBlock Width="20"/>
-                                <Button Width="100" Height="40" FontSize="18" Padding="0" Command="{Binding SoundLightCommand}" CommandParameter="{Binding CurArea}" >声光定位</Button>
+                                <Button x:Name="btnSound" Click="btnSound_Click" Width="100" Height="40" FontSize="18" Padding="0" Content="声光定位"></Button>
                                 <TextBlock Width="20"/>
-                                <Button Width="100" Height="40" FontSize="18" Padding="0" >快速出动</Button>
+                                <Button x:Name="btnQuickTask" Click="btnQuickTask_Click" Width="100" Height="40" FontSize="18" Padding="0" >快速出动</Button>
                             </WrapPanel>
                         </Grid>
                         <Grid Grid.Row="2" Margin="5">
@@ -134,13 +135,18 @@
                                     </DataGridTemplateColumn>
                                     <DataGridTextColumn Header="任务分类" Width="100" Binding="{Binding AreaName}" IsReadOnly="True"/>
                                     <DataGridTextColumn Header="任务分队" Width="100" Binding="{Binding AreaTeam}" IsReadOnly="True"/>
-                                    <DataGridTextColumn Header="装备" Width="*" Binding="{Binding MaterialDesc}"/>
-                                    <DataGridTextColumn Header="标签" Width="270" Binding="{Binding Barcode}"/>
-                                    <DataGridTextColumn Header="事由" Width="220" Binding="{Binding Reason}"/>
-                                    <DataGridComboBoxColumn Header="状态" Width="50" SelectedItemBinding="{Binding Status}" ItemsSource="{Binding Source={StaticResource InvStatusEnum}}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="装备名称" Width="*" Binding="{Binding MaterialDesc}"/>
+                                    <DataGridTextColumn Header="所在位置" Width="270" Binding="{Binding ShelfName}"/>
+                                    <DataGridTextColumn Header="数量" Width="60" Binding="{Binding Qty}"/>
+                                    <DataGridComboBoxColumn Header="状态" Width="60" SelectedItemBinding="{Binding Status}" ItemsSource="{Binding Source={StaticResource InvStatusEnum}}" IsReadOnly="True"/>
                                     </DataGrid.Columns>
                             </DataGrid>
-                            <page:UCSplitPager Grid.Row="1"></page:UCSplitPager>
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock FontSize="20" Text="数量合计：" Margin="10,0,0,0"></TextBlock>
+                                <TextBlock FontSize="20" Foreground="White" x:Name="tbTotalQty" Text="{Binding TotalQty}"></TextBlock>
+                                <!--<TextBlock Text="总金额：" Margin="10,0,0,0"></TextBlock>
+                                <TextBlock Text="" Foreground="Red" x:Name="txt_HejiJinge"></TextBlock>-->
+                            </StackPanel>
                         </Grid>
                     </Grid>
                 </Grid>

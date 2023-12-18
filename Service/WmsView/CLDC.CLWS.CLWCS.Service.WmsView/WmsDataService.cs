@@ -73,9 +73,9 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
             return _wmsDataAccess.GetOrderAndMaterList(whereLambda);
         }
 
-        public OperateResult<List<Inventory>> GetInventoryPageList(Expression<Func<Inventory, bool>> whereLambda = null)
+        public OperateResult<List<Inventory>> GetInventoryPageList(string where)
         {
-            return _wmsDataAccess.GetInventoryPageList(whereLambda);
+            return _wmsDataAccess.GetInventoryPageList(where);
         }
 
         public double GetInvQtyByStatus(InvStatusEnum status)

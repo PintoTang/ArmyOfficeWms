@@ -72,6 +72,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -105,6 +106,7 @@
     <Compile Include="SoundLightConfig.cs" />
     <Compile Include="ReasonConfigModel.cs" />
     <Compile Include="SoundLightConfigModel.cs" />
+    <Compile Include="Tools\SpeakHelper.cs" />
     <Compile Include="ViewModel\CreateOrderViewModel.cs" />
     <Compile Include="ViewModel\InventoryListViewModel.cs" />
     <Compile Include="ViewModel\OrderListViewModel.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="View\CreateReturnOrderView.xaml.cs">
       <DependentUpon>CreateReturnOrderView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tools\MultiParamterConverter.cs" />
     <Compile Include="View\UcDefaultView.xaml.cs">
       <DependentUpon>UcDefaultView.xaml</DependentUpon>
     </Compile>

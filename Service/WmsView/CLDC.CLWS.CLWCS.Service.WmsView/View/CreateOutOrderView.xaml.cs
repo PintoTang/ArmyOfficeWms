@@ -24,19 +24,27 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
     {
         private WmsDataService _wmsDataService;
         private readonly IOrderSNGenerate _orderGeneraterHandler;
+        private string reason=string.Empty;
 
-        public CreateOutOrderView()
+        public CreateOutOrderView(string _reason)
         {
             InitializeComponent();
             _wmsDataService = DependencyHelper.GetService<WmsDataService>();
             _orderGeneraterHandler = DependencyHelper.GetService<OrderSNGenerate>();
+            this.reason = _reason;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //InitCbArea(); InitCbShelf();
-            InitCbReason();
-            CbReason.SelectedIndex = 0;
+            //InitCbArea();
+            InitCbShelf();InitCbReason(); InitCbTeam();
+            if (reason == "1")
+                lbTitle.Content = "任务出库";
+            else if (reason == "2")
+                lbTitle.Content = "报损出库";
+            else
+                lbTitle.Content = "演练出库";
+            CbReason.SelectedIndex = int.Parse(reason);
             DataContext = CreateOrderViewModel.SingleInstance;
             CreateOrderViewModel.SingleInstance.BarcodeList.Clear();
             CreateOrderViewModel.SingleInstance.BarcodeCount = "0";
@@ -81,11 +89,15 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 orderDetail.UnitName = inventory.UnitName;
                 orderDetail.MaterialCode = inventory.MaterialCode;
                 orderDetail.MaterialDesc = inventory.MaterialDesc;
-                orderDetail.ShelfCode = lbShelfCode.Content.ToString();
-                orderDetail.ShelfName = lbShelf.Content.ToString();
-                detailList.Add(orderDetail);                             
+                orderDetail.ShelfCode = CbShelf.SelectedValue.ToString();
+                orderDetail.ShelfName = CbShelf.Text.ToString();
+                detailList.Add(orderDetail);
             }
-            OperateResult updateInvResult = _wmsDataService.UpdateInventory((int)InvStatusEnum.出库, barcodes);
+            OperateResult updateInvResult = new OperateResult();
+            if (reason == "2")
+                updateInvResult = _wmsDataService.UpdateInventory((int)InvStatusEnum.报损, barcodes);
+            else
+                updateInvResult = _wmsDataService.UpdateInventory((int)InvStatusEnum.出库, barcodes);
             if (!updateInvResult.IsSuccess)
             {
                 MessageBoxEx.Show("更新库存状态失败，原因：" + updateInvResult.Message, "错误", MessageBoxButton.OK);
@@ -101,8 +113,8 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             Order newOrder = new Order();
             newOrder.Id = orderId;
             newOrder.InOutType = InOrOutEnum.出库;
-            newOrder.AreaCode = lbAreaCode.Content.ToString();
-            newOrder.AreaName = lbArea.Content.ToString();
+            newOrder.AreaCode = cbArea.SelectedValue.ToString();
+            newOrder.AreaName = cbArea.Text;
             newOrder.CreatedTime = DateTime.Now;
             newOrder.CreatedUserName = CookieService.CurSession.UserInfo.Account.AccCode;
             newOrder.IsDeleted = false;
@@ -110,6 +122,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             newOrder.OrderSN = orderSN;
             newOrder.Qty = BarcodeGrid.Items.Count;
             newOrder.Status = InvStatusEnum.在库;
+            newOrder.AreaTeam=cbTeam.SelectedValue.ToString();
 
             OperateResult createResult = _wmsDataService.CreateNewInOrder(newOrder);
             if (!createResult.IsSuccess)
@@ -163,17 +176,33 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
         //    CbArea.ItemsSource = _wmsDataService.GetAreaList(string.Empty);
         //}
 
-        //private void InitCbShelf()
-        //{
-        //    CbShelf.SelectedValuePath = "Code";
-        //    CbShelf.DisplayMemberPath = "Name";
-        //    CbShelf.ItemsSource = _wmsDataService.GetShelfList((string)CbArea.SelectedValue);
-        //}
+        private void InitCbShelf()
+        {
+            CbShelf.SelectedValuePath = "Code";
+            CbShelf.DisplayMemberPath = "Name";
+            //CbShelf.ItemsSource = _wmsDataService.GetShelfList(CbArea.SelectedValue == null ? string.Empty : CbArea.SelectedValue.ToString());
+        }
 
-        //private void CbArea_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    InitCbShelf();
-        //}
+        private void InitCbTeam()
+        {
+            //List<AreaTeam> list = new List<AreaTeam>();
+            //CbTeam.SelectedValuePath = "Name";
+            //CbTeam.DisplayMemberPath = "Name";
+            //for (int i = 1; i < 4; i++)
+            //{
+            //    AreaTeam team = new AreaTeam();
+            //    team.Id = i; team.Name = i + "排"; team.Remark = string.Empty;
+            //    list.Add(team);
+            //}
+            //list.Add(new AreaTeam { Id = 4, Name = "首长机关" });
+            //list.Add(new AreaTeam { Id = 5, Name = "民兵" });
+            //CbTeam.ItemsSource = list;
+        }
+
+        private void CbArea_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            InitCbShelf();
+        }
 
     }
 }

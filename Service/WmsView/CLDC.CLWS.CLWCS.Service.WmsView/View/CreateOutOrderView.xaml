@@ -90,7 +90,7 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition Width="35"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" FontSize="20" FontWeight="Black" Foreground="#12FFD5" VerticalAlignment="Center">装备出库</Label>
+                <Label x:Name="lbTitle" Grid.Column="0" FontSize="20" FontWeight="Black" Foreground="#12FFD5" VerticalAlignment="Center">演练出库</Label>
                 <Button Grid.Column="1" Width="30" Style="{StaticResource ButtonStyleClose}" Name="btnClose"
                         Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3"/>
             </Grid>
@@ -111,13 +111,22 @@
                     <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LableStyle}">出入事由：</Label>
                     <ComboBox x:Name="CbReason" Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" />
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LableStyle}">任务分类：</Label>
-                    <Label x:Name="lbArea" Content="{Binding CurAreaName}" Grid.Row="1" Grid.Column="1" Style="{StaticResource LableStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38"></Label>
-                    <Label x:Name="lbAreaCode" Content="{Binding CurAreaCode}" Grid.Row="1" Grid.Column="1" Style="{StaticResource LableStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" Visibility="Hidden"></Label>
+                    <!--<Label x:Name="lbArea" Content="{Binding CurAreaName}" Grid.Row="1" Grid.Column="1" Style="{StaticResource LableStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38"></Label>
+                    <Label x:Name="lbAreaCode" Content="{Binding CurAreaCode}" Grid.Row="1" Grid.Column="1" Style="{StaticResource LableStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" Visibility="Hidden"></Label>-->
+                    <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" x:Name="cbArea" Width="350" Height="38" ItemsSource="{Binding AreaList}"
+                            DisplayMemberPath="AreaName" SelectedValuePath="AreaCode" SelectedValue="{Binding CurArea,Mode=TwoWay}"  VerticalAlignment="Center" HorizontalAlignment="Left" >
+                    </ComboBox>
                     <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource LableStyle}">任务分队：</Label>
-                    <Label x:Name="lbTeam" Content="{Binding CurAreaTeam}" Grid.Row="2" Grid.Column="1" Style="{StaticResource LableStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38"></Label>
+                    <!--<Label x:Name="lbTeam" Content="{Binding CurAreaTeam}" Grid.Row="2" Grid.Column="1" Style="{StaticResource LableStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38"></Label>-->
+                    <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" FontSize="18" x:Name="cbTeam" Width="350" Height="38" ItemsSource="{Binding TeamList}"
+                            DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding CurTeam,Mode=TwoWay}">
+                    </ComboBox>
                     <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource LableStyle}">货架：</Label>
-                    <Label x:Name="lbShelf" Content="{Binding CurShelfName}" Grid.Row="3" Grid.Column="1" Style="{StaticResource LableStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38"></Label>
-                    <Label x:Name="lbShelfCode" Content="{Binding CurShelfCode}" Grid.Row="3" Grid.Column="1" Style="{StaticResource LableStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" Visibility="Hidden"></Label>
+                    <!--<Label x:Name="lbShelf" Content="{Binding CurShelfName}" Grid.Row="3" Grid.Column="1" Style="{StaticResource LableStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38"></Label>
+                    <Label x:Name="lbShelfCode" Content="{Binding CurShelfCode}" Grid.Row="3" Grid.Column="1" Style="{StaticResource LableStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350" Height="38" Visibility="Hidden"></Label>-->
+                    <ComboBox Grid.Row="3" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" FontSize="18" x:Name="CbShelf" Width="350" Height="38" ItemsSource="{Binding ShelfList}"
+                             DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding CurShelf,Mode=TwoWay}">
+                    </ComboBox>
                     <Label Grid.Row="4" Grid.Column="0" VerticalAlignment="Top" Style="{StaticResource LableStyle}" Margin="0,5,0,0">装备标签：</Label>
                     <Grid Grid.Row="4" Grid.Column="1"  Width="400" Height="480" VerticalAlignment="Center" HorizontalAlignment="Left">
                         <Grid.RowDefinitions>

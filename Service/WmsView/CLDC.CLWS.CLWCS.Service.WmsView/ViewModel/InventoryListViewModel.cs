@@ -14,8 +14,10 @@ using Microsoft.Win32;
 using NPOI.SS.UserModel;
 using NPOI.SS.Util;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -37,6 +39,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         private string _curTeam;
         private InvStatusEnum? _curInvStatus;
         private string _curTaskType;
+        private int? _totalQty = 0;
         private WmsDataService _wmsDataService;
         public ObservableCollection<Inventory> InventoryList { get; set; }
         public ObservableCollection<Area> AreaList { get; set; }
@@ -102,6 +105,16 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                 RaisePropertyChanged();
             }
         }
+        public int? TotalQty
+        {
+            get { return _totalQty; }
+            set
+            {
+                _totalQty = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private readonly Dictionary<InvStatusEnum, string> _invStatusDict = new Dictionary<InvStatusEnum, string>();
         public Dictionary<InvStatusEnum, string> InvStatusDict
         {
@@ -156,6 +169,8 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                     team.Id = i; team.Name = i + "排"; team.Remark = string.Empty;
                     TeamList.Add(team);
                 }
+                TeamList.Add(new AreaTeam { Id = 4, Name = "首长机关" });
+                TeamList.Add(new AreaTeam { Id = 5, Name = "民兵" });
             }
         }
 
@@ -180,10 +195,11 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                 return;
             }
             InventoryList.Clear();
+            TotalQty = 0;
             try
             {
                 var where = CombineSearchSql();
-                OperateResult<List<Inventory>> accountListResult = _wmsDataService.GetInventoryPageList(where);
+                OperateResult<List<Inventory>> accountListResult = _wmsDataService.GetInventoryPageList(sqlWhere);
                 if (!accountListResult.IsSuccess)
                 {
                     SnackbarQueue.MessageQueue.Enqueue("查询出错：" + accountListResult.Message);
@@ -191,8 +207,16 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                 }
                 if (accountListResult.Content != null && accountListResult.Content.Count > 0)
                 {
-                    accountListResult.Content.ForEach(ite => InventoryList.Add(ite));
+                    accountListResult.Content.ForEach(ite =>
+                    {
+                        InventoryList.Add(ite);
+                        TotalQty += ite.Qty;
+                    });
                 }
+
+
+
+
             }
             catch (Exception ex)
             {
@@ -200,9 +224,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             }
         }
 
+        private string sqlWhere;
         private Expression<Func<Inventory, bool>> CombineSearchSql()
         {
-            int curRoleLevel = (int)CookieService.CurSession.RoleLevel;
+            sqlWhere = string.Empty;
             Expression<Func<Inventory, bool>> whereLambda = t => t.IsDeleted == false;
             if (!string.IsNullOrEmpty(CurMaterial))
             {
@@ -211,14 +236,17 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             if (!string.IsNullOrEmpty(CurArea))
             {
                 whereLambda = whereLambda.AndAlso(t => t.AreaCode == CurArea);
+                sqlWhere += " And AreaCode='" + CurArea+"'";
             }
             if (!string.IsNullOrEmpty(CurTeam))
             {
                 whereLambda = whereLambda.AndAlso(t => t.AreaTeam == CurTeam);
+                sqlWhere += " And AreaTeam='" + CurTeam+"'";
             }
             if (CurInvStatus.HasValue)
             {
                 whereLambda = whereLambda.AndAlso(t => t.Status == CurInvStatus.Value);
+                sqlWhere += " And Status='" + CurInvStatus.Value+"'";
             }
             return whereLambda;
         }
@@ -238,7 +266,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         public void ExportToExcel()
         {
             var where = CombineSearchSql();
-            OperateResult<List<Inventory>> accountListResult = _wmsDataService.GetInventoryPageList(where);
+            OperateResult<List<Inventory>> accountListResult = _wmsDataService.GetInventoryPageList(sqlWhere);
             if (!accountListResult.IsSuccess)
             {
                 SnackbarQueue.MessageQueue.Enqueue("导出异常：" + accountListResult.Message);

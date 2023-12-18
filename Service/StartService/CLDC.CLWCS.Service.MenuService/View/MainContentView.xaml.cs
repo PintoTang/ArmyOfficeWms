@@ -42,6 +42,7 @@ namespace CLDC.CLWCS.Service.MenuService.View
             DataContext = this;
             CreateTaskTypeButtons();
             GetPieSeriesData();
+            InitAdmin();
         }
 
         /// <summary>
@@ -76,6 +77,22 @@ namespace CLDC.CLWCS.Service.MenuService.View
             {
                 SnackbarQueue.MessageQueue.Enqueue("配置异常：" + ex.Message);
             }
+        }
+
+        private void InitAdmin()
+        {
+            imgAdmin1.Source = CreateBitmapImage("/Images/高传德.jpg");// new BitmapImage(new Uri("Images/高传德.jpg", UriKind.Relative));
+            imgAdmin2.Source = CreateBitmapImage("/Images/夏凌宇.jpg");// new BitmapImage(new Uri("Images/夏凌宇.jpg", UriKind.Relative));
+        }
+
+        private BitmapImage CreateBitmapImage(string imgUrl)
+        {
+            var CurPath = System.IO.Directory.GetCurrentDirectory();
+            BitmapImage bmp = new BitmapImage();
+            bmp.BeginInit();
+            bmp.UriSource = new Uri(CurPath+imgUrl);
+            bmp.EndInit();
+            return bmp;
         }
 
         SeriesCollection pieSeriesCollection = new SeriesCollection();

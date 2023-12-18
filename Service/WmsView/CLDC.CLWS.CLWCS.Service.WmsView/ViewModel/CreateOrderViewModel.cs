@@ -25,6 +25,9 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         public event BarcodeEventHandler BarcodeChangedEvent;
         private ObservableCollection<RfidBarcode> _barcodeList { get; set; }
         public ObservableCollection<Reason> ReasonList { get; set; }
+        public ObservableCollection<Area> AreaList { get; set; }
+        public ObservableCollection<AreaTeam> TeamList { get; set; }
+        public ObservableCollection<Shelf> ShelfList { get; set; }
 
         private WmsDataService _wmsDataService;
         public ObservableCollection<RfidBarcode> BarcodeList 
@@ -80,30 +83,30 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             }
         }
 
-        private string _curShelfCode;
+        private string _curShelf;
         /// <summary>
         /// 当前选择的事由
         /// </summary>
-        public string CurShelfCode
+        public string CurShelf
         {
-            get { return _curShelfCode; }
+            get { return _curShelf; }
             set
             {
-                _curShelfCode = value;
+                _curShelf = value;
                 RaisePropertyChanged();
             }
         }
 
-        private string _curAreaCode;
+        private string _curArea;
         /// <summary>
         /// 当前选择的事由
         /// </summary>
-        public string CurAreaCode
+        public string CurArea
         {
-            get { return _curAreaCode; }
+            get { return _curArea; }
             set
             {
-                _curAreaCode = value;
+                _curArea = value;
                 RaisePropertyChanged();
             }
         }
@@ -122,16 +125,16 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             }
         }
 
-        private string _curAreaTeam;
+        private string _curTeam;
         /// <summary>
         /// 当前选择的分队
         /// </summary>
-        public string CurAreaTeam
+        public string CurTeam
         {
-            get { return _curAreaTeam; }
+            get { return _curTeam; }
             set
             {
-                _curAreaTeam = value;
+                _curTeam = value;
                 RaisePropertyChanged();
             }
         }        
@@ -151,14 +154,18 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             _wmsDataService = DependencyHelper.GetService<WmsDataService>();
             this.BarcodeList = new ObservableCollection<RfidBarcode>();
             this.ReasonList = new ObservableCollection<Reason>();
+            this.AreaList = new ObservableCollection<Area>();
+            this.TeamList = new ObservableCollection<AreaTeam>();
+            this.ShelfList =new ObservableCollection<Shelf>();
             this.DeviceName = new DeviceName("电子标签识别", 1);
             this.DeviceId = 102401;
             HopelandRfid = new IdentifyDeviceCommForClouRfid();
             HopelandRfid.BarcodeChangedEvent += HopelandRfid_BarcodeChangedEvent;
             HopelandRfid.Initialize(DeviceId, DeviceName);
 
-            InitCbReason();
-            ///////测试数据///////
+            InitCbReason(); InitCbArea(); InitTeam(); InitShelf();
+
+            #region  测试数据
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E282780220000000001E3D28", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E282780220000000001E3B4D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E282780200000000001E3C3D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
@@ -169,15 +176,12 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780220000000001E3B4D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780200000000001E3C3D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780200000000001E34E3", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780200000000001E3330", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3C3B", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3D28", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3B4D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780200000000001E3C3D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780200000000001E34E3", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780200000000001E3330", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            //this.BarcodeList.Add(new RfidBarcode() { Barcode = "E482780220000000001E3C3B", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
             this.BarcodeCount=this.BarcodeList.Count.ToString();
+            #endregion 
+
+            //CurArea = "A3";
+            //CurShelf = "LA02";
+            //CurTeam = "3排";
         }
 
         private void InitCbReason()
@@ -197,6 +201,53 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             }
         }
 
+        private void InitCbArea()
+        {
+            AreaList.Clear();
+            try
+            {
+                List<Area> accountListResult = _wmsDataService.GetAreaList(string.Empty);
+                if (accountListResult.Count > 0)
+                {
+                    accountListResult.ForEach(ite => AreaList.Add(ite));
+                }
+            }
+            catch (Exception ex)
+            {
+                SnackbarQueue.MessageQueue.Enqueue("查询异常：" + ex.Message);
+            }
+        }
+        private void InitTeam()
+        {
+            TeamList.Clear();
+            {
+                for (int i = 1; i < 4; i++)
+                {
+                    AreaTeam team = new AreaTeam();
+                    team.Id = i; team.Name = i + "排"; team.Remark = string.Empty;
+                    TeamList.Add(team);
+                }
+                TeamList.Add(new AreaTeam { Id = 4, Name = "首长机关" });
+                TeamList.Add(new AreaTeam { Id = 5, Name = "民兵" });
+            }
+        }
+        private void InitShelf()
+        {
+            ShelfList.Clear();
+            try
+            {
+                List<Shelf> accountListResult = _wmsDataService.GetShelfList(string.Empty);
+                if (accountListResult.Count > 0)
+                {
+                    accountListResult.ForEach(ite => ShelfList.Add(ite));
+                }
+            }
+            catch (Exception ex)
+            {
+                SnackbarQueue.MessageQueue.Enqueue("查询异常：" + ex.Message);
+            }
+        }
+
         private void HopelandRfid_BarcodeChangedEvent(string barcode)
         {
             System.Windows.Application.Current.Dispatcher.Invoke((Action)(() =>
@@ -207,11 +258,11 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                     Shelf shelf = _wmsDataService.GetShelf(barcode);
                     if (shelf != null)
                     {
-                        CurShelfCode = shelf.Code;
+                        CurShelf = shelf.Code;
                         CurShelfName = shelf.Name;
-                        CurAreaCode = shelf.AreaCode;
-                        CurAreaName = shelf.AreaName;
-                        CurAreaTeam = inventory?.AreaTeam;
+                        CurArea = shelf.AreaCode;
+                        CurAreaName=shelf.AreaName;
+                        CurTeam = inventory?.AreaTeam;
                     }
                     else
                     {
