@@ -22,7 +22,7 @@ namespace CLDC.CLWS.CLWCS.Framework
             if (string.IsNullOrEmpty(userName)) return false;
             // 昵称格式：限16个字符，支持中英文、数字、减号或下划线
             //string regStr = "^[\\u4e00-\\u9fa5_a-zA-Z0-9-]{4,16}$";
-            string regStr = @"^(?![0-9]+$)(?![a-zA-Z]+$)(?!([^(0-9a-zA-Z)]|[\(\)])+$)([^(0-9a-zA-Z)]|[\(\)]|[a-zA-Z]|[0-9]){6,16}$";
+            string regStr = @"^(?![0-9]+$)(?![a-zA-Z]+$)(?!([^(0-9a-zA-Z)]|[\(\)])+$)([^(0-9a-zA-Z)]|[\(\)]|[a-zA-Z]|[0-9]){2,16}$";
             bool checkNumLenght= Regex.IsMatch(userName, regStr);
             bool checkSpChar= CheckSpecialCharacters(userName);
             return checkNumLenght && !checkSpChar;

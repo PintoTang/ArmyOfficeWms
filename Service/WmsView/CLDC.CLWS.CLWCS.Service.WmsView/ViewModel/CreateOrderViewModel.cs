@@ -166,16 +166,16 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             InitCbReason(); InitCbArea(); InitTeam(); InitShelf();
 
             #region  测试数据
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E282780220000000001E3D28", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E282780220000000001E3B4D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E282780200000000001E3C3D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E282780200000000001E34E3", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E282780200000000001E3330", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E282780220000000001E3C3B", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780220000000001E3D28", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780220000000001E3B4D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780200000000001E3C3D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
-            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E382780200000000001E34E3", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E182780220000000001E3D28", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E182780220000000001E3B4D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E182780200000000001E3C3D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E182780200000000001E34E3", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E182780200000000001E3330", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E182780220000000001E3C3B", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E182780220000000001E3D28", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E182780220000000001E3B4D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E182780200000000001E3C3D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
+            this.BarcodeList.Add(new RfidBarcode() { Barcode = "E182780200000000001E34E3", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
             this.BarcodeCount=this.BarcodeList.Count.ToString();
             #endregion 
 

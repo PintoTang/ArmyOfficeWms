@@ -106,7 +106,9 @@
     <Compile Include="SoundLightConfig.cs" />
     <Compile Include="ReasonConfigModel.cs" />
     <Compile Include="SoundLightConfigModel.cs" />
-    <Compile Include="Tools\SpeakHelper.cs" />
+    <Compile Include="Tools\ISpeech.cs" />
+    <Compile Include="Tools\SpeechBussiness.cs" />
+    <Compile Include="Tools\SpeechQueue.cs" />
     <Compile Include="ViewModel\CreateOrderViewModel.cs" />
     <Compile Include="ViewModel\InventoryListViewModel.cs" />
     <Compile Include="ViewModel\OrderListViewModel.cs" />
@@ -257,6 +259,10 @@
     <ProjectReference Include="..\..\..\Infrastructrue\Ioc\Infrastructrue.Ioc.DependencyFactory\Infrastructrue.Ioc.DependencyFactory.csproj">
       <Project>{6DE18F2E-A70B-4D32-BAAB-54FFEBE7C4EF}</Project>
       <Name>Infrastructrue.Ioc.DependencyFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructrue\Log\CLDC.Framework.Log.Helper\CLDC.Framework.Log.Helper.csproj">
+      <Project>{E8CC752C-2BB1-4426-A6A9-11292CB212B4}</Project>
+      <Name>CLDC.Framework.Log.Helper</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructrue\UserCtrl\CLDC.CLWS.CLWCS.Infrastructrue.UserCtrl\CLDC.Infrastructrue.UserCtrl.csproj">
       <Project>{aa54a556-74a1-4fcc-a13c-87bc87ae8541}</Project>

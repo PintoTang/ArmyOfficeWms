@@ -111,7 +111,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             OperateResult<List<Order>> result = OperateResult.CreateFailedResult<List<Order>>("无数据");
             try
             {
-                List<Order> list = DbHelper.QueryList(whereLambda);
+                List<Order> list = DbHelper.QueryList(whereLambda).OrderByDescending(x=>x.CreatedTime).ToList();
                 result.IsSuccess = true;
                 result.Content = list;
             }

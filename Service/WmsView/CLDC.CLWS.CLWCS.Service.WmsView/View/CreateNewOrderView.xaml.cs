@@ -44,7 +44,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 lbTitle.Content = "首次入库";
             CbReason.SelectedIndex = int.Parse(reason);
             DataContext = CreateOrderViewModel.SingleInstance;
-            //CreateOrderViewModel.SingleInstance.BarcodeList.Clear();
+            CreateOrderViewModel.SingleInstance.BarcodeList.Clear();
             CreateOrderViewModel.SingleInstance.BarcodeCount = "0";
         }
 

@@ -1,20 +1,16 @@
 ﻿using CL.WCS.SystemConfigPckg.Model;
 using CLDC.CLWS.CLWCS.Infrastructrue.Sockets;
-using CLDC.CLWS.CLWCS.Service.WmsView.Model;
+using CLDC.CLWS.CLWCS.Service.WmsView.Tools;
 using CLDC.CLWS.CLWCS.Service.WmsView.ViewModel;
-using CLDC.Infrastructrue.UserCtrl.Model;
 using CLDC.Infrastructrue.UserCtrl;
-using Microsoft.Win32;
-using System.Collections.Generic;
-using System.IO;
+using CLDC.Infrastructrue.UserCtrl.Model;
+using Org.BouncyCastle.Asn1.Ocsp;
+using System;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using NPOI.SS.Formula.PTG;
-using System;
-using System.Net;
-using CLDC.CLWS.CLWCS.Service.WmsView.Tools;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.View
 {
@@ -142,19 +138,16 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 }
                 else
                 {
-                    for (int i = 0; i < 2; i++)
-                    {
-                        SpeakHelper.SpeekContent(command.SoundContent);
-                        Thread.Sleep(2000);
-                    }
+                    ISpeech speech = new SpeechBussiness();
+                    speech.SpeakAsync(command.SoundContent + command.SoundContent);
 
 
-                    string[] strCode = command.Code.Split(' ');
-                    byte[] buffer = new byte[strCode.Length];
-                    buffer = ToBytesFromHexString(command.Code);
-                    tcp.Send(buffer);
-                    Thread.Sleep(250);
-                    tcp.Send(buffer);
+                    ////string[] strCode = command.Code.Split(' ');
+                    ////byte[] buffer = new byte[strCode.Length];
+                    ////buffer = ToBytesFromHexString(command.Code);
+                    ////tcp.Send(buffer);
+                    ////Thread.Sleep(250);
+                    ////tcp.Send(buffer);
 
 
                     CreateOutOrderView createOutOrder = new CreateOutOrderView("1");

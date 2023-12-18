@@ -148,11 +148,11 @@ namespace CLDC.CLWS.CLWCS.Service.StartService.Login
                 MessageBoxEx.Show("用户名或密码不能为空，请输入用户名或密码!","提示", MessageBoxButton.OK);
                 return;
             }
-            if (!ValidData.RexCheckUserName(username))
-            {
-                MessageBoxEx.Show("输入的用户名不合法!", "提示", MessageBoxButton.OK);
-                return;
-            }
+            //if (!ValidData.RexCheckUserName(username))
+            //{
+            //    MessageBoxEx.Show("输入的用户名不合法!", "提示", MessageBoxButton.OK);
+            //    return;
+            //}
             if (!ValidData.RexCheckPassword(userPwd))
             {
                 MessageBoxEx.Show("输入的密码不合法!", "提示", MessageBoxButton.OK);
