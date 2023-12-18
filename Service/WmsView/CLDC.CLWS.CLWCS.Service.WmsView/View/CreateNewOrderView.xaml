@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:CLDC.CLWS.CLWCS.Service.WmsView.View"
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
              mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="600"  Height="800" Width="600"
              Background="Transparent" BorderThickness="0" BorderBrush="Transparent"
              Loaded="UserControl_Loaded">
@@ -147,6 +148,46 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
+
+
+                    <Canvas x:Name="progressLoop" Grid.Row="7" Grid.Column="1" Width="100" Height="100" Visibility="Hidden" Margin="0,00,100,60">
+                        <Canvas.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard RepeatBehavior="Forever" Storyboard.TargetName="arc">
+                                        <DoubleAnimation Storyboard.TargetProperty="EndAngle" To="360" BeginTime="0:0:0" Duration="0:0:1">
+                                            <DoubleAnimation.EasingFunction>
+                                                <PowerEase EasingMode="EaseInOut" Power="3"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetProperty="StartAngle" To="360" BeginTime="0:0:1" Duration="0:0:1">
+                                            <DoubleAnimation.EasingFunction>
+                                                <PowerEase EasingMode="EaseInOut" Power="3"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Canvas.Triggers>
+                        <ed:Arc Width="100"
+                               Height="100"
+                               StartAngle="0" 
+                               EndAngle="360"
+                               Stretch="None"
+                               ArcThickness="12"
+                               Fill="#fff1c1">
+                        </ed:Arc>
+                        <ed:Arc Width="100"
+                               Height="100"
+                               Name="arc"
+                               StartAngle="0" 
+                               EndAngle="0"
+                               Stretch="None"
+                               ArcThickness="12"
+                               Fill="#fe5f55">
+                        </ed:Arc>
+                    </Canvas>
+                    
                     <Label Grid.Row="8" Grid.Column="0" Style="{StaticResource LableStyle}">扫描数量：</Label>
                     <Label x:Name="lbScanQty" Grid.Row="8" Grid.Column="1" Content="{Binding BarcodeCount}" 
                              Style="{StaticResource LableStyle}" Width="350" Height="38"></Label>

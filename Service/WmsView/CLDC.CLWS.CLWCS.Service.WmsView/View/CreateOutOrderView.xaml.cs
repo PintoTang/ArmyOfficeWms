@@ -65,6 +65,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 MessageBoxEx.Show("未识别到装备标签,请重新扫描!");
                 return;
             }
+            progressLoop.Visibility = Visibility.Hidden;
 
             long orderId = _orderGeneraterHandler.GetGlobalNewTaskId();
             string orderSN = "Out_" + orderId;
@@ -130,7 +131,6 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 MessageBoxEx.Show("创建装备出库失败，原因：" + createResult.Message, "错误", MessageBoxButton.OK);
                 return;
             }
-
             SnackbarQueue.MessageQueue.Enqueue("创建装备出库成功");
             DialogHost.CloseDialogCommand.Execute(createResult.Message, this);
         }
@@ -143,6 +143,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 return;
             }
             CreateOrderViewModel.SingleInstance.ScanCommand.Execute(null);
+            progressLoop.Visibility = Visibility.Visible;
         }
 
         private readonly Dictionary<TaskTypeEnum, string> _taskTypeDict = new Dictionary<TaskTypeEnum, string>();

@@ -56,6 +56,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 MessageBoxEx.Show("未识别到装备标签,请重新扫描!");
                 return;
             }
+            progressLoop.Visibility = Visibility.Hidden;
 
             long orderId = _orderGeneraterHandler.GetGlobalNewTaskId();
             string orderSN = "In_" + orderId;
@@ -129,6 +130,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 return;
             }
             CreateOrderViewModel.SingleInstance.ScanCommand.Execute(null);
+            progressLoop.Visibility = Visibility.Visible;
         }
 
         private readonly Dictionary<TaskTypeEnum, string> _taskTypeDict = new Dictionary<TaskTypeEnum, string>();

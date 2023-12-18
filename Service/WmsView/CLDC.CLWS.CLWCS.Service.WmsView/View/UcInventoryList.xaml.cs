@@ -151,6 +151,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
 
 
                     CreateOutOrderView createOutOrder = new CreateOutOrderView("1");
+                    createOutOrder.progressLoop.Visibility = Visibility.Visible;
                     CreateOrderViewModel.SingleInstance.ScanCommand.Execute(null);
                     CreateOrderViewModel.SingleInstance.CurArea = (string)cbArea.SelectedValue;
                     CreateOrderViewModel.SingleInstance.CurTeam = (string)cbTeam.SelectedValue;

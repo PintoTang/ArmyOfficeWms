@@ -238,7 +238,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             if (CurInvStatus.HasValue)
             {
                 whereLambda = whereLambda.AndAlso(t => t.Status == CurInvStatus.Value);
-                sqlWhere += " And Status='" + CurInvStatus.Value+"'";
+                sqlWhere += " And Status='" + (int)CurInvStatus.Value+"'";
             }
             return whereLambda;
         }

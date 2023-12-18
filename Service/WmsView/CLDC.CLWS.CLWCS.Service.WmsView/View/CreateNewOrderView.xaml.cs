@@ -162,6 +162,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 return;
             }
             CreateOrderViewModel.SingleInstance.ScanCommand.Execute(null);
+            progressLoop.Visibility = Visibility.Visible;
         }
 
         private void BtnStop_OnClick(object sender, RoutedEventArgs e)
@@ -203,6 +204,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 MessageBoxEx.Show("识别到装备标签的数量与入库数量不一致,请重新扫描!");
                 return;
             }
+            progressLoop.Visibility = Visibility.Hidden;
 
             long orderId = _orderGeneraterHandler.GetGlobalNewTaskId();
             string orderSN = "In_" + orderId;
