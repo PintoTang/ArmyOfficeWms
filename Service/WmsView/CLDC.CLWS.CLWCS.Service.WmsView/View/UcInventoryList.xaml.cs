@@ -142,16 +142,19 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                     speech.SpeakAsync(command.SoundContent + command.SoundContent);
 
 
-                    ////string[] strCode = command.Code.Split(' ');
-                    ////byte[] buffer = new byte[strCode.Length];
-                    ////buffer = ToBytesFromHexString(command.Code);
-                    ////tcp.Send(buffer);
-                    ////Thread.Sleep(250);
-                    ////tcp.Send(buffer);
+                    string[] strCode = command.Code.Split(' ');
+                    byte[] buffer = new byte[strCode.Length];
+                    buffer = ToBytesFromHexString(command.Code);
+                    tcp.Send(buffer);
+                    Thread.Sleep(250);
+                    tcp.Send(buffer);
 
 
                     CreateOutOrderView createOutOrder = new CreateOutOrderView("1");
-                    await MaterialDesignThemes.Wpf.DialogHost.Show(createOutOrder, "DialogHostWait");
+                    CreateOrderViewModel.SingleInstance.ScanCommand.Execute(null);
+                    CreateOrderViewModel.SingleInstance.CurArea = (string)cbArea.SelectedValue;
+                    CreateOrderViewModel.SingleInstance.CurTeam = (string)cbTeam.SelectedValue;
+                    await MaterialDesignThemes.Wpf.DialogHost.Show(createOutOrder, "DialogHostWait");                    
                 }
             }
             catch { }

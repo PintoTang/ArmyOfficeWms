@@ -15,7 +15,7 @@
   <Command Area="A5" Team="1排" Light="5" Sound="2" SoundContent="人武部首长机关指挥保障模块，存放于运行器材库D区域，1号器材架"
           Code="EF AA 05 AA 16 03 02 00 02 C7 EF 55">
   </Command>
-  <Command Area="A6" Team="1排" Light="6" Sound="1" SoundContent="民兵应急连,反恐维稳模块，存放于运行器材库，E区域"
+  <Command Area="A6" Team="2排" Light="6" Sound="1" SoundContent="民兵应急连,反恐维稳模块，存放于运行器材库，E区域"
          Code="EF AA 06 AA 16 03 02 00 01 C6 EF 55">
   </Command>
   <Command Area="A6" Team="1排" Light="6" Sound="5" SoundContent="民兵应急连反恐维稳模块，存放于运行器材库E区域，4号器材架"
