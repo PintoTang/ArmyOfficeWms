@@ -218,7 +218,11 @@ namespace CLDC.CLWCS.Service.MenuService.View
                     var ucChildrens = UserContentControl.Children;
                     for (int i = ucChildrens.Count - 1; i >= 0; i--)
                     {
-                        if (ucChildrens[i] is UcInventoryList)
+                        if (ucChildrens[i] is UcDefaultView)
+                        {
+                            continue;
+                        }
+                        else
                         {
                             ucChildrens.Remove(ucChildrens[i]);
                         }
@@ -256,7 +260,11 @@ namespace CLDC.CLWCS.Service.MenuService.View
             var ucChildrens = UserContentControl.Children;
             for (int i = ucChildrens.Count - 1; i >= 0; i--)
             {
-                if (ucChildrens[i] is UcInventoryList)
+                if (ucChildrens[i] is UcDefaultView)
+                {
+                    continue;
+                }
+                else
                 {
                     ucChildrens.Remove(ucChildrens[i]);
                 }
@@ -267,48 +275,16 @@ namespace CLDC.CLWCS.Service.MenuService.View
             inventoryList.ViewModel.SearchCommand.Execute(null);
         }
 
-        private void SendTcpCommand()
-        {
-            try
-            {
-                TcpCom tcp = new TcpCom();
-                tcp.RemoteIp = IPAddress.Parse("192.168.1.33");
-                tcp.RemoteIpPort = 20108;
-                if (tcp.Connected==false)
-                {
-                    tcp.Connect();
-                }
-                if (tcp.Connected==false)
-                {
-                    SnackbarQueue.MessageQueue.Enqueue("TCP连接失败！");
-                }
-                //EF AA 06 AA 16 03 02 00 05 CA EF 55
-                byte[] buffer = new byte[12];
-                buffer[0] = 0xEF;
-                buffer[1] = 0xAA;
-                buffer[2] = 0x06;
-                buffer[3] = 0xAA;
-                buffer[4] = 0x16;
-                buffer[5] = 0x03;
-                buffer[6] = 0x02;
-                buffer[7] = 0x00;
-                buffer[8] = 0x05;
-                buffer[9] = 0xCA;
-                buffer[10] = 0xEF;
-                buffer[11] = 0x55;
-                tcp.Send(buffer);
-                Thread.Sleep(250);
-                tcp.Send(buffer);
-            }
-            catch { }
-        }
-
         private void btnInOrder_Click(object sender, RoutedEventArgs e)
         {           
             var ucChildrens = UserContentControl.Children;
             for (int i = ucChildrens.Count - 1; i >= 0; i--)
             {
-                if (ucChildrens[i] is UcInOrderList)
+                if (ucChildrens[i] is UcDefaultView)
+                {
+                    continue;
+                }
+                else
                 {
                     ucChildrens.Remove(ucChildrens[i]);
                 }
@@ -324,7 +300,11 @@ namespace CLDC.CLWCS.Service.MenuService.View
             var ucChildrens = UserContentControl.Children;
             for (int i = ucChildrens.Count - 1; i >= 0; i--)
             {
-                if (ucChildrens[i] is UcInventoryList)
+                if (ucChildrens[i] is UcDefaultView)
+                {
+                    continue;
+                }
+                else
                 {
                     ucChildrens.Remove(ucChildrens[i]);
                 }
@@ -339,7 +319,11 @@ namespace CLDC.CLWCS.Service.MenuService.View
             var ucChildrens = UserContentControl.Children;
             for (int i = ucChildrens.Count - 1; i >= 0; i--)
             {
-                if (ucChildrens[i] is UcOutOrderList)
+                if (ucChildrens[i] is UcDefaultView)
+                {
+                    continue;
+                }
+                else
                 {
                     ucChildrens.Remove(ucChildrens[i]);
                 }
@@ -354,7 +338,11 @@ namespace CLDC.CLWCS.Service.MenuService.View
             var ucChildrens = UserContentControl.Children;
             for (int i = ucChildrens.Count - 1; i >= 0; i--)
             {
-                if (ucChildrens[i] is UcSetupView)
+                if (ucChildrens[i] is UcDefaultView)
+                {
+                    continue;
+                }
+                else
                 {
                     ucChildrens.Remove(ucChildrens[i]);
                 }
