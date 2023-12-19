@@ -5,6 +5,7 @@ using CL.WCS.SystemConfigPckg.ViewModel;
 using CLDC.CLWS.CLWCS.Framework;
 using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
 using CLDC.CLWS.CLWCS.Infrastructrue.Sockets;
+using CLDC.CLWS.CLWCS.Service.Authorize;
 using CLDC.CLWS.CLWCS.Service.WmsView;
 using CLDC.CLWS.CLWCS.Service.WmsView.DataModel;
 using CLDC.CLWS.CLWCS.Service.WmsView.View;
@@ -16,6 +17,7 @@ using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,11 +34,13 @@ namespace CLDC.CLWCS.Service.MenuService.View
     public partial class MainContentView : UserControl, IMainUseCtrl
     {
         private WmsDataService _wmsDataService;
+        private AuthorizeService _authorizeService;
         public MainContentView()
         {
             InitializeComponent();
             this.DataContext = new SystemConfigViewMode(SystemConfig.Instance.CurSystemConfig);
             _wmsDataService = DependencyHelper.GetService<WmsDataService>();
+            _authorizeService = DependencyHelper.GetService<AuthorizeService>();
             UserControl menuView = new UcDefaultView();
             UserContentControl.Children.Add(menuView);
             DataContext = this;
@@ -81,8 +85,33 @@ namespace CLDC.CLWCS.Service.MenuService.View
 
         private void InitAdmin()
         {
-            imgAdmin1.Source = CreateBitmapImage("/Images/夏凌宇.jpg");// new BitmapImage(new Uri("Images/高传德.jpg", UriKind.Relative));
-            imgAdmin2.Source = CreateBitmapImage("/Images/高传德.jpg");// new BitmapImage(new Uri("Images/夏凌宇.jpg", UriKind.Relative));
+            //查询管理员数据
+            int curRoleLevel = (int)CookieService.CurSession.RoleLevel;
+            Expression<Func<AccountMode, bool>> whereLambda = t => (int)t.RoleLevel == curRoleLevel;
+
+            OperateResult<List<AccountMode>> accountListResult = _authorizeService.GetAccountList(whereLambda);
+            if (!accountListResult.IsSuccess)
+            {
+                SnackbarQueue.MessageQueue.Enqueue("查询出错：" + accountListResult.Message);
+                return;
+            }
+            if (accountListResult.Content != null && accountListResult.Content.Count > 0)
+            {
+                for (int i = 0; i < accountListResult.Content.Count; i++)
+                {
+                    var Name = accountListResult.Content[i]?.AccCode;
+                    if (i == 0)
+                    {
+                        imgAdmin1.Source = CreateBitmapImage("/Images/" + Name + ".jpg");
+                        lbAdmin1.Content = Name;
+                    }
+                    else if (i == 1)
+                    {
+                        imgAdmin2.Source = CreateBitmapImage("/Images/" + Name + ".jpg");
+                        lbAdmin2.Content = Name;
+                    }
+                }
+            }
         }
 
         private BitmapImage CreateBitmapImage(string imgUrl)
