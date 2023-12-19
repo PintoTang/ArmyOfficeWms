@@ -1,5 +1,4 @@
-﻿using CLDC.CLWS.CLWCS.Service.Authorize.DataMode;
-using CLDC.CLWS.CLWCS.Service.WmsView.ViewModel;
+﻿using CLDC.CLWS.CLWCS.Service.WmsView.ViewModel;
 using System.Windows.Controls;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.View

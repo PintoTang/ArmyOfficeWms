@@ -111,8 +111,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigOperate\TaskTeamConfig.cs" />
+    <Compile Include="ConfigOperate\TaskTeamConfigModel.cs" />
     <Compile Include="DataModel\Area.cs" />
-    <Compile Include="DataModel\AreaTeam.cs" />
     <Compile Include="DataModel\InOrOutEnum.cs" />
     <Compile Include="DataModel\Inventory.cs" />
     <Compile Include="DataModel\Order.cs" />
@@ -123,13 +124,13 @@
     <Compile Include="DataModel\TaskTypeEnum.cs" />
     <Compile Include="DataModel\WmsDataModel.cs" />
     <Compile Include="DataModel\Warehouse.cs" />
-    <Compile Include="ReasonConfig.cs" />
+    <Compile Include="ConfigOperate\ReasonConfig.cs" />
     <Compile Include="SqlSugar\IOrderSNGenerate.cs" />
     <Compile Include="SqlSugar\OrderSNGenerate.cs" />
     <Compile Include="SqlSugar\WmsDataSqlSugar.cs" />
-    <Compile Include="SoundLightConfig.cs" />
-    <Compile Include="ReasonConfigModel.cs" />
-    <Compile Include="SoundLightConfigModel.cs" />
+    <Compile Include="ConfigOperate\SoundLightConfig.cs" />
+    <Compile Include="ConfigOperate\ReasonConfigModel.cs" />
+    <Compile Include="ConfigOperate\SoundLightConfigModel.cs" />
     <Compile Include="Tools\ISpeech.cs" />
     <Compile Include="Tools\SpeechBussiness.cs" />
     <Compile Include="Tools\SpeechQueue.cs" />
@@ -167,8 +168,8 @@
     <Compile Include="View\UcTopTitle.xaml.cs">
       <DependentUpon>UcTopTitle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WmsDataAbstract.cs" />
-    <Compile Include="WmsDataService.cs" />
+    <Compile Include="SqlSugar\WmsDataAbstract.cs" />
+    <Compile Include="SqlSugar\WmsDataService.cs" />
     <Page Include="Style\StyleMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

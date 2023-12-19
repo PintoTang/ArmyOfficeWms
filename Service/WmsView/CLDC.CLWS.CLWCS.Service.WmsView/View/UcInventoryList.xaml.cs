@@ -139,7 +139,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 else
                 {
                     ISpeech speech = new SpeechBussiness();
-                    speech.SpeakAsync(command.SoundContent + command.SoundContent);
+                    speech.SpeakAsync(command.SoundContent);
 
 
                     string[] strCode = command.Code.Split(' ');

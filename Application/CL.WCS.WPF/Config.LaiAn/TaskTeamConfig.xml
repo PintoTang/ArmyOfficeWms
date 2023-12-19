@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TaskTeamConfig Name="出入库事由配置">
+  <TaskTeam Id="1" Name="1排" >
+  </TaskTeam>
+  <TaskTeam Id="2" Name="2排" >
+  </TaskTeam>
+  <TaskTeam Id="3" Name="3排" >
+  </TaskTeam>
+  <TaskTeam Id="4" Name="首长机关" >
+  </TaskTeam>
+  <TaskTeam Id="5" Name="民兵" >
+  </TaskTeam>
+</TaskTeamConfig>

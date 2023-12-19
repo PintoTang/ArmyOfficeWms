@@ -81,8 +81,8 @@ namespace CLDC.CLWCS.Service.MenuService.View
 
         private void InitAdmin()
         {
-            imgAdmin1.Source = CreateBitmapImage("/Images/高传德.jpg");// new BitmapImage(new Uri("Images/高传德.jpg", UriKind.Relative));
-            imgAdmin2.Source = CreateBitmapImage("/Images/夏凌宇.jpg");// new BitmapImage(new Uri("Images/夏凌宇.jpg", UriKind.Relative));
+            imgAdmin1.Source = CreateBitmapImage("/Images/夏凌宇.jpg");// new BitmapImage(new Uri("Images/高传德.jpg", UriKind.Relative));
+            imgAdmin2.Source = CreateBitmapImage("/Images/高传德.jpg");// new BitmapImage(new Uri("Images/夏凌宇.jpg", UriKind.Relative));
         }
 
         private BitmapImage CreateBitmapImage(string imgUrl)

@@ -1,23 +1,11 @@
-﻿using CLDC.CLWS.CLWCS.Framework;
-using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
+﻿using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
 using CLDC.CLWS.CLWCS.Infrastructrue.WebService;
-using CLDC.CLWS.CLWCS.Infrastructrue.WebService.Client.WebApi;
 using CLDC.CLWS.CLWCS.WareHouse.DataModel;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.View
 {

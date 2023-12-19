@@ -215,8 +215,8 @@
                         </Button>
                         <Image x:Name="imgAdmin1" Grid.Row="1" Grid.Column="0" Margin="5"/>
                         <Image x:Name="imgAdmin2" Grid.Row="1" Grid.Column="1" Margin="5"/>
-                        <Label Grid.Row="2" Grid.Column="0" Content="高传德" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="#FFFFFF "></Label>
-                        <Label Grid.Row="2" Grid.Column="1" Content="夏凌宇" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="#FFFFFF "></Label>
+                        <Label Grid.Row="2" Grid.Column="0" Content="夏凌宇" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="#FFFFFF "></Label>
+                        <Label Grid.Row="2" Grid.Column="1" Content="高传德" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Foreground="#FFFFFF "></Label>
                     </Grid>
                     <Grid Grid.Row="1">
                         <wmsView:UcEnvironMonitor Margin="0,25,0,0"/>

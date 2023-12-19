@@ -186,18 +186,18 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
 
         private void InitCbTeam()
         {
-            //List<AreaTeam> list = new List<AreaTeam>();
+            ////List<AreaTeam> list = new List<AreaTeam>();
             //CbTeam.SelectedValuePath = "Name";
             //CbTeam.DisplayMemberPath = "Name";
-            //for (int i = 1; i < 4; i++)
-            //{
-            //    AreaTeam team = new AreaTeam();
-            //    team.Id = i; team.Name = i + "排"; team.Remark = string.Empty;
-            //    list.Add(team);
-            //}
-            //list.Add(new AreaTeam { Id = 4, Name = "首长机关" });
-            //list.Add(new AreaTeam { Id = 5, Name = "民兵" });
-            //CbTeam.ItemsSource = list;
+            ////for (int i = 1; i < 4; i++)
+            ////{
+            ////    AreaTeam team = new AreaTeam();
+            ////    team.Id = i; team.Name = i + "排"; team.Remark = string.Empty;
+            ////    list.Add(team);
+            ////}
+            ////list.Add(new AreaTeam { Id = 4, Name = "首长机关" });
+            ////list.Add(new AreaTeam { Id = 5, Name = "民兵" });
+            //CbTeam.ItemsSource = TaskTeamConfig.Instance.TaskTeamList;
         }
 
         private void CbArea_SelectionChanged(object sender, SelectionChangedEventArgs e)

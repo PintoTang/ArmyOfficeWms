@@ -35,7 +35,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         private WmsDataService _wmsDataService;
         public ObservableCollection<Inventory> InventoryList { get; set; }
         public ObservableCollection<Area> AreaList { get; set; }
-        public ObservableCollection<AreaTeam> TeamList { get; set; }
+        public ObservableCollection<TaskTeam> TeamList { get; set; }
 
         /// <summary>
         /// 当前搜索的装备
@@ -129,7 +129,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         {
             InventoryList = new ObservableCollection<Inventory>();
             AreaList = new ObservableCollection<Area>();
-            TeamList = new ObservableCollection<AreaTeam>();
+            TeamList = new ObservableCollection<TaskTeam>();
             _wmsDataService = DependencyHelper.GetService<WmsDataService>();
             InitCbArea(); InitTeam();
         }
@@ -155,14 +155,18 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         {
             TeamList.Clear();
             {
-                for (int i = 1; i < 4; i++)
+                try
                 {
-                    AreaTeam team = new AreaTeam();
-                    team.Id = i; team.Name = i + "排"; team.Remark = string.Empty;
-                    TeamList.Add(team);
+                    List<TaskTeam> accountListResult = TaskTeamConfig.Instance.TaskTeamList;
+                    if (accountListResult.Count > 0)
+                    {
+                        accountListResult.ForEach(ite => TeamList.Add(ite));
+                    }
                 }
-                TeamList.Add(new AreaTeam { Id = 4, Name = "首长机关" });
-                TeamList.Add(new AreaTeam { Id = 5, Name = "民兵" });
+                catch (Exception ex)
+                {
+                    SnackbarQueue.MessageQueue.Enqueue("查询异常：" + ex.Message);
+                }
             }
         }
 

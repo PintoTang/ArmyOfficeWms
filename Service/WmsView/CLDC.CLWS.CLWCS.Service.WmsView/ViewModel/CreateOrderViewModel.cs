@@ -8,7 +8,6 @@ using GalaSoft.MvvmLight;
 using Infrastructrue.Ioc.DependencyFactory;
 using System;
 using System.Collections.Generic;
-using System.Collections;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
@@ -18,6 +17,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
 {
     public class CreateOrderViewModel: ViewModelBase
     {
+        #region 属性与变量
         public DeviceName DeviceName { get; set; }
         public int DeviceId { get; set; }
         public IdentifyDeviceCommForClouRfid HopelandRfid { get; set; }
@@ -26,7 +26,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         private ObservableCollection<RfidBarcode> _barcodeList { get; set; }
         public ObservableCollection<Reason> ReasonList { get; set; }
         public ObservableCollection<Area> AreaList { get; set; }
-        public ObservableCollection<AreaTeam> TeamList { get; set; }
+        public ObservableCollection<TaskTeam> TeamList { get; set; }
         public ObservableCollection<Shelf> ShelfList { get; set; }
 
         private WmsDataService _wmsDataService;
@@ -148,6 +148,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                 return lazy.Value;
             }
         }
+        #endregion
 
         public CreateOrderViewModel()
         {
@@ -155,7 +156,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             this.BarcodeList = new ObservableCollection<RfidBarcode>();
             this.ReasonList = new ObservableCollection<Reason>();
             this.AreaList = new ObservableCollection<Area>();
-            this.TeamList = new ObservableCollection<AreaTeam>();
+            this.TeamList = new ObservableCollection<TaskTeam>();
             this.ShelfList =new ObservableCollection<Shelf>();
             this.DeviceName = new DeviceName("电子标签识别", 1);
             this.DeviceId = 102401;
@@ -177,11 +178,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E182780200000000001E3C3D", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
             this.BarcodeList.Add(new RfidBarcode() { Barcode = "E182780200000000001E34E3", SN = this.BarcodeList.Count + 1, MaterialDesc = "灭火器" });
             this.BarcodeCount=this.BarcodeList.Count.ToString();
-            #endregion 
-
-            //CurArea = "A3";
-            //CurShelf = "LA02";
-            //CurTeam = "3排";
+            #endregion
         }
 
         private void InitCbReason()
@@ -221,14 +218,18 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         {
             TeamList.Clear();
             {
-                for (int i = 1; i < 4; i++)
+                try
                 {
-                    AreaTeam team = new AreaTeam();
-                    team.Id = i; team.Name = i + "排"; team.Remark = string.Empty;
-                    TeamList.Add(team);
+                    List<TaskTeam> accountListResult = TaskTeamConfig.Instance.TaskTeamList;
+                    if (accountListResult.Count > 0)
+                    {
+                        accountListResult.ForEach(ite => TeamList.Add(ite));
+                    }
                 }
-                TeamList.Add(new AreaTeam { Id = 4, Name = "首长机关" });
-                TeamList.Add(new AreaTeam { Id = 5, Name = "民兵" });
+                catch (Exception ex)
+                {
+                    SnackbarQueue.MessageQueue.Enqueue("查询异常：" + ex.Message);
+                }
             }
         }
         private void InitShelf()
@@ -316,7 +317,6 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         {
             HopelandRfid.StopCommand();
         }
-
 
     }
 }
