@@ -85,11 +85,11 @@
                         </Grid>
                         <Grid Grid.Row="1">
                             <WrapPanel VerticalAlignment="Center">
-                                <TextBlock Width="10"/>
+                                <TextBlock Width="20"/>
                                 <Button Width="100" Height="40" FontSize="18" Padding="0"  Command="{Binding CreateOutOrderCommand}" CommandParameter='0'>演练出库</Button>
-                                <TextBlock Width="10"/>
+                                <TextBlock Width="20"/>
                                 <Button Width="100" Height="40" FontSize="18" Padding="0"  Command="{Binding CreateOutOrderCommand}" CommandParameter='1'>任务出库</Button>
-                                <TextBlock Width="10"/>
+                                <TextBlock Width="20"/>
                                 <Button Width="100" Height="40" FontSize="18" Padding="0"  Command="{Binding CreateOutOrderCommand}" CommandParameter='2'>报损出库</Button>
                             </WrapPanel>
                         </Grid>
