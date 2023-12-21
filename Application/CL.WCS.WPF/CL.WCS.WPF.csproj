@@ -177,11 +177,14 @@
     <Content Include="Resources\EQ2008_Dll.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\Image\LoginImage02.jpg" />
     <Resource Include="Resources\Image\NanWang.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Image\Title.jpg" />
+    <Resource Include="Resources\Image\LoginImage01.jpg" />
+    <Resource Include="Resources\Image\LoginImage02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\ReportViewer.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

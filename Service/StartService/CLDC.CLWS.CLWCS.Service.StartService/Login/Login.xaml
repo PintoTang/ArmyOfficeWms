@@ -8,11 +8,11 @@
               ResizeMode="NoResize" AllowsTransparency="True"   BorderThickness="0" WindowStyle="None" Width="800" Height="450" Background="Transparent" x:Name="_this">
     <Border CornerRadius="20">
         <Border.Background>
-            <ImageBrush ImageSource="Resources/Image/LoginImage02.jpg"></ImageBrush>
+            <ImageBrush ImageSource="Resources/Image/LoginImage02.png"></ImageBrush>
         </Border.Background>
         <Grid Width="{Binding ElementName=_this,Path=ActualWidth}" Height="{Binding ElementName=_this,Path=ActualHeight}">
             <DockPanel>
-                <Grid  Width="269" Height="280"  HorizontalAlignment="Right" Margin="0,0,50,30" VerticalAlignment="Bottom">
+                <Grid  Width="269" Height="280"  HorizontalAlignment="Center" Margin="0,70,0,0" VerticalAlignment="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="10"/>
                         <RowDefinition  Height="60"/>

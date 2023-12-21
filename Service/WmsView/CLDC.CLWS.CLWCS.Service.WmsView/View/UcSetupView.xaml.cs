@@ -1,4 +1,5 @@
-﻿using CL.WCS.SystemConfigPckg.View;
+﻿using CL.WCS.SystemConfigPckg;
+using CL.WCS.SystemConfigPckg.View;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -13,12 +14,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
         {
             InitializeComponent();
         }
-
-        private void btnSystemParam_Click(object sender, RoutedEventArgs e)
-        {
-            SystemSettingView systemSettingView = new SystemSettingView();
-            systemSettingView.ShowDialog();
-        }
+        
         private void BtnExit_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             Hide();
@@ -31,6 +27,29 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
         {
             this.Visibility = System.Windows.Visibility.Hidden;
         }
+
+        private void btnSystemParam_Click(object sender, RoutedEventArgs e)
+        {
+            var ucChildrens = UserContentControl.Children;
+            for (int i = ucChildrens.Count - 1; i >= 0; i--)
+            {
+                ucChildrens.Remove(ucChildrens[i]);
+            }
+            SystemConfigView systemConfig = new SystemConfigView();
+            UserContentControl.Children.Add(systemConfig);
+        }
+
+        private void btnAreaList_Click(object sender, RoutedEventArgs e)
+        {
+            var ucChildrens = UserContentControl.Children;
+            for (int i = ucChildrens.Count - 1; i >= 0; i--)
+            {
+                ucChildrens.Remove(ucChildrens[i]);
+            }
+            UcAreaList areaList = new UcAreaList();
+            UserContentControl.Children.Add(areaList);            
+        }
+
 
 
     }

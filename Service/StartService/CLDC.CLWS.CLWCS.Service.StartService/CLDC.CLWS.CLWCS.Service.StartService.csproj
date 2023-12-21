@@ -264,11 +264,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Login\Resources\Image\LoginImage02.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Login\Resources\Image\NanWang.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -283,6 +278,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Login\Resources\Image\LoginImage01.jpg" />
+    <Resource Include="Login\Resources\Image\LoginImage02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

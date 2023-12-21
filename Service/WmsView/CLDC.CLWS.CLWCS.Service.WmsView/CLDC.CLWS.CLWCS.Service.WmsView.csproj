@@ -147,6 +147,9 @@
       <DependentUpon>CreateReturnOrderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\MultiParamterConverter.cs" />
+    <Compile Include="View\UcAreaList.xaml.cs">
+      <DependentUpon>UcAreaList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UcDefaultView.xaml.cs">
       <DependentUpon>UcDefaultView.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CreateReturnOrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UcAreaList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
