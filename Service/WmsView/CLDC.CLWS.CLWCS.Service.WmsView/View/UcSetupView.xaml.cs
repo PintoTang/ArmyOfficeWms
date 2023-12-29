@@ -47,7 +47,8 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 ucChildrens.Remove(ucChildrens[i]);
             }
             UcAreaList areaList = new UcAreaList();
-            UserContentControl.Children.Add(areaList);            
+            areaList.ViewModel.SearchCommand.Execute(null);
+            UserContentControl.Children.Add(areaList);
         }
 
 

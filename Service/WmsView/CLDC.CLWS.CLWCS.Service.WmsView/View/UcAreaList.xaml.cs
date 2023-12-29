@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CLDC.CLWS.CLWCS.Service.WmsView.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,22 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
     /// </summary>
     public partial class UcAreaList : UserControl
     {
+        public AreaListViewModel ViewModel { get; set; }
         public UcAreaList()
         {
             InitializeComponent();
+            ViewModel = new AreaListViewModel();
+            DataContext = ViewModel;
+        }
+
+        private void BtnExit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AreaListGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
     }
 }

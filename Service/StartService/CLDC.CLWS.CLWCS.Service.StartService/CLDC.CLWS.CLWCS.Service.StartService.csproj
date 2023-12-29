@@ -278,6 +278,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Login\Resources\Image\LoginImage01.jpg" />
+    <Content Include="Login\Resources\Image\LoginImage02_1.png" />
+    <Content Include="Login\Resources\Image\LoginImage03.png" />
     <Resource Include="Login\Resources\Image\LoginImage02.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

@@ -48,7 +48,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
         public abstract OperateResult<List<Order>> GetOrderAndMaterList(Expression<Func<Order, bool>> whereLambda = null);
 
         public abstract OperateResult<List<Inventory>> GetInventoryPageList(string where);
-
+        public abstract OperateResult<List<Area>> GetAreaPageList(Expression<Func<Area, bool>> whereLambda = null);
         public abstract double GetInvQtyByStatus(InvStatusEnum status);
 
         public abstract Inventory GetInventory(string Barcode);

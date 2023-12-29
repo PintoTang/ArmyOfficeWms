@@ -162,6 +162,24 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             return result;
         }
 
+        public override OperateResult<List<Area>> GetAreaPageList(Expression<Func<Area, bool>> whereLambda = null)
+        {
+            OperateResult<List<Area>> result = OperateResult.CreateFailedResult<List<Area>>("无数据");
+            try
+            {
+                List<Area> list = DbHelper.QueryList(whereLambda);
+                result.IsSuccess = true;
+                result.Content = list;
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = OperateResult.ConvertException(ex);
+
+            }
+            return result;
+        }
+
         public override double GetInvQtyByStatus(InvStatusEnum status)
         {
             double invQty = 0;

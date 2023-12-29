@@ -78,6 +78,11 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
             return _wmsDataAccess.GetInventoryPageList(where);
         }
 
+        public OperateResult<List<Area>> GetAreaPageList(Expression<Func<Area, bool>> whereLambda = null)
+        {
+            return _wmsDataAccess.GetAreaPageList(whereLambda);
+        }
+
         public double GetInvQtyByStatus(InvStatusEnum status)
         {
             return _wmsDataAccess.GetInvQtyByStatus(status);

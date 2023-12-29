@@ -134,6 +134,7 @@
     <Compile Include="Tools\ISpeech.cs" />
     <Compile Include="Tools\SpeechBussiness.cs" />
     <Compile Include="Tools\SpeechQueue.cs" />
+    <Compile Include="ViewModel\AreaListViewModel.cs" />
     <Compile Include="ViewModel\CreateOrderViewModel.cs" />
     <Compile Include="ViewModel\InventoryListViewModel.cs" />
     <Compile Include="ViewModel\OrderListViewModel.cs" />

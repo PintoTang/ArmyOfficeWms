@@ -12,17 +12,17 @@
         </Border.Background>
         <Grid Width="{Binding ElementName=_this,Path=ActualWidth}" Height="{Binding ElementName=_this,Path=ActualHeight}">
             <DockPanel>
-                <Grid  Width="269" Height="280"  HorizontalAlignment="Center" Margin="0,70,0,0" VerticalAlignment="Center">
+                <Grid  Width="260" Height="260"  HorizontalAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Center">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="1"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="60"/>
                         <RowDefinition Height="10"/>
-                        <RowDefinition  Height="60"/>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition  Height="60"/>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition  Height="45"/>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition Height="60"></RowDefinition>
-                        <RowDefinition />
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="1"/>
+                        <RowDefinition Height="70"></RowDefinition>
+                        <RowDefinition Height="1"/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="1" VerticalAlignment="Center" >
                         <Border Background="White" MaxHeight="60" MinHeight="55" CornerRadius="5" ToolTip="输入账号">
@@ -59,9 +59,9 @@
                         </Grid>
                     </StackPanel>
                     <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button Width="100" Height="46"  Name="BtnCancelLogin" materialDesign:ButtonAssist.CornerRadius="5" Foreground="White"   Content="取消" Click="BtnCancelLogin_Click" FontSize="20" Margin="3"  BorderThickness="0"  Style="{StaticResource MaterialDesignRaisedButton}"/>
-                        <TextBlock Width="56"></TextBlock>
-                        <Button Width="100" Height="46"  Name="BtnLogin" materialDesign:ButtonAssist.CornerRadius="5" Foreground="White"   BorderThickness="0"  FontSize="20" Content="登录" Margin="3" Click="BtnLogin_Click"   Style="{StaticResource MaterialDesignRaisedButton}"/>
+                        <Button Width="120" Height="55"  Name="BtnCancelLogin" materialDesign:ButtonAssist.CornerRadius="5" Foreground="White"   Content="取消" Click="BtnCancelLogin_Click" FontSize="25" Margin="3"  BorderThickness="0"  Style="{StaticResource MaterialDesignRaisedButton}"/>
+                        <TextBlock Width="10"></TextBlock>
+                        <Button Width="120" Height="55"  Name="BtnLogin" materialDesign:ButtonAssist.CornerRadius="5" Foreground="White"   BorderThickness="0"  FontSize="25" Content="登录" Margin="3" Click="BtnLogin_Click"   Style="{StaticResource MaterialDesignRaisedButton}"/>
                     </StackPanel>
                 </Grid>
             </DockPanel>
