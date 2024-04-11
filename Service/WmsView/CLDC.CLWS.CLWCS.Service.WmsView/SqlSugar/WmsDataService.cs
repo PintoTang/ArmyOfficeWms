@@ -53,6 +53,21 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
             return _wmsDataAccess.CreateNewInOrder(inOrder);
         }
 
+        public OperateResult CreateNewArea(Area model)
+        {
+            return _wmsDataAccess.CreateNewArea(model);
+        }
+
+        public OperateResult UpdateArea(Area model)
+        {
+            return _wmsDataAccess.UpdateArea(model);
+        }
+
+        public OperateResult DeleteArea(Area model)
+        {
+            return _wmsDataAccess.DeleteArea(model);
+        }
+
         public OperateResult CreateNewOrderDetail(List<OrderDetail> orderDetail)
         {
             return _wmsDataAccess.CreateNewOrderDetail(orderDetail);

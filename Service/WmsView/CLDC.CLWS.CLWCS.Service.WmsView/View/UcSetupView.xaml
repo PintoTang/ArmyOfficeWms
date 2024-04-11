@@ -51,7 +51,7 @@
                         <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
                             <WrapPanel Grid.Column="0" VerticalAlignment="Center">
                                 <TextBlock Width="20"/>
@@ -73,16 +73,34 @@
                                     </Button.Content>
                                 </Button>
                                 <TextBlock Width="20"/>
-
+                                <Button x:Name="btnAlarmList"  Grid.Row="2" Grid.Column="1" Width="152px" Height="58px" BorderThickness="0" Click="btnAreaList_Click">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
+                                    </Button.Background>
+                                    <Button.Content>
+                                        <TextBlock Text="声光报警维护" Foreground="White" FontSize="20px"/>
+                                    </Button.Content>
+                                </Button>
+                                <TextBlock Width="20"/>
+                                <Button x:Name="btnUserList"  Grid.Row="2" Grid.Column="1" Width="122px" Height="58px" BorderThickness="0" Click="btnUserList_Click">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
+                                    </Button.Background>
+                                    <Button.Content>
+                                        <TextBlock Text="账号管理" Foreground="White" FontSize="20px"/>
+                                    </Button.Content>
+                                </Button>
                                 <TextBlock Width="20"/>
                             </WrapPanel>
                             <Grid Grid.Column="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Width="68" FontSize="18" Command="{Binding SearchCommand}">查询</Button>
-                                <Button Grid.Column="1" Width="68" FontSize="18" x:Name="BtnExit" Click="BtnExit_Click">退出</Button>
+                                <Button x:Name="BtnExit" Width="90px" Height="58px" BorderThickness="0" Click="BtnExit_Click">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
+                                    </Button.Background>
+                                    <Button.Content>
+                                        <TextBlock Text="退出" Foreground="White" FontSize="20px"/>
+                                    </Button.Content>
+                                </Button>
                             </Grid>
                         </Grid>
 

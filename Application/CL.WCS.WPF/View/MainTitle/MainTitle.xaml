@@ -17,9 +17,9 @@
             </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="155"/>
+                <ColumnDefinition Width="280"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="155"/>
+                <ColumnDefinition Width="280"/>
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -74,11 +74,15 @@
                         <Button x:Name="BtnAbout" Click="BtnAbout_OnClick" Width="24" Height="24"  Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" ToolTip="关于">
                             <materialDesign:PackIcon Kind="About" Height="20" Width="20" />
                         </Button>
-                        <TextBlock Width="20"></TextBlock>
-                        <Button x:Name="BtnLogout" Click="BtnLogout_OnClick" Width="24" Height="24"  Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" ToolTip="注销">
-                            <materialDesign:PackIcon Kind="Person" Height="20" Width="20" />
+                        <TextBlock Width="10"></TextBlock>
+                        <Button x:Name="BtnChangePwd" Click="BtnChangePwd_OnClick" Width="24" Height="24"  Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" ToolTip="修改密码">
+                            <materialDesign:PackIcon Kind="AccountEdit" Height="20" Width="20" />
                         </Button>
-                        <TextBlock Width="15"></TextBlock>
+                        <TextBlock Width="10"></TextBlock>
+                        <Button x:Name="BtnLogout" Click="BtnLogout_OnClick" Width="24" Height="24"  Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}" ToolTip="注销">
+                            <materialDesign:PackIcon Kind="ExitRun" Height="20" Width="20" />
+                        </Button>
+                        <TextBlock Width="10"></TextBlock>
                         <Button x:Name="btnMin" Width="25"  Click="btnMin_Click"  Style="{DynamicResource ButtonStyleMin}" Cursor="Hand"></Button>
                         <TextBlock Width="10"></TextBlock>
                         <Button x:Name="btnClose" Width="25"  Click="btnClose_Click" Content=""  Style="{DynamicResource ButtonStyleClose}" Cursor="Hand"/>

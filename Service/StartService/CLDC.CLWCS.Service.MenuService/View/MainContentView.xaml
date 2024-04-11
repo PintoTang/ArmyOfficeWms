@@ -92,7 +92,7 @@
                             <RowDefinition Height="40"/>
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Name="ChartTitle" Width="330" Height="40" Content="在库管理" Foreground="#12FFD5"
+                        <Label Grid.Row="0" Name="ChartTitle" Width="330" Height="40" Content="库室总览" Foreground="#12FFD5"
                                 VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold" FontSize="20" >
                             <Label.Background>
                                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
@@ -117,10 +117,10 @@
                         </Grid.Background>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
-                            <RowDefinition Height="66"/>
-                            <RowDefinition Height="66"/>
-                            <RowDefinition Height="66"/>
-                            <RowDefinition Height="66"/>
+                            <RowDefinition Height="68"/>
+                            <RowDefinition Height="68"/>
+                            <RowDefinition Height="68"/>
+                            <RowDefinition Height="68"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>

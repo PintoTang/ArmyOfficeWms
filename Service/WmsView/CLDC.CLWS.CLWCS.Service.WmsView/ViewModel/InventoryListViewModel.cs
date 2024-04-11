@@ -228,6 +228,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             if (!string.IsNullOrEmpty(CurMaterial))
             {
                 whereLambda = whereLambda.AndAlso(t => t.MaterialDesc.Contains(CurMaterial));
+                sqlWhere += " And MaterialDesc Like '%" + CurMaterial + "%'";
             }
             if (!string.IsNullOrEmpty(CurArea))
             {

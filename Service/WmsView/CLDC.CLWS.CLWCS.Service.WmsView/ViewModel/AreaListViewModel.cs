@@ -1,6 +1,8 @@
 ﻿using CLDC.CLWS.CLWCS.Framework;
 using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
+using CLDC.CLWS.CLWCS.Service.Authorize;
 using CLDC.CLWS.CLWCS.Service.WmsView.Model;
+using CLDC.CLWS.CLWCS.Service.WmsView.View;
 using CLDC.CLWS.CLWCS.WareHouse.Device.TaskHandleCenter;
 using CLDC.Infrastructrue.UserCtrl;
 using CLDC.Infrastructrue.UserCtrl.Model;
@@ -10,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
+using System.Windows;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
 {
@@ -20,6 +23,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
         private string _curTaskType;
         private WmsDataService _wmsDataService;
         public ObservableCollection<Area> AreaList { get; set; }
+
+
+        /// <summary>
+        /// 当前选中的任务分类信息
+        /// </summary>
+        public Area SelectedValue { get; set; }
+
 
         /// <summary>
         /// 当前搜索的区域
@@ -134,6 +144,83 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                 whereLambda = whereLambda.AndAlso(t => t.Status == CurStatus.Value);
             }
             return whereLambda;
+        }
+
+
+        private RelayCommand _createAreaCommand;
+        public RelayCommand CreateAreaCommand
+        {
+            get
+            {
+                if (_createAreaCommand==null)
+                {
+                    _createAreaCommand = new RelayCommand(CreateArea);                    
+                }
+                return _createAreaCommand;
+            }
+        }
+
+        private async void CreateArea()
+        {
+            CreateAreaView createArea = new CreateAreaView();
+            await MaterialDesignThemes.Wpf.DialogHost.Show(createArea, "DialogHostWait");
+        }
+
+
+        private RelayCommand _editAreaCommand;
+        public RelayCommand EditAreaCommand
+        {
+            get
+            {
+                if (_editAreaCommand == null)
+                {
+                    _editAreaCommand = new RelayCommand(EditArea);
+                }
+                return _editAreaCommand;
+            }
+        }
+
+        private async void EditArea()
+        {
+            if (SelectedValue == null)
+            {
+                SnackbarQueue.Enqueue("请选择需要编辑的任务分类");
+                return;
+            }
+            CreateAreaView createArea = new CreateAreaView(SelectedValue);
+            await MaterialDesignThemes.Wpf.DialogHost.Show(createArea, "DialogHostWait");
+        }
+
+
+        private RelayCommand _deleteAreaCommand;
+
+        public RelayCommand DeleteAreaCommand
+        {
+            get
+            {
+                if (_deleteAreaCommand == null)
+                {
+                    _deleteAreaCommand = new RelayCommand(DeleteArea);
+                }
+                return _deleteAreaCommand;
+            }
+        }
+
+        private void DeleteArea()
+        {
+            if (SelectedValue == null)
+            {
+                SnackbarQueue.Enqueue("请选择需要删除的任务分类");
+                return;
+            }
+            MessageBoxResult msgResult = MessageBoxEx.Show(string.Format("确定删除任务分类：{0}", SelectedValue.AreaName), "警告", MessageBoxButton.YesNo);
+            if (msgResult == MessageBoxResult.No)
+            {
+                return;
+            }
+            OperateResult deleteResult = _wmsDataService.DeleteArea(SelectedValue);
+            SnackbarQueue.Enqueue(string.Format("操作结果：{0}", deleteResult.Message));
+            Search();
         }
 
     }

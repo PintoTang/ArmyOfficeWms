@@ -37,7 +37,7 @@ namespace CL.WCS.WPF.Theme
         /// </summary>
         public void SetGlobalSystemStyle(DepartmentEnum department)
         {
-            if (department.Equals(DepartmentEnum.WEISS))
+            if (department.Equals(DepartmentEnum.JZX))
             {
                 Color primaryColor = Color.FromRgb(36, 93, 85);
                 Color PrimaryForegroundColor = Color.FromRgb(255, 255, 255);
@@ -49,31 +49,30 @@ namespace CL.WCS.WPF.Theme
                 SetSecondaryForegroundToSingleColor(SecondaryForegroundColor);
                 return;
             }
-            if (department.Equals(DepartmentEnum.SCG))
-            {
-                Color primaryColor = Color.FromRgb(0, 54, 122);
-                Color PrimaryForegroundColor = Color.FromRgb(130, 218, 255);
-                Color SecondaryColor = Color.FromRgb(51, 136, 233);
-                Color SecondaryForegroundColor = Color.FromRgb(255, 255, 255);
-                PaletteHelperExtensions.ChangePrimaryColor(_paletteHelper, primaryColor);
-                PaletteHelperExtensions.ChangeSecondaryColor(_paletteHelper, SecondaryColor);
-                SetPrimaryForegroundToSingleColor(PrimaryForegroundColor);
-                SetSecondaryForegroundToSingleColor(SecondaryForegroundColor);
-                return;
-            }
-            if (department.Equals(DepartmentEnum.StateGrid))
-            {
-                Color primaryColor = Color.FromRgb(0, 54, 122);
-                Color PrimaryForegroundColor = Color.FromRgb(130, 218, 255);
-                Color SecondaryColor = Color.FromRgb(51, 136, 233);
-                Color SecondaryForegroundColor = Color.FromRgb(255, 255, 255);
-                PaletteHelperExtensions.ChangePrimaryColor(_paletteHelper, primaryColor);
-                PaletteHelperExtensions.ChangeSecondaryColor(_paletteHelper, SecondaryColor);
-                SetPrimaryForegroundToSingleColor(PrimaryForegroundColor);
-                SetSecondaryForegroundToSingleColor(SecondaryForegroundColor);
-                return;
-
-            }
+            //if (department.Equals(DepartmentEnum.SCG))
+            //{
+            //    Color primaryColor = Color.FromRgb(0, 54, 122);
+            //    Color PrimaryForegroundColor = Color.FromRgb(130, 218, 255);
+            //    Color SecondaryColor = Color.FromRgb(51, 136, 233);
+            //    Color SecondaryForegroundColor = Color.FromRgb(255, 255, 255);
+            //    PaletteHelperExtensions.ChangePrimaryColor(_paletteHelper, primaryColor);
+            //    PaletteHelperExtensions.ChangeSecondaryColor(_paletteHelper, SecondaryColor);
+            //    SetPrimaryForegroundToSingleColor(PrimaryForegroundColor);
+            //    SetSecondaryForegroundToSingleColor(SecondaryForegroundColor);
+            //    return;
+            //}
+            //if (department.Equals(DepartmentEnum.StateGrid))
+            //{
+            //    Color primaryColor = Color.FromRgb(0, 54, 122);
+            //    Color PrimaryForegroundColor = Color.FromRgb(130, 218, 255);
+            //    Color SecondaryColor = Color.FromRgb(51, 136, 233);
+            //    Color SecondaryForegroundColor = Color.FromRgb(255, 255, 255);
+            //    PaletteHelperExtensions.ChangePrimaryColor(_paletteHelper, primaryColor);
+            //    PaletteHelperExtensions.ChangeSecondaryColor(_paletteHelper, SecondaryColor);
+            //    SetPrimaryForegroundToSingleColor(PrimaryForegroundColor);
+            //    SetSecondaryForegroundToSingleColor(SecondaryForegroundColor);
+            //    return;
+            //}
 
         }
     }

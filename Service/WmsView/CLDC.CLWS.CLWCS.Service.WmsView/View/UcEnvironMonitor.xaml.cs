@@ -30,8 +30,8 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             {
                 while (true)
                 {
-                    GetDeviceData();
-                    Thread.Sleep(1000);//2s刷新一下
+                    //GetDeviceData();
+                    Thread.Sleep(1000);//1s刷新一下
                 }
             });
         }

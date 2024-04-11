@@ -19,5 +19,13 @@ namespace CL.WCS.WPF.View.Login
                 return path;
             }
         }
+
+        public string Title
+        {
+            get
+            {
+                return SystemConfig.Instance.SysName;
+            }
+        }
     }
 }

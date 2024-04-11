@@ -1,5 +1,6 @@
 ﻿using CL.WCS.SystemConfigPckg;
 using CL.WCS.SystemConfigPckg.View;
+using CLDC.CLWS.CLWCS.Service.Authorize.View;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -51,7 +52,16 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             UserContentControl.Children.Add(areaList);
         }
 
-
-
+        private void btnUserList_Click(object sender, RoutedEventArgs e)
+        {
+            var ucChildrens = UserContentControl.Children;
+            for (int i = ucChildrens.Count - 1; i >= 0; i--)
+            {
+                ucChildrens.Remove(ucChildrens[i]);
+            }
+            AccountManageView accountList = new AccountManageView();
+            //areaList.ViewModel.SearchCommand.Execute(null);
+            UserContentControl.Children.Add(accountList);
+        }
     }
 }

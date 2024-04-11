@@ -16,6 +16,7 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
@@ -100,14 +101,23 @@ namespace CLDC.CLWCS.Service.MenuService.View
                 for (int i = 0; i < accountListResult.Content.Count; i++)
                 {
                     var Name = accountListResult.Content[i]?.AccCode;
+                    BitmapImage image = new BitmapImage();
+                    if (File.Exists("/Images/" + Name + ".jpg"))
+                    {
+                        image= CreateBitmapImage("/Images/" + Name + ".jpg");
+                    }
+                    else
+                    {
+                        image= CreateBitmapImage("/Images/Admin.jpg");
+                    }
                     if (i == 0)
                     {
-                        imgAdmin1.Source = CreateBitmapImage("/Images/" + Name + ".jpg");
+                        imgAdmin1.Source = image;
                         lbAdmin1.Content = Name;
                     }
                     else if (i == 1)
                     {
-                        imgAdmin2.Source = CreateBitmapImage("/Images/" + Name + ".jpg");
+                        imgAdmin2.Source = image;
                         lbAdmin2.Content = Name;
                     }
                 }

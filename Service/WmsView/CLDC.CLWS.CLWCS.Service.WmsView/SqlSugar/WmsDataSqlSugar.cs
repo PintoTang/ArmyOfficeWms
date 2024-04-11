@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Xml.Linq;
 
@@ -39,6 +40,73 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
                 createResult.Message = OperateResult.ConvertException(ex);
             }
             return createResult;
+        }
+
+        public override OperateResult CreateNewArea(Area model)
+        {
+            OperateResult createResult = OperateResult.CreateFailedResult();
+            try
+            {
+                bool result = DbHelper.Add(model) > 0;
+                if (!result)
+                {
+                    createResult.Message = "操作数据库错误";
+                }
+                createResult.IsSuccess = result;
+                return createResult;
+            }
+            catch (Exception ex)
+            {
+                createResult.IsSuccess = false;
+                createResult.Message = OperateResult.ConvertException(ex);
+            }
+            return createResult;
+        }
+
+        public override OperateResult UpdateArea(Area model)
+        {
+            OperateResult createResult = OperateResult.CreateFailedResult();
+            try
+            {
+                bool result = DbHelper.Update<Area>(t => new Area
+                {
+                    AreaCode = model.AreaCode,
+                    AreaName = model.AreaName,
+                    ROW = model.ROW,
+                    COLUMN = model.COLUMN,
+                    Status = model.Status,
+                }, t => t.Id == model.Id) > 0;
+                if (!result)
+                {
+                    createResult.Message = "操作数据库错误";
+                }
+                createResult.IsSuccess = result;
+                return createResult;
+            }
+            catch (Exception ex)
+            {
+                createResult.IsSuccess = false;
+                createResult.Message = OperateResult.ConvertException(ex);
+            }
+            return createResult;
+        }
+
+
+        public override OperateResult DeleteArea(Area model)
+        {
+            OperateResult result = OperateResult.CreateFailedResult();
+            try
+            {
+                bool done = DbHelper.Delete<Area>(t => t.Id == model.Id) > 0;
+                result.IsSuccess = done;
+                result.Message = "操作成功";
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = OperateResult.ConvertException(ex);
+            }
+            return result;
         }
 
         public override OperateResult CreateNewOrderDetail(List<OrderDetail> inOrder)

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SystemConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="系统配置" Description="配置整体系统的基本信息">
-	<SysName Name="系统名称" Description="更改系统显示的名称信息" Value="来安县人武部战备物资管理系统" />
+	<SysName Name="系统名称" Description="更改系统显示的名称信息" Value="蒙城县人武部战备库室管理系统" />
 	<WhCode Name="仓库编号" Description="根据仓库的基础数据更改仓库编号" Value="WH_LA" />
 	<IsTrueWebService Name="启用Web服务" Description="配置使用真实的Web服务或使用模拟的Web服务" Value="true" />
 	<OpcMode Name="系统启动环境" Description="设置启动系统运行的环境" Value="Automatic" />
-	<Department Name="公司名称" Description="系统版权所属" Value="WEISS" />
+	<Department Name="公司名称" Description="系统版权所属" Value="JZX" />
 	<WcsDataBaseType Name="Wms数据库类型" Description="Wms数据库类型" Value="SqlServer" />
 	<WcsDatabaseConn Name="Wms数据库" Description="Wms系统数据库连接串" Value="Data Source=.;Initial Catalog =ArmyOfficeWms;User Id=sa;Password=831CF57B8435B5BB;" />
 	<MaxByteLength Name="单日志文件大小" Description="单日志文件大小" Value="30" />
@@ -12,7 +12,7 @@
 	<MaxLogCount Name="日志最大个数" Description="日志最大个数" Value="30" />
 	<LogSavedDays Name="日志保存天数" Description="日志保存的天数" Value="30" />
 	<IsRecordEventLog Name="启用Evn日志" Description="是否打印Event日志" Value="false" />
-	<CopyRight Name="软件版权所属" Description="软件版权所属" Value="深圳市维斯物流自动化科技有限公司" />
+	<CopyRight Name="软件版权所属" Description="软件版权所属" Value="安徽军之星智能科技有限公司" />
 	<Version Name="软件版本号" Description="软件版本号" Value="V2.0.0.1" />
   <RfidPower Name="读写器功率" Description="RFID读写器功率" Value="28"/>
   <Interval Name="数据刷新间隔" Description="数据刷新间隔(秒)" Value="10"/>

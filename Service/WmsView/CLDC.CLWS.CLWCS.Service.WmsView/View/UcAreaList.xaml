@@ -23,11 +23,11 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border Background="#245D55" CornerRadius="2">
+    <Border Background="White" CornerRadius="2">
         <Grid>
-            <Grid.Background>
+            <!--<Grid.Background>
                 <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
-            </Grid.Background>
+            </Grid.Background>-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10"/>
                 <ColumnDefinition/>
@@ -49,9 +49,9 @@
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
                             <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Button Width="68" FontSize="18" Command="{Binding CreateAccountCommand}" CommandParameter="1">新增</Button>
-                                <Button Width="68" FontSize="18" Command="{Binding DeleteAccountCommand}" CommandParameter="1">删除</Button>
-                                <Button Width="68" FontSize="18" Command="{Binding EditAccountCommand}" CommandParameter="1">编辑</Button>
+                                <Button Width="68" FontSize="18" Command="{Binding CreateAreaCommand}" CommandParameter="1">新增</Button>
+                                <Button Width="68" FontSize="18" Command="{Binding DeleteAreaCommand}" CommandParameter="1">删除</Button>
+                                <Button Width="68" FontSize="18" Command="{Binding EditAreaCommand}" CommandParameter="1">编辑</Button>
                             </WrapPanel>
                         </Grid>
                         <Grid Grid.Row="1" Margin="5">
@@ -93,6 +93,7 @@
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Id" Width="100" Binding="{Binding Id}" Visibility="Hidden"/>
                                     <DataGridTextColumn Header="任务编码" Width="100" Binding="{Binding AreaCode}" IsReadOnly="True"/>
                                     <DataGridTextColumn Header="任务分类" Width="190" Binding="{Binding AreaName}" IsReadOnly="True"/>
                                     <DataGridTextColumn Header="所在行" Width="100" Binding="{Binding ROW}" IsReadOnly="True"/>

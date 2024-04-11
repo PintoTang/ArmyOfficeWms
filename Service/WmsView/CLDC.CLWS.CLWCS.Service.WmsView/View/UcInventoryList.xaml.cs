@@ -57,17 +57,17 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                     return;
                 }
 
-                TcpCom tcp = new TcpCom();
-                tcp.RemoteIp = IPAddress.Parse(SystemConfig.Instance.RemoteIp);
-                tcp.RemoteIpPort = 20108;
-                if (tcp.Connected == false)
-                {
-                    tcp.Connect();
-                }
-                if (tcp.Connected == false)
-                {
-                    SnackbarQueue.MessageQueue.Enqueue("TCP连接失败！");
-                }
+                //TcpCom tcp = new TcpCom();
+                //tcp.RemoteIp = IPAddress.Parse(SystemConfig.Instance.RemoteIp);
+                //tcp.RemoteIpPort = 20108;
+                //if (tcp.Connected == false)
+                //{
+                //    tcp.Connect();
+                //}
+                //if (tcp.Connected == false)
+                //{
+                //    SnackbarQueue.MessageQueue.Enqueue("TCP连接失败！");
+                //}
 
                 var command = SoundLightConfig.Instance.CommandList.FirstOrDefault(x => x.Area == (string)cbArea.SelectedValue && x.Team == (string)cbTeam.SelectedValue);
                 if (command == null)
@@ -77,12 +77,12 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 }
                 else
                 {
-                    string[] strCode = command.Code.Split(' ');
-                    byte[] buffer = new byte[strCode.Length];
-                    buffer = ToBytesFromHexString(command.Code);
-                    tcp.Send(buffer);
-                    Thread.Sleep(250);
-                    tcp.Send(buffer);
+                    //string[] strCode = command.Code.Split(' ');
+                    //byte[] buffer = new byte[strCode.Length];
+                    //buffer = ToBytesFromHexString(command.Code);
+                    //tcp.Send(buffer);
+                    //Thread.Sleep(250);
+                    //tcp.Send(buffer);
                 }
             }
             catch { }
@@ -118,17 +118,17 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                     return;
                 }
 
-                TcpCom tcp = new TcpCom();
-                tcp.RemoteIp = IPAddress.Parse(SystemConfig.Instance.RemoteIp);
-                tcp.RemoteIpPort = 20108;
-                if (tcp.Connected == false)
-                {
-                    tcp.Connect();
-                }
-                if (tcp.Connected == false)
-                {
-                    SnackbarQueue.MessageQueue.Enqueue("TCP连接失败！");
-                }
+                //TcpCom tcp = new TcpCom();
+                //tcp.RemoteIp = IPAddress.Parse(SystemConfig.Instance.RemoteIp);
+                //tcp.RemoteIpPort = 20108;
+                //if (tcp.Connected == false)
+                //{
+                //    tcp.Connect();
+                //}
+                //if (tcp.Connected == false)
+                //{
+                //    SnackbarQueue.MessageQueue.Enqueue("TCP连接失败！");
+                //}
 
                 var command = SoundLightConfig.Instance.CommandList.FirstOrDefault(x => x.Area == (string)cbArea.SelectedValue && x.Team == (string)cbTeam.SelectedValue);
                 if (command == null)
@@ -142,12 +142,12 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                     speech.SpeakAsync(command.SoundContent);
 
 
-                    string[] strCode = command.Code.Split(' ');
-                    byte[] buffer = new byte[strCode.Length];
-                    buffer = ToBytesFromHexString(command.Code);
-                    tcp.Send(buffer);
-                    Thread.Sleep(250);
-                    tcp.Send(buffer);
+                    //string[] strCode = command.Code.Split(' ');
+                    //byte[] buffer = new byte[strCode.Length];
+                    //buffer = ToBytesFromHexString(command.Code);
+                    //tcp.Send(buffer);
+                    //Thread.Sleep(250);
+                    //tcp.Send(buffer);
 
 
                     CreateOutOrderView createOutOrder = new CreateOutOrderView("1");

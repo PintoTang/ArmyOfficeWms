@@ -13,7 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CL.WCS.SystemConfigPckg.Model;
+using CLDC.CLWS.CLWCS.Service.Authorize.View;
 using CLDC.CLWS.CLWCS.Service.License;
+using CLDC.CLWS.CLWCS.WareHouse.Manage.View;
 using Infrastructrue.Ioc.DependencyFactory;
 
 namespace CL.WCS.WPF.View.MainTitle
@@ -73,6 +75,12 @@ namespace CL.WCS.WPF.View.MainTitle
             {
                 DragMove();
             }
+        }
+
+        private async void BtnChangePwd_OnClick(object sender, RoutedEventArgs e)
+        {
+            ChangePasswordView view = new ChangePasswordView();
+            await MaterialDesignThemes.Wpf.DialogHost.Show(view, "DialogHostWait");
         }
     }
 

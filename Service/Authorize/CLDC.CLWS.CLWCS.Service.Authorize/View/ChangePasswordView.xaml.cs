@@ -18,6 +18,7 @@ using CLDC.CLWS.CLWCS.Service.Authorize.ViewModel;
 using CLDC.Infrastructrue.UserCtrl;
 using CLDC.Infrastructrue.UserCtrl.Model;
 using Infrastructrue.Ioc.DependencyFactory;
+using MaterialDesignThemes.Wpf;
 
 namespace CLDC.CLWS.CLWCS.Service.Authorize.View
 {
@@ -61,12 +62,18 @@ namespace CLDC.CLWS.CLWCS.Service.Authorize.View
                         return;
                     }
                     SnackbarQueue.MessageQueue.Enqueue("密码修改成功");
+                    DialogHost.CloseDialogCommand.Execute(updateResult.Message, this);
                 }
             }
             catch (Exception ex)
             {
                 MessageBoxEx.Show("用户信息保存失败:" + OperateResult.ConvertException(ex));
             }
+        }
+
+        private void BtnClose_OnClick(object sender, RoutedEventArgs e)
+        {
+            DialogHost.CloseDialogCommand.Execute("主动退出", this);
         }
     }
 }

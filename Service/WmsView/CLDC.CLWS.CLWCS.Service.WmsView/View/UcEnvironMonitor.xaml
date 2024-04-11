@@ -34,7 +34,7 @@
             <Image Source="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/Temperature.png" Width="90" />
             <StackPanel Width="220">
                 <TextBlock Text="温度区域：" x:Name="tbTepmer" Foreground="#0EB094" FontFamily="AppleSystemUIFont;" FontSize="17px" Margin="10"></TextBlock>
-                <TextBlock Text="实时温度：" x:Name="tbTemperature" Foreground="#FFFFFF"  FontFamily="AppleSystemUIFont;" FontSize="17px" Margin="10"></TextBlock>
+                <TextBlock Text="实时温度：正常" x:Name="tbTemperature" Foreground="#FFFFFF"  FontFamily="AppleSystemUIFont;" FontSize="17px" Margin="10"></TextBlock>
             </StackPanel>
         </StackPanel>
         <Line  Grid.Row="1" Grid.ColumnSpan="2" X1="17" Y1="90" X2="313" Y2="90" Stroke="#0EB094" StrokeThickness="1.5"/>
@@ -42,7 +42,7 @@
             <Image Source="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/Humidity.png" Width="90" />
             <StackPanel Width="220">
                 <TextBlock Text="湿度区域：" x:Name="tbHumi" Foreground="#0EB094"  FontFamily="AppleSystemUIFont;" FontSize="17px" Margin="10"></TextBlock>
-                <TextBlock Text="实时湿度：" x:Name="tbHumidity" Foreground="#FFFFFF" FontFamily="AppleSystemUIFont;" FontSize="17px" Margin="10"></TextBlock>
+                <TextBlock Text="实时湿度：正常" x:Name="tbHumidity" Foreground="#FFFFFF" FontFamily="AppleSystemUIFont;" FontSize="17px" Margin="10"></TextBlock>
             </StackPanel>
         </StackPanel>
         <Line  Grid.Row="2" Grid.ColumnSpan="2" X1="17" Y1="90" X2="313" Y2="90" Stroke="#0EB094" StrokeThickness="1.5"/>
@@ -50,7 +50,7 @@
             <Image Source="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/Infrared.png" Width="90" />
             <StackPanel Width="220">
                 <TextBlock Text="红外" Foreground="#0EB094" FontFamily="AppleSystemUIFont;" FontSize="17px" Margin="10"></TextBlock>
-                <TextBlock Text="正常：" x:Name="tbInfrared" Foreground="#FFFFFF" FontFamily="AppleSystemUIFont;" FontSize="17px" Margin="10"></TextBlock>
+                <TextBlock Text="正常：正常" x:Name="tbInfrared" Foreground="#FFFFFF" FontFamily="AppleSystemUIFont;" FontSize="17px" Margin="10"></TextBlock>
             </StackPanel>
         </StackPanel>
         <Line  Grid.Row="3" Grid.ColumnSpan="2" X1="17" Y1="90" X2="313" Y2="90" Stroke="#0EB094" StrokeThickness="1.5"/>
@@ -58,7 +58,7 @@
             <Image Source="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/EntranceGuard.png" Width="90"/>
             <StackPanel Width="220">
                 <TextBlock Text="门禁" Foreground="#0EB094" FontFamily="AppleSystemUIFont;" FontSize="17px" Margin="10"></TextBlock>
-                <TextBlock Text="正常：" x:Name="tbEntranceGuard" Foreground="#FFFFFF" FontFamily="AppleSystemUIFont;" FontSize="17px" Margin="10"></TextBlock>
+                <TextBlock Text="正常：正常" x:Name="tbEntranceGuard" Foreground="#FFFFFF" FontFamily="AppleSystemUIFont;" FontSize="17px" Margin="10"></TextBlock>
             </StackPanel>
         </StackPanel>
         <Line  Grid.Row="4" Grid.ColumnSpan="2" X1="17" Y1="90" X2="313" Y2="90" Stroke="#0EB094" StrokeThickness="1.5"/>
@@ -66,7 +66,7 @@
             <Image Source="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/SmokeDetector.png" Width="90"/>
             <StackPanel Width="220">
                 <TextBlock Text="烟感" Foreground="#0EB094" FontFamily="AppleSystemUIFont;" FontSize="17px" Margin="10"></TextBlock>
-                <TextBlock Text="正常：" x:Name="tbSmokeDetector" Foreground="#FFFFFF" FontFamily="AppleSystemUIFont;" FontSize="17px" Margin="10"></TextBlock>
+                <TextBlock Text="正常：正常" x:Name="tbSmokeDetector" Foreground="#FFFFFF" FontFamily="AppleSystemUIFont;" FontSize="17px" Margin="10"></TextBlock>
             </StackPanel>
         </StackPanel>
         <Line  Grid.Row="5" Grid.ColumnSpan="2" X1="17" Y1="90" X2="313" Y2="90" Stroke="#0EB094" StrokeThickness="1.5"/>

@@ -4,20 +4,25 @@ using System;
 namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
 {
 	/// <summary>
-	/// 库区
+	/// 任务分类
 	/// </summary>
 	[SugarTable("t_Area")]
 	public class Area
 	{
+        /// <summary>
+        /// 任务分类Id
+        /// </summary>
+        [SugarColumn]
+        public long Id { get; set; }
 
         /// <summary>
-        /// 库区编码
+        /// 任务分类编码
         /// </summary>
         [SugarColumn]
         public string AreaCode { get; set; }
 
         /// <summary>
-        /// 库区名称
+        /// 任务分类名称
         /// </summary>
         [SugarColumn]
         public string AreaName { get; set; }

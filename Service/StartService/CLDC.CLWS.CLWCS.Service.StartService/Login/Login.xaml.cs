@@ -107,7 +107,7 @@ namespace CLDC.CLWS.CLWCS.Service.StartService.Login
         /// <param name="e"></param>
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-
+            //txtTest.Text = SecurityHelper.Encrypt(TxtBoxPwd.Password.Trim());
             LoginArr = LoginDataForTxt.GetLgoinInfo(txtLoginDataFullPath);
             int curLoginErrTimes = int.Parse(LoginArr[0]);//当前次数
             int sleepTimes = int.Parse(LoginArr[1]);//超时 分

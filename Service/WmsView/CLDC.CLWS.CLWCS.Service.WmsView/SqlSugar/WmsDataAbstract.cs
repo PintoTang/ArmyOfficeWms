@@ -24,6 +24,27 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
         public abstract OperateResult CreateNewInOrder(Order inOrder);
 
         /// <summary>
+        /// 创建任务分类
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public abstract OperateResult CreateNewArea(Area model);
+
+        /// <summary>
+        /// 更新任务分类
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public abstract OperateResult UpdateArea(Area model);
+
+        /// <summary>
+        /// 删除任务分类
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public abstract OperateResult DeleteArea(Area model);
+
+        /// <summary>
         /// 创建入库单明细
         /// </summary>
         /// <param name="inOrder"></param>

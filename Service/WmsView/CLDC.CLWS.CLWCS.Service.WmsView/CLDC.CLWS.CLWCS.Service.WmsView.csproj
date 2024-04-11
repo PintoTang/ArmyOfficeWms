@@ -45,6 +45,9 @@
     <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.3.11, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\SharpZipLib.1.3.3\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="IdGen, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\IdGen.3.0.5\lib\netstandard1.1\IdGen.dll</HintPath>
+    </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
@@ -92,7 +95,13 @@
       <HintPath>..\..\..\packages\SqlSugar.5.0.3.2\lib\SqlSugar.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
     <Reference Include="System.Speech" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -132,12 +141,19 @@
     <Compile Include="ConfigOperate\ReasonConfigModel.cs" />
     <Compile Include="ConfigOperate\SoundLightConfigModel.cs" />
     <Compile Include="Tools\ISpeech.cs" />
+    <Compile Include="Tools\Snowflake.cs" />
     <Compile Include="Tools\SpeechBussiness.cs" />
     <Compile Include="Tools\SpeechQueue.cs" />
+    <Compile Include="UserCtrl\NumericUpDown.xaml.cs">
+      <DependentUpon>NumericUpDown.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AreaListViewModel.cs" />
     <Compile Include="ViewModel\CreateOrderViewModel.cs" />
     <Compile Include="ViewModel\InventoryListViewModel.cs" />
     <Compile Include="ViewModel\OrderListViewModel.cs" />
+    <Compile Include="View\CreateAreaView.xaml.cs">
+      <DependentUpon>CreateAreaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CreateNewOrderView.xaml.cs">
       <DependentUpon>CreateNewOrderView.xaml</DependentUpon>
     </Compile>
@@ -175,6 +191,14 @@
     <Compile Include="SqlSugar\WmsDataAbstract.cs" />
     <Compile Include="SqlSugar\WmsDataService.cs" />
     <Page Include="Style\StyleMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserCtrl\NumericUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateAreaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

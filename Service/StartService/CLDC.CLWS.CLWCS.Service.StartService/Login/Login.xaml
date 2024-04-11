@@ -8,11 +8,14 @@
               ResizeMode="NoResize" AllowsTransparency="True"   BorderThickness="0" WindowStyle="None" Width="800" Height="450" Background="Transparent" x:Name="_this">
     <Border CornerRadius="20">
         <Border.Background>
-            <ImageBrush ImageSource="Resources/Image/LoginImage02.png"></ImageBrush>
+            <ImageBrush ImageSource="Resources/Image/Login.png"></ImageBrush>
         </Border.Background>
         <Grid Width="{Binding ElementName=_this,Path=ActualWidth}" Height="{Binding ElementName=_this,Path=ActualHeight}">
-            <DockPanel>
-                <Grid  Width="260" Height="260"  HorizontalAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Center">
+            <StackPanel>
+                <Grid DockPanel.Dock="Top" Margin="0,70,0,40">
+                    <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="SourceHanSansCN-Heavy;" FontSize="31px" Foreground="#12FFD5" FontWeight="Bold" />
+                </Grid>
+                <Grid Width="260" Height="260"  HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center">                    
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1"/>
                         <RowDefinition Height="60"/>
@@ -64,7 +67,8 @@
                         <Button Width="120" Height="55"  Name="BtnLogin" materialDesign:ButtonAssist.CornerRadius="5" Foreground="White"   BorderThickness="0"  FontSize="25" Content="登录" Margin="3" Click="BtnLogin_Click"   Style="{StaticResource MaterialDesignRaisedButton}"/>
                     </StackPanel>
                 </Grid>
-            </DockPanel>
+                <!--<TextBlock x:Name="txtTest" Foreground="Red" Width="80" Height="30" FontSize="25"></TextBlock>-->
+            </StackPanel>
             <!--<Image Source="{Binding Path=IconPath}" Margin="37,25,555,354" RenderTransformOrigin="0.73,0.853"/>-->
         </Grid>
     </Border>
