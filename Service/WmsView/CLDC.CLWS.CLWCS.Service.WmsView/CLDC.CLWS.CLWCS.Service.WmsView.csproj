@@ -130,6 +130,7 @@
     <Compile Include="DataModel\Material.cs" />
     <Compile Include="DataModel\RfidBarcode.cs" />
     <Compile Include="DataModel\Shelf.cs" />
+    <Compile Include="DataModel\SoundLight.cs" />
     <Compile Include="DataModel\TaskTypeEnum.cs" />
     <Compile Include="DataModel\WmsDataModel.cs" />
     <Compile Include="DataModel\Warehouse.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="ViewModel\CreateOrderViewModel.cs" />
     <Compile Include="ViewModel\InventoryListViewModel.cs" />
     <Compile Include="ViewModel\OrderListViewModel.cs" />
+    <Compile Include="ViewModel\SoundLightViewModel.cs" />
     <Compile Include="View\CreateAreaView.xaml.cs">
       <DependentUpon>CreateAreaView.xaml</DependentUpon>
     </Compile>
@@ -164,6 +166,9 @@
       <DependentUpon>CreateReturnOrderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\MultiParamterConverter.cs" />
+    <Compile Include="View\CreateSoundLightView.xaml.cs">
+      <DependentUpon>CreateSoundLightView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UcAreaList.xaml.cs">
       <DependentUpon>UcAreaList.xaml</DependentUpon>
     </Compile>
@@ -184,6 +189,9 @@
     </Compile>
     <Compile Include="View\UcSetupView.xaml.cs">
       <DependentUpon>UcSetupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UcSoundLightView.xaml.cs">
+      <DependentUpon>UcSoundLightView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UcTopTitle.xaml.cs">
       <DependentUpon>UcTopTitle.xaml</DependentUpon>
@@ -214,6 +222,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CreateSoundLightView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UcAreaList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -239,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UcSetupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UcSoundLightView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

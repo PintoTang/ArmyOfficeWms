@@ -38,6 +38,11 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
             return _wmsDataAccess.GetAreaList(code);
         }
 
+        public List<SoundLight> GetSoundLightList(string code)
+        {
+            return _wmsDataAccess.GetSoundLightList(code);
+        }
+
         public List<Shelf> GetShelfList(string area)
         {
             return _wmsDataAccess.GetShelfList(area);
@@ -56,6 +61,21 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
         public OperateResult CreateNewArea(Area model)
         {
             return _wmsDataAccess.CreateNewArea(model);
+        }
+
+        public OperateResult CreateSoundLight(SoundLight model)
+        {
+            return _wmsDataAccess.CreateSoundLight(model);
+        }
+
+        public OperateResult UpdateSoundLight(SoundLight model)
+        {
+            return _wmsDataAccess.UpdateSoundLight(model);
+        }
+
+        public OperateResult DeleteSoundLight(SoundLight model)
+        {
+            return _wmsDataAccess.DeleteSoundLight(model);
         }
 
         public OperateResult UpdateArea(Area model)
@@ -96,6 +116,11 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
         public OperateResult<List<Area>> GetAreaPageList(Expression<Func<Area, bool>> whereLambda = null)
         {
             return _wmsDataAccess.GetAreaPageList(whereLambda);
+        }
+
+        public OperateResult<List<SoundLight>> GetSoundLightPageList(Expression<Func<SoundLight, bool>> whereLambda = null)
+        {
+            return _wmsDataAccess.GetSoundLightPageList(whereLambda);
         }
 
         public double GetInvQtyByStatus(InvStatusEnum status)

@@ -1,6 +1,7 @@
 ﻿using CL.WCS.SystemConfigPckg;
 using CL.WCS.SystemConfigPckg.View;
 using CLDC.CLWS.CLWCS.Service.Authorize.View;
+using CLDC.CLWS.CLWCS.Service.WmsView.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -62,6 +63,18 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             AccountManageView accountList = new AccountManageView();
             //areaList.ViewModel.SearchCommand.Execute(null);
             UserContentControl.Children.Add(accountList);
+        }
+
+        private void btnSoundLight_Click(object sender, RoutedEventArgs e)
+        {
+            var ucChildrens = UserContentControl.Children;
+            for (int i = ucChildrens.Count - 1; i >= 0; i--)
+            {
+                ucChildrens.Remove(ucChildrens[i]);
+            }
+            UcSoundLightView soundLight = new UcSoundLightView();
+            SoundLightViewModel.SingleInstance.SearchCommand.Execute(null);
+            UserContentControl.Children.Add(soundLight);
         }
     }
 }

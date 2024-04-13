@@ -45,6 +45,27 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
         public abstract OperateResult DeleteArea(Area model);
 
         /// <summary>
+        /// 创建声光配置
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public abstract OperateResult CreateSoundLight(SoundLight model);
+
+        /// <summary>
+        /// 更新声光配置
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public abstract OperateResult UpdateSoundLight(SoundLight model);
+
+        /// <summary>
+        /// 删除声光配置
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public abstract OperateResult DeleteSoundLight(SoundLight model);
+
+        /// <summary>
         /// 创建入库单明细
         /// </summary>
         /// <param name="inOrder"></param>
@@ -70,6 +91,8 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
 
         public abstract OperateResult<List<Inventory>> GetInventoryPageList(string where);
         public abstract OperateResult<List<Area>> GetAreaPageList(Expression<Func<Area, bool>> whereLambda = null);
+
+        public abstract OperateResult<List<SoundLight>> GetSoundLightPageList(Expression<Func<SoundLight, bool>> whereLambda = null);
         public abstract double GetInvQtyByStatus(InvStatusEnum status);
 
         public abstract Inventory GetInventory(string Barcode);
@@ -93,11 +116,18 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView
         public abstract OrderDetail GetOrderDetail(string orderSn);
 
         /// <summary>
-        /// 获取存放区域
+        /// 获取任务分类
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
         public abstract List<Area> GetAreaList(string name);
+
+        /// <summary>
+        /// 获取声光配置
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public abstract List<SoundLight> GetSoundLightList(string name);
 
         /// <summary>
         /// 获取存放货架

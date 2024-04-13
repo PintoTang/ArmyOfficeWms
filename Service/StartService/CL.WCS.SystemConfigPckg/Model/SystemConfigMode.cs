@@ -64,6 +64,8 @@ namespace CL.WCS.SystemConfigPckg.Model
         public ConfigItem<string> Interval { get; set; }
         [XmlElement("ModbudHub")]
         public ConfigItem<string> RemoteIp { get; set; }
+        [XmlElement("SoundLight")]
+        public ConfigItem<string> SoundLight { get; set; }
 
     }
 }

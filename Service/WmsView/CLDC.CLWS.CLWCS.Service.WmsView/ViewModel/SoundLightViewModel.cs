@@ -15,19 +15,19 @@ using System.Windows;
 
 namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
 {
-    public class AreaListViewModel : ViewModelBase
+    public class SoundLightViewModel : ViewModelBase
     {
         private string _curArea;
         private int? _curStatus;
         private string _curTaskType;
         private WmsDataService _wmsDataService;
-        public ObservableCollection<Area> AreaList { get; set; }
+        public ObservableCollection<SoundLight> SoundLightList { get; set; }
 
 
         /// <summary>
         /// 当前选中的任务分类信息
         /// </summary>
-        public Area SelectedValue { get; set; }
+        public SoundLight SelectedValue { get; set; }
 
 
         /// <summary>
@@ -85,9 +85,9 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             }
         }
 
-        private static readonly Lazy<AreaListViewModel> lazy = new Lazy<AreaListViewModel>(() =>
-                                        new AreaListViewModel(), LazyThreadSafetyMode.PublicationOnly);
-        public static AreaListViewModel SingleInstance
+        private static readonly Lazy<SoundLightViewModel> lazy = new Lazy<SoundLightViewModel>(() =>
+                                        new SoundLightViewModel(), LazyThreadSafetyMode.PublicationOnly);
+        public static SoundLightViewModel SingleInstance
         {
             get
             {
@@ -95,9 +95,9 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             }
         }
 
-        public AreaListViewModel()
+        public SoundLightViewModel()
         {
-            AreaList = new ObservableCollection<Area>();
+            SoundLightList = new ObservableCollection<SoundLight>();
             _wmsDataService = DependencyHelper.GetService<WmsDataService>();
         }
 
@@ -117,11 +117,11 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
 
         private void Search()
         {
-            AreaList.Clear();
+            SoundLightList.Clear();
             try
             {
                 var where = CombineSearchSql();
-                OperateResult<List<Area>> accountListResult = _wmsDataService.GetAreaPageList(where);
+                OperateResult<List<SoundLight>> accountListResult = _wmsDataService.GetSoundLightPageList(where);
                 if (!accountListResult.IsSuccess)
                 {
                     SnackbarQueue.MessageQueue.Enqueue("查询出错：" + accountListResult.Message);
@@ -131,7 +131,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                 {
                     accountListResult.Content.ForEach(ite =>
                     {
-                        AreaList.Add(ite);
+                        SoundLightList.Add(ite);
                     });
                 }
             }
@@ -141,93 +141,89 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
             }
         }
 
-        private Expression<Func<Area, bool>> CombineSearchSql()
+        private Expression<Func<SoundLight, bool>> CombineSearchSql()
         {
-            Expression<Func<Area, bool>> whereLambda = t => t.IsDeleted == false;
+            Expression<Func<SoundLight, bool>> whereLambda = t => t.IsDeleted == false;
             if (!string.IsNullOrEmpty(CurArea))
             {
-                whereLambda = whereLambda.AndAlso(t => t.AreaCode == CurArea);
-            }
-            if (CurStatus.HasValue)
-            {
-                whereLambda = whereLambda.AndAlso(t => t.Status == CurStatus.Value);
+                whereLambda = whereLambda.AndAlso(t => t.Area == CurArea);
             }
             return whereLambda;
         }
 
 
-        private RelayCommand _createAreaCommand;
-        public RelayCommand CreateAreaCommand
+        private RelayCommand _createSoundLightCommand;
+        public RelayCommand CreateSoundLightCommand
         {
             get
             {
-                if (_createAreaCommand==null)
+                if (_createSoundLightCommand == null)
                 {
-                    _createAreaCommand = new RelayCommand(CreateArea);                    
+                    _createSoundLightCommand = new RelayCommand(CreatSoundLight);
                 }
-                return _createAreaCommand;
+                return _createSoundLightCommand;
             }
         }
 
-        private async void CreateArea()
+        private async void CreatSoundLight()
         {
-            CreateAreaView createArea = new CreateAreaView();
-            await MaterialDesignThemes.Wpf.DialogHost.Show(createArea, "DialogHostWait");
+            CreateSoundLightView soundLightView = new CreateSoundLightView();
+            await MaterialDesignThemes.Wpf.DialogHost.Show(soundLightView, "DialogHostWait");
         }
 
 
-        private RelayCommand _editAreaCommand;
-        public RelayCommand EditAreaCommand
+        private RelayCommand _editSoundLightCommand;
+        public RelayCommand EditSoundLightCommand
         {
             get
             {
-                if (_editAreaCommand == null)
+                if (_editSoundLightCommand == null)
                 {
-                    _editAreaCommand = new RelayCommand(EditArea);
+                    _editSoundLightCommand = new RelayCommand(EditSoundLight);
                 }
-                return _editAreaCommand;
+                return _editSoundLightCommand;
             }
         }
 
-        private async void EditArea()
+        private async void EditSoundLight()
         {
             if (SelectedValue == null)
             {
                 SnackbarQueue.Enqueue("请选择需要编辑的任务分类");
                 return;
             }
-            CreateAreaView createArea = new CreateAreaView(SelectedValue);
+            CreateSoundLightView createArea = new CreateSoundLightView(SelectedValue);
             await MaterialDesignThemes.Wpf.DialogHost.Show(createArea, "DialogHostWait");
         }
 
 
-        private RelayCommand _deleteAreaCommand;
+        private RelayCommand _deleteSoundLightCommand;
 
-        public RelayCommand DeleteAreaCommand
+        public RelayCommand DeleteSoundLightCommand
         {
             get
             {
-                if (_deleteAreaCommand == null)
+                if (_deleteSoundLightCommand == null)
                 {
-                    _deleteAreaCommand = new RelayCommand(DeleteArea);
+                    _deleteSoundLightCommand = new RelayCommand(DeleteSoundLight);
                 }
-                return _deleteAreaCommand;
+                return _deleteSoundLightCommand;
             }
         }
 
-        private void DeleteArea()
+        private void DeleteSoundLight()
         {
             if (SelectedValue == null)
             {
-                SnackbarQueue.Enqueue("请选择需要删除的任务分类");
+                SnackbarQueue.Enqueue("请选择需要删除的声光配置");
                 return;
             }
-            MessageBoxResult msgResult = MessageBoxEx.Show(string.Format("确定删除任务分类：{0}", SelectedValue.AreaName), "警告", MessageBoxButton.YesNo);
+            MessageBoxResult msgResult = MessageBoxEx.Show("确定此删除声光配置？", "警告", MessageBoxButton.YesNo);
             if (msgResult == MessageBoxResult.No)
             {
                 return;
             }
-            OperateResult deleteResult = _wmsDataService.DeleteArea(SelectedValue);
+            OperateResult deleteResult = _wmsDataService.DeleteSoundLight(SelectedValue);
             SnackbarQueue.Enqueue(string.Format("操作结果：{0}", deleteResult.Message));
             Search();
         }

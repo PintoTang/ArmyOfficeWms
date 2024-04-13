@@ -2,9 +2,11 @@
 using CLDC.CLWS.CLWCS.Service.Authorize;
 using CLDC.CLWS.CLWCS.Service.WmsView.Model;
 using CLDC.CLWS.CLWCS.Service.WmsView.Tools;
+using CLDC.CLWS.CLWCS.Service.WmsView.ViewModel;
 using CLDC.Infrastructrue.UserCtrl;
 using CLDC.Infrastructrue.UserCtrl.Model;
 using Infrastructrue.Ioc.DependencyFactory;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,11 +25,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
         public CreateAreaView()
         {
             InitializeComponent();
+            lbTitle.Content= "新增任务分类";
         }
 
         public CreateAreaView(Area model)
         {
             InitializeComponent();
+            lbTitle.Content = "编辑任务分类";
             _areaId = model.Id;
             tbAreaCode.Text = model.AreaCode;
             tbAreaName.Text = model.AreaName;
@@ -93,8 +97,10 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                     MessageBoxEx.Show("修改任务分类失败，原因：" + createResult.Message, "错误", MessageBoxButton.OK);
                     return;
                 }
-                SnackbarQueue.MessageQueue.Enqueue("任务分类修改成功");
+                SnackbarQueue.MessageQueue.Enqueue("任务分类修改成功");       
             }
+            AreaListViewModel.SingleInstance.SearchCommand.Execute(null);
+            DialogHost.CloseDialogCommand.Execute("操作完成", this);
         }
 
 

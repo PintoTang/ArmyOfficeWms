@@ -36,12 +36,14 @@ namespace CLDC.CLWCS.Service.MenuService.View
     {
         private WmsDataService _wmsDataService;
         private AuthorizeService _authorizeService;
+        private SeriesCollection pieSeriesCollection;
         public MainContentView()
         {
             InitializeComponent();
             this.DataContext = new SystemConfigViewMode(SystemConfig.Instance.CurSystemConfig);
             _wmsDataService = DependencyHelper.GetService<WmsDataService>();
             _authorizeService = DependencyHelper.GetService<AuthorizeService>();
+            pieSeriesCollection = new SeriesCollection();
             UserControl menuView = new UcDefaultView();
             UserContentControl.Children.Add(menuView);
             DataContext = this;
@@ -102,7 +104,7 @@ namespace CLDC.CLWCS.Service.MenuService.View
                 {
                     var Name = accountListResult.Content[i]?.AccCode;
                     BitmapImage image = new BitmapImage();
-                    if (File.Exists("/Images/" + Name + ".jpg"))
+                    if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "/Images/" + Name + ".jpg"))
                     {
                         image= CreateBitmapImage("/Images/" + Name + ".jpg");
                     }
@@ -126,7 +128,7 @@ namespace CLDC.CLWCS.Service.MenuService.View
 
         private BitmapImage CreateBitmapImage(string imgUrl)
         {
-            var CurPath = System.IO.Directory.GetCurrentDirectory();
+            var CurPath = AppDomain.CurrentDomain.BaseDirectory;
             BitmapImage bmp = new BitmapImage();
             bmp.BeginInit();
             bmp.UriSource = new Uri(CurPath+imgUrl);
@@ -134,7 +136,6 @@ namespace CLDC.CLWCS.Service.MenuService.View
             return bmp;
         }
 
-        SeriesCollection pieSeriesCollection = new SeriesCollection();
         /// <summary>
         /// 饼图图集合
         /// </summary>

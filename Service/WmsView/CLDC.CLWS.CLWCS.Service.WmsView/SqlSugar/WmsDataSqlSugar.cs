@@ -63,6 +63,27 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             return createResult;
         }
 
+        public override OperateResult CreateSoundLight(SoundLight model)
+        {
+            OperateResult createResult = OperateResult.CreateFailedResult();
+            try
+            {
+                bool result = DbHelper.Add(model) > 0;
+                if (!result)
+                {
+                    createResult.Message = "操作数据库错误";
+                }
+                createResult.IsSuccess = result;
+                return createResult;
+            }
+            catch (Exception ex)
+            {
+                createResult.IsSuccess = false;
+                createResult.Message = OperateResult.ConvertException(ex);
+            }
+            return createResult;
+        }
+
         public override OperateResult UpdateArea(Area model)
         {
             OperateResult createResult = OperateResult.CreateFailedResult();
@@ -91,6 +112,35 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             return createResult;
         }
 
+        public override OperateResult UpdateSoundLight(SoundLight model)
+        {
+            OperateResult createResult = OperateResult.CreateFailedResult();
+            try
+            {
+                bool result = DbHelper.Update<SoundLight>(t => new SoundLight
+                {
+                    Area = model.Area,
+                    Team = model.Team,
+                    Sound = model.Sound,
+                    Light = model.Light,
+                    SoundContent = model.SoundContent,
+                    LightCode = model.LightCode,
+                }, t => t.Id == model.Id) > 0;
+                if (!result)
+                {
+                    createResult.Message = "操作数据库错误";
+                }
+                createResult.IsSuccess = result;
+                return createResult;
+            }
+            catch (Exception ex)
+            {
+                createResult.IsSuccess = false;
+                createResult.Message = OperateResult.ConvertException(ex);
+            }
+            return createResult;
+        }
+
 
         public override OperateResult DeleteArea(Area model)
         {
@@ -98,6 +148,23 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             try
             {
                 bool done = DbHelper.Delete<Area>(t => t.Id == model.Id) > 0;
+                result.IsSuccess = done;
+                result.Message = "操作成功";
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = OperateResult.ConvertException(ex);
+            }
+            return result;
+        }
+
+        public override OperateResult DeleteSoundLight(SoundLight model)
+        {
+            OperateResult result = OperateResult.CreateFailedResult();
+            try
+            {
+                bool done = DbHelper.Delete<SoundLight>(t => t.Id == model.Id) > 0;
                 result.IsSuccess = done;
                 result.Message = "操作成功";
             }
@@ -179,6 +246,8 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             OperateResult<List<Order>> result = OperateResult.CreateFailedResult<List<Order>>("无数据");
             try
             {
+                //dataPool = DbHelper.QueryPageList((int)filterModel.PageIndex, (int)filterModel.PageSize,
+                //    "LOG_RECORD_DATE DESC", out totalCount, where);
                 List<Order> list = DbHelper.QueryList(whereLambda).OrderByDescending(x=>x.CreatedTime).ToList();
                 result.IsSuccess = true;
                 result.Content = list;
@@ -247,6 +316,25 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             }
             return result;
         }
+
+        public override OperateResult<List<SoundLight>> GetSoundLightPageList(Expression<Func<SoundLight, bool>> whereLambda = null)
+        {
+            OperateResult<List<SoundLight>> result = OperateResult.CreateFailedResult<List<SoundLight>>("无数据");
+            try
+            {
+                List<SoundLight> list = DbHelper.QueryList(whereLambda);
+                result.IsSuccess = true;
+                result.Content = list;
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = OperateResult.ConvertException(ex);
+
+            }
+            return result;
+        }
+
 
         public override double GetInvQtyByStatus(InvStatusEnum status)
         {
@@ -346,6 +434,18 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
             try
             {
                 areaList = DbHelper.QueryList<Area>(t => t.AreaCode.Contains(code) && t.Status == 1);
+            }
+            catch
+            { }
+            return areaList;
+        }
+
+        public override List<SoundLight> GetSoundLightList(string code)
+        {
+            List<SoundLight> areaList = null;
+            try
+            {
+                areaList = DbHelper.QueryList<SoundLight>(t => t.Area.Contains(code));
             }
             catch
             { }

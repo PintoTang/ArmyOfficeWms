@@ -54,35 +54,34 @@
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
                             <WrapPanel Grid.Column="0" VerticalAlignment="Center">
-                                <TextBlock Width="20"/>
-                                <Button x:Name="btnSystemParam"  Grid.Row="2" Grid.Column="1" Width="152px" Height="58px" BorderThickness="0" Click="btnSystemParam_Click">
+                                <Button x:Name="btnSystemParam"  Grid.Row="2" Grid.Column="1" Width="122px" Height="48px" BorderThickness="0" Click="btnSystemParam_Click">
                                     <Button.Background>
                                         <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                                     </Button.Background>
                                     <Button.Content>
-                                        <TextBlock Text="系统参数设置" Foreground="White" FontSize="20px"/>
+                                        <TextBlock Text="系统参数" Foreground="White" FontSize="20px"/>
                                     </Button.Content>
                                 </Button>
-                                <TextBlock Width="20"/>
-                                <Button x:Name="btnAreaList"  Grid.Row="2" Grid.Column="1" Width="152px" Height="58px" BorderThickness="0" Click="btnAreaList_Click">
+                                <TextBlock Width="10"/>
+                                <Button x:Name="btnAreaList"  Grid.Row="2" Grid.Column="1" Width="122px" Height="48px" BorderThickness="0" Click="btnAreaList_Click">
                                     <Button.Background>
                                         <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                                     </Button.Background>
                                     <Button.Content>
-                                        <TextBlock Text="任务分类维护" Foreground="White" FontSize="20px"/>
+                                        <TextBlock Text="任务分类" Foreground="White" FontSize="20px"/>
                                     </Button.Content>
                                 </Button>
-                                <TextBlock Width="20"/>
-                                <Button x:Name="btnAlarmList"  Grid.Row="2" Grid.Column="1" Width="152px" Height="58px" BorderThickness="0" Click="btnAreaList_Click">
+                                <TextBlock Width="10"/>
+                                <Button x:Name="btnSoundLight"  Grid.Row="2" Grid.Column="1" Width="122px" Height="48px" BorderThickness="0" Click="btnSoundLight_Click">
                                     <Button.Background>
                                         <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                                     </Button.Background>
                                     <Button.Content>
-                                        <TextBlock Text="声光报警维护" Foreground="White" FontSize="20px"/>
+                                        <TextBlock Text="声光报警" Foreground="White" FontSize="20px"/>
                                     </Button.Content>
                                 </Button>
-                                <TextBlock Width="20"/>
-                                <Button x:Name="btnUserList"  Grid.Row="2" Grid.Column="1" Width="122px" Height="58px" BorderThickness="0" Click="btnUserList_Click">
+                                <TextBlock Width="10"/>
+                                <Button x:Name="btnUserList"  Grid.Row="2" Grid.Column="1" Width="122px" Height="48px" BorderThickness="0" Click="btnUserList_Click">
                                     <Button.Background>
                                         <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                                     </Button.Background>
@@ -93,7 +92,7 @@
                                 <TextBlock Width="20"/>
                             </WrapPanel>
                             <Grid Grid.Column="1">
-                                <Button x:Name="BtnExit" Width="90px" Height="58px" BorderThickness="0" Click="BtnExit_Click">
+                                <Button x:Name="BtnExit" Width="100px" Height="48px" BorderThickness="0" Click="BtnExit_Click">
                                     <Button.Background>
                                         <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/btnBackground.png" Stretch="Fill"/>
                                     </Button.Background>

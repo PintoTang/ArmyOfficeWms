@@ -17,16 +17,15 @@ using System.Windows.Shapes;
 namespace CLDC.CLWS.CLWCS.Service.WmsView.View
 {
     /// <summary>
-    /// UcAreaList.xaml 的交互逻辑
+    /// UcSoundLightView.xaml 的交互逻辑
     /// </summary>
-    public partial class UcAreaList : UserControl
+    public partial class UcSoundLightView : UserControl
     {
-        public AreaListViewModel ViewModel { get; set; }
-        public UcAreaList()
+
+        public UcSoundLightView()
         {
-            InitializeComponent();
-            ViewModel = AreaListViewModel.SingleInstance;
-            DataContext = ViewModel;
+            InitializeComponent();            
+            DataContext = SoundLightViewModel.SingleInstance;
         }
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)

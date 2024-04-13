@@ -1,9 +1,11 @@
 ﻿using CL.WCS.SystemConfigPckg.Model;
 using CLDC.CLWS.CLWCS.Infrastructrue.Sockets;
+using CLDC.CLWS.CLWCS.Service.WmsView.Model;
 using CLDC.CLWS.CLWCS.Service.WmsView.Tools;
 using CLDC.CLWS.CLWCS.Service.WmsView.ViewModel;
 using CLDC.Infrastructrue.UserCtrl;
 using CLDC.Infrastructrue.UserCtrl.Model;
+using Infrastructrue.Ioc.DependencyFactory;
 using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Linq;
@@ -19,10 +21,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
     /// </summary>
     public partial class UcInventoryList : UserControl
     {
+        private WmsDataService _wmsDataService;
         public InventoryListViewModel ViewModel { get; set; }
+
         public UcInventoryList()
         {
             InitializeComponent();
+            _wmsDataService = DependencyHelper.GetService<WmsDataService>();
             ViewModel = new InventoryListViewModel();
             DataContext = ViewModel;
         }
@@ -57,19 +62,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                     return;
                 }
 
-                //TcpCom tcp = new TcpCom();
-                //tcp.RemoteIp = IPAddress.Parse(SystemConfig.Instance.RemoteIp);
-                //tcp.RemoteIpPort = 20108;
-                //if (tcp.Connected == false)
-                //{
-                //    tcp.Connect();
-                //}
-                //if (tcp.Connected == false)
-                //{
-                //    SnackbarQueue.MessageQueue.Enqueue("TCP连接失败！");
-                //}
-
-                var command = SoundLightConfig.Instance.CommandList.FirstOrDefault(x => x.Area == (string)cbArea.SelectedValue && x.Team == (string)cbTeam.SelectedValue);
+                var command = _wmsDataService.GetSoundLightList(string.Empty).FirstOrDefault(x => x.Area == (string)cbArea.SelectedValue && x.Team == (string)cbTeam.SelectedValue);
                 if (command == null)
                 {
                     MessageBoxEx.Show("未配置此区域的声光报警指令，请重新配置!");
@@ -77,12 +70,26 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 }
                 else
                 {
-                    //string[] strCode = command.Code.Split(' ');
-                    //byte[] buffer = new byte[strCode.Length];
-                    //buffer = ToBytesFromHexString(command.Code);
-                    //tcp.Send(buffer);
-                    //Thread.Sleep(250);
-                    //tcp.Send(buffer);
+                    if (SystemConfig.Instance.SoundLight == "SoundAndLight")
+                    {
+                        TcpCom tcp = new TcpCom();
+                        tcp.RemoteIp = IPAddress.Parse(SystemConfig.Instance.RemoteIp);
+                        tcp.RemoteIpPort = 20108;
+                        if (tcp.Connected == false)
+                        {
+                            tcp.Connect();
+                        }
+                        if (tcp.Connected == false)
+                        {
+                            SnackbarQueue.MessageQueue.Enqueue("TCP连接失败！");
+                        }
+                        string[] strCode = command.LightCode.Split(' ');
+                        byte[] buffer = new byte[strCode.Length];
+                        buffer = ToBytesFromHexString(command.LightCode);
+                        tcp.Send(buffer);
+                        Thread.Sleep(250);
+                        tcp.Send(buffer);
+                    }
                 }
             }
             catch { }
@@ -118,19 +125,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                     return;
                 }
 
-                //TcpCom tcp = new TcpCom();
-                //tcp.RemoteIp = IPAddress.Parse(SystemConfig.Instance.RemoteIp);
-                //tcp.RemoteIpPort = 20108;
-                //if (tcp.Connected == false)
-                //{
-                //    tcp.Connect();
-                //}
-                //if (tcp.Connected == false)
-                //{
-                //    SnackbarQueue.MessageQueue.Enqueue("TCP连接失败！");
-                //}
-
-                var command = SoundLightConfig.Instance.CommandList.FirstOrDefault(x => x.Area == (string)cbArea.SelectedValue && x.Team == (string)cbTeam.SelectedValue);
+                var command = _wmsDataService.GetSoundLightList(string.Empty).FirstOrDefault(x => x.Area == (string)cbArea.SelectedValue && x.Team == (string)cbTeam.SelectedValue);
                 if (command == null)
                 {
                     MessageBoxEx.Show("未配置此区域的声光报警指令，请重新配置!");
@@ -141,14 +136,26 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                     ISpeech speech = new SpeechBussiness();
                     speech.SpeakAsync(command.SoundContent);
 
-
-                    //string[] strCode = command.Code.Split(' ');
-                    //byte[] buffer = new byte[strCode.Length];
-                    //buffer = ToBytesFromHexString(command.Code);
-                    //tcp.Send(buffer);
-                    //Thread.Sleep(250);
-                    //tcp.Send(buffer);
-
+                    if (SystemConfig.Instance.SoundLight == "SoundAndLight")
+                    {
+                        TcpCom tcp = new TcpCom();
+                        tcp.RemoteIp = IPAddress.Parse(SystemConfig.Instance.RemoteIp);
+                        tcp.RemoteIpPort = 20108;
+                        if (tcp.Connected == false)
+                        {
+                            tcp.Connect();
+                        }
+                        if (tcp.Connected == false)
+                        {
+                            SnackbarQueue.MessageQueue.Enqueue("TCP连接失败！");
+                        }
+                        string[] strCode = command.LightCode.Split(' ');
+                        byte[] buffer = new byte[strCode.Length];
+                        buffer = ToBytesFromHexString(command.LightCode);
+                        tcp.Send(buffer);
+                        Thread.Sleep(250);
+                        tcp.Send(buffer);
+                    }
 
                     CreateOutOrderView createOutOrder = new CreateOutOrderView("1");
                     createOutOrder.progressLoop.Visibility = Visibility.Visible;

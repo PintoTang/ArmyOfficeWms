@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="CLDC.CLWS.CLWCS.Service.WmsView.View.UcSoundLightView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CLDC.CLWS.CLWCS.Service.WmsView.View"
+                          mc:Ignorable="d" d:DesignHeight="856" d:DesignWidth="1044" Width="1044" Height="856" Background="White" x:Name="_this">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ListBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.RadioButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="/CLDC.Infrastructrue.UserCtrl;component/Style/UserControlStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border Background="White" CornerRadius="2">
+        <Grid>
+            <!--<Grid.Background>
+                <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
+            </Grid.Background>-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition x:Name="ContentRow"/>
+                </Grid.RowDefinitions>
+                <Label FontSize="20"  Grid.Row="0" FontWeight="Bold" Foreground="#245D55" HorizontalAlignment="Left" VerticalAlignment="Center">声光报警维护</Label>
+
+                <Grid Grid.Row="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Name="RowSearch" Height="60"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="5"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Button Width="68" FontSize="18" Command="{Binding CreateSoundLightCommand}" CommandParameter="1">新增</Button>
+                                <Button Width="68" FontSize="18" Command="{Binding DeleteSoundLightCommand}" CommandParameter="1">删除</Button>
+                                <Button Width="68" FontSize="18" Command="{Binding EditSoundLightCommand}" CommandParameter="1">编辑</Button>
+                            </WrapPanel>
+                        </Grid>
+                        <Grid Grid.Row="1" Margin="5">
+                            <DataGrid Name="AreaListGrid" FontSize="18"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                              AutoGenerateColumns="False"
+                              materialDesign:DataGridAssist.CellPadding="4 2 2 2"
+                              materialDesign:DataGridAssist.ColumnHeaderPadding="4 2 2 2"
+                              ItemsSource="{Binding SoundLightList}" 
+                              SelectedValue="{Binding SelectedValue}"
+                                      HorizontalContentAlignment="Center"
+                                      VerticalContentAlignment="Center"
+                              CanUserAddRows="False"  LoadingRow="AreaListGrid_LoadingRow"
+                              CanUserDeleteRows="False" CanUserResizeColumns="False">
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <ImageBrush ImageSource="/CLDC.CLWS.CLWCS.Service.WmsView;component/Images/box_left_bg.png" />
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="Foreground" Value="#FFFFFF"/>
+                                        <Setter Property="FontSize" Value="18" />
+                                        <Setter Property="Height" Value="35"/>
+                                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
+                                <DataGrid.InputBindings>
+                                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ShowDetailCommand}" CommandParameter="{Binding ElementName=AreaListGrid,Path=SelectedItem}"/>
+                                </DataGrid.InputBindings>
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Width="60" Header="序号">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock TextAlignment="Center" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type DataGridRow}}, Path=Header}"
+                                                         FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Id" Width="100" Binding="{Binding Id}" Visibility="Hidden"/>
+                                    <DataGridTextColumn Header="任务分类" Width="100" Binding="{Binding Area}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="任务分队" Width="100" Binding="{Binding Team}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="播报内容" Width="200" Binding="{Binding SoundContent}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="灯光指令" Width="200" Binding="{Binding LightCode}"/>
+                                    <DataGridTextColumn Header="创建者" Width="100" Binding="{Binding CreatedUserName}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="创建时间" Width="220" Binding="{Binding CreatedTime,StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}" IsReadOnly="True"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
+

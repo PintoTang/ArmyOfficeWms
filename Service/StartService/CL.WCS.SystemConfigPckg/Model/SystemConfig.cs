@@ -131,6 +131,11 @@ namespace CL.WCS.SystemConfigPckg.Model
         /// </summary>
         public string RemoteIp { get; set; }
 
+        /// <summary>
+        /// 声光报警启用情况
+        /// </summary>
+        public string SoundLight { get; set; }
+
 
 
 
@@ -196,6 +201,8 @@ namespace CL.WCS.SystemConfigPckg.Model
                 Interval = CurSystemConfig.Interval.Value;
 
                 RemoteIp = CurSystemConfig.RemoteIp.Value;
+
+                SoundLight=CurSystemConfig.SoundLight.Value;
             }
             catch (Exception ex)
             {

@@ -367,7 +367,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                     SnackbarQueue.MessageQueue.Enqueue("TCP连接失败！");
                 }
 
-                var command = SoundLightConfig.Instance.CommandList.FirstOrDefault(x => x.Area == area);
+                var command = _wmsDataService.GetSoundLightList(string.Empty).FirstOrDefault(x => x.Area == area);
                 if (command == null)
                 {
                     MessageBoxEx.Show("未配置此区域的声光报警指令，请重新配置!");
@@ -375,9 +375,9 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                 }
                 else
                 {
-                    string[] strCode=command.Code.Split(' ');
+                    string[] strCode=command.LightCode.Split(' ');
                     byte[] buffer = new byte[strCode.Length];
-                    buffer = ToBytesFromHexString(command.Code);
+                    buffer = ToBytesFromHexString(command.LightCode);
                     tcp.Send(buffer);
                     Thread.Sleep(250);
                     tcp.Send(buffer);
