@@ -90,8 +90,16 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 orderDetail.UnitName = inventory.UnitName;
                 orderDetail.MaterialCode = inventory.MaterialCode;
                 orderDetail.MaterialDesc = inventory.MaterialDesc;
-                orderDetail.ShelfCode = CbShelf.SelectedValue.ToString();
-                orderDetail.ShelfName = CbShelf.Text.ToString();
+                if (CbShelf.SelectedValue == null)
+                {
+                    orderDetail.ShelfCode = inventory.ShelfCode;
+                    orderDetail.ShelfName = inventory.ShelfName;
+                }
+                else
+                {
+                    orderDetail.ShelfCode = CbShelf.SelectedValue.ToString();
+                    orderDetail.ShelfName = CbShelf.Text.ToString();
+                }
                 detailList.Add(orderDetail);
             }
             OperateResult updateInvResult = new OperateResult();
@@ -114,16 +122,25 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             Order newOrder = new Order();
             newOrder.Id = orderId;
             newOrder.InOutType = InOrOutEnum.出库;
-            newOrder.AreaCode = cbArea.SelectedValue.ToString();
-            newOrder.AreaName = cbArea.Text;
+            if (cbArea.SelectedValue != null)
+            {
+                newOrder.AreaCode = cbArea.SelectedValue.ToString();
+                newOrder.AreaName = cbArea.Text;
+            }
             newOrder.CreatedTime = DateTime.Now;
             newOrder.CreatedUserName = CookieService.CurSession.UserInfo.Account.AccCode;
             newOrder.IsDeleted = false;
             newOrder.Reason = (string)CbReason.Text;
             newOrder.OrderSN = orderSN;
             newOrder.Qty = BarcodeGrid.Items.Count;
-            newOrder.Status = InvStatusEnum.在库;
-            newOrder.AreaTeam=cbTeam.SelectedValue.ToString();
+            if (reason == "2")
+                newOrder.Status = InvStatusEnum.报损;
+            else
+                newOrder.Status = InvStatusEnum.出库;
+            if (cbTeam.SelectedValue != null)
+            {
+                newOrder.AreaTeam = cbTeam.SelectedValue.ToString();
+            }
 
             OperateResult createResult = _wmsDataService.CreateNewInOrder(newOrder);
             if (!createResult.IsSuccess)

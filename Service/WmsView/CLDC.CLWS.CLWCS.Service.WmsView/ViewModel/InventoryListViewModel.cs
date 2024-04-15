@@ -4,6 +4,7 @@ using CLDC.CLWS.CLWCS.Infrastructrue.DataModel;
 using CLDC.CLWS.CLWCS.Infrastructrue.Sockets;
 using CLDC.CLWS.CLWCS.Service.WmsView.DataModel;
 using CLDC.CLWS.CLWCS.Service.WmsView.Model;
+using CLDC.CLWS.CLWCS.Service.WmsView.Tools;
 using CLDC.Infrastructrue.UserCtrl;
 using CLDC.Infrastructrue.UserCtrl.Model;
 using GalaSoft.MvvmLight;
@@ -355,18 +356,6 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                     return;
                 }
 
-                TcpCom tcp = new TcpCom();
-                tcp.RemoteIp = IPAddress.Parse(SystemConfig.Instance.RemoteIp);
-                tcp.RemoteIpPort = 20108;
-                if (tcp.Connected == false)
-                {
-                    tcp.Connect();
-                }
-                if (tcp.Connected == false)
-                {
-                    SnackbarQueue.MessageQueue.Enqueue("TCP连接失败！");
-                }
-
                 var command = _wmsDataService.GetSoundLightList(string.Empty).FirstOrDefault(x => x.Area == area);
                 if (command == null)
                 {
@@ -375,12 +364,29 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.ViewModel
                 }
                 else
                 {
-                    string[] strCode=command.LightCode.Split(' ');
-                    byte[] buffer = new byte[strCode.Length];
-                    buffer = ToBytesFromHexString(command.LightCode);
-                    tcp.Send(buffer);
-                    Thread.Sleep(250);
-                    tcp.Send(buffer);
+                    ISpeech speech = new SpeechBussiness();
+                    speech.SpeakAsync(command.SoundContent);
+
+                    if (SystemConfig.Instance.SoundLight == "SoundAndLight")
+                    {
+                        TcpCom tcp = new TcpCom();
+                        tcp.RemoteIp = IPAddress.Parse(SystemConfig.Instance.RemoteIp);
+                        tcp.RemoteIpPort = 20108;
+                        if (tcp.Connected == false)
+                        {
+                            tcp.Connect();
+                        }
+                        if (tcp.Connected == false)
+                        {
+                            SnackbarQueue.MessageQueue.Enqueue("TCP连接失败！");
+                        }
+                        string[] strCode = command.LightCode.Split(' ');
+                        byte[] buffer = new byte[strCode.Length];
+                        buffer = ToBytesFromHexString(command.LightCode);
+                        tcp.Send(buffer);
+                        Thread.Sleep(250);
+                        tcp.Send(buffer);
+                    }
                 }
             }
             catch { }

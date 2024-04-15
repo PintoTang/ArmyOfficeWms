@@ -52,7 +52,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
 
-        private void btnSound_Click(object sender, RoutedEventArgs e)
+        private void btnLocation_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -70,6 +70,9 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 }
                 else
                 {
+                    ISpeech speech = new SpeechBussiness();
+                    speech.SpeakAsync(command.LocationContent);
+
                     if (SystemConfig.Instance.SoundLight == "SoundAndLight")
                     {
                         TcpCom tcp = new TcpCom();

@@ -123,6 +123,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.SqlSugar
                     Team = model.Team,
                     Sound = model.Sound,
                     Light = model.Light,
+                    LocationContent= model.LocationContent,
                     SoundContent = model.SoundContent,
                     LightCode = model.LightCode,
                 }, t => t.Id == model.Id) > 0;

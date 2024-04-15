@@ -40,7 +40,13 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.Model
         public int Sound { get; set; }
 
         /// <summary>
-        /// 播报内容
+        /// 定位播报
+        /// </summary>
+        [SugarColumn]
+        public string LocationContent { get; set; }
+
+        /// <summary>
+        /// 出动播报
         /// </summary>
         [SugarColumn]
         public string SoundContent { get; set; }

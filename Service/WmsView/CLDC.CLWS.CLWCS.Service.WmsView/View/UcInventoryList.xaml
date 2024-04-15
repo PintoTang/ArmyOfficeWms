@@ -101,7 +101,7 @@
                                 <TextBlock Width="20"/>
                                 <Button x:Name="btnExport" Width="100" Height="40" FontSize="18" Padding="0" Command="{Binding ExportCommand}">导出数据</Button>
                                 <TextBlock Width="20"/>
-                                <Button x:Name="btnSound" Click="btnSound_Click" Width="100" Height="40" FontSize="18" Padding="0" Content="声光定位"></Button>
+                                <Button x:Name="btnSound" Click="btnLocation_Click" Width="100" Height="40" FontSize="18" Padding="0" Content="声光定位"></Button>
                                 <TextBlock Width="20"/>
                                 <Button x:Name="btnQuickTask" Click="btnQuickTask_Click" Width="100" Height="40" FontSize="18" Padding="0" >快速出动</Button>
                             </WrapPanel>

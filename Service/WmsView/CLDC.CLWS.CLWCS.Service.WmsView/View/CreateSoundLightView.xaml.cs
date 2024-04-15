@@ -56,6 +56,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
             _soundLightId = model.Id;
             cbArea.SelectedValue = model.Area;
             tbTeam.Text = model.Team;
+            tbLocationContent.Text = model.LocationContent;
             tbSoundContent.Text = model.SoundContent;
             tbLightCode.Text = model.LightCode;
             _soundLight = model;
@@ -73,9 +74,14 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 MessageBoxEx.Show("任务分队不能为空", "提示", MessageBoxButton.OK);
                 return;
             }
+            if (string.IsNullOrEmpty(this.tbLocationContent.Text))
+            {
+                MessageBoxEx.Show("定位播报内容不能为空", "提示", MessageBoxButton.OK);
+                return;
+            }
             if (string.IsNullOrEmpty(this.tbSoundContent.Text))
             {
-                MessageBoxEx.Show("播报内容不能为空", "提示", MessageBoxButton.OK);
+                MessageBoxEx.Show("出动播报内容不能为空", "提示", MessageBoxButton.OK);
                 return;
             }
             if (string.IsNullOrEmpty(this.tbLightCode.Text))
@@ -89,6 +95,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 soundLight.Id = Snowflake.NewId();
                 soundLight.Area = cbArea.SelectedValue.ToString();
                 soundLight.Team =tbTeam.Text;
+                soundLight.LocationContent=tbLocationContent.Text;
                 soundLight.SoundContent = tbSoundContent.Text;
                 soundLight.LightCode=tbLightCode.Text;
                 soundLight.CreatedTime = DateTime.Now;
@@ -108,6 +115,7 @@ namespace CLDC.CLWS.CLWCS.Service.WmsView.View
                 SoundLight soundLight = _soundLight;
                 soundLight.Area = cbArea.SelectedValue.ToString();
                 soundLight.Team = tbTeam.Text;
+                soundLight.LocationContent = tbLocationContent.Text;
                 soundLight.SoundContent = tbSoundContent.Text;
                 soundLight.LightCode = tbLightCode.Text;
                 soundLight.CreatedTime = DateTime.Now;

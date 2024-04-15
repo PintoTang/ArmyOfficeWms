@@ -41,15 +41,18 @@
                         <RowDefinition Height="40"/>
                         <RowDefinition Height="70"/>
                         <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LableStyle}">任务分类：</Label>
                     <ComboBox x:Name="cbArea" DisplayMemberPath="AreaName" SelectedValuePath="AreaCode"  Width="200" Grid.Row="0" Grid.Column="1" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"></ComboBox>
                     <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LableStyle}">任务分队：</Label>
                     <TextBox x:Name="tbTeam" Grid.Row="1" Grid.Column="1" Width="200" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource LableStyle}">播报内容：</Label>
-                    <TextBox x:Name="tbSoundContent" TextWrapping="Wrap" MinLines="3" Grid.Row="2" Grid.Column="1" Width="200" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource LableStyle}">灯光指令：</Label>
-                    <TextBox x:Name="tbLightCode" TextWrapping="Wrap" MinLines="3" Grid.Row="3" Grid.Column="1" Width="200" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource LableStyle}">定位播报：</Label>
+                    <TextBox x:Name="tbLocationContent" TextWrapping="Wrap" MinLines="3" Grid.Row="2" Grid.Column="1" Width="200" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource LableStyle}">出动播报：</Label>
+                    <TextBox x:Name="tbSoundContent" TextWrapping="Wrap" MinLines="3" Grid.Row="3" Grid.Column="1" Width="200" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource LableStyle}">灯光指令：</Label>
+                    <TextBox x:Name="tbLightCode" TextWrapping="Wrap" MinLines="3" Grid.Row="4" Grid.Column="1" Width="200" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 </Grid>
             </ScrollViewer>
             <WrapPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">
